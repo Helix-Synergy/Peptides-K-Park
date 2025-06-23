@@ -31,6 +31,7 @@ import AboutSection from './sections/AboutSection';
 import WhyChooseUsSection from './sections/WhyChooseUsSection';
 import ContactSection from './sections/ContactSection';
 import Footer from './components/Footer';
+import ServicesWeServe from './sections/ServicesWeServe';
 
 function App() {
   const scrollRef = useRef(null);
@@ -53,7 +54,7 @@ function App() {
       <div ref={scrollRef} data-scroll-container>
         <Navbar />
         <Routes>
-          <Route path="/" element={<><Hero /><AboutSection /><WhyChooseUsSection /><ServiceSlider /><ContactSection /></>} />
+          <Route path="/" element={<><Hero /><AboutSection /><WhyChooseUsSection /><ServiceSlider /> <ServicesWeServe/> <ContactSection /></>} />
           {/* Advisory Council */}
           <Route path="/advisory-council" element={<AdvisoryCouncilDropdown />} />
           <Route path="/about-advisory-board" element={<AboutAdvisoryBoard />} />

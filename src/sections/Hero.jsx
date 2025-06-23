@@ -87,7 +87,7 @@ const Hero = () => {
       {/* Left: Text Content */}
       <div className="flex-1 flex flex-col justify-center px-6 sm:px-12 py-12 lg:py-0 z-10">
         {/* Animated subtitle with per-letter pull-up */}
-        <LettersPullUp text="Grow Your Business" />
+        <LettersPullUp text="Empowering Innovation" />
         <motion.h1
           className="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6"
           initial="hidden"
@@ -104,7 +104,7 @@ const Hero = () => {
           variants={textVariants}
           custom={3}
         >
-          Get professional & reliable research oriented solutions for Data Science and Machine Learning business needs. Enjoy stress free decesion making!
+          A leading hub for research, education, and innovation. We support academic projects, contract lab services, digital learning, and biotech solutions tailored for researchers, institutions, and industry partners.
         </motion.p>
         <motion.button
           className="flex w-[20vw] items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded-xl text-lg shadow transition"
@@ -114,7 +114,7 @@ const Hero = () => {
           // animate={{ opacity: 1, y: 0 }}
           // transition={{ delay: 0.6, duration: 0.7, ease: 'easeOut' }}
         >
-          GET STARTED <ArrowRight className="ml-2 w-5 h-5" />
+          EXPLORE SERVICES <ArrowRight className="ml-2 w-5 h-5" />
         </motion.button>
       </div>
       {/* Right: Diagonal Image Split */}
@@ -131,9 +131,9 @@ const Hero = () => {
             alt="Team working"
             className="absolute top-0 right-0 w-full h-full object-cover object-center [clip-path:polygon(30%_0,100%_0,100%_100%,0_100%)]"
             style={{ clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 0 100%)' }}
-            initial={{ opacity: 0, scale: 1.08 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, duration: 1, ease: 'easeOut' }}
+            initial={{ x: 600, opacity: 0, scale: 1.05 }}
+            animate={{ x: 0, opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 1, ease: 'easeOut' }}
           />
         </div>
       </div>
