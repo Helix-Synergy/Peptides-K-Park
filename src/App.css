@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
+/* src/App.css */
+
+/* Only keep styles here that are not global and do not conflict with index.css */
+
+html {
+  scroll-behavior: smooth;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  padding: 0;
+  /* !!! IMPORTANT: REMOVE OR COMMENT OUT THE OVERFLOW: HIDDEN RELATED RULES HERE !!! */
+  /* Do NOT remove overflow: hidden; */
+  /* Do NOT remove scrollbar hiding rules here */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Specific rules for Webkit browsers (Chrome, Safari, Edge) */
+/* Keep these if you want to explicitly hide scrollbars in case something goes wrong with main setup */
+body::-webkit-scrollbar {
+  display: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Specific rules for Firefox */
+body {
+  scrollbar-width: none;
 }
 
-.App-link {
-  color: #61dafb;
+/* For Webkit-based browsers (Chrome, Safari) */
+.custom-scrollbar-hide::-webkit-scrollbar {
+    display: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* For Firefox */
+.custom-scrollbar-hide {
+    scrollbar-width: none;
+}
+
+/* For IE and Edge */
+.custom-scrollbar-hide {
+    -ms-overflow-style: none;
 }

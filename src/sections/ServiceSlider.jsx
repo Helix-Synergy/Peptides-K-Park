@@ -1,25 +1,32 @@
 import React, { useState } from 'react';
 import { ArrowRight, ArrowLeft, Cloud, Shield, MonitorSmartphone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import labServices from '../assets/services/lab_services.svg';
+import contractResearch from '../assets/services/contract_research.svg';
+import academicAssistance from '../assets/services/academic_assistance.svg';
 
 const services = [
   {
     title: 'Cyber Security',
-    description: 'Expertise in IT consultancy for the many companies, for their different working areas.',
+    description: '',
     image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80',
-    icon: <Shield className="w-10 h-10 mb-2 text-white drop-shadow-md" />,
+    icon: <img src={labServices} alt="Lab Services" className="w-10 h-10 mb-2" />,
+    bg: 'bg-gradient-to-t from-blue-900/80 to-blue-900/40',
   },
   {
     title: 'Digital Services',
-    description: 'Expertise in IT consultancy for the many companies, for their different working areas.',
+    description: 'Expertise in a IT consultancy for the many companies, for their different working areas.',
     image: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80',
-    icon: <Cloud className="w-10 h-10 mb-2 text-white drop-shadow-md" />,
+    icon: <img src={contractResearch} alt="Contract Research" className="w-10 h-10 mb-2" />,
+    bg: 'bg-white',
+    card: true,
   },
   {
     title: 'Product Design',
-    description: 'Expertise in IT consultancy for the many companies, for their different working areas.',
+    description: '',
     image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80',
-    icon: <MonitorSmartphone className="w-10 h-10 mb-2 text-white drop-shadow-md" />,
+    icon: <img src={academicAssistance} alt="Academic Assistance" className="w-10 h-10 mb-2" />,
+    bg: 'bg-gradient-to-t from-blue-900/80 to-blue-900/40',
   },
   {
     title: 'Cloud Solutions',

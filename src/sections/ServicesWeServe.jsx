@@ -1,5 +1,10 @@
 import React from 'react';
 import { Shield, MonitorSmartphone, Users, BarChart2, Layout } from 'lucide-react';
+import biotechnology from '../assets/industries/biotechnology.svg';
+import bioInformatics from '../assets/industries/bio_informatics.svg';
+import microbiology from '../assets/industries/microbiology.svg';
+import pharmacy from '../assets/industries/pharmacy.svg';
+import molecularBiology from '../assets/industries/molecular_biology.svg';
 
 // SVG Hexagon Icon as background
 const HexIcon = ({ className }) => (
@@ -13,29 +18,29 @@ const HexIcon = ({ className }) => (
 
 const services = [
   {
-    title: 'Web Design',
-    description: 'Topnotch & modern design for website.',
-    icon: <Layout className="w-8 h-8 text-white" />,
+    title: 'Biotechnology',
+    description: 'It plays a vital role in Healthcare, Agriculture, Nanotechnology, Molecular Biology.',
+    icon: <img src={biotechnology} alt="Biotechnology" className="w-12 h-12" />,
   },
   {
-    title: 'Cyber Security',
-    description: 'Protect & guarantee your business information.',
-    icon: <Shield className="w-8 h-8 text-white" />,
+    title: 'Bioinformatics',
+    description: 'Bioinformatics combines Biology, Computer Science, and Statistics to analyze and interpret Biological data.',
+    icon: <img src={bioInformatics} alt="Bioinformatics" className="w-12 h-12" />,
   },
   {
-    title: 'Business Services',
-    description: 'Helpful services with multiple services business.',
-    icon: <Users className="w-8 h-8 text-white" />,
+    title: 'Microbiology',
+    description: 'Microbiology is the study of microscopic organisms such as Bacteria, Viruses, Fungi, and Protozoa.',
+    icon: <img src={microbiology} alt="Microbiology" className="w-12 h-12" />,
   },
   {
-    title: 'Digital Marketing',
-    description: 'Improve your site ranks and friendly on digital.',
-    icon: <MonitorSmartphone className="w-8 h-8 text-white" />,
+    title: 'Pharmacy',
+    description: 'Pharmacy is the science and practice of Preparing, Dispensing, and Reviewing Drugs for safe and effective use.',
+    icon: <img src={pharmacy} alt="Pharmacy" className="w-12 h-12" />,
   },
   {
-    title: 'Industry Service',
-    description: 'Specific services business to maximine profit.',
-    icon: <BarChart2 className="w-8 h-8 text-white" />,
+    title: 'Molecular Biology',
+    description: 'It focuses on the structure and function of molecules essential to life, such as DNA, RNA, and Proteins.',
+    icon: <img src={molecularBiology} alt="Molecular Biology" className="w-12 h-12" />,
   },
 ];
 
@@ -65,7 +70,7 @@ const ServicesWeServe = () => {
                 <div className="relative z-10">{service.icon}</div>
               </div>
               <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-              <p className="text-blue-100 text-base max-w-xs">{service.description}</p>
+              <p className="text-slate-300 text-base max-w-xs mt-2">{service.description}</p>
             </div>
           ))}
         </div>

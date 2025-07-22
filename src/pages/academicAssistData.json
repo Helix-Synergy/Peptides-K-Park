@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "h1": "Academic Assist"
+  },
+  "intro": {
+    "title": "Research & Learn Better",
+    "description": "Supporting the academic and research community in advance science and associated multidisciplinary subjects is the goal of Peptides. It ensures significant contributions to science and technology by improving research capacities, facilitating learning, and encouraging collaboration."
+  },
+  "services": [
+    {
+      "id": "academic-projects",
+      "title": "Academic Projects",
+      "description": "Use our assistance for academic tasks to turn your thoughts into reality. For project preparation, implementation, and presentation, we offer materials and advice. Our experience assists you in creating significant initiatives that highlight your abilities and further your knowledge. We provide help with data analysis, publication, and experimental design. Take part in important scientific advancements and improve your abilities through our academic programs.",
+      "ctaText": "Know More",
+      "ctaRoute": "/academic-projects"  
+    },
+    {
+      "id": "seminars",
+      "title": "Seminars",
+      "description": "Engage in dynamic discussions and learn from experts. Our seminars cover a wide range of topics, fostering intellectual growth and networking opportunities.",
+      "ctaText": "Explore Seminars",
+      "ctaRoute": "/seminars"
+    },
+    {
+      "id": "workshops",
+      "title": "Workshops",
+      "description": "Hands-on learning experiences designed to develop practical skills. Participate in our workshops to gain in-depth knowledge and apply it in real-world scenarios.",
+      "ctaText": "Join Workshop",
+      "ctaRoute": "/workshops"
+    },
+    {
+      "id": "tech-talks",
+      "title": "Tech Talks",
+      "description": "Stay updated with the latest technological advancements. Our tech talks feature industry leaders and innovators sharing insights on emerging trends.",
+      "ctaText": "Attend Tech Talk",
+      "ctaRoute": "/tech-talks"
+    },
+    {
+      "id": "research-assistance-thesis-support",
+      "title": "RATS—Research Assistance and Thesis Support",
+      "description": "Comprehensive support for your research journey, from literature review to thesis writing. We provide guidance to ensure your research is robust and your thesis is well-articulated.",
+      "ctaText": "Get Thesis Support",
+      "ctaRoute": "/research-assistance-thesis-support"
+    },
+    {
+      "id": "faculty-upskilling-service",
+      "title": "FUSS—Faculty Upskilling Service",
+      "description": "Empower your faculty with the latest teaching methodologies and research skills. Our upskilling programs enhance pedagogical effectiveness and academic excellence.",
+      "ctaText": "Upskill Now",
+      "ctaRoute": "/faculty-upskilling-service"
+    },
+    {
+      "id": "e-learn-digital-learning",
+      "title": "E-learn—Digital Learning",
+      "description": "Access a vast library of digital learning resources. Our e-learning platform offers flexible and interactive courses to enhance your knowledge at your own pace.",
+      "ctaText": "Start Learning",
+      "ctaRoute": "/e-learn-digital-learning"
+    }
+  ]
+}
