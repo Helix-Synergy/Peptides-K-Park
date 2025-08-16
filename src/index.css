@@ -3,29 +3,30 @@
 @tailwind utilities;
 
 /* src/index.css */
+/* src/index.css */
 
-/* CRITICAL: Hide native scrollbars and ensure html/body take full height */
+/* CRITICAL: Ensure no overflow: hidden or scroll-behavior: smooth on html/body */
+/* Locomotive Scroll manages scroll behavior for the data-scroll-container. */
+
 html {
-  overflow: hidden; /* This is the primary rule to hide native scrollbars on html */
-  height: 100%;    /* Ensures html takes full viewport height */
+  height: 100%; /* Ensures html takes full viewport height */
   margin: 0;
   padding: 0;
   -webkit-overflow-scrolling: touch; /* Improves scrolling on iOS devices */
-  scroll-behavior: smooth; /* Enhances smooth scrolling behavior */
+  /* scroll-behavior: smooth; - Removed as Locomotive Scroll handles this or native scroll is desired */
 }
 
 body {
-  overflow: hidden; /* CRITICAL: Hides native scrollbars on body */
-  height: 100%;    /* Ensures body takes full viewport height */
-  margin: 0;       /* Remove default browser margins */
-  padding: 0;      /* Remove default browser padding */
+  height: 100%; /* Ensures body takes full viewport height */
+  margin: 0;    /* Remove default browser margins */
+  padding: 0;   /* Remove default browser padding */
   overscroll-behavior: none; /* Prevents unwanted bounce on scroll ends */
-  /* Ensure 'Inter' is included if you define it in tailwind.config.js and want it as default */
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Removed any overflow: hidden or scroll-behavior: smooth if they were here */
 }
 
 /* For Webkit browsers (Chrome, Safari, Edge): Hide scrollbar visually */
@@ -38,7 +39,6 @@ body::-webkit-scrollbar {
 html, body {
   scrollbar-width: none;
 }
-/* You can add any other global styles below this if needed */
 
 /* Custom scrollbar for specific elements if needed (e.g., sticky sidebar) */
 .custom-scrollbar::-webkit-scrollbar {

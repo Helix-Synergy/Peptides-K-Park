@@ -294,260 +294,564 @@
 
 
 
+
+// import React, { useEffect, useRef, useState } from 'react';
+// import academicData from '../../pages/academicAssistData.json'; // Ensure this path is correct
+// import { useLocation, useNavigate } from 'react-router-dom';
+// import { motion } from 'framer-motion';
+// import Footer from '../Footer.jsx'; // Ensure this path is correct
+
+// const AcademicAssistDropdown = ({ locomotive }) => {
+//   const navigate = useNavigate();
+//   const location = useLocation();
+
+//   // IMPORTANT: Ensure GLOBAL_HEADER_HEIGHT matches your actual fixed Navbar height.
+//   // If your Navbar uses 'h-16' (64px), set this to 64.
+//   // If it uses 'h-24' (96px) or if 'scroll-mt-24' (96px) is consistently used for header offset,
+//   // then 96 is correct. I'm keeping 96 for consistency with your existing scroll-mt-24.
+//   const GLOBAL_HEADER_HEIGHT = 96; // Corresponds to scroll-mt-24 (96px) or h-24 Navbar
+//   const FIXED_BOTTOM_BAR_HEIGHT = 72; // From your style prop
+
+//   // State to manage the active sidebar item, initialized to the first service ID
+//   // Use optional chaining for safety in case academicData.services is empty
+//   const [activeId, setActiveId] = useState(academicData.services[0]?.id || '');
+//   const sectionRefs = useRef({}); // To store references to each content section
+
+//   // State to track screen size for responsive layout adjustments
+//   const [isMdScreen, setIsMdScreen] = useState(window.innerWidth >= 768);
+
+//   // Effect to update isMdScreen on window resize
+//   useEffect(() => {
+//     const handleResize = () => {
+//       setIsMdScreen(window.innerWidth >= 768);
+//     };
+//     window.addEventListener('resize', handleResize);
+//     // Call once immediately to set initial state
+//     handleResize();
+//     return () => window.removeEventListener('resize', handleResize);
+//   }, []);
+
+//   // Handler for sidebar button clicks
+//   const handleServiceClick = (id) => {
+//     setActiveId(id); // Update active ID immediately on click
+//     const section = sectionRefs.current[id];
+
+//     if (section) {
+//       if (locomotive) {
+//         // For locomotive, a negative offset makes the target stop 'above' the scroll position,
+//         // effectively bringing it below a fixed header.
+//         locomotive.scrollTo(section, { offset: -GLOBAL_HEADER_HEIGHT, duration: 800 });
+//       } else {
+//         // For native scroll, subtract the header height from the top position
+//         window.scrollTo({
+//           top: section.offsetTop - GLOBAL_HEADER_HEIGHT,
+//           behavior: 'smooth',
+//         });
+//       }
+//       // Update URL hash without re-rendering the component via location.hash
+//       // Use replace: true to avoid adding to browser history on every click
+//       navigate(`#${id}`, { replace: true });
+//     }
+//   };
+
+//   // Effect for Locomotive Scroll-based active state detection
+//   useEffect(() => {
+//     if (!locomotive) return; // Only run if locomotive is initialized
+
+//     const handleLocomotiveScroll = (instance) => {
+//       let currentVisibleSectionId = null;
+//       // Iterate through services to find the one whose top is closest to the header,
+//       // and which is clearly visible.
+//       for (let i = 0; i < academicData.services.length; i++) {
+//         const service = academicData.services[i];
+//         const ref = sectionRefs.current[service.id];
+//         if (ref) {
+//           const rect = ref.getBoundingClientRect();
+//           // A section is considered active if its top edge is at or just above the header line,
+//           // and its bottom edge is below the header line (meaning it's significantly visible).
+//           // Add a small buffer (e.g., +5px or -5px) for more robust detection.
+//           const topThreshold = GLOBAL_HEADER_HEIGHT + 5; // A little below the header
+//           const bottomThreshold = GLOBAL_HEADER_HEIGHT - 5; // A little above the header
+
+//           if (rect.top <= topThreshold && rect.bottom >= bottomThreshold) {
+//             currentVisibleSectionId = service.id;
+//             // For smoother transition, we might want to pick the first one
+//             // that is fully past the threshold or the one currently at the top.
+//             // This 'break' makes it pick the topmost eligible section.
+//             break;
+//           }
+//         }
+//       }
+
+//       // Fallback: If no section meets the primary criteria, perhaps we are at the very top
+//       // or very bottom of the scroll.
+//       if (!currentVisibleSectionId && academicData.services.length > 0) {
+//         // If at the very top of the page, ensure the first service is active.
+//         const firstSectionRect = sectionRefs.current[academicData.services[0].id]?.getBoundingClientRect();
+//         if (firstSectionRect && firstSectionRect.top >= GLOBAL_HEADER_HEIGHT - 20) { // Small buffer for 'at top'
+//           currentVisibleSectionId = academicData.services[0].id;
+//         }
+//         // You could add logic here for the very bottom as well if needed
+//       }
+
+//       // Update activeId only if a new section is detected as active
+//       if (currentVisibleSectionId && currentVisibleSectionId !== activeId) {
+//         setActiveId(currentVisibleSectionId);
+//         // Optionally update URL hash during scroll for direct deep linking
+//         // navigate(`#${currentVisibleSectionId}`, { replace: true });
+//       }
+//     };
+
+//     locomotive.on('scroll', handleLocomotiveScroll);
+
+//     return () => {
+//       locomotive.off('scroll', handleLocomotiveScroll);
+//     };
+//   }, [locomotive, activeId, GLOBAL_HEADER_HEIGHT, academicData.services]);
+
+
+//   // Effect for initial scroll based on URL hash when component mounts or hash changes.
+//   // This runs AFTER the component has rendered and refs are available.
+//   useEffect(() => {
+//     // Ensure academicData.services is loaded and not empty
+//     if (!academicData.services || academicData.services.length === 0) {
+//       return;
+//     }
+
+//     const hash = location.hash.replace('#', '');
+//     const targetService = academicData.services.find(service => service.id === hash);
+//     // If hash exists and is valid, use it; otherwise, default to the ID of the first service.
+//     const targetId = targetService ? hash : academicData.services[0].id;
+
+//     const section = sectionRefs.current[targetId];
+
+//     if (section) {
+//       // Use setTimeout with a small delay to ensure all DOM elements and refs
+//       // are fully rendered and Locomotive Scroll is potentially initialized and ready
+//       // to calculate positions correctly, especially on initial page load.
+//       const initialScroll = () => {
+//         if (locomotive) {
+//           // For initial load, scroll instantly with the correct negative offset
+//           locomotive.scrollTo(section, { offset: -GLOBAL_HEADER_HEIGHT, duration: 0 });
+//         } else {
+//           window.scrollTo({
+//             top: section.offsetTop - GLOBAL_HEADER_HEIGHT,
+//             behavior: 'instant', // Use 'instant' for no animation on initial load
+//           });
+//         }
+//         setActiveId(targetId); // Set active ID immediately after scrolling
+//       };
+
+//       // Ensure the initial scroll happens slightly after the component is painted
+//       const timer = setTimeout(initialScroll, 100); // Increased delay slightly for robustness
+
+//       return () => clearTimeout(timer); // Cleanup timeout if component unmounts
+//     } else {
+//       // If the target section isn't found (e.g., invalid hash), ensure the first one is active
+//       setActiveId(academicData.services[0].id);
+//     }
+//   }, [location.hash, locomotive, GLOBAL_HEADER_HEIGHT, academicData.services]);
+
+
+//   return (
+//     // The outermost div. It must be relative and have a z-index to manage fixed children.
+//     // z-0 or z-10 depends on your App.js layout. z-0 is usually fine if it's the main content.
+//     <div className="bg-gray-50 min-h-screen relative z-0">
+//       {/* Sidebar: Fixed on desktop/tablet, hidden on mobile */}
+//       {/* z-index of 30 is higher than main content's auto/initial, ensuring it's on top */}
+//       <aside
+//         className="hidden md:block fixed top-0 left-0 h-full w-1/4 bg-white shadow-md p-6 z-30"
+//         style={{ paddingTop: GLOBAL_HEADER_HEIGHT + 24 + 'px' }}
+//       >
+//         <h2 className="text-xl font-bold mb-4 text-purple-700">Academic Services</h2>
+//         {/* Added custom-scrollbar-hide for cleaner look if content overflows */}
+//         <nav className="custom-scrollbar-hide overflow-y-auto"
+//           style={{ maxHeight: `calc(100vh - ${GLOBAL_HEADER_HEIGHT + 24 + 50}px)` }} // 50px for h2 + some bottom padding
+//         >
+//           <ul className="space-y-2">
+//             {academicData.services.map((service, idx) => (
+//               <li key={service.id}>
+//                 <motion.button
+//                   className={`w-full text-left px-4 py-2 rounded transition font-medium ${
+//                     activeId === service.id ? 'bg-purple-600 text-white shadow-md' : 'bg-purple-100 text-purple-800 hover:bg-purple-200'
+//                   }`}
+//                   onClick={() => handleServiceClick(service.id)}
+//                   whileHover={{ scale: 1.03, boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.1)" }}
+//                   whileTap={{ scale: 0.98 }}
+//                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
+//                   aria-current={activeId === service.id ? 'page' : undefined}
+//                 >
+//                   {service.title}
+//                 </motion.button>
+//               </li>
+//             ))}
+//           </ul>
+//         </nav>
+//       </aside>
+
+//       {/* Main Content Area: This div will hold the scrollable content.
+//           It must be positioned correctly relative to the sidebar.
+//           Removed 'absolute inset-0' to allow normal document flow within the parent.
+//           If Locomotive Scroll manages the entire page, this div itself should NOT have overflow-y: auto.
+//           The Locomotive Scroll container higher up in your component tree manages the scroll. */}
+//       <div
+//         className="w-full bg-gray-50" // No overflow-y: auto here if Locomotive is managing parent
+//         style={{
+//           // Use padding-top to create space for the fixed header
+//           paddingTop: GLOBAL_HEADER_HEIGHT + 'px',
+//           // Use padding-bottom to create space for the fixed bottom bar
+//           paddingBottom: FIXED_BOTTOM_BAR_HEIGHT + 100 + 'px', // Added extra 100px for good measure below footer
+//           // Margin-left shifts content over for the desktop sidebar
+//           marginLeft: isMdScreen ? '25%' : '0',
+//           // Width ensures content takes up remaining space
+//           width: isMdScreen ? '75%' : '100%',
+//           minHeight: `calc(100vh - ${GLOBAL_HEADER_HEIGHT + FIXED_BOTTOM_BAR_HEIGHT}px)`, // Ensures content area is tall enough
+//         }}
+//       >
+//         {/* Introductory Header for the Academic Assist page */}
+//         <header className="mb-8 p-6">
+//           <h1 className="text-3xl font-bold text-purple-800 mb-2">{academicData.meta.h1}</h1>
+//           <p className="text-lg text-gray-600">{academicData.intro.title}</p>
+//           <p className="text-base text-gray-500 mt-2 whitespace-pre-line">{academicData.intro.description}</p>
+//         </header>
+
+//         {/* Section containing all individual service details */}
+//         <section className="p-6 pt-0">
+//           {academicData.services.map(service => (
+//             <motion.div
+//               key={service.id}
+//               ref={el => (sectionRefs.current[service.id] = el)}
+//               data-scroll-section // This attribute is essential for Locomotive Scroll to track this element
+//               id={service.id}
+//               // scroll-mt-24 is equivalent to scroll-margin-top: 96px; which should match GLOBAL_HEADER_HEIGHT
+//               className="mb-12 scroll-mt-24 bg-white p-6 rounded-lg shadow-md"
+//               initial={{ opacity: 0, y: 50 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               viewport={{ once: true, amount: 0.2 }}
+//               transition={{ duration: 0.7, ease: "easeOut" }}
+//             >
+//               <h2 className="text-2xl font-semibold text-purple-700 mb-2">{service.title}</h2>
+//               <p className="text-gray-700 mb-4 whitespace-pre-line">{service.description}</p>
+//               <button
+//                 className="bg-purple-600 text-white px-6 py-2 rounded shadow hover:bg-purple-700 transition"
+//                 onClick={() => navigate(service.ctaRoute)}
+//               >
+//                 {service.ctaText}
+//               </button>
+//             </motion.div>
+//           ))}
+//         </section>
+
+//         <Footer />
+//       </div>
+
+//       {/* Fixed Bottom Bar: Always visible at the bottom of the screen. */}
+//       <div
+//         className="bg-purple-700 text-white py-4 px-6 flex items-center justify-between fixed bottom-0 z-40"
+//         style={{
+//           boxShadow: '0 -2px 8px rgba(80,0,120,0.08)',
+//           left: isMdScreen ? '25%' : '0', // Position correctly with sidebar
+//           width: isMdScreen ? '75%' : '100%', // Size correctly with sidebar
+//           height: FIXED_BOTTOM_BAR_HEIGHT + 'px',
+//         }}
+//       >
+//         <span className="font-semibold text-sm md:text-base">Need help with Academic Assist? Contact us for personalized support!</span>
+//         <button
+//           className="bg-white text-purple-700 font-bold px-3 py-1 md:px-4 md:py-2 rounded shadow hover:bg-purple-100 transition text-sm md:text-base"
+//           onClick={() => navigate('/contact')}
+//         >
+//           Contact Us
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default AcademicAssistDropdown;
+
+
+
 // src/components/AcademicAssist/AcademicAssistDropdown.jsx
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import academicData from '../../pages/academicAssistData.json'; // Ensure this path is correct
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
-import academicData from '../../pages/academicAssistData.json';
-
-const GLOBAL_HEADER_HEIGHT = 96;
+import Footer from '../Footer.jsx'; // Ensure this path is correct
 
 const AcademicAssistDropdown = ({ locomotive }) => {
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [activeId, setActiveId] = useState('');
+  // IMPORTANT: This height must accurately match your actual fixed Navbar height.
+  // If your Navbar uses Tailwind's 'h-16' (64px), set this to 64.
+  // If it uses 'h-24' (96px) or if 'scroll-mt-24' (96px) is consistently used
+  // to offset content below the header, then 96 is correct.
+  // I'm setting it to 96 based on 'scroll-mt-24' in your content sections.
+  const GLOBAL_HEADER_HEIGHT = 96; // Corresponds to scroll-mt-24 (96px) or h-24 Navbar
+  const FIXED_BOTTOM_BAR_HEIGHT = 72; // This is derived from your inline style for the bottom bar
+
+  // State to manage the active sidebar item, initialized to the ID of the first service.
+  // Using optional chaining for safety in case academicData.services is initially empty.
+  const [activeId, setActiveId] = useState(academicData.services[0]?.id || '');
+  
+  // useRef to store references to each content section, allowing direct DOM manipulation for scrolling.
   const sectionRefs = useRef({});
-  const isProgrammaticScroll = useRef(false);
 
+  // State to track screen size for responsive layout adjustments (sidebar visibility, content width).
+  const [isMdScreen, setIsMdScreen] = useState(window.innerWidth >= 768);
+
+  // Effect to update isMdScreen state on window resize events.
   useEffect(() => {
-    console.log("GLOBAL_HEADER_HEIGHT set to:", GLOBAL_HEADER_HEIGHT);
-  }, []);
+    const handleResize = () => {
+      setIsMdScreen(window.innerWidth >= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    // Call once immediately to set the initial state based on current window size.
+    handleResize();
+    // Cleanup: Remove the event listener when the component unmounts to prevent memory leaks.
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Empty dependency array ensures this effect runs only once on mount and cleans up on unmount.
 
-  // 1. Initial Load & Hash Handling (Now using window.scrollTo for true fixed)
-  useEffect(() => {
-    // Note: Since this component is outside the Locomotive Scroll container,
-    // we'll primarily use native window scrolling for initial hash navigation.
-    // Locomotive Scroll will still be passed for any potential advanced scroll effects *within* sections,
-    // but the main page scroll is handled natively for this component.
+  // Handler function for when a sidebar service button is clicked.
+  const handleServiceClick = (id) => {
+    setActiveId(id); // Immediately update the active ID to reflect the click.
+    const section = sectionRefs.current[id]; // Get the DOM element reference for the target section.
 
-    const hash = location.hash.replace('#', '');
-    const initialTargetId = (hash && (academicData.services.some(service => service.id === hash) || hash === 'faq-section'))
-      ? hash
-      : academicData.services[0]?.id || '';
-
-    if (initialTargetId) {
-      setActiveId(initialTargetId);
-      const targetElement = sectionRefs.current[initialTargetId];
-
-      console.log("Initial Load - Target ID:", initialTargetId, "Target Element:", targetElement);
-
-      if (targetElement) {
-        isProgrammaticScroll.current = true;
-        // Use native window.scrollTo for fixed sidebar setup
-        window.scrollTo({
-          top: targetElement.offsetTop - GLOBAL_HEADER_HEIGHT, // Calculate offset from top
-          behavior: 'instant' // Instant scroll on initial load
-        });
-        setTimeout(() => { isProgrammaticScroll.current = false; }, 50); // Reset flag
+    if (section) {
+      // If locomotive scroll instance is provided, use its scrollTo method for smooth scrolling.
+      if (locomotive) {
+        // For locomotive, a negative offset pulls the scroll target up, effectively
+        // making the section stop *below* a fixed header.
+        locomotive.scrollTo(section, { offset: -GLOBAL_HEADER_HEIGHT, duration: 800 });
       } else {
-        console.warn(`Initial target element with ID '${initialTargetId}' not found for scroll.`);
+        // Fallback to native window.scrollTo if locomotive is not available.
+        // Subtract the header height to ensure the section starts below the fixed header.
+        window.scrollTo({
+          top: section.offsetTop - GLOBAL_HEADER_HEIGHT,
+          behavior: 'smooth', // Smooth animation for native scroll.
+        });
       }
-    } else {
-        setActiveId(academicData.services[0]?.id || '');
+      // Update the URL hash without triggering a full page reload, and replace
+      // the current history entry to prevent back button issues.
+      navigate(`#${id}`, { replace: true });
     }
+  };
 
-    // If Locomotive Scroll is passed and needed for elements *inside* the content, ensure it updates.
-    if (locomotive) {
-        locomotive.update(); // Update the main Locomotive Scroll instance if it's there
-    }
-
-  }, [location.hash, locomotive, academicData.services]); // locomotive added to dependency
-
-  // 2. Window Scroll Event Listener for Active State (Replaces Locomotive 'scroll' listener for main scroll)
+  // Effect to manage the active sidebar item based on scroll position (for Locomotive Scroll).
   useEffect(() => {
-    const handleWindowScroll = () => {
-      if (isProgrammaticScroll.current) {
-        return;
-      }
+    if (!locomotive) return; // Only execute if locomotive instance is provided.
 
-      let currentVisibleId = null;
-      let minDistanceFromHeader = Infinity;
+    const handleLocomotiveScroll = (instance) => {
+      let currentVisibleSectionId = null;
+      // Iterate through all service sections to determine which one is currently in view.
+      for (let i = 0; i < academicData.services.length; i++) {
+        const service = academicData.services[i];
+        const ref = sectionRefs.current[service.id];
+        if (ref) {
+          const rect = ref.getBoundingClientRect(); // Get position relative to the viewport.
+          
+          // Define the "active" zone: a section is considered active if its top edge
+          // is within a small buffer zone around the bottom of the fixed header.
+          const topVisibleThreshold = GLOBAL_HEADER_HEIGHT + 10; // 10px below the header
+          const bottomVisibleThreshold = GLOBAL_HEADER_HEIGHT - 10; // 10px above the header
 
-      // Iterate over your section refs
-      for (const id in sectionRefs.current) {
-        const element = sectionRefs.current[id];
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          // Check if the element is in view below the header
-          if (rect.top <= GLOBAL_HEADER_HEIGHT + 50 && rect.bottom > GLOBAL_HEADER_HEIGHT) {
-            const distanceFromHeader = Math.abs(rect.top - GLOBAL_HEADER_HEIGHT);
-            if (distanceFromHeader < minDistanceFromHeader) {
-              minDistanceFromHeader = distanceFromHeader;
-              currentVisibleId = id;
-            }
+          // If the section's top is past or at the threshold, and its bottom is still visible,
+          // it's the current active section.
+          if (rect.top <= topVisibleThreshold && rect.bottom >= bottomVisibleThreshold) {
+            currentVisibleSectionId = service.id;
+            break; // Found the topmost visible section, stop checking.
           }
         }
       }
 
-      // Fallback: If no section is clearly active (e.g., at very top of the page)
-      if (!currentVisibleId && window.scrollY < (GLOBAL_HEADER_HEIGHT + 100) && academicData.services[0]?.id) {
-          currentVisibleId = academicData.services[0].id;
+      // Fallback logic: If no specific section is prominently in view (e.g., at very top of page),
+      // default to the first service being active. This prevents the sidebar from being empty.
+      if (!currentVisibleSectionId && academicData.services.length > 0) {
+        const firstSectionRect = sectionRefs.current[academicData.services[0].id]?.getBoundingClientRect();
+        // If the first section is near the top of the viewport (considering header height)
+        if (firstSectionRect && firstSectionRect.top <= GLOBAL_HEADER_HEIGHT + 20) { // A bit below header, near top
+          currentVisibleSectionId = academicData.services[0].id;
+        }
       }
 
-      if (currentVisibleId && currentVisibleId !== activeId) {
-        setActiveId(currentVisibleId);
-        console.log("Active section changed by scroll to:", currentVisibleId);
+      // Update the activeId state only if the detected active section has changed.
+      if (currentVisibleSectionId && currentVisibleSectionId !== activeId) {
+        setActiveId(currentVisibleSectionId);
+        // Optional: Update URL hash during scroll for direct deep linking
+        // navigate(`#${currentVisibleSectionId}`, { replace: true });
       }
     };
 
-    window.addEventListener('scroll', handleWindowScroll);
+    // Attach the scroll event listener to the locomotive instance.
+    locomotive.on('scroll', handleLocomotiveScroll);
 
+    // Cleanup: Remove the scroll event listener when the component unmounts or dependencies change.
     return () => {
-      window.removeEventListener('scroll', handleWindowScroll);
+      locomotive.off('scroll', handleLocomotiveScroll);
     };
-  }, [activeId, academicData.services]);
+  }, [locomotive, activeId, GLOBAL_HEADER_HEIGHT, academicData.services]); // Dependencies: activeId to prevent re-triggering unnecessary updates;
+                                                                           // GLOBAL_HEADER_HEIGHT and academicData.services for consistent closure.
 
-  // 3. Handle Sidebar Anchor Click (Internal Navigation using native window.scrollTo)
-  const handleSidebarClick = useCallback((id) => {
-    const targetElement = sectionRefs.current[id];
-    console.log("Sidebar Click - Target ID:", id, "Resolved Target Element:", targetElement);
-
-    if (targetElement) {
-      isProgrammaticScroll.current = true;
-      setActiveId(id);
-      navigate(`#${id}`, { replace: true }); // Update URL hash without re-rendering
-
-      window.scrollTo({
-        top: targetElement.offsetTop - GLOBAL_HEADER_HEIGHT, // Calculate offset from top
-        behavior: 'smooth' // Smooth scroll for clicks
-      });
-
-      // Reset flag after a short delay
-      setTimeout(() => { isProgrammaticScroll.current = false; }, 800); // Match scroll duration
-    } else {
-      console.error(`Target element with ID '${id}' not found for sidebar click. Is the ID correct or is the ref not set?`);
+  // Effect for initial scroll based on URL hash (e.g., #seminars) when the component mounts
+  // or when the URL hash changes.
+  useEffect(() => {
+    // Ensure academicData.services is loaded and not empty before attempting to scroll.
+    if (!academicData.services || academicData.services.length === 0) {
+      return;
     }
-  }, [navigate]);
 
-  // 4. Handle CTA Button Click (External Navigation) - remains the same
-  const handleCtaClick = useCallback((route) => {
-    navigate(route);
-  }, [navigate]);
+    const hash = location.hash.replace('#', ''); // Extract the hash without the '#' prefix.
+    const targetService = academicData.services.find(service => service.id === hash);
+    // Determine the target section ID: use the hash if valid, otherwise default to the first service's ID.
+    const targetId = targetService ? hash : academicData.services[0].id;
+
+    const section = sectionRefs.current[targetId]; // Get the DOM element for the target section.
+
+    if (section) {
+      // Use setTimeout to ensure that the DOM has fully rendered and sectionRefs are populated.
+      // This helps in preventing a race condition where the scroll might occur before the
+      // target element is fully accessible, especially on initial page load.
+      const initialScroll = () => {
+        if (locomotive) {
+          // Perform an instant scroll to the target section using locomotive.
+          // The negative offset places the section right below the fixed header.
+          locomotive.scrollTo(section, { offset: -GLOBAL_HEADER_HEIGHT, duration: 0 });
+        } else {
+          window.scrollTo({
+            top: section.offsetTop - GLOBAL_HEADER_HEIGHT,
+            behavior: 'instant', // 'instant' for no animation on initial load.
+          });
+        }
+        setActiveId(targetId); // Set the active ID immediately after the initial scroll.
+      };
+
+      const timer = setTimeout(initialScroll, 100); // Small delay to allow DOM to settle.
+
+      // Cleanup: Clear the timeout if the component unmounts before it fires.
+      return () => clearTimeout(timer);
+    } else {
+      // If the target section from the hash is not found (e.g., invalid hash),
+      // ensure the first service is still set as active.
+      setActiveId(academicData.services[0].id);
+    }
+  }, [location.hash, locomotive, GLOBAL_HEADER_HEIGHT, academicData.services]); // Dependencies: Trigger when hash changes, or if locomotive/data changes.
+
 
   return (
-    // This wrapper is no longer a data-scroll-section. It's just a container.
-    <div className="bg-gradient-to-br from-blue-100 via-green-50 to-pink-50 min-h-screen font-inter">
-
-      {/* Hero Section */}
-      <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center text-white overflow-hidden bg-gradient-to-br from-purple-700 to-pink-600">
-        <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 text-center px-4"
+    // The outermost div for AcademicAssistDropdown. This div must ensure a solid background
+    // and provide a stacking context for its fixed children.
+    // z-0 is a good default; adjust if other elements in App.js need higher stacking context.
+    <div className="bg-gray-50 min-h-screen relative z-0">
+      {/* Sidebar: Fixed on desktop/tablet, hidden on mobile */}
+      {/* z-index of 30 is higher than main content's auto/initial, ensuring it's on top. */}
+      <aside
+        className="hidden md:block fixed top-0 left-0 h-full w-1/4 bg-white shadow-md p-6 z-30 overflow-hidden"
+        style={{ paddingTop: GLOBAL_HEADER_HEIGHT + 24 + 'px' }} // Padding to clear the fixed Navbar.
+      >
+        <h2 className="text-xl font-bold mb-4 text-purple-700">Academic Services</h2>
+        {/* Navigation list for services with custom scrollbar hiding. */}
+        <nav className="custom-scrollbar-hide overflow-y-auto"
+          style={{ maxHeight: `calc(100vh - ${GLOBAL_HEADER_HEIGHT + 24 + 50}px)` }} // Dynamic max-height for scrollability.
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">{academicData.meta.h1}</h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto px-4">
-            {academicData.intro.title}
-          </p>
-          <p className="text-base text-gray-200 mt-2 max-w-3xl mx-auto px-4 whitespace-pre-line">{academicData.intro.description}</p>
-        </motion.div>
-      </section>
+          <ul className="space-y-2">
+            {academicData.services.map(service => (
+              <li key={service.id}>
+                <motion.button
+                  className={`w-full text-left px-4 py-2 rounded transition font-medium ${
+                    activeId === service.id ? 'bg-purple-600 text-white shadow-md' : 'bg-purple-100 text-purple-800 hover:bg-purple-200'
+                  }`}
+                  onClick={() => handleServiceClick(service.id)}
+                  whileHover={{ scale: 1.03, boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.1)" }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  aria-current={activeId === service.id ? 'page' : undefined} // ARIA attribute for accessibility.
+                >
+                  {service.title}
+                </motion.button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
 
-      {/* Main Content Area - This div will contain the fixed sidebar and the scrollable content */}
-      <div className="w-full py-12 px-4 lg:px-12 relative"> {/* Use relative here for positioning children */}
-        {/* Sidebar Navigation - TRULY FIXED NOW */}
-        <motion.aside
-          // Applied fixed positioning.
-          // Adjust 'left' or 'right' as needed, and 'w' for width
-          className="p-6 bg-white/40 backdrop-blur-lg border border-white/30 rounded-xl shadow-xl
-                     fixed top-24 left-4 lg:left-12 w-[calc(100vw-32px)] lg:w-[26vw] z-40"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          // Set max-height for internal scrolling if content overflows
-          style={{ maxHeight: `calc(100vh - ${GLOBAL_HEADER_HEIGHT + 48}px)` }}
-        >
-          <h3 className="text-xl font-bold text-gray-900 mb-4">Academic Services</h3>
-          <nav className="custom-scrollbar-hide overflow-y-auto" style={{ maxHeight: `calc(100vh - ${GLOBAL_HEADER_HEIGHT + 24 + 50}px)` }}>
-            <ul className="space-y-2">
-              {academicData.services.map((service, idx) => (
-                <motion.li key={service.id} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.1 }}>
-                  <button
-                    onClick={() => handleSidebarClick(service.id)}
-                    className={`w-full text-left px-4 py-2 rounded transition font-semibold hover:bg-purple-200 hover:text-purple-800 ${
-                      activeId === service.id ? 'bg-purple-600 text-white shadow-md' : 'bg-purple-100 text-purple-800'
-                    }`}
-                    aria-current={activeId === service.id ? 'page' : undefined}
-                  >
-                    {service.title}
-                  </button>
-                </motion.li>
-              ))}
-              {academicData.faq && academicData.faq.length > 0 && (
-                <motion.li key="faq-link" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: academicData.services.length * 0.1 }}>
-                    <button
-                        onClick={() => handleSidebarClick('faq-section')}
-                        className={`w-full text-left px-4 py-2 rounded transition font-semibold hover:bg-purple-200 hover:text-purple-800 ${
-                            activeId === 'faq-section' ? 'bg-purple-600 text-white shadow-md' : 'bg-purple-100 text-purple-800'
-                        }`}
-                        aria-current={activeId === 'faq-section' ? 'page' : undefined}
-                    >
-                        FAQs
-                    </button>
-                </motion.li>
-              )}
-            </ul>
-          </nav>
+      {/* Main Content Area: This div holds all the scrollable content of the page.
+          It adjusts its position and width based on the sidebar's visibility.
+          Crucially, it uses padding to avoid being obscured by fixed header/footer.
+          It should NOT have 'overflow-y: auto' if Locomotive Scroll manages the parent container. */}
+      <div
+        className="w-full bg-gray-50" // Removed 'absolute inset-0' and 'overflow-auto'
+        style={{
+          paddingTop: GLOBAL_HEADER_HEIGHT + 'px', // Creates space for the fixed header at the top.
+          paddingBottom: FIXED_BOTTOM_BAR_HEIGHT + 100 + 'px', // Creates space for the fixed bottom bar + extra buffer.
+          marginLeft: isMdScreen ? '25%' : '0', // Shifts content over if sidebar is visible.
+          width: isMdScreen ? '75%' : '100%', // Adjusts width based on sidebar visibility.
+          // minHeight ensures the content area is at least tall enough to fill the viewport
+          // when content is sparse, preventing background from showing prematurely.
+          minHeight: `calc(100vh - ${GLOBAL_HEADER_HEIGHT + FIXED_BOTTOM_BAR_HEIGHT}px)`,
+        }}
+      >
+        {/* Introductory Header for the Academic Assist page */}
+        <header className="mb-8 p-6">
+          <h1 className="text-3xl font-bold text-purple-800 mb-2">{academicData.meta.h1}</h1>
+          <p className="text-lg text-gray-600">{academicData.intro.title}</p>
+          <p className="text-base text-gray-500 mt-2 whitespace-pre-line">{academicData.intro.description}</p>
+        </header>
 
-          {/* "How Can We Help?" Section (remains the same) */}
-          {academicData.helpSection && (
-            <motion.div
-              className="mt-8 bg-gradient-to-br from-blue-500 to-purple-600 text-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center transform hover:scale-103 transition-transform duration-200"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
-            >
-              {/* ... (your help section content) ... */}
-            </motion.div>
-          )}
-        </motion.aside>
-
-        {/* Main Content Area (Dynamic Sections) - PUSHED OVER BY FIXED SIDEBAR */}
-        <div className="w-full lg:ml-[28vw] lg:pl-4"> {/* Adjust ml/pl to make space for fixed sidebar */}
-          {academicData.services.map((service, idx) => (
+        {/* Section containing all individual service details. Each div within this
+            section corresponds to a service and is tracked by sectionRefs. */}
+        <section className="p-6 pt-0">
+          {academicData.services.map(service => (
             <motion.div
               key={service.id}
-              id={service.id}
-              ref={el => { if (el) sectionRefs.current[service.id] = el; }}
-              className="mb-12 p-6 bg-white/40 backdrop-blur-lg border border-white/30 rounded-xl shadow-xl"
-              // Removed data-scroll-section as this component is no longer in LS container
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              ref={el => (sectionRefs.current[service.id] = el)} // Assign ref to the element.
+              data-scroll-section // Crucial for Locomotive Scroll to recognize and track this element.
+              id={service.id} // Provides a unique ID for URL hashing and direct targeting.
+              // scroll-mt-24 (scroll-margin-top: 96px) ensures native browser scroll
+              // and conceptual alignment for Locomotive Scroll's offset.
+              className="mb-12 scroll-mt-24 bg-white p-6 rounded-lg shadow-md"
+              initial={{ opacity: 0, y: 50 }} // Initial animation state.
+              whileInView={{ opacity: 1, y: 0 }} // Animation when element enters viewport.
+              viewport={{ once: true, amount: 0.2 }} // Triggers animation once when 20% visible.
+              transition={{ duration: 0.7, ease: "easeOut" }} // Animation properties.
             >
-              {/* ... (your service content) ... */}
+              <h2 className="text-2xl font-semibold text-purple-700 mb-2">{service.title}</h2>
+              <p className="text-gray-700 mb-4 whitespace-pre-line">{service.description}</p>
+              <button
+                className="bg-purple-600 text-white px-6 py-2 rounded shadow hover:bg-purple-700 transition"
+                onClick={() => navigate(service.ctaRoute)}
+              >
+                {service.ctaText}
+              </button>
             </motion.div>
           ))}
+        </section>
 
-          {/* FAQ Section */}
-          {academicData.faq && academicData.faq.length > 0 && (
-            <motion.div
-              id="faq-section"
-              ref={el => { if (el) sectionRefs.current['faq-section'] = el; }}
-              className="w-full mt-12 p-6 bg-white/40 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg"
-              // Removed data-scroll-section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5 }}
-            >
-              {/* ... (your FAQ content) ... */}
-            </motion.div>
-          )}
-        </div>
+        <Footer /> {/* Your Footer component, placed at the end of the main scrollable content. */}
+      </div>
+
+      {/* Fixed Bottom Bar: Always visible at the bottom of the screen. */}
+      <div
+        className="bg-purple-700 text-white py-4 px-6 flex items-center justify-between fixed bottom-0 z-40" // z-40 ensures it's above other content.
+        style={{
+          boxShadow: '0 -2px 8px rgba(80,0,120,0.08)', // Subtle shadow for depth.
+          left: isMdScreen ? '25%' : '0', // Positions correctly next to the sidebar on desktop.
+          width: isMdScreen ? '75%' : '100%', // Adjusts width based on sidebar visibility.
+          height: FIXED_BOTTOM_BAR_HEIGHT + 'px', // Explicit height.
+        }}
+      >
+        <span className="font-semibold text-sm md:text-base">Need help with Academic Assist? Contact us for personalized support!</span>
+        <button
+          className="bg-white text-purple-700 font-bold px-3 py-1 md:px-4 md:py-2 rounded shadow hover:bg-purple-100 transition text-sm md:text-base"
+          onClick={() => navigate('/contact')}
+        >
+          Contact Us
+        </button>
       </div>
     </div>
   );
 };
 
 export default AcademicAssistDropdown;
-
 
 
 

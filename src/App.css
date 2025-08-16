@@ -1,18 +1,13 @@
 /* src/App.css */
 
+/* Remove or comment out any conflicting global scroll/overflow rules */
+/* These rules are often problematic when using a custom scroll library like Locomotive Scroll */
+
+/* !!! IMPORTANT: REMOVE THESE IF THEY EXIST AND CONFLICT !!! */
+/* html { scroll-behavior: smooth; } */ /* Handled by Locomotive Scroll or native browser */
+/* body { overflow: hidden; } */ /* Conflicts with Locomotive Scroll managing the scroll */
+
 /* Only keep styles here that are not global and do not conflict with index.css */
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  /* !!! IMPORTANT: REMOVE OR COMMENT OUT THE OVERFLOW: HIDDEN RELATED RULES HERE !!! */
-  /* Do NOT remove overflow: hidden; */
-  /* Do NOT remove scrollbar hiding rules here */
-}
 
 /* Specific rules for Webkit browsers (Chrome, Safari, Edge) */
 /* Keep these if you want to explicitly hide scrollbars in case something goes wrong with main setup */
@@ -39,3 +34,7 @@ body {
 .custom-scrollbar-hide {
     -ms-overflow-style: none;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
