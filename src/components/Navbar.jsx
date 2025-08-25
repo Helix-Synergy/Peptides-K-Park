@@ -724,7 +724,7 @@ const Navbar = () => {
                         <li key={item.name}>
                           <Link
                             to={item.href}
-                            className={`block px-4 py-2 text-lg font-bold text-[#714819] hover:bg-[#b89c6b]/20 hover:text-[#714819] transition-colors duration-150 ${
+                            className={`block px-4 py-2 text-lg  text-[#714819] hover:bg-[#b89c6b]/20 hover:text-[#714819] transition-colors duration-150 ${
                               location.pathname === item.href ? 'text-[#714819] bg-[#b89c6b]/20' : ''
                             }`}
                             onClick={() => setDesktopHoverDropdown(null)}
@@ -784,7 +784,7 @@ const Navbar = () => {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className={`w-full flex items-center justify-between font-semibold text-[#714819] hover:text-[#b89c6b] focus:outline-none px-2 py-2 rounded transition-colors duration-150 ${
+                    className={`w-full flex items-center justify-between  text-[#714819] hover:text-[#b89c6b] focus:outline-none px-2 py-2 rounded transition-colors duration-150 ${
                       location.pathname === link.href ? 'text-[#714819]' : ''
                     }`}
                     onClick={() => {

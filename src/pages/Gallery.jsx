@@ -1,425 +1,500 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Search, Filter, Grid3X3, List, Download, Share2, Heart, Eye } from 'lucide-react';
+// import React, { useState, useEffect, useCallback, useRef } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import { Image as ImageIcon, Play, ChevronLeft, ChevronRight, X } from "lucide-react";
+
+// const GOOGLE_API_KEY = "AIzaSyAlkUtY5j-rBzZY8B0s2ynqEPfqnCfffsg";
+// const IMAGE_FOLDER_ID = "1fuxLVciboT4N1O0ZqKAJuuCUbSPiay35";
+// const VIDEO_FOLDER_ID = "13cn_ACNtZfMTy86oE_56IR6YTPrOgp9F";
+
+// const SkeletonCard = () => (
+//   <div className="bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
+//     <div className="w-full h-64 bg-gray-200" />
+//     <div className="p-4">
+//       <div className="h-4 bg-gray-200 rounded w-3/4 mb-2" />
+//       <div className="h-4 bg-gray-200 rounded w-1/2" />
+//     </div>
+//   </div>
+// );
+
+// const Gallery = () => {
+//   const [images, setImages] = useState([]);
+//   const [videos, setVideos] = useState([]);
+//   const [loadingImages, setLoadingImages] = useState(true);
+//   const [loadingVideos, setLoadingVideos] = useState(true);
+//   const [activeTab, setActiveTab] = useState("images");
+//   const [currentIndex, setCurrentIndex] = useState(null);
+
+//   const fetchFiles = async (folderId, type) => {
+//     try {
+//       if (type === "images") setLoadingImages(true);
+//       else setLoadingVideos(true);
+
+//       const res = await fetch(
+//         `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'${type === "images" ? "image" : "video"}'&key=${GOOGLE_API_KEY}&fields=files(id,name,mimeType)`
+//       );
+//       const data = await res.json();
+
+//       if (data.files) {
+//         const formatted = data.files.map((file) => ({
+//           ...file,
+//           thumbnailLink:
+//             type === "images"
+//               ? `https://drive.google.com/thumbnail?id=${file.id}&sz=w1000`
+//               : null,
+//           previewLink:
+//             type === "images"
+//               ? `https://drive.google.com/uc?export=view&id=${file.id}`
+//               : `https://drive.google.com/uc?export=download&id=${file.id}`,
+//         }));
+//         type === "images" ? setImages(formatted) : setVideos(formatted);
+//       }
+//     } catch (err) {
+//       console.error(`Error fetching ${type}:`, err);
+//     } finally {
+//       if (type === "images") setLoadingImages(false);
+//       else setLoadingVideos(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchFiles(IMAGE_FOLDER_ID, "images");
+//     fetchFiles(VIDEO_FOLDER_ID, "videos");
+//   }, []);
+
+//   const displayData = activeTab === "images" ? images : videos;
+//   const isLoading = activeTab === "images" ? loadingImages : loadingVideos;
+
+//   const openPreview = (i) => setCurrentIndex(i);
+//   const closePreview = () => setCurrentIndex(null);
+//   const next = () => setCurrentIndex((prev) => (prev + 1) % displayData.length);
+//   const prev = () =>
+//     setCurrentIndex((prev) => (prev - 1 + displayData.length) % displayData.length);
+
+//   const handleKeyDown = useCallback(
+//     (e) => {
+//       if (currentIndex === null) return;
+//       if (e.key === "ArrowRight") next();
+//       if (e.key === "ArrowLeft") prev();
+//       if (e.key === "Escape") closePreview();
+//     },
+//     [currentIndex, displayData.length]
+//   );
+
+//   useEffect(() => {
+//     window.addEventListener("keydown", handleKeyDown);
+//     return () => window.removeEventListener("keydown", handleKeyDown);
+//   }, [handleKeyDown]);
+
+//   const handleVideoHover = (e) => {
+//     if (e.target.tagName === "VIDEO") e.target.play();
+//   };
+//   const handleVideoLeave = (e) => {
+//     if (e.target.tagName === "VIDEO") {
+//       e.target.pause();
+//       e.target.currentTime = 0;
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-10 px-4 sm:px-6 lg:px-12">
+//       {/* Tabs */}
+//       <div className="flex justify-center mb-6">
+//         <div className="bg-white shadow-md rounded-full flex gap-2 px-1 py-1 relative">
+//           {["images", "videos"].map((tab) => (
+//             <button
+//               key={tab}
+//               onClick={() => {
+//                 setActiveTab(tab);
+//                 setCurrentIndex(null);
+//               }}
+//               className={`flex items-center gap-2 font-semibold transition-all px-4 py-2 rounded-full relative z-10 ${
+//                 activeTab === tab ? "text-white" : "text-gray-600"
+//               }`}
+//             >
+//               {tab === "images" ? <ImageIcon className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+//               {tab.charAt(0).toUpperCase() + tab.slice(1)}
+//             </button>
+//           ))}
+//           <motion.div
+//             layout
+//             className="absolute top-0.5 bottom-0.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 z-0"
+//             style={{
+//               left: activeTab === "images" ? "4px" : "calc(50% + 4px)",
+//               right: activeTab === "images" ? "calc(50% + 4px)" : "4px",
+//             }}
+//             transition={{ type: "spring", stiffness: 300, damping: 25 }}
+//           />
+//         </div>
+//       </div>
+
+//       {/* Grid */}
+//       <AnimatePresence mode="wait">
+//         <motion.div
+//           key={activeTab}
+//           initial={{ opacity: 0, x: activeTab === "images" ? -50 : 50 }}
+//           animate={{ opacity: 1, x: 0 }}
+//           exit={{ opacity: 0, x: activeTab === "images" ? 50 : -50 }}
+//           transition={{ duration: 0.4 }}
+//           className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]"
+//         >
+//           {isLoading
+//             ? Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)
+//             : displayData.map((file, i) => (
+//                 <motion.div
+//                   key={file.id}
+//                   initial={{ opacity: 0, scale: 0.9 }}
+//                   animate={{ opacity: 1, scale: 1 }}
+//                   transition={{ delay: i * 0.05 }}
+//                   className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl cursor-pointer"
+//                   onClick={() => openPreview(i)}
+//                 >
+//                   {activeTab === "images" ? (
+//                     <img
+//                       src={file.thumbnailLink}
+//                       alt={file.name}
+//                       className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
+//                     />
+//                   ) : (
+//                     <div
+//                       className="relative"
+//                       onMouseEnter={handleVideoHover}
+//                       onMouseLeave={handleVideoLeave}
+//                     >
+//                       <video
+//                         className="w-full h-64 object-cover"
+//                         muted
+//                         preload="metadata"
+//                       >
+//                         <source src={file.previewLink} type="video/mp4" />
+//                       </video>
+//                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white">
+//                         <Play size={48} />
+//                       </div>
+//                     </div>
+//                   )}
+//                   <div className="p-4">
+//                     <h3 className="font-semibold text-gray-800 truncate">{file.name}</h3>
+//                   </div>
+//                 </motion.div>
+//               ))}
+//         </motion.div>
+//       </AnimatePresence>
+
+//       {/* Modal */}
+//       <AnimatePresence>
+//         {currentIndex !== null && (
+//           <motion.div
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: 1 }}
+//             exit={{ opacity: 0 }}
+//             className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+//             onClick={closePreview}
+//           >
+//             <motion.div
+//               initial={{ scale: 0.9, opacity: 0 }}
+//               animate={{ scale: 1, opacity: 1 }}
+//               exit={{ scale: 0.9, opacity: 0 }}
+//               transition={{ duration: 0.3 }}
+//               className="relative bg-transparent w-full max-w-6xl flex justify-center items-center"
+//               onClick={(e) => e.stopPropagation()}
+//             >
+//               {/* Close Button */}
+//               <button
+//                 onClick={closePreview}
+//                 className="absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition"
+//               >
+//                 <X size={24} />
+//               </button>
+
+//               {/* Preview */}
+//               {activeTab === "images" ? (
+//                 <img
+//                   src={displayData[currentIndex].thumbnailLink}
+//                   alt={displayData[currentIndex].name}
+//                   className="w-full max-h-[80vh] object-contain rounded-xl shadow-xl"
+//                 />
+//               ) : (
+//                 <video
+//                   src={displayData[currentIndex].previewLink}
+//                   className="w-full max-h-[80vh] rounded-xl shadow-xl"
+//                   controls
+//                   autoPlay
+//                 />
+//               )}
+
+//               {/* Navigation */}
+//               <button
+//                 onClick={prev}
+//                 className="absolute left-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition"
+//               >
+//                 <ChevronLeft size={28} />
+//               </button>
+//               <button
+//                 onClick={next}
+//                 className="absolute right-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition"
+//               >
+//                 <ChevronRight size={28} />
+//               </button>
+//             </motion.div>
+//           </motion.div>
+//         )}
+//       </AnimatePresence>
+//     </div>
+//   );
+// };
+
+// export default Gallery;
+
+
+
+
+
+
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Image as ImageIcon, Play, ChevronLeft, ChevronRight, X } from "lucide-react";
+
+const GOOGLE_API_KEY = "AIzaSyAlkUtY5j-rBzZY8B0s2ynqEPfqnCfffsg";
+const IMAGE_FOLDER_ID = "1fuxLVciboT4N1O0ZqKAJuuCUbSPiay35";
+const VIDEO_FOLDER_ID = "13cn_ACNtZfMTy86oE_56IR6YTPrOgp9F";
+
+const SkeletonCard = () => (
+  <div className="bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
+    <div className="w-full h-64 bg-gray-200" />
+    <div className="p-4">
+      <div className="h-4 bg-gray-200 rounded w-3/4 mb-2" />
+      <div className="h-4 bg-gray-200 rounded w-1/2" />
+    </div>
+  </div>
+);
 
 const Gallery = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [viewMode, setViewMode] = useState('grid');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const [images, setImages] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const [loadingImages, setLoadingImages] = useState(true);
+  const [loadingVideos, setLoadingVideos] = useState(true);
+  const [activeTab, setActiveTab] = useState("images");
+  const [currentIndex, setCurrentIndex] = useState(null);
 
-  const categories = [
-    { id: 'all', name: 'All', count: 24 },
-    { id: 'research', name: 'Research', count: 8 },
-    { id: 'lab', name: 'Laboratory', count: 6 },
-    { id: 'team', name: 'Team', count: 5 },
-    { id: 'events', name: 'Events', count: 5 }
-  ];
-
-  const galleryImages = [
-    {
-      id: 1,
-      title: 'Research Laboratory Setup',
-      category: 'lab',
-      description: 'State-of-the-art research laboratory with advanced equipment',
-      image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=600&fit=crop',
-      likes: 42,
-      views: 1280
-    },
-    {
-      id: 2,
-      title: 'Team Collaboration Meeting',
-      category: 'team',
-      description: 'Our research team brainstorming innovative solutions',
-      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop',
-      likes: 38,
-      views: 1150
-    },
-    {
-      id: 3,
-      title: 'Scientific Experiment',
-      category: 'research',
-      description: 'Conducting breakthrough research in molecular biology',
-      image: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=800&h=600&fit=crop',
-      likes: 56,
-      views: 1890
-    },
-    {
-      id: 4,
-      title: 'Conference Presentation',
-      category: 'events',
-      description: 'Presenting our latest findings at international conference',
-      image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&h=600&fit=crop',
-      likes: 29,
-      views: 920
-    },
-    {
-      id: 5,
-      title: 'Laboratory Equipment',
-      category: 'lab',
-      description: 'High-precision instruments for accurate research results',
-      image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=600&fit=crop',
-      likes: 34,
-      views: 1100
-    },
-    {
-      id: 6,
-      title: 'Research Data Analysis',
-      category: 'research',
-      description: 'Analyzing complex data sets for breakthrough insights',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-      likes: 47,
-      views: 1560
-    },
-    {
-      id: 7,
-      title: 'Team Building Event',
-      category: 'team',
-      description: 'Strengthening bonds through collaborative activities',
-      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop',
-      likes: 41,
-      views: 1320
-    },
-    {
-      id: 8,
-      title: 'Workshop Session',
-      category: 'events',
-      description: 'Interactive learning session with industry experts',
-      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop',
-      likes: 33,
-      views: 980
-    },
-    {
-      id: 9,
-      title: 'Microscopic Analysis',
-      category: 'research',
-      description: 'Examining cellular structures under advanced microscopy',
-      image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&h=600&fit=crop',
-      likes: 52,
-      views: 1780
-    },
-    {
-      id: 10,
-      title: 'Laboratory Safety',
-      category: 'lab',
-      description: 'Ensuring safety protocols in all research activities',
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=600&fit=crop',
-      likes: 28,
-      views: 890
-    },
-    {
-      id: 11,
-      title: 'Research Publication',
-      category: 'research',
-      description: 'Celebrating our published research papers',
-      image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop',
-      likes: 45,
-      views: 1450
-    },
-    {
-      id: 12,
-      title: 'Team Training',
-      category: 'team',
-      description: 'Continuous learning and skill development',
-      image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop',
-      likes: 36,
-      views: 1180
-    }
-  ];
-
-  const filteredImages = galleryImages.filter(image => {
-    const matchesCategory = selectedCategory === 'all' || image.category === selectedCategory;
-    const matchesSearch = image.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         image.description.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
-
-  const openModal = (image) => {
-    setSelectedImage(image);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedImage(null);
-  };
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
+  // Fetch Images
+  const fetchImages = async () => {
+    try {
+      setLoadingImages(true);
+      const res = await fetch(
+        `https://www.googleapis.com/drive/v3/files?q='${IMAGE_FOLDER_ID}'+in+parents+and+mimeType contains 'image/'&key=${GOOGLE_API_KEY}&fields=files(id,name,mimeType)`
+      );
+      const data = await res.json();
+      if (data.files) {
+        setImages(
+          data.files.map((file) => ({
+            ...file,
+            thumbnailLink: `https://drive.google.com/thumbnail?id=${file.id}&sz=w1000`,
+            previewLink: `https://drive.google.com/uc?export=view&id=${file.id}`,
+          }))
+        );
       }
+    } catch (err) {
+      console.error("Error fetching images:", err);
+    } finally {
+      setLoadingImages(false);
     }
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
+  // Fetch Videos
+  const fetchVideos = async () => {
+    try {
+      setLoadingVideos(true);
+      const res = await fetch(
+        `https://www.googleapis.com/drive/v3/files?q='${VIDEO_FOLDER_ID}'+in+parents+and+mimeType contains 'video/'&key=${GOOGLE_API_KEY}&fields=files(id,name,mimeType)`
+      );
+      const data = await res.json();
+      if (data.files) {
+        setVideos(
+          data.files.map((file) => ({
+            ...file,
+            previewLink: `https://drive.google.com/uc?export=download&id=${file.id}`,
+          }))
+        );
       }
+    } catch (err) {
+      console.error("Error fetching videos:", err);
+    } finally {
+      setLoadingVideos(false);
     }
   };
 
-  const heroVariants = {
-    hidden: { opacity: 0, y: -50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
+  useEffect(() => {
+    fetchImages();
+    fetchVideos();
+  }, []);
+
+  const displayData = activeTab === "images" ? images : videos;
+  const isLoading = activeTab === "images" ? loadingImages : loadingVideos;
+
+  // Modal navigation
+  const openPreview = (i) => setCurrentIndex(i);
+  const closePreview = () => setCurrentIndex(null);
+  const next = () => setCurrentIndex((prev) => (prev + 1) % displayData.length);
+  const prev = () =>
+    setCurrentIndex((prev) => (prev - 1 + displayData.length) % displayData.length);
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (currentIndex === null) return;
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "Escape") closePreview();
+    },
+    [currentIndex, displayData.length]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      {/* Hero Section */}
-      <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center text-white overflow-hidden bg-gradient-to-br from-purple-700 to-pink-600">
-        <motion.div
-          ref={sectionRef}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={heroVariants}
-          className="relative z-10 text-center"
-        >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">Our Gallery</h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto px-4">
-            Explore our research journey, team moments, and breakthrough discoveries
-          </p>
-          <p className="text-base text-gray-200 mt-2 max-w-3xl mx-auto px-4">
-            A visual showcase of innovation, collaboration, and scientific excellence
-          </p>
-        </motion.div>
-      </section>
-
-      {/* Main Content */}
-      <section className="w-full py-12 px-4 lg:px-12">
-        <div className="max-w-7xl mx-auto">
-          {/* Search and Filter Controls */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-8 p-6 bg-white/40 backdrop-blur-lg border border-white/30 rounded-xl shadow-xl"
-          >
-            <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-              {/* Search Bar */}
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Search images..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-transparent"
-                />
-              </div>
-
-              {/* Category Filter */}
-              <div className="flex items-center gap-2">
-                <Filter className="w-5 h-5 text-gray-600" />
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-transparent"
-                >
-                  {categories.map(category => (
-                    <option key={category.id} value={category.id}>
-                      {category.name} ({category.count})
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* View Mode Toggle */}
-              <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
-                <button
-                  onClick={() => setViewMode('grid')}
-                  className={`p-2 rounded-md transition-colors ${
-                    viewMode === 'grid' ? 'bg-white shadow-sm' : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  <Grid3X3 className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={() => setViewMode('list')}
-                  className={`p-2 rounded-md transition-colors ${
-                    viewMode === 'list' ? 'bg-white shadow-sm' : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  <List className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Gallery Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className={`grid gap-6 ${
-              viewMode === 'grid' 
-                ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' 
-                : 'grid-cols-1'
-            }`}
-          >
-            {filteredImages.map((image, index) => (
-              <motion.div
-                key={image.id}
-                variants={itemVariants}
-                className={`group cursor-pointer ${
-                  viewMode === 'list' ? 'flex gap-4' : ''
-                }`}
-                onClick={() => openModal(image)}
-              >
-                <div className={`bg-white/40 backdrop-blur-lg border border-white/30 rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
-                  viewMode === 'list' ? 'flex-1' : ''
-                }`}>
-                  {/* Image */}
-                  <div className={`relative overflow-hidden ${
-                    viewMode === 'list' ? 'w-48 h-32' : 'aspect-square'
-                  }`}>
-                    <img
-                      src={image.image}
-                      alt={image.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-2">
-                        <button className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors">
-                          <Eye className="w-4 h-4 text-gray-700" />
-                        </button>
-                        <button className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors">
-                          <Heart className="w-4 h-4 text-gray-700" />
-                        </button>
-                        <button className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors">
-                          <Share2 className="w-4 h-4 text-gray-700" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-4">
-                    <h3 className="font-bold text-lg text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                      {image.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-                      {image.description}
-                    </p>
-                    
-                    {/* Stats */}
-                    <div className="flex items-center justify-between text-sm text-gray-500">
-                      <div className="flex items-center gap-4">
-                        <span className="flex items-center gap-1">
-                          <Heart className="w-4 h-4" />
-                          {image.likes}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Eye className="w-4 h-4" />
-                          {image.views}
-                        </span>
-                      </div>
-                      <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">
-                        {image.category}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* No Results */}
-          {filteredImages.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-12"
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-10 px-4 sm:px-6 lg:px-12">
+      {/* Tabs */}
+      <div className="flex justify-center mb-6">
+        <div className="bg-white shadow-md rounded-full flex gap-2 px-1 py-1 relative">
+          {["images", "videos"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => {
+                setActiveTab(tab);
+                setCurrentIndex(null);
+              }}
+              className={`flex items-center gap-2 font-semibold transition-all px-4 py-2 rounded-full relative z-10 ${
+                activeTab === tab ? "text-white" : "text-gray-600"
+              }`}
             >
-              <div className="text-gray-500 text-lg">
-                No images found matching your criteria.
-              </div>
-              <button
-                onClick={() => {
-                  setSearchTerm('');
-                  setSelectedCategory('all');
-                }}
-                className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                Clear Filters
-              </button>
-            </motion.div>
-          )}
+              {tab === "images" ? <ImageIcon className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            </button>
+          ))}
+          <motion.div
+            layout
+            className="absolute top-0.5 bottom-0.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 z-0"
+            style={{
+              left: activeTab === "images" ? "4px" : "calc(50% + 4px)",
+              right: activeTab === "images" ? "calc(50% + 4px)" : "4px",
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+          />
         </div>
-      </section>
+      </div>
 
-      {/* Image Modal */}
-      {isModalOpen && selectedImage && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
-            <div className="relative">
-              <img
-                src={selectedImage.image}
-                alt={selectedImage.title}
-                className="w-full h-96 object-cover"
-              />
-              <button
-                onClick={closeModal}
-                className="absolute top-4 right-4 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors"
-              >
-                ×
-              </button>
-            </div>
-            <div className="p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                {selectedImage.title}
-              </h2>
-              <p className="text-gray-600 mb-4">
-                {selectedImage.description}
-              </p>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4 text-sm text-gray-500">
-                  <span className="flex items-center gap-1">
-                    <Heart className="w-4 h-4" />
-                    {selectedImage.likes}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Eye className="w-4 h-4" />
-                    {selectedImage.views}
-                  </span>
-                </div>
-                <div className="flex gap-2">
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
-                    <Download className="w-4 h-4" />
-                    Download
-                  </button>
-                  <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2">
-                    <Share2 className="w-4 h-4" />
-                    Share
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Grid */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, x: activeTab === "images" ? -50 : 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: activeTab === "images" ? 50 : -50 }}
+          transition={{ duration: 0.4 }}
+          className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]"
+        >
+          {isLoading
+            ? Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)
+            : displayData.map((file, i) => (
+                <motion.div
+                  key={file.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl cursor-pointer"
+                  onClick={() => openPreview(i)}
+                >
+                  {activeTab === "images" ? (
+                    <img
+                      src={file.thumbnailLink}
+                      alt={file.name}
+                      className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+  <div className="relative group w-full h-64">
+    <iframe
+      src={`https://drive.google.com/file/d/${file.id}/preview`}
+      className="w-full h-full object-cover rounded-2xl"
+      allow="autoplay"
+      allowFullScreen
+      title={file.name}
+    ></iframe>
+    <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition rounded-2xl">
+      <Play size={48} />
+    </div>
+  </div>
+)}
+                  <div className="p-4">
+                    <h3 className="font-semibold text-gray-800 truncate">{file.name}</h3>
+                  </div>
+                </motion.div>
+              ))}
+        </motion.div>
+      </AnimatePresence>
+
+{/* Modal */}
+<AnimatePresence>
+  {currentIndex !== null && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+      onClick={closePreview}
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="relative bg-transparent max-w-6xl w-full flex justify-center items-center"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button
+          onClick={closePreview}
+          className="absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition"
+        >
+          <X size={24} />
+        </button>
+
+        {/* Preview */}
+        {activeTab === "images" ? (
+          <img
+            src={displayData[currentIndex].thumbnailLink}
+            alt={displayData[currentIndex].name}
+            className="w-full max-h-[80vh] object-contain rounded-xl shadow-xl"
+          />
+        ) : (
+          <iframe
+            src={`https://drive.google.com/file/d/${displayData[currentIndex].id}/preview`}
+            className="w-full max-h-[80vh] aspect-video rounded-xl shadow-xl"
+            allow="autoplay"
+            allowFullScreen
+            title={displayData[currentIndex].name}
+          ></iframe>
+        )}
+
+        {/* Navigation Buttons */}
+        <button
+          onClick={prev}
+          className="absolute left-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition"
+        >
+          <ChevronLeft size={28} />
+        </button>
+        <button
+          onClick={next}
+          className="absolute right-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition"
+        >
+          <ChevronRight size={28} />
+        </button>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
     </div>
   );
 };
