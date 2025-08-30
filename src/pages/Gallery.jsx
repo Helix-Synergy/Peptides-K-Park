@@ -245,14 +245,15 @@
 
 // export default Gallery;
 
-
-
-
-
-
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Image as ImageIcon, Play, ChevronLeft, ChevronRight, X } from "lucide-react";
+import {
+  Image as ImageIcon,
+  Play,
+  ChevronLeft,
+  ChevronRight,
+  X,
+} from "lucide-react";
 
 const GOOGLE_API_KEY = "AIzaSyAlkUtY5j-rBzZY8B0s2ynqEPfqnCfffsg";
 const IMAGE_FOLDER_ID = "1fuxLVciboT4N1O0ZqKAJuuCUbSPiay35";
@@ -336,7 +337,9 @@ const Gallery = () => {
   const closePreview = () => setCurrentIndex(null);
   const next = () => setCurrentIndex((prev) => (prev + 1) % displayData.length);
   const prev = () =>
-    setCurrentIndex((prev) => (prev - 1 + displayData.length) % displayData.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + displayData.length) % displayData.length
+    );
 
   const handleKeyDown = useCallback(
     (e) => {
@@ -369,7 +372,11 @@ const Gallery = () => {
                 activeTab === tab ? "text-white" : "text-gray-600"
               }`}
             >
-              {tab === "images" ? <ImageIcon className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+              {tab === "images" ? (
+                <ImageIcon className="w-4 h-4" />
+              ) : (
+                <Play className="w-4 h-4" />
+              )}
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
             </button>
           ))}
@@ -413,88 +420,89 @@ const Gallery = () => {
                       className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
-  <div className="relative group w-full h-64">
-    <iframe
-      src={`https://drive.google.com/file/d/${file.id}/preview`}
-      className="w-full h-full object-cover rounded-2xl"
-      allow="autoplay"
-      allowFullScreen
-      title={file.name}
-    ></iframe>
-    <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition rounded-2xl">
-      <Play size={48} />
-    </div>
-  </div>
-)}
+                    <div className="relative group w-full h-64">
+                      <iframe
+                        src={`https://drive.google.com/file/d/${file.id}/preview`}
+                        className="w-full h-full object-cover rounded-2xl"
+                        allow="autoplay"
+                        allowFullScreen
+                        title={file.name}
+                      ></iframe>
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition rounded-2xl">
+                        <Play size={48} />
+                      </div>
+                    </div>
+                  )}
                   <div className="p-4">
-                    <h3 className="font-semibold text-gray-800 truncate">{file.name}</h3>
+                    <h3 className="font-semibold text-gray-800 truncate">
+                      {file.name}
+                    </h3>
                   </div>
                 </motion.div>
               ))}
         </motion.div>
       </AnimatePresence>
 
-{/* Modal */}
-<AnimatePresence>
-  {currentIndex !== null && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
-      onClick={closePreview}
-    >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="relative bg-transparent max-w-6xl w-full flex justify-center items-center"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close Button */}
-        <button
-          onClick={closePreview}
-          className="absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition"
-        >
-          <X size={24} />
-        </button>
+      {/* Modal */}
+      <AnimatePresence>
+        {currentIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+            onClick={closePreview}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative bg-transparent max-w-6xl w-full flex justify-center items-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={closePreview}
+                className="absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition"
+              >
+                <X size={24} />
+              </button>
 
-        {/* Preview */}
-        {activeTab === "images" ? (
-          <img
-            src={displayData[currentIndex].thumbnailLink}
-            alt={displayData[currentIndex].name}
-            className="w-full max-h-[80vh] object-contain rounded-xl shadow-xl"
-          />
-        ) : (
-          <iframe
-            src={`https://drive.google.com/file/d/${displayData[currentIndex].id}/preview`}
-            className="w-full max-h-[80vh] aspect-video rounded-xl shadow-xl"
-            allow="autoplay"
-            allowFullScreen
-            title={displayData[currentIndex].name}
-          ></iframe>
+              {/* Preview */}
+              {activeTab === "images" ? (
+                <img
+                  src={displayData[currentIndex].thumbnailLink}
+                  alt={displayData[currentIndex].name}
+                  className="w-full max-h-[80vh] object-contain rounded-xl shadow-xl"
+                />
+              ) : (
+                <iframe
+                  src={`https://drive.google.com/file/d/${displayData[currentIndex].id}/preview`}
+                  className="w-full max-h-[80vh] aspect-video rounded-xl shadow-xl"
+                  allow="autoplay"
+                  allowFullScreen
+                  title={displayData[currentIndex].name}
+                ></iframe>
+              )}
+
+              {/* Navigation Buttons */}
+              <button
+                onClick={prev}
+                className="absolute left-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition"
+              >
+                <ChevronLeft size={28} />
+              </button>
+              <button
+                onClick={next}
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition"
+              >
+                <ChevronRight size={28} />
+              </button>
+            </motion.div>
+          </motion.div>
         )}
-
-        {/* Navigation Buttons */}
-        <button
-          onClick={prev}
-          className="absolute left-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition"
-        >
-          <ChevronLeft size={28} />
-        </button>
-        <button
-          onClick={next}
-          className="absolute right-2 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition"
-        >
-          <ChevronRight size={28} />
-        </button>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
-
+      </AnimatePresence>
     </div>
   );
 };

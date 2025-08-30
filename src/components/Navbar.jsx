@@ -1,579 +1,287 @@
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { Hexagon, ChevronDown, Headphones, Menu, X } from 'lucide-react';
-// import logo from '../assets/logo.webp';
+// import React, { useState, useEffect, useRef } from 'react';
+// import { Link, useLocation } from 'react-router-dom';
+// import { PhoneCall, Menu, X, Home, Info, Mail, Layout, ChevronDown } from 'lucide-react';
 
 // const navLinks = [
-//   { name: 'Home', href: '/' },
-//   { name: 'About', href: '/about-us' },
+//   { name: 'Home', href: '/', icon: Home },
+//   { name: 'About', href: '/about-us', icon: Info },
+//   { name: 'Contact', href: '/contact', icon: Mail },
+//   { name: 'Services', href: '/services', icon: Layout },
+// ];
+
+// const secondRowLinks = [
 //   {
-//     name: 'Advisory Council',
+//     name: 'Panel of Experts (POE)',
+//     href: '/panel-of-experts',
 //     dropdown: [
-//       { name: 'About Advisory Board', href: '/about-advisory-board' },
-//       { name: 'Our Advisory Council', href: '/our-advisory-council' },
-//       { name: 'Become a Member', href: '/become-a-member' },
+//       { name: 'About Panel of Experts', href: '/panel-of-experts/about' },
+//       { name: 'Subject Matter Experts', href: '/panel-of-experts/subject-matter-experts' },
+//       { name: 'Become a Panel Member', href: '/panel-of-experts/become-a-member' },
+//       { name: 'Activities/Benefits', href: '/panel-of-experts/activities-benefits' },
 //     ],
-//     href: '/advisory-council',
 //   },
 //   {
 //     name: 'Academic Assist',
-//     dropdown: [
-//       { name: 'Academic Projects', href: '/academic-projects' },
-//       { name: 'Seminars', href: '/seminars' },
-//       { name: 'Workshops', href: '/workshops' },
-//       { name: 'Tech Talks', href: '/tech-talks' },
-//       { name: 'Research Assistance & Thesis Support', href: '/research-assistance-thesis-support' },
-//       { name: 'Faculty Upskilling Service', href: '/faculty-upskilling-service' },
-//       { name: 'E-Learn-Digital Learning', href: '/e-learn-digital-learning' },
-//     ],
 //     href: '/academic-assist',
+//     dropdown: [
+//       { name: 'Academic Projects', href: '/academic-assist/projects' },
+//       { name: 'Conferences/Seminars', href: '/academic-assist/conferences' },
+//       { name: 'Workshops', href: '/academic-assist/workshops' },
+//       { name: 'Internships', href: '/academic-assist/internships' },
+//       { name: 'Publications', href: '/academic-assist/publications' },
+//       { name: 'Skill Development (SKID)', href: '/academic-assist/skill-development' },
+//       { name: 'Industrial Tours (INTO)', href: '/academic-assist/industrial-tours' },
+//       { name: 'E-Studies', href: '/academic-assist/e-studies' },
+//       { name: 'Competitive Exams Related Training (CERT)', href: '/academic-assist/cert' },
+//     ],
 //   },
 //   {
 //     name: 'Corporate Astute',
-//     dropdown: [
-//       { name: 'Corporate Collaborations', href: '/corporate-collaborations' },
-//       { name: 'Corporate Support Services', href: '/corporate-support-services' },
-//       { name: 'StackUp', href: '/stackup' },
-//     ],
 //     href: '/corporate-astute',
+//     dropdown: [
+//       { name: 'Corporate Support Service (CSS)', href: '/corporate-astute/css' },
+//       { name: 'Contract Research Services (CRS)', href: '/corporate-astute/crs' },
+//       { name: 'Faculty Upskilling Services (FUSS)', href: '/corporate-astute/fuss' },
+//       { name: 'Research Assistance & Writing Services (RAWS)', href: '/corporate-astute/raws' },
+//     ],
 //   },
 //   {
 //     name: 'Career Saga',
-//     dropdown: [
-//       { name: 'Career Coach', href: '/career-coach' },
-//       { name: 'Job Mate', href: '/job-mate' },
-//       { name: 'Peptides Assistance Membership', href: '/peptides-assistance-membership' },
-//     ],
 //     href: '/career-saga',
+//     dropdown: [
+//       { name: 'Job Oriented Trainings (JOT)', href: '/career-saga/jot' },
+//       { name: 'Placement Assistance (PLAST)', href: '/career-saga/plast' },
+//       { name: 'Advanced Industrial Reach (AIR)', href: '/career-saga/air' },
+//       { name: 'Peptides Assistance Membership (PAM)', href: '/career-saga/pam' },
+//     ],
 //   },
-//   { name: 'Contact', href: '/contact' },
+//   {
+//     name: 'Collaborations',
+//     href: '/collaborations',
+//     dropdown: [
+//       { name: 'Academic Collaborations', href: '/collaborations/academic' },
+//       { name: 'Industry Collaborations', href: '/collaborations/industry' },
+//       { name: 'Collaborate with Peptides', href: '/collaborations/peptides' },
+//     ],
+//   },
+//   {
+//     name: 'Gallery',
+//     href: '/gallery',
+//     dropdown: [],
+//   },
+//   {
+//     name: 'Careers',
+//     href: '/careers',
+//     dropdown: [
+//       { name: 'Jobs @ Peptides', href: '/careers/jobs' },
+//       { name: 'Post a Job with Peptides', href: '/careers/post-job' },
+//     ],
+//   },
 // ];
 
 // const Navbar = () => {
 //   const [mobileOpen, setMobileOpen] = useState(false);
 //   const [openDropdown, setOpenDropdown] = useState(null);
+//   const [desktopHoverDropdown, setDesktopHoverDropdown] = useState(null);
+//   const location = useLocation();
 
-//   const handleDropdown = (name) => {
+//   const handleMobileDropdown = (name) => {
 //     setOpenDropdown(openDropdown === name ? null : name);
 //   };
 
 //   return (
-//     <nav className="w-full bg-white border-b border-gray-100 shadow-sm">
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex my-4 items-center justify-between h-20">
-//         {/* Logo */}
-//         <div className="flex items-center space-x-2">
-//           <div className="w-10 h-10 bg-gradient-to-tr from-purple-400 to-pink-400 rounded-lg flex items-center justify-center">
-//             {/* Placeholder for logo icon */}
-//             <span className="text-white font-bold text-2xl">P</span>
-//           </div>
-//           <span className="text-2xl font-semibold text-gray-900">Peptides</span>
+//     <nav className="bg-[#2d2d2d] text-[#e0e0e0] w-full font-sans sticky top-0 z-50">
+//       {/* Desktop Logo and Top Bar */}
+//       <div className="hidden lg:flex items-center justify-between h-[60px] px-4 sm:px-6 lg:px-8 relative">
+//         <div className="absolute left-8 top-[65px] transform -translate-y-1/2 z-50">
+//             <Link to="/">
+//                 <img
+//                     src="https://peptides.co.in/assets/img/logo/PeptidesKnowledgePark.png"
+//                     alt="Peptides Knowledge Park Logo"
+//                     className="h-[100px] w-[100px] bg-white rounded-full p-2"
+//                 />
+//             </Link>
 //         </div>
-//         {/* Desktop Nav Links */}
-//         <div className="flex-1 items-center justify-center hidden lg:flex">
-//           <ul className="flex space-x-6">
-//             {navLinks.map((link) =>
-//               link.dropdown ? (
-//                 <li key={link.name} className="relative group">
-//                   <Link to={link.href} className="font-semibold text-gray-800 hover:text-blue-700 focus:outline-none flex items-center">
-//                     {link.name}
-//                     <ChevronDown className="ml-1 w-4 h-4" />
+//         <div className="flex-grow flex items-center justify-center space-x-6">
+//           {navLinks.map((link) => (
+//             <Link
+//               key={link.name}
+//               to={link.href}
+//               className={`flex items-center space-x-2 text-lg font-medium transition-colors duration-200
+//                 ${location.pathname === link.href ? 'text-[#ffc107]' : 'text-white hover:text-[#ffc107]'}
+//               `}
+//             >
+//               {link.icon && <link.icon className="w-5 h-5" />}
+//               <span>{link.name}</span>
+//             </Link>
+//           ))}
+//         </div>
+//         <div className="flex-shrink-0 flex items-center space-x-2 ml-4">
+//           <PhoneCall className="w-5 h-5 text-[#ffc107]" />
+//           <span className="text-sm font-semibold text-white">
+//             <a href="tel:+917997940959">+91 7997940959</a>
+//           </span>
+//         </div>
+//       </div>
+      
+//       {/* Desktop Second Row */}
+//       <div className="bg-[#232323] relative z-40 h-[70px] hidden lg:flex items-center">
+//         <div className="flex-grow flex items-center justify-center space-x-4 relative h-full">
+//             {secondRowLinks.map((link) => {
+//                 const isDropdownActive = link.dropdown?.some(item => location.pathname === item.href);
+//                 const isActive = location.pathname === link.href || isDropdownActive;
+//                 return (
+//                     <div
+//                         key={link.name}
+//                         className="relative group h-full flex items-center justify-center"
+//                         onMouseEnter={() => setDesktopHoverDropdown(link.name)}
+//                         onMouseLeave={() => setDesktopHoverDropdown(null)}
+//                     >
+//                         <Link
+//                             to={link.href}
+//                             className={`
+//                                 relative px-5 py-2 text-sm font-semibold transition-all duration-300 whitespace-nowrap rounded-full border
+//                                 ${isActive ? 'border-[#ffc107] text-[#ffc107]' : 'border-transparent text-white hover:border-[#ffc107]'}
+//                             `}
+//                         >
+//                             {link.name}
+//                         </Link>
+//                         {link.dropdown && link.dropdown.length > 0 && desktopHoverDropdown === link.name && (
+//                             <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-72 bg-[#2d2d2d] rounded-lg shadow-xl overflow-hidden py-2 z-50 animate-fadeIn">
+//                                 {link.dropdown.map((item) => (
+//                                     <Link
+//                                         key={item.name}
+//                                         to={item.href}
+//                                         className="block px-4 py-2 text-white hover:bg-[#ffc107] hover:text-[#2d2d2d] transition-colors duration-200"
+//                                     >
+//                                         {item.name}
+//                                     </Link>
+//                                 ))}
+//                             </div>
+//                         )}
+//                     </div>
+//                 );
+//             })}
+//         </div>
+//       </div>
+
+//       {/* Mobile Header */}
+//       <div className="lg:hidden flex items-center justify-between w-full h-[60px] px-4">
+//           <button
+//               onClick={() => setMobileOpen(!mobileOpen)}
+//               className="p-2 text-white"
+//               aria-label="Toggle menu"
+//           >
+//               {mobileOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+//           </button>
+//           <Link to="/">
+//               <img
+//                 src="https://peptides.co.in/assets/img/logo/PeptidesKnowledgePark.png"
+//                 alt="Peptides Knowledge Park Logo"
+//                 className="h-[45px]"
+//               />
+//           </Link>
+//           <div className="w-7 h-7"></div> {/* Spacer to balance logo */}
+//       </div>
+
+//       {/* Mobile Second Row - Scrollable Marquee */}
+//       <div className="lg:hidden relative z-30 overflow-x-auto whitespace-nowrap scrollbar-hide py-2">
+//           {secondRowLinks.map((link) => {
+//               const isActive = location.pathname === link.href || (link.dropdown && link.dropdown.some(d => location.pathname === d.href));
+//               return (
+//                   <Link
+//                       key={link.name}
+//                       to={link.href}
+//                       className={`
+//                           flex-shrink-0 relative px-4 py-2 mx-2 text-sm font-semibold transition-all duration-300 whitespace-nowrap rounded-full border
+//                           ${isActive ? 'border-[#ffc107] text-[#ffc107]' : 'border-transparent text-white hover:border-[#ffc107]'}
+//                       `}
+//                   >
+//                       {link.name}
 //                   </Link>
-//                   <ul className="absolute left-0 mt-[27px] w-56 bg-white border-2 border-t-blue-700 border-gray-100 shadow-lg rounded-b-xl opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity z-20">
-//                     {link.dropdown.map((item) => (
-//                       <li key={item.name}>
-//                         <Link to={item.href} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 text-sm">{item.name}</Link>
+//               );
+//           })}
+//       </div>
+
+//       {/* Mobile Menu Panel */}
+//       {mobileOpen && (
+//           <div className="lg:hidden fixed top-0 left-0 w-full h-full bg-[#1a1a1a] shadow-lg py-4 z-40 animate-slideDown overflow-y-auto">
+//               <div className="flex justify-between p-4 items-center">
+//                   <Link to="/">
+//                       <img
+//                           src="https://peptides.co.in/assets/img/logo/PeptidesKnowledgePark.png"
+//                           alt="Peptides Knowledge Park Logo"
+//                           className="h-[45px]"
+//                       />
+//                   </Link>
+//                   <button
+//                       onClick={() => setMobileOpen(false)}
+//                       className="text-white"
+//                       aria-label="Close menu"
+//                   >
+//                       <X className="w-7 h-7" />
+//                   </button>
+//               </div>
+//               <ul className="flex flex-col space-y-2 px-4">
+//                   {navLinks.map((link) => (
+//                       <li key={link.name}>
+//                           <Link
+//                               to={link.href}
+//                               onClick={() => setMobileOpen(false)}
+//                               className="flex items-center space-x-2 py-3 px-2 font-medium text-white hover:text-[#ffc107]"
+//                           >
+//                               {link.icon && <link.icon className="w-5 h-5" />}
+//                               <span>{link.name}</span>
+//                           </Link>
 //                       </li>
-//                     ))}
-//                   </ul>
-//                 </li>
-//               ) : (
-//                 <li key={link.name}>
-//                   <Link to={link.href} className="font-semibold text-gray-800 hover:text-blue-700">{link.name}</Link>
-//                 </li>
-//               )
-//             )}
-//           </ul>
-//         </div>
-//         {/* Burger Menu Icon */}
-//         <div className="lg:hidden flex items-center">
-//           <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 rounded focus:outline-none">
-//             {mobileOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-//           </button>
-//         </div>
-//         {/* Contact & Actions (hidden on mobile) */}
-//         <div className="hidden lg:flex items-center space-x-6">
-//           <div className="flex items-center space-x-2 border-gray-200">
-//             <Headphones className="w-7 h-7 text-blue-400" />
-//             <div className="flex flex-col">
-//               <span className="text-xs text-gray-500">Have Any Questions?</span>
-//               <span className="text-pink-500 font-bold text-lg">+91 7997940959</span>
-//             </div>
+//                   ))}
+//                   <div className="h-[1px] bg-[#333] my-4"></div>
+//                   {secondRowLinks.map((link) => (
+//                       <li key={link.name}>
+//                           {link.dropdown && link.dropdown.length > 0 ? (
+//                               <>
+//                                   <button
+//                                       onClick={() => handleMobileDropdown(link.name)}
+//                                       className={`w-full text-left font-medium flex items-center justify-between py-3 px-2 rounded
+//                                           ${openDropdown === link.name ? 'text-[#ffc107]' : 'text-white'}
+//                                       `}
+//                                   >
+//                                       <span>{link.name}</span>
+//                                       <ChevronDown
+//                                           className={`w-5 h-5 transition-transform duration-200
+//                                               ${openDropdown === link.name ? 'rotate-180' : ''}
+//                                           `}
+//                                       />
+//                                   </button>
+//                                   {openDropdown === link.name && (
+//                                       <ul className="pl-6 mt-2 space-y-2 border-l border-[#333]">
+//                                           {link.dropdown.map((item) => (
+//                                               <li key={item.name}>
+//                                                   <Link
+//                                                       to={item.href}
+//                                                       onClick={() => setMobileOpen(false)}
+//                                                       className="block py-2 text-sm text-white hover:text-[#ffc107]"
+//                                                   >
+//                                                       {item.name}
+//                                                   </Link>
+//                                               </li>
+//                                           ))}
+//                                       </ul>
+//                                   )}
+//                               </>
+//                           ) : (
+//                               <Link
+//                                   to={link.href}
+//                                   onClick={() => setMobileOpen(false)}
+//                                   className="block py-3 px-2 font-medium text-white hover:text-[#ffc107]"
+//                               >
+//                                   {link.name}
+//                               </Link>
+//                           )}
+//                       </li>
+//                   ))}
+//               </ul>
 //           </div>
-//         </div>
-//       </div>
-//       {/* Mobile Menu */}
-//       {mobileOpen && (
-//         <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg px-4 py-4">
-//           <ul className="flex flex-col space-y-2">
-//             {navLinks.map((link) =>
-//               link.dropdown ? (
-//                 <li key={link.name}>
-//                   <button
-//                     className="w-full flex items-center justify-between font-semibold text-gray-800 hover:text-blue-700 focus:outline-none px-2 py-2"
-//                     onClick={() => handleDropdown(link.name)}
-//                   >
-//                     <span>{link.name}</span>
-//                     <ChevronDown className={`ml-1 w-4 h-4 transform transition-transform ${openDropdown === link.name ? 'rotate-180' : ''}`} />
-//                   </button>
-//                   {openDropdown === link.name && (
-//                     <ul className="pl-4 py-2">
-//                       {link.dropdown.map((item) => (
-//                         <li key={item.name}>
-//                           <Link
-//                             to={item.href}
-//                             className="block px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 text-sm rounded"
-//                             onClick={() => setMobileOpen(false)}
-//                           >
-//                             {item.name}
-//                           </Link>
-//                         </li>
-//                       ))}
-//                     </ul>
-//                   )}
-//                 </li>
-//               ) : (
-//                 <li key={link.name}>
-//                   <Link
-//                     to={link.href}
-//                     className="font-semibold text-gray-800 hover:text-blue-700 block px-2 py-2 rounded"
-//                     onClick={() => setMobileOpen(false)}
-//                   >
-//                     {link.name}
-//                   </Link>
-//                 </li>
-//               )
-//             )}
-//           </ul>
-//           {/* Contact info for mobile */}
-//           <div className="flex items-center space-x-2 border-t pt-4 mt-4">
-//             <Headphones className="w-7 h-7 text-blue-400" />
-//             <div className="flex flex-col">
-//               <span className="text-xs text-gray-500">Have Any Questions?</span>
-//               <span className="text-pink-500 font-bold text-lg">+91 7997940959</span>
-//             </div>
-//           </div>
-//         </div>
-//       )}
-//     </nav>
-//   );
-// };
-
-// export default Navbar; 
-
-
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { ChevronDown, Headphones, Menu, X } from 'lucide-react';
-// // import logo from '../assets/logo.webp'; // If logo is not used, it can be removed
-
-// const navLinks = [
-//   { name: 'Home', href: '/' },
-//   { name: 'About', href: '/about-us' },
-//   {
-//     name: 'Advisory Council',
-//     dropdown: [
-//       { name: 'About Advisory Board', href: '/about-advisory-board' },
-//       { name: 'Our Advisory Council', href: '/our-advisory-council' },
-//       { name: 'Become a Member', href: '/become-a-member' },
-//     ],
-//     href: '/advisory-council',
-//   },
-//   {
-//     name: 'Academic Assist',
-//     dropdown: [
-//       { name: 'Academic Projects', href: '/academic-projects' },
-//       { name: 'Seminars', href: '/seminars' },
-//       { name: 'Workshops', href: '/workshops' },
-//       { name: 'Tech Talks', href: '/tech-talks' },
-//       { name: 'Research Assistance & Thesis Support', href: '/research-assistance-thesis-support' },
-//       { name: 'Faculty Upskilling Service', href: '/faculty-upskilling-service' },
-//       { name: 'E-Learn-Digital Learning', href: '/e-learn-digital-learning' },
-//     ],
-//     href: '/academic-assist',
-//   },
-//   {
-//     name: 'Corporate Astute',
-//     dropdown: [
-//       { name: 'Corporate Collaborations', href: '/corporate-collaborations' },
-//       { name: 'Corporate Support Services', href: '/corporate-support-services' },
-//       { name: 'StackUp', href: '/stackup' },
-//     ],
-//     href: '/corporate-astute',
-//   },
-//   {
-//     name: 'Career Saga',
-//     dropdown: [
-//       { name: 'Career Coach', href: '/career-coach' },
-//       { name: 'Job Mate', href: '/job-mate' },
-//       { name: 'Peptides Assistance Membership', href: '/peptides-assistance-membership' },
-//     ],
-//     href: '/career-saga',
-//   },
-//   { name: 'Contact', href: '/contact' },
-// ];
-
-// const Navbar = () => {
-//   const [mobileOpen, setMobileOpen] = useState(false);
-//   const [openDropdown, setOpenDropdown] = useState(null); // For mobile dropdowns
-//   const [desktopHoverDropdown, setDesktopHoverDropdown] = useState(null); // For desktop hover
-
-//   const handleMobileDropdown = (name) => {
-//     setOpenDropdown(openDropdown === name ? null : name);
-//   };
-
-//   return (
-//     <nav className="w-full bg-white border-b border-gray-100 shadow-sm z-50 relative">
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex my-4 items-center justify-between h-20">
-//         {/* Logo */}
-//         <div className="flex items-center space-x-2">
-//           <div className="w-10 h-10 bg-gradient-to-tr from-purple-400 to-pink-400 rounded-lg flex items-center justify-center">
-//             {/* Placeholder for logo icon */}
-//             <span className="text-white font-bold text-2xl">P</span>
-//           </div>
-//           <span className="text-2xl font-semibold text-gray-900">Peptides</span>
-//         </div>
-
-//         {/* Desktop Nav Links (hidden on mobile, centered on desktop) */}
-//         <div className="hidden lg:flex flex-grow justify-center">
-//           <ul className="flex space-x-6">
-//             {navLinks.map((link) => (
-//               link.dropdown ? (
-//                 <li
-//                   key={link.name}
-//                   className="relative group"
-//                   onMouseEnter={() => setDesktopHoverDropdown(link.name)}
-//                   onMouseLeave={() => setDesktopHoverDropdown(null)}
-//                 >
-//                   <Link
-//                     to={link.href}
-//                     className="font-semibold text-gray-800 hover:text-blue-700 focus:outline-none flex items-center py-2"
-//                     onClick={(e) => {
-//                       if (link.dropdown) {
-//                         e.preventDefault();
-//                       }
-//                     }}
-//                   >
-//                     {link.name}
-//                     <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${desktopHoverDropdown === link.name ? 'rotate-180' : ''}`} />
-//                   </Link>
-//                   {desktopHoverDropdown === link.name && (
-//                     <ul
-//                       className="absolute left-1/2 -translate-x-1/2 mt-0 w-60 bg-white border-2 border-t-blue-700 border-gray-100 shadow-xl rounded-b-xl opacity-100 transition-opacity duration-300 ease-in-out py-2"
-//                       style={{ minWidth: 'max-content' }}
-//                     >
-//                       {link.dropdown.map((item) => (
-//                         <li key={item.name}>
-//                           <Link
-//                             to={item.href}
-//                             className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 text-sm transition-colors duration-150"
-//                             onClick={() => setDesktopHoverDropdown(null)}
-//                           >
-//                             {item.name}
-//                           </Link>
-//                         </li>
-//                       ))}
-//                     </ul>
-//                   )}
-//                 </li>
-//               ) : (
-//                 <li key={link.name}>
-//                   <Link
-//                     to={link.href}
-//                     className="font-semibold text-gray-800 hover:text-blue-700 py-2 flex items-center" // <<< ADDED 'flex items-center' HERE
-//                   >
-//                     {link.name}
-//                   </Link>
-//                 </li>
-//               )
-//             ))}
-//           </ul>
-//         </div>
-
-//         {/* Burger Menu Icon (still for mobile only) */}
-//         <div className="lg:hidden flex items-center">
-//           <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 rounded focus:outline-none text-gray-700 hover:text-blue-700">
-//             {mobileOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-//           </button>
-//         </div>
-
-//         {/* Contact & Actions (hidden on mobile, aligned right on desktop) */}
-//         <div className="hidden lg:flex items-center space-x-2">
-//           <Headphones className="w-7 h-7 text-blue-400" />
-//           <div className="flex flex-col">
-//             <span className="text-xs text-gray-500">Have Any Questions?</span>
-//             <span className="text-pink-500 font-bold text-lg">+91 7997940959</span>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Mobile Menu (unchanged, will now correctly map all navLinks) */}
-//       {mobileOpen && (
-//         <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg px-4 py-4 absolute w-full top-full left-0 z-40">
-//           <ul className="flex flex-col space-y-2">
-//             {navLinks.map((link) =>
-//               link.dropdown ? (
-//                 <li key={link.name}>
-//                   <button
-//                     className="w-full flex items-center justify-between font-semibold text-gray-800 hover:text-blue-700 focus:outline-none px-2 py-2 rounded"
-//                     onClick={() => handleMobileDropdown(link.name)}
-//                   >
-//                     <span>{link.name}</span>
-//                     <ChevronDown className={`ml-1 w-4 h-4 transform transition-transform duration-200 ${openDropdown === link.name ? 'rotate-180' : ''}`} />
-//                   </button>
-//                   {openDropdown === link.name && (
-//                     <ul className="pl-6 py-2 border-l border-blue-200 ml-2 mt-1">
-//                       {link.dropdown.map((item) => (
-//                         <li key={item.name}>
-//                           <Link
-//                             to={item.href}
-//                             className="block px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 text-sm rounded transition-colors duration-150"
-//                             onClick={() => setMobileOpen(false)}
-//                           >
-//                             {item.name}
-//                           </Link>
-//                         </li>
-//                       ))}
-//                     </ul>
-//                   )}
-//                 </li>
-//               ) : (
-//                 <li key={link.name}>
-//                   <Link
-//                     to={link.href}
-//                     className="font-semibold text-gray-800 hover:text-blue-700 block px-2 py-2 rounded"
-//                     onClick={() => setMobileOpen(false)}
-//                   >
-//                     {link.name}
-//                   </Link>
-//                 </li>
-//               )
-//             )}
-//           </ul>
-//           {/* Contact info for mobile */}
-//           <div className="flex items-center space-x-2 border-t pt-4 mt-4 px-2">
-//             <Headphones className="w-7 h-7 text-blue-400" />
-//             <div className="flex flex-col">
-//               <span className="text-xs text-gray-500">Have Any Questions?</span>
-//               <span className="text-pink-500 font-bold text-lg">+91 7997940959</span>
-//             </div>
-//           </div>
-//         </div>
-//       )}
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-
-
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { ChevronDown, Headphones, Menu, X } from 'lucide-react';
-// // import logo from '../assets/logo.webp'; // If logo is not used, it can be removed
-
-// const navLinks = [
-//   { name: 'Home', href: '/' },
-//   { name: 'About', href: '/about-us' },
-//   {
-//     name: 'Advisory Council',
-//     dropdown: [
-//       { name: 'About Advisory Board', href: '/about-advisory-board' },
-//       { name: 'Our Advisory Council', href: '/our-advisory-council' },
-//       { name: 'Become a Member', href: '/become-a-member' },
-//     ],
-//     href: '/advisory-council',
-//   },
-//   {
-//     name: 'Academic Assist',
-//     dropdown: [
-//       { name: 'Academic Projects', href: '/academic-projects' },
-//       { name: 'Seminars', href: '/seminars' },
-//       { name: 'Workshops', href: '/workshops' },
-//       { name: 'Tech Talks', href: '/tech-talks' },
-//       { name: 'Research Assistance & Thesis Support', href: '/research-assistance-thesis-support' },
-//       { name: 'Faculty Upskilling Service', href: '/faculty-upskilling-service' },
-//       { name: 'E-Learn-Digital Learning', href: '/e-learn-digital-learning' },
-//     ],
-//     href: '/academic-assist',
-//   },
-//   {
-//     name: 'Corporate Astute',
-//     dropdown: [
-//       { name: 'Corporate Collaborations', href: '/corporate-collaborations' },
-//       { name: 'Corporate Support Services', href: '/corporate-support-services' },
-//       { name: 'StackUp', href: '/stackup' },
-//     ],
-//     href: '/corporate-astute',
-//   },
-//   {
-//     name: 'Career Saga',
-//     dropdown: [
-//       { name: 'Career Coach', href: '/career-coach' },
-//       { name: 'Job Mate', href: '/job-mate' },
-//       { name: 'Peptides Assistance Membership', href: '/peptides-assistance-membership' },
-//     ],
-//     href: '/career-saga',
-//   },
-//   { name: 'Contact', href: '/contact' },
-// ];
-
-// const Navbar = () => {
-//   const [mobileOpen, setMobileOpen] = useState(false);
-//   const [openDropdown, setOpenDropdown] = useState(null); // For mobile dropdowns
-//   const [desktopHoverDropdown, setDesktopHoverDropdown] = useState(null); // For desktop hover
-
-//   const handleMobileDropdown = (name) => {
-//     setOpenDropdown(openDropdown === name ? null : name);
-//   };
-
-//   return (
-//     <nav className="w-full bg-white border-b border-gray-100 shadow-sm z-50 relative">
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex my-4 items-center justify-between h-20">
-//         {/* Logo */}
-//         <div className="flex items-center space-x-2 flex-shrink-0"> {/* Added flex-shrink-0 */}
-//           <div className="w-10 h-10 bg-gradient-to-tr from-purple-400 to-pink-400 rounded-lg flex items-center justify-center">
-//             {/* Placeholder for logo icon */}
-//             <span className="text-white font-bold text-2xl">P</span>
-//           </div>
-//           <span className="text-2xl font-semibold text-gray-900">Peptides</span>
-//         </div>
-
-//         {/* Desktop Nav Links (hidden on mobile, centered on desktop) */}
-//         {/* Added min-w-0 to prevent overflow if nav links are too long on smaller desktop screens */}
-//         <div className="hidden lg:flex flex-grow justify-center min-w-0">
-//           <ul className="flex space-x-6">
-//             {navLinks.map((link) => (
-//               link.dropdown ? (
-//                 <li
-//                   key={link.name}
-//                   className="relative group flex-shrink-0" // Added flex-shrink-0 to dropdown li
-//                   onMouseEnter={() => setDesktopHoverDropdown(link.name)}
-//                   onMouseLeave={() => setDesktopHoverDropdown(null)}
-//                 >
-//                   <Link
-//                     to={link.href}
-//                     className="font-semibold text-gray-800 hover:text-blue-700 focus:outline-none flex items-center py-2 whitespace-nowrap" // Added whitespace-nowrap
-//                     onClick={(e) => {
-//                       if (link.dropdown) {
-//                         e.preventDefault();
-//                       }
-//                     }}
-//                   >
-//                     {link.name}
-//                     <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${desktopHoverDropdown === link.name ? 'rotate-180' : ''}`} />
-//                   </Link>
-//                   {desktopHoverDropdown === link.name && (
-//                     <ul
-//                       className="absolute left-1/2 -translate-x-1/2 mt-0 w-60 bg-white border-2 border-t-blue-700 border-gray-100 shadow-xl rounded-b-xl opacity-100 transition-opacity duration-300 ease-in-out py-2"
-//                       style={{ minWidth: 'max-content' }}
-//                     >
-//                       {link.dropdown.map((item) => (
-//                         <li key={item.name}>
-//                           <Link
-//                             to={item.href}
-//                             className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 text-sm transition-colors duration-150"
-//                             onClick={() => setDesktopHoverDropdown(null)}
-//                           >
-//                             {item.name}
-//                           </Link>
-//                         </li>
-//                       ))}
-//                     </ul>
-//                   )}
-//                 </li>
-//               ) : (
-//                 <li key={link.name} className="flex-shrink-0"> {/* Added flex-shrink-0 to regular li */}
-//                   <Link
-//                     to={link.href}
-//                     className="font-semibold text-gray-800 hover:text-blue-700 py-2 flex items-center whitespace-nowrap" // Added whitespace-nowrap
-//                   >
-//                     {link.name}
-//                   </Link>
-//                 </li>
-//               )
-//             ))}
-//           </ul>
-//         </div>
-
-//         {/* Burger Menu Icon (visible on smaller screens) */}
-//         <div className="lg:hidden flex items-center flex-shrink-0"> {/* Added flex-shrink-0 */}
-//           <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 rounded focus:outline-none text-gray-700 hover:text-blue-700">
-//             {mobileOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-//           </button>
-//         </div>
-
-//         {/* Contact & Actions (hidden on mobile, aligned right on desktop) */}
-//         <div className="hidden lg:flex items-center space-x-2 flex-shrink-0"> {/* Added flex-shrink-0 */}
-//           <Headphones className="w-7 h-7 text-blue-400" />
-//           <div className="flex flex-col">
-//             <span className="text-xs text-gray-500 whitespace-nowrap">Have Any Questions?</span> {/* Added whitespace-nowrap */}
-//             <span className="text-pink-500 font-bold text-lg whitespace-nowrap">+91 7997940959</span> {/* Added whitespace-nowrap */}
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Mobile Menu (full-width overlay below navbar) */}
-//       {mobileOpen && (
-//         <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg px-4 py-4 absolute w-full top-full left-0 z-40">
-//           <ul className="flex flex-col space-y-2">
-//             {navLinks.map((link) =>
-//               link.dropdown ? (
-//                 <li key={link.name}>
-//                   <button
-//                     className="w-full flex items-center justify-between font-semibold text-gray-800 hover:text-blue-700 focus:outline-none px-2 py-2 rounded"
-//                     onClick={() => handleMobileDropdown(link.name)}
-//                   >
-//                     <span>{link.name}</span>
-//                     <ChevronDown className={`ml-1 w-4 h-4 transform transition-transform duration-200 ${openDropdown === link.name ? 'rotate-180' : ''}`} />
-//                   </button>
-//                   {openDropdown === link.name && (
-//                     <ul className="pl-6 py-2 border-l border-blue-200 ml-2 mt-1">
-//                       {link.dropdown.map((item) => (
-//                         <li key={item.name}>
-//                           <Link
-//                             to={item.href}
-//                             className="block px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 text-sm rounded transition-colors duration-150"
-//                             onClick={() => setMobileOpen(false)}
-//                           >
-//                             {item.name}
-//                           </Link>
-//                         </li>
-//                       ))}
-//                     </ul>
-//                   )}
-//                 </li>
-//               ) : (
-//                 <li key={link.name}>
-//                   <Link
-//                     to={link.href}
-//                     className="font-semibold text-gray-800 hover:text-blue-700 block px-2 py-2 rounded"
-//                     onClick={() => setMobileOpen(false)}
-//                   >
-//                     {link.name}
-//                   </Link>
-//                 </li>
-//               )
-//             )}
-//           </ul>
-//           {/* Contact info for mobile */}
-//           <div className="flex items-center space-x-2 border-t pt-4 mt-4 px-2">
-//             <Headphones className="w-7 h-7 text-blue-400" />
-//             <div className="flex flex-col">
-//               <span className="text-xs text-gray-500">Have Any Questions?</span>
-//               <span className="text-pink-500 font-bold text-lg">+91 7997940959</span>
-//             </div>
-//           </div>
-//         </div>
 //       )}
 //     </nav>
 //   );
@@ -585,268 +293,621 @@
 
 
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { ChevronDown, Headphones, Menu, X } from 'lucide-react';
+
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import {
+  PhoneCall,
+  Menu,
+  X,
+  Home,
+  Info,
+  Mail,
+  Layout,
+  ChevronDown,
+} from "lucide-react";
 
 const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about-us' },
+  { name: "Home", href: "/", icon: Home },
+  { name: "About", href: "/about-us", icon: Info },
+  { name: "Contact", href: "/contact", icon: Mail },
+  { name: "Services", href: "/services", icon: Layout },
+];
+
+const secondRowLinks = [
   {
-    name: 'Advisory Council',
+    name: "Panel of Experts (POE)",
+    href: "/panel-of-experts",
     dropdown: [
-      { name: 'About Advisory Board', href: '/about-advisory-board' },
-      { name: 'Our Advisory Council', href: '/our-advisory-council' },
-      { name: 'Become a Member', href: '/become-a-member' },
+      { name: "About Panel of Experts", href: "/panel-of-experts/about" },
+      { name: "Subject Matter Experts", href: "/panel-of-experts/subject-matter-experts" },
+      { name: "Become a Panel Member", href: "/panel-of-experts/become-a-member" },
+      { name: "Activities/Benefits", href: "/panel-of-experts/activities-benefits" },
     ],
-    href: '/advisory-council',
   },
   {
-    name: 'Academic Assist',
+    name: "Academic Assist",
+    href: "/academic-assist",
     dropdown: [
-      { name: 'Academic Projects', href: '/academic-projects' },
-      { name: 'Seminars', href: '/seminars' },
-      { name: 'Workshops', href: '/workshops' },
-      { name: 'Tech Talks', href: '/tech-talks' },
-      { name: 'Research Assistance & Thesis Support', href: '/research-assistance-thesis-support' },
-      { name: 'Faculty Upskilling Service', href: '/faculty-upskilling-service' },
-      { name: 'E-Learn-Digital Learning', href: '/e-learn-digital-learning' },
+      { name: "Academic Projects", href: "/academic-assist/projects" },
+      { name: "Conferences/Seminars", href: "/academic-assist/conferences" },
+      { name: "Workshops", href: "/academic-assist/workshops" },
+      { name: "Internships", href: "/academic-assist/internships" },
+      { name: "Publications", href: "/academic-assist/publications" },
+      { name: "Skill Development (SKID)", href: "/academic-assist/skill-development" },
+      { name: "Industrial Tours (INTO)", href: "/academic-assist/industrial-tours" },
+      { name: "E-Studies", href: "/academic-assist/e-studies" },
+      { name: "Competitive Exams Related Training (CERT)", href: "/academic-assist/cert" },
     ],
-    href: '/academic-assist',
   },
   {
-    name: 'Corporate Astute',
+    name: "Corporate Astute",
+    href: "/corporate-astute",
     dropdown: [
-      { name: 'Corporate Collaborations', href: '/corporate-collaborations' },
-      { name: 'Corporate Support Services', href: '/corporate-support-services' },
-      { name: 'StackUp', href: '/stackup' },
+      { name: "Corporate Support Service (CSS)", href: "/corporate-astute/css" },
+      { name: "Contract Research Services (CRS)", href: "/corporate-astute/crs" },
+      { name: "Faculty Upskilling Services (FUSS)", href: "/corporate-astute/fuss" },
+      { name: "Research Assistance & Writing Services (RAWS)", href: "/corporate-astute/raws" },
     ],
-    href: '/corporate-astute',
   },
   {
-    name: 'Career Saga',
+    name: "Career Saga",
+    href: "/career-saga",
     dropdown: [
-      { name: 'Career Coach', href: '/career-coach' },
-      { name: 'Job Mate', href: '/job-mate' },
-      { name: 'Peptides Assistance Membership', href: '/peptides-assistance-membership' },
+      { name: "Job Oriented Trainings (JOT)", href: "/career-saga/jot" },
+      { name: "Placement Assistance (PLAST)", href: "/career-saga/plast" },
+      { name: "Advanced Industrial Reach (AIR)", href: "/career-saga/air" },
+      { name: "Peptides Assistance Membership (PAM)", href: "/career-saga/pam" },
     ],
-    href: '/career-saga',
   },
-  { name: 'Gallery', href: '/gallery' },
-  { name: 'Contact', href: '/contact' },
+  {
+    name: "Collaborations",
+    href: "/collaborations",
+    dropdown: [
+      { name: "Academic Collaborations", href: "/collaborations/academic" },
+      { name: "Industry Collaborations", href: "/collaborations/industry" },
+      { name: "Collaborate with Peptides", href: "/collaborations/peptides" },
+    ],
+  },
+  { name: "Gallery", href: "/gallery", dropdown: [] },
+  {
+    name: "Careers",
+    href: "/careers",
+    dropdown: [
+      { name: "Jobs @ Peptides", href: "/careers/jobs" },
+      { name: "Post a Job with Peptides", href: "/careers/post-job" },
+    ],
+  },
 ];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [desktopHoverDropdown, setDesktopHoverDropdown] = useState(null);
-  const [compact, setCompact] = useState(false);
   const location = useLocation();
-  const wrapperRef = useRef(null);
-  const linksRef = useRef(null);
 
-  const handleMobileDropdown = (name) => {
+  const toggleMobileDropdown = (name) => {
     setOpenDropdown(openDropdown === name ? null : name);
   };
 
-  useEffect(() => {
-    const measure = () => {
-      const w = window.innerWidth;
-      const belowLg = w < 1024;
-      let overflow = false;
-      if (wrapperRef.current && linksRef.current) {
-        const available = wrapperRef.current.clientWidth - 360;
-        overflow = linksRef.current.scrollWidth > available;
-      }
-      setCompact(belowLg || overflow);
-    };
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
-  }, []);
-
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+  const toggleTabletDropdown = (name) => {
+    if (secondRowLinks.find((link) => link.name === name)?.dropdown?.length) {
+      setOpenDropdown(openDropdown === name ? null : name);
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
+  };
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "auto";
   }, [mobileOpen]);
 
-  useEffect(() => {
-    setMobileOpen(false);
-    setDesktopHoverDropdown(null);
-  }, [location.pathname]);
-
   return (
-    <nav className="w-full bg-[#f2efe9]/90 backdrop-blur-3xl border-b border-[#b89c6b]/30 shadow-sm z-50 sticky top-0">
-      <div ref={wrapperRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 gap-3">
-        {/* Logo */}
-        <div className="flex items-center space-x-2 flex-shrink-0">
-          <div className="w-10 h-10 bg-[#714819] rounded-lg flex items-center justify-center">
-            <span className="text-[#f2efe9] font-bold text-2xl">P</span>
-          </div>
-          <span className="text-2xl font-semibold text-[#714819]">Peptides</span>
-        </div>
-
-        {/* Desktop Nav Links */}
-        <div ref={linksRef} className={`${compact ? 'hidden' : 'hidden lg:flex'} flex-grow justify-center min-w-0`}>
-          <ul className="flex space-x-6">
-            {navLinks.map((link) => {
-              const isActive = link.dropdown
-                ? location.pathname === link.href || link.dropdown.some(item => location.pathname === item.href)
-                : location.pathname === link.href;
-
-              return link.dropdown ? (
-                <li
-                  key={link.name}
-                  className="relative group flex-shrink-0"
-                  onMouseEnter={() => setDesktopHoverDropdown(link.name)}
-                  onMouseLeave={() => setDesktopHoverDropdown(null)}
-                >
-                  <Link
-                    to={link.href}
-                    className={`font-semibold focus:outline-none flex items-center py-2 whitespace-nowrap border-b-2 transition-colors duration-150 ${
-                      isActive
-                        ? 'text-[#714819] border-[#714819]'
-                        : 'text-[#714819] border-transparent hover:text-[#b89c6b] hover:border-[#b89c6b]'
-                    }`}
-                  >
-                    {link.name}
-                    <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${desktopHoverDropdown === link.name ? 'rotate-180' : ''}`} />
-                  </Link>
-                  {desktopHoverDropdown === link.name && (
-                    <ul className="absolute left-0 min-w-full w-48 bg-[#f2efe9] border border-[#b89c6b]/40 rounded-xl shadow-xl transition-opacity duration-300 ease-in-out py-2 z-20 overflow-hidden">
-                      {link.dropdown.map((item) => (
-                        <li key={item.name}>
-                          <Link
-                            to={item.href}
-                            className={`block px-4 py-2 text-lg  text-[#714819] hover:bg-[#b89c6b]/20 hover:text-[#714819] transition-colors duration-150 ${
-                              location.pathname === item.href ? 'text-[#714819] bg-[#b89c6b]/20' : ''
-                            }`}
-                            onClick={() => setDesktopHoverDropdown(null)}
-                          >
-                            {item.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ) : (
-                <li key={link.name} className="flex-shrink-0">
-                  <Link
-                    to={link.href}
-                    className={`font-semibold py-2 flex items-center whitespace-nowrap border-b-2 transition-colors duration-150 ${
-                      isActive
-                        ? 'text-[#714819] border-[#714819]'
-                        : 'text-[#714819] border-transparent hover:text-[#b89c6b] hover:border-[#b89c6b]'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-
-        {/* Burger Menu */}
-        <div className={`${compact ? 'flex' : 'lg:hidden flex'} items-center flex-shrink-0`}>
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="p-2 rounded focus:outline-none text-[#714819] hover:text-[#b89c6b]"
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-          </button>
-        </div>
-
-        {/* Contact Info (desktop) */}
-        <div className={`items-center space-x-2 flex-shrink-0 ${compact ? 'hidden' : 'hidden lg:flex'}`}>
-          <Headphones className="w-7 h-7 text-[#b89c6b]" />
-          <div className="flex flex-col">
-            <span className="text-xs text-[#714819]/70 whitespace-nowrap">Have Any Questions?</span>
-            <span className="text-[#714819] font-bold text-lg whitespace-nowrap">+91 7997940959</span>
-          </div>
-        </div>
+    <header className="bg-[#2d2d2d] text-white sticky top-0 w-full z-50">
+      {/* Logo */}
+      <div className="fixed top-2 left-2 z-50">
+        <Link to="/">
+          <img
+            src="https://peptides.co.in/assets/img/logo/PeptidesKnowledgePark.png"
+            alt="Peptides Knowledge Park Logo"
+            className="h-[100px] w-[100px] rounded-full bg-white p-3 shadow-lg"
+          />
+        </Link>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="bg-[#f2efe9]/95 backdrop-blur-lg border-t border-[#b89c6b]/30 shadow-lg px-4 py-4 absolute w-full top-full left-0 z-40 h-[calc(100vh-80px)] overflow-y-auto">
-          <ul className="flex flex-col space-y-2">
-            {navLinks.map((link) =>
-              link.dropdown ? (
-                <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className={`w-full flex items-center justify-between  text-[#714819] hover:text-[#b89c6b] focus:outline-none px-2 py-2 rounded transition-colors duration-150 ${
-                      location.pathname === link.href ? 'text-[#714819]' : ''
+      {/* Top Row */}
+      <div className="flex items-center justify-between pl-[140px] pr-4 h-[60px]">
+        {/* Primary nav links */}
+        <nav className="hidden md:flex items-center space-x-6">
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.href;
+            return (
+              <Link
+                key={link.name}
+                to={link.href}
+                className={`flex items-center space-x-2 text-sm font-normal transition-colors duration-200 ${
+                  isActive ? "text-[#ffc107]" : "hover:text-[#ffc107]"
+                }`}
+              >
+                <link.icon className="w-5 h-5" />
+                <span>{link.name}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Contact */}
+        <div className="flex items-center space-x-2">
+          <PhoneCall className="w-5 h-5 text-[#ffc107]" />
+          <a href="tel:+917997940959" className="text-sm font-semibold">
+            +91 7997940959
+          </a>
+        </div>
+
+        {/* Mobile menu button */}
+        <button
+          onClick={() => setMobileOpen((prev) => !prev)}
+          className="md:hidden p-2"
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+        </button>
+      </div>
+
+      {/* Bottom Row - Desktop/Tablet */}
+      <nav className="bg-[#232323] pl-[140px] pr-4 h-[60px] hidden md:flex items-center space-x-6">
+        {secondRowLinks.map((link) => {
+          const isActive =
+            location.pathname === link.href ||
+            link.dropdown?.some((d) => location.pathname === d.href);
+
+          if (link.dropdown?.length) {
+            return (
+              <div
+                key={link.name}
+                className="relative group"
+                onClick={() => toggleTabletDropdown(link.name)}
+              >
+                <button
+                  className={`flex items-center text-sm font-normal transition-colors duration-300 ${
+                    isActive ? "text-[#ffc107]" : "hover:text-[#ffc107]"
+                  }`}
+                  aria-expanded={openDropdown === link.name}
+                >
+                  {link.name}
+                  <ChevronDown
+                    className={`ml-1 w-4 h-4 transition-transform ${
+                      openDropdown === link.name
+                        ? "rotate-180"
+                        : "group-hover:rotate-180"
                     }`}
-                    onClick={() => {
-                      setMobileOpen(false);
-                    }}
-                  >
-                    <span>{link.name}</span>
-                  </Link>
-                  <button
-                    className="w-full flex items-center justify-between font-semibold text-[#714819] hover:text-[#b89c6b] focus:outline-none px-2 py-2 rounded"
-                    onClick={() => handleMobileDropdown(link.name)}
-                  >
-                    <span className="hidden">Toggle Dropdown</span>
-                    <ChevronDown
-                      className={`ml-auto w-4 h-4 transform transition-transform duration-200 ${
-                        openDropdown === link.name ? 'rotate-180' : ''
+                  />
+                </button>
+
+                <div
+                  className={`absolute top-full left-0 bg-[#2d2d2d] rounded-lg shadow-xl py-2 min-w-[200px] ${
+                    openDropdown === link.name ? "block" : "hidden"
+                  } md:group-hover:block`}
+                >
+                  {link.dropdown.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className="block px-4 py-2 text-sm font-normal hover:bg-[#ffc107] hover:text-[#2d2d2d]"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <Link
+              key={link.name}
+              to={link.href}
+              className={`text-sm font-normal transition-colors duration-300 ${
+                isActive ? "text-[#ffc107]" : "hover:text-[#ffc107]"
+              }`}
+            >
+              {link.name}
+            </Link>
+          );
+        })}
+      </nav>
+
+      {/* Bottom Row - Mobile scrollable */}
+      <div className="md:hidden bg-[#232323] pl-[140px] overflow-x-auto whitespace-nowrap scrollbar-hide py-2">
+        {secondRowLinks.map((link) => {
+          const isActive =
+            location.pathname === link.href ||
+            link.dropdown?.some((d) => location.pathname === d.href);
+
+          return (
+            <Link
+              key={link.name}
+              to={link.href}
+              className={`inline-block mx-2 px-4 py-2 rounded-full border text-sm ${
+                isActive
+                  ? "border-[#ffc107] text-[#ffc107]"
+                  : "border-transparent hover:border-[#ffc107]"
+              }`}
+            >
+              {link.name}
+            </Link>
+          );
+        })}
+      </div>
+
+      {/* Mobile Fullscreen Menu */}
+      {mobileOpen && (
+        <div className="fixed inset-0 bg-[#1a1a1a] z-40 p-6 overflow-y-auto">
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="absolute top-4 right-4 text-white"
+            aria-label="Close menu"
+          >
+            <X className="w-7 h-7" />
+          </button>
+
+          <ul className="mt-20 space-y-4">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <Link
+                  to={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center space-x-2 py-3 px-2 text-lg hover:text-[#ffc107]"
+                >
+                  <link.icon className="w-5 h-5" />
+                  <span>{link.name}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <div className="border-t border-[#333] my-6"></div>
+
+          <ul className="space-y-3">
+            {secondRowLinks.map((link) => (
+              <li key={link.name}>
+                {link.dropdown?.length ? (
+                  <>
+                    <button
+                      onClick={() => toggleMobileDropdown(link.name)}
+                      className={`w-full flex justify-between items-center py-2 text-base ${
+                        openDropdown === link.name ? "text-[#ffc107]" : ""
                       }`}
-                    />
-                  </button>
-                  {openDropdown === link.name && (
-                    <ul className="pl-6 py-2 border-l border-[#b89c6b]/50 ml-2 mt-1 bg-[#f2efe9] rounded-lg shadow-md">
-                      {link.dropdown.map((item) => (
-                        <li key={item.name}>
-                          <Link
-                            to={item.href}
-                            className={`block px-2 py-2 text-lg font-bold text-[#714819] hover:bg-[#b89c6b]/20 hover:text-[#714819] rounded transition-colors duration-150 ${
-                              location.pathname === item.href ? 'text-[#714819] bg-[#b89c6b]/20' : ''
-                            }`}
-                            onClick={() => setMobileOpen(false)}
-                          >
-                            {item.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ) : (
-                <li key={link.name}>
+                      aria-expanded={openDropdown === link.name}
+                    >
+                      {link.name}
+                      <ChevronDown
+                        className={`w-5 h-5 transition-transform ${
+                          openDropdown === link.name ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {openDropdown === link.name && (
+                      <ul className="pl-4 mt-2 space-y-2 border-l border-[#333]">
+                        {link.dropdown.map((item) => (
+                          <li key={item.name}>
+                            <Link
+                              to={item.href}
+                              onClick={() => setMobileOpen(false)}
+                              className="block py-2 text-sm hover:text-[#ffc107]"
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                ) : (
                   <Link
                     to={link.href}
-                    className="font-semibold text-[#714819] hover:text-[#b89c6b] block px-2 py-2 rounded"
                     onClick={() => setMobileOpen(false)}
+                    className="block py-2 hover:text-[#ffc107]"
                   >
                     {link.name}
                   </Link>
-                </li>
-              )
-            )}
+                )}
+              </li>
+            ))}
           </ul>
-          {/* Contact info mobile */}
-          <div className="flex items-center space-x-2 border-t pt-4 mt-4 px-2">
-            <Headphones className="w-7 h-7 text-[#b89c6b]" />
-            <div className="flex flex-col">
-              <span className="text-xs text-[#714819]/70">Have Any Questions?</span>
-              <span className="text-[#714819] font-bold text-lg">+91 7997940959</span>
-            </div>
-          </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 };
 
 export default Navbar;
+
+
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// import { Link, useLocation } from 'react-router-dom';
+// import { PhoneCall, Menu, X, Home, Info, Mail, Layout, ChevronDown } from 'lucide-react';
+
+// const navLinks = [
+//   { name: 'Home', href: '/', icon: Home },
+//   { name: 'About', href: '/about-us', icon: Info },
+//   { name: 'Contact', href: '/contact', icon: Mail },
+//   { name: 'Services', href: '/services', icon: Layout },
+// ];
+
+// const secondRowLinks = [
+//   {
+//     name: 'Panel of Experts (POE)',
+//     href: '/panel-of-experts',
+//     dropdown: [
+//       { name: 'About Panel of Experts', href: '/panel-of-experts/about' },
+//       { name: 'Subject Matter Experts', href: '/panel-of-experts/subject-matter-experts' },
+//       { name: 'Become a Panel Member', href: '/panel-of-experts/become-a-member' },
+//       { name: 'Activities/Benefits', href: '/panel-of-experts/activities-benefits' },
+//     ],
+//   },
+//   {
+//     name: 'Academic Assist',
+//     href: '/academic-assist',
+//     dropdown: [
+//       { name: 'Academic Projects', href: '/academic-assist/projects' },
+//       { name: 'Conferences/Seminars', href: '/academic-assist/conferences' },
+//       { name: 'Workshops', href: '/academic-assist/workshops' },
+//       { name: 'Internships', href: '/academic-assist/internships' },
+//       { name: 'Publications', href: '/academic-assist/publications' },
+//       { name: 'Skill Development (SKID)', href: '/academic-assist/skill-development' },
+//       { name: 'Industrial Tours (INTO)', href: '/academic-assist/industrial-tours' },
+//       { name: 'E-Studies', href: '/academic-assist/e-studies' },
+//       { name: 'Competitive Exams Related Training (CERT)', href: '/academic-assist/cert' },
+//     ],
+//   },
+//   {
+//     name: 'Corporate Astute',
+//     href: '/corporate-astute',
+//     dropdown: [
+//       { name: 'Corporate Support Service (CSS)', href: '/corporate-astute/css' },
+//       { name: 'Contract Research Services (CRS)', href: '/corporate-astute/crs' },
+//       { name: 'Faculty Upskilling Services (FUSS)', href: '/corporate-astute/fuss' },
+//       { name: 'Research Assistance & Writing Services (RAWS)', href: '/corporate-astute/raws' },
+//     ],
+//   },
+//   {
+//     name: 'Career Saga',
+//     href: '/career-saga',
+//     dropdown: [
+//       { name: 'Job Oriented Trainings (JOT)', href: '/career-saga/jot' },
+//       { name: 'Placement Assistance (PLAST)', href: '/career-saga/plast' },
+//       { name: 'Advanced Industrial Reach (AIR)', href: '/career-saga/air' },
+//       { name: 'Peptides Assistance Membership (PAM)', href: '/career-saga/pam' },
+//     ],
+//   },
+//   {
+//     name: 'Collaborations',
+//     href: '/collaborations',
+//     dropdown: [
+//       { name: 'Academic Collaborations', href: '/collaborations/academic' },
+//       { name: 'Industry Collaborations', href: '/collaborations/industry' },
+//       { name: 'Collaborate with Peptides', href: '/collaborations/peptides' },
+//     ],
+//   },
+//   {
+//     name: 'Gallery',
+//     href: '/gallery',
+//     dropdown: [],
+//   },
+//   {
+//     name: 'Careers',
+//     href: '/careers',
+//     dropdown: [
+//       { name: 'Jobs @ Peptides', href: '/careers/jobs' },
+//       { name: 'Post a Job with Peptides', href: '/careers/post-job' },
+//     ],
+//   },
+// ];
+
+// const Navbar = () => {
+//   const [mobileOpen, setMobileOpen] = useState(false);
+//   const [openDropdown, setOpenDropdown] = useState(null);
+//   const location = useLocation();
+
+//   const handleMobileDropdown = (name) => {
+//     setOpenDropdown(openDropdown === name ? null : name);
+//   };
+
+//   return (
+//     <header className="bg-[#2d2d2d] text-white sticky top-0 w-full z-50">
+//       {/* Fixed Logo */}
+//       <div className="fixed top-2 left-2 z-50">
+//         <Link to="/">
+//           <img
+//             src="https://peptides.co.in/assets/img/logo/PeptidesKnowledgePark.png"
+//             alt="Peptides Knowledge Park Logo"
+//             className="h-[120px] w-[120px] rounded-full bg-white p-3 shadow-lg"
+//           />
+//         </Link>
+//       </div>
+
+//       {/* Top Row */}
+//       <div className="flex items-center justify-between pl-[140px] pr-4 h-[60px]">
+//         {/* Primary nav links */}
+//         <div className="hidden md:flex items-center space-x-6">
+//           {navLinks.map((link) => (
+//             <Link
+//               key={link.name}
+//               to={link.href}
+//               className={`flex items-center space-x-2 font-medium transition-colors duration-200 ${
+//                 location.pathname === link.href
+//                   ? 'text-[#ffc107]'
+//                   : 'hover:text-[#ffc107]'
+//               }`}
+//             >
+//               <link.icon className="w-5 h-5" />
+//               <span>{link.name}</span>
+//             </Link>
+//           ))}
+//         </div>
+
+//         {/* Contact */}
+//         <div className="flex items-center space-x-2">
+//           <PhoneCall className="w-5 h-5 text-[#ffc107]" />
+//           <a href="tel:+917997940959" className="text-sm font-semibold">
+//             +91 7997940959
+//           </a>
+//         </div>
+
+//         {/* Mobile menu button */}
+//         <button
+//           onClick={() => setMobileOpen(!mobileOpen)}
+//           className="md:hidden p-2"
+//         >
+//           {mobileOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+//         </button>
+//       </div>
+
+//       {/* Bottom Row */}
+//       <div className="bg-[#232323] pl-[140px] pr-4 h-[70px] hidden md:flex items-center space-x-4">
+//         {secondRowLinks.map((link) => {
+//           const isActive =
+//             location.pathname === link.href ||
+//             link.dropdown?.some((d) => location.pathname === d.href);
+
+//           return (
+//             <div key={link.name} className="relative group">
+//               <Link
+//                 to={link.href}
+//                 className={`px-5 py-2 rounded-full border transition-all duration-300 ${
+//                   isActive
+//                     ? 'border-[#ffc107] text-[#ffc107]'
+//                     : 'border-transparent hover:border-[#ffc107]'
+//                 }`}
+//               >
+//                 {link.name}
+//               </Link>
+
+//               {/* Dropdown (desktop hover) */}
+//               {link.dropdown?.length > 0 && (
+//                 <div className="absolute top-full left-0 bg-[#2d2d2d] rounded-lg shadow-xl py-2 hidden group-hover:block min-w-[220px]">
+//                   {link.dropdown.map((item) => (
+//                     <Link
+//                       key={item.name}
+//                       to={item.href}
+//                       className="block px-4 py-2 hover:bg-[#ffc107] hover:text-[#2d2d2d]"
+//                     >
+//                       {item.name}
+//                     </Link>
+//                   ))}
+//                 </div>
+//               )}
+//             </div>
+//           );
+//         })}
+//       </div>
+
+//       {/* Bottom Row Mobile (scrollable) */}
+//       <div className="md:hidden bg-[#232323] pl-[140px] overflow-x-auto whitespace-nowrap scrollbar-hide py-2">
+//         {secondRowLinks.map((link) => {
+//           const isActive =
+//             location.pathname === link.href ||
+//             link.dropdown?.some((d) => location.pathname === d.href);
+//           return (
+//             <Link
+//               key={link.name}
+//               to={link.href}
+//               className={`inline-block mx-2 px-4 py-2 rounded-full border text-sm ${
+//                 isActive
+//                   ? 'border-[#ffc107] text-[#ffc107]'
+//                   : 'border-transparent hover:border-[#ffc107]'
+//               }`}
+//             >
+//               {link.name}
+//             </Link>
+//           );
+//         })}
+//       </div>
+
+//       {/* Mobile Fullscreen Menu */}
+//       {mobileOpen && (
+//         <div className="fixed inset-0 bg-[#1a1a1a] z-40 p-6 overflow-y-auto">
+//           <button
+//             onClick={() => setMobileOpen(false)}
+//             className="absolute top-4 right-4 text-white"
+//           >
+//             <X className="w-7 h-7" />
+//           </button>
+
+//           <ul className="mt-20 space-y-4">
+//             {navLinks.map((link) => (
+//               <li key={link.name}>
+//                 <Link
+//                   to={link.href}
+//                   onClick={() => setMobileOpen(false)}
+//                   className="flex items-center space-x-2 py-3 px-2 text-lg hover:text-[#ffc107]"
+//                 >
+//                   <link.icon className="w-5 h-5" />
+//                   <span>{link.name}</span>
+//                 </Link>
+//               </li>
+//             ))}
+//           </ul>
+
+//           <div className="border-t border-[#333] my-6"></div>
+
+//           <ul className="space-y-3">
+//             {secondRowLinks.map((link) => (
+//               <li key={link.name}>
+//                 {link.dropdown?.length > 0 ? (
+//                   <>
+//                     <button
+//                       onClick={() => handleMobileDropdown(link.name)}
+//                       className={`w-full flex justify-between items-center py-2 ${
+//                         openDropdown === link.name ? 'text-[#ffc107]' : ''
+//                       }`}
+//                     >
+//                       {link.name}
+//                       <ChevronDown
+//                         className={`w-5 h-5 transition-transform ${
+//                           openDropdown === link.name ? 'rotate-180' : ''
+//                         }`}
+//                       />
+//                     </button>
+//                     {openDropdown === link.name && (
+//                       <ul className="pl-4 mt-2 space-y-2 border-l border-[#333]">
+//                         {link.dropdown.map((item) => (
+//                           <li key={item.name}>
+//                             <Link
+//                               to={item.href}
+//                               onClick={() => setMobileOpen(false)}
+//                               className="block py-2 text-sm hover:text-[#ffc107]"
+//                             >
+//                               {item.name}
+//                             </Link>
+//                           </li>
+//                         ))}
+//                       </ul>
+//                     )}
+//                   </>
+//                 ) : (
+//                   <Link
+//                     to={link.href}
+//                     onClick={() => setMobileOpen(false)}
+//                     className="block py-2 hover:text-[#ffc107]"
+//                   >
+//                     {link.name}
+//                   </Link>
+//                 )}
+//               </li>
+//             ))}
+//           </ul>
+//         </div>
+//       )}
+//     </header>
+//   );
+// };
+
+// export default Navbar;
+
+
