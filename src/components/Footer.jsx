@@ -15,7 +15,7 @@ const secondRowLinks = [
     name: 'Panel of Experts (POE)',
     href: '/panel-of-experts',
     dropdown: [
-      { name: 'About Panel of Experts', href: '/panel-of-experts/about' },
+      { name: 'About Panel of Experts', href: '/panel-of-experts/about-advisory-board' },
       { name: 'Subject Matter Experts', href: '/panel-of-experts/subject-matter-experts' },
       { name: 'Become a Panel Member', href: '/panel-of-experts/become-a-member' },
       { name: 'Activities/Benefits', href: '/panel-of-experts/activities-benefits' },
@@ -204,9 +204,11 @@ const Footer = () => {
               <p className="flex items-start space-x-2">
                 <MapPin className="w-5 h-5 text-[#ffc107] mt-1 shrink-0" />
                 <span>
-                  Mindspace IT Park, Survey No. 64,<br />
-                  TSIIC Software Units Layout, Madhapur,<br />
-                  Hyderabad, Telangana 500081, India 
+                  Mindspace IT Park<br />
+                  TSIIC Software Units Layout <br />
+                  Madhapur, Hyderabad, <br />
+                  Telangana 500081, India<br />
+                  
                 </span>
               </p>
               <p className="flex items-center space-x-2">

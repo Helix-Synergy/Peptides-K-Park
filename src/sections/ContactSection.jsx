@@ -65,8 +65,8 @@ const ContactSection = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <ToggleButton active={tab === 'contact'} onClick={() => goTab('contact')}>Contact</ToggleButton>
-          <ToggleButton active={tab === 'student'} onClick={() => goTab('student')}>Register as a Student</ToggleButton>
-          <ToggleButton active={tab === 'faculty'} onClick={() => goTab('faculty')}>Register as a Faculty</ToggleButton>
+          <ToggleButton active={tab === 'student'} onClick={() => goTab('student')}>Student Registration</ToggleButton>
+          <ToggleButton active={tab === 'faculty'} onClick={() => goTab('faculty')}>Faculty Registration</ToggleButton>
         </div>
       </div>
 

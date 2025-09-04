@@ -117,8 +117,8 @@ const Hero = () => {
           A leading hub for research, education, and innovation. We support academic projects, contract lab services, digital learning, and biotech solutions tailored for researchers, institutions, and industry partners.
         </motion.p>
         <motion.button
-          className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl text-lg shadow transition w-fit mx-auto lg:mx-0 min-w-[200px]"
-          whileHover={{ scale: 1.06, boxShadow: '0 8px 32px rgba(91,107,206,0.18)' }}
+          className="flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-xl text-lg shadow transition w-fit mx-auto lg:mx-0 min-w-[200px]"
+          whileHover={{ scale: 1.06, boxShadow: '0 8px 32px rgba(206, 196, 91, 0.18)' }}
           whileTap={{ scale: 0.97 }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ const Hero = () => {
         <div className="absolute inset-0 w-full h-full">
           {/* Diagonal overlay */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <polygon points="0,0 800,0 800,800" fill="#5B6BCE" fillOpacity="0.8" />
+            <polygon points="0,0 800,0 800,800" fill="#b79332ff" fillOpacity="0.8" />
           </svg>
           {/* Placeholder image with diagonal mask */}
           <motion.img

@@ -2738,7 +2738,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { PhoneCall, Menu, X, Home, Info, Mail, Layout, ChevronDown } from 'lucide-react';
+import { PhoneCall, Menu, X, Home, Info, Mail, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion'; // 🔥 added animations
 import Logo from '../assets/logo.png';
 
@@ -2746,7 +2746,6 @@ const navLinks = [
   { name: 'Home', href: '/', icon: Home },
   { name: 'About', href: '/about-us', icon: Info },
   { name: 'Contact', href: '/contact', icon: Mail },
-  { name: 'Services', href: '/services', icon: Layout },
 ];
 
 const secondRowLinks = [
@@ -2754,7 +2753,7 @@ const secondRowLinks = [
     name: 'Panel of Experts (POE)',
     href: '/panel-of-experts',
     dropdown: [
-      { name: 'About Panel of Experts', href: '/panel-of-experts/about' },
+      { name: 'About Panel of Experts', href: '/panel-of-experts/about-advisory-board' },
       { name: 'Subject Matter Experts', href: '/panel-of-experts/subject-matter-experts' },
       { name: 'Become a Panel Member', href: '/panel-of-experts/become-a-member' },
       { name: 'Activities/Benefits', href: '/panel-of-experts/activities-benefits' },
@@ -2893,7 +2892,7 @@ const Navbar = () => {
       </div>
 
       {/* Bottom Row (Desktop) */}
-      <div className="bg-[#0f2920] pl-[120px] pr-4 h-[50px] hidden lg:flex items-center space-x-4">
+      <div className="bg-[#193127] pl-[120px] pr-4 h-[50px] hidden lg:flex items-center space-x-4">
         {secondRowLinks.map((link) => {
           const isActive =
             location.pathname === link.href ||
@@ -2930,7 +2929,7 @@ const Navbar = () => {
       </div>
 
       {/* Bottom Row Mobile/Tablet */}
-      <div className="lg:hidden bg-[#0f2920] overflow-x-auto whitespace-nowrap scrollbar-hide py-2">
+      <div className="lg:hidden bg-[#193127] overflow-x-auto whitespace-nowrap scrollbar-hide py-2">
         <div className="pl-[140px] inline-flex items-center space-x-2">
           {secondRowLinks.map((link) => {
             const isActive =

@@ -1,125 +1,166 @@
 {
-    "about-advisory-board": {
-      "heroTitle": "About Our Advisory Board",
-      "heroSubtitle": "Our Advisory Board provides strategic guidance and expertise to drive innovation and growth for Peptides Knowledge Park.",
-      "brochures": [
-        { "title": "Board Charter", "link": "/assets/brochure-board-charter.pdf" },
-        { "title": "Annual Report 2023", "link": "/assets/brochure-annual-report.pdf" }
-      ],
-      "helpSection": {
-        "image": "https://placehold.co/96x96/48D1CC/000000?text=JD",
-        "title": "Need Assistance?",
-        "description": "Our team is ready to help you with any queries regarding our advisory services.",
-        "phone": "+91 7997940959"
+  "about-advisory-board": {
+    "heroTitle": "About Our Advisory Board",
+    "heroSubtitle": "Our Advisory Board provides strategic guidance and expertise to drive innovation and growth for Peptides Knowledge Park.",
+    "brochures": [
+      {
+        "title": "Board Charter",
+        "link": "/assets/brochure-board-charter.pdf"
       },
-      "mainContent": [
-        {
-          "title": "Our Mission and Vision",
-          "paragraphs": [
-            "The Advisory Board is committed to fostering a culture of excellence and strategic foresight within Peptides Knowledge Park. Our mission is to provide invaluable insights and direction, ensuring that our initiatives align with global best practices and emerging industry trends.",
-            "We envision a future where our organization is a beacon of innovation, driven by the collective wisdom and diverse experiences of our distinguished board members. Their guidance is crucial in navigating complex challenges and capitalizing on new opportunities."
-          ],
-          "images": [
-            { "src": "https://placehold.co/600x400/A0DDA0/000000?text=Board+Meeting", "alt": "Advisory Board Meeting" },
-            { "src": "https://placehold.co/600x400/DDA0DD/000000?text=Strategy+Session", "alt": "Strategy Session" }
-          ],
-          "benefits": [
-            "Strategic Direction and Oversight",
-            "Industry Expertise and Insights",
-            "Enhanced Governance and Accountability",
-            "Networking and Partnership Opportunities",
-            "Risk Mitigation and Opportunity Identification",
-            "Innovation and Research Guidance"
-          ]
-        },
-        {
-          "title": "Roles and Responsibilities",
-          "paragraphs": [
-            "The Advisory Board plays a critical role in shaping the strategic direction of Peptides Knowledge Park. Their responsibilities include reviewing key strategies, providing expert opinions on complex issues, and offering guidance on market positioning and technological advancements.",
-            "They also serve as ambassadors for the organization, leveraging their networks to foster collaborations and promote our mission globally. Their independent perspectives are vital for robust decision-making and ensuring long-term success."
-          ]
-        }
-      ],
-      "faq": [
-        { "question": "What is the primary role of the Advisory Board?", "answer": "The Advisory Board primarily provides strategic advice and high-level guidance to the executive management, focusing on long-term vision and industry trends." },
-        { "question": "How often does the Advisory Board convene?", "answer": "The Advisory Board typically meets quarterly, with additional special sessions convened as needed to address specific strategic initiatives or urgent matters." },
-        { "question": "What kind of expertise do Advisory Board members bring?", "answer": "Members are selected for their extensive experience and leadership in various fields, including technology, finance, research, and global markets, ensuring a diverse range of perspectives." },
-        { "question": "Is the Advisory Board involved in daily operations?", "answer": "No, the Advisory Board focuses on strategic oversight and guidance, leaving the day-to-day operational decisions to the executive team." }
-      ]
+      {
+        "title": "Annual Report 2023",
+        "link": "/assets/brochure-annual-report.pdf"
+      }
+    ],
+    "helpSection": {
+      "image": "https://placehold.co/96x96/48D1CC/000000?text=JD",
+      "title": "Need Assistance?",
+      "description": "Our team is ready to help you with any queries regarding our advisory services.",
+      "phone": "+91 7997940959"
     },
-    "our-advisory-council": {
-      "heroTitle": "Meet Our Advisory Council",
-      "heroSubtitle": "Our council comprises visionary leaders and experts dedicated to guiding our strategic direction and fostering innovation at Peptides Knowledge Park.",
-      "brochures": [
-        { "title": "Council Member Profiles", "link": "/assets/brochure-member-profiles.pdf" },
-        { "title": "Strategic Initiatives", "link": "/assets/brochure-strategic-initiatives.pdf" }
-      ],
-      "helpSection": {
-        "image": "https://placehold.co/96x96/FF69B4/000000?text=Contact",
-        "title": "Connect With Us",
-        "description": "Have questions about our council or seeking collaboration? Reach out today!",
-        "phone": "+91 7997940959"
+    "mainContent": [
+      {
+        "title": "Our Mission and Vision",
+        "paragraphs": [
+          "The Advisory Board is committed to fostering a culture of excellence and strategic foresight within Peptides Knowledge Park. Our mission is to provide invaluable insights and direction, ensuring that our initiatives align with global best practices and emerging industry trends.",
+          "We envision a future where our organization is a beacon of innovation, driven by the collective wisdom and diverse experiences of our distinguished board members. Their guidance is crucial in navigating complex challenges and capitalizing on new opportunities."
+        ],
+        "images": [
+          {
+            "src": "https://placehold.co/600x400/A0DDA0/000000?text=Board+Meeting",
+            "alt": "Advisory Board Meeting"
+          },
+          {
+            "src": "https://placehold.co/600x400/DDA0DD/000000?text=Strategy+Session",
+            "alt": "Strategy Session"
+          }
+        ],
+        "benefits": [
+          "Strategic Direction and Oversight",
+          "Industry Expertise and Insights",
+          "Enhanced Governance and Accountability",
+          "Networking and Partnership Opportunities",
+          "Risk Mitigation and Opportunity Identification",
+          "Innovation and Research Guidance"
+        ]
       },
-      "mainContent": [
-        {
-          "title": "Our Esteemed Members",
-          "paragraphs": [
-            "The Advisory Council at Peptides Knowledge Park is composed of highly respected individuals who bring a wealth of knowledge, experience, and diverse perspectives to our organization. Each member is a leader in their respective field, contributing significantly to our strategic planning and operational excellence.",
-            "Their collective expertise spans technology, business development, research, and global markets, enabling us to stay at the forefront of innovation and maintain our competitive edge."
-          ],
-          "advisoryMembers": [
-            {
-              "name": "Dr. Anya Sharma",
-              "role": "Chairperson, AI & Robotics",
-              "image": "https://placehold.co/150x150/8A2BE2/FFFFFF?text=AS",
-              "bio": "Dr. Sharma is a pioneer in AI ethics and robotics, with over 20 years of experience in leading technological advancements and responsible AI deployment."
-            },
-            {
-              "name": "Mr. David Chen",
-              "role": "Vice-Chair, Global Strategy",
-              "image": "https://placehold.co/150x150/FF69B4/FFFFFF?text=DC",
-              "bio": "Mr. Chen has a proven track record in global market expansion and strategic partnerships across multiple continents, driving significant revenue growth."
-            },
-            {
-              "name": "Prof. Emily White",
-              "role": "Lead, Biotechnology Research",
-              "image": "https://placehold.co/150x150/4682B4/FFFFFF?text=EW",
-              "bio": "Prof. White is a renowned biotechnologist, bringing cutting-edge research insights and academic rigor to the council, with a focus on peptide therapeutics."
-            },
-            {
-              "name": "Ms. Sarah Lee",
-              "role": "Advisor, Digital Transformation",
-              "image": "https://placehold.co/150x150/32CD32/FFFFFF?text=SL",
-              "bio": "Ms. Lee specializes in digital transformation strategies, helping organizations leverage technology for sustainable growth and operational efficiency."
-            },
-            {
-              "name": "Mr. Robert Green",
-              "role": "Advisor, Financial Markets",
-              "image": "https://placehold.co/150x150/FFD700/000000?text=RG",
-              "bio": "Mr. Green provides invaluable insights into financial planning and investment strategies for technology ventures and startups."
-            },
-            {
-              "name": "Dr. Maria Garcia",
-              "role": "Advisor, Public Health",
-              "image": "https://placehold.co/150x150/FF6347/000000?text=MG",
-              "bio": "Dr. Garcia is a public health expert, guiding the council on health-related innovations, regulatory compliance, and community impact initiatives."
-            }
-          ]
-        },
-        {
-          "title": "Impact and Contributions",
-          "paragraphs": [
-            "The Advisory Council's contributions are instrumental in guiding our research and development efforts, ensuring that our projects are not only scientifically sound but also commercially viable and socially impactful.",
-            "Their diverse expertise helps us to identify emerging opportunities, mitigate risks, and maintain a competitive edge in a rapidly evolving global landscape. They actively participate in workshops and strategic sessions, offering hands-on guidance."
-          ]
-        }
-      ],
-      "faq": [
-        { "question": "What is the difference between the Advisory Board and Council?", "answer": "The Advisory Board provides high-level strategic oversight, while the Advisory Council offers detailed expert guidance on specific initiatives, projects, and technical aspects." },
-        { "question": "How can I become an Advisory Council member?", "answer": "Membership is by invitation only, based on extensive industry experience, demonstrated leadership, and a strong alignment with our organizational values and strategic goals." },
-        { "question": "Can I propose a topic for the Council to discuss?", "answer": "Yes, we welcome suggestions from our partners and stakeholders. Please submit your proposals through the 'Become a Member' page, and they will be reviewed by the council secretariat." },
-        { "question": "What is the expected commitment for council members?", "answer": "Council members are expected to attend regular meetings, participate in ad-hoc discussions, and contribute their expertise to specific projects as needed, with flexibility for their primary professional commitments." }
-      ]
-    }
+      {
+        "title": "Roles and Responsibilities",
+        "paragraphs": [
+          "The Advisory Board plays a critical role in shaping the strategic direction of Peptides Knowledge Park. Their responsibilities include reviewing key strategies, providing expert opinions on complex issues, and offering guidance on market positioning and technological advancements.",
+          "They also serve as ambassadors for the organization, leveraging their networks to foster collaborations and promote our mission globally. Their independent perspectives are vital for robust decision-making and ensuring long-term success."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "What is the primary role of the Advisory Board?",
+        "answer": "The Advisory Board primarily provides strategic advice and high-level guidance to the executive management, focusing on long-term vision and industry trends."
+      },
+      {
+        "question": "How often does the Advisory Board convene?",
+        "answer": "The Advisory Board typically meets quarterly, with additional special sessions convened as needed to address specific strategic initiatives or urgent matters."
+      },
+      {
+        "question": "What kind of expertise do Advisory Board members bring?",
+        "answer": "Members are selected for their extensive experience and leadership in various fields, including technology, finance, research, and global markets, ensuring a diverse range of perspectives."
+      },
+      {
+        "question": "Is the Advisory Board involved in daily operations?",
+        "answer": "No, the Advisory Board focuses on strategic oversight and guidance, leaving the day-to-day operational decisions to the executive team."
+      }
+    ]
+  },
+  "panel-of-experts": {
+    "heroTitle": "Meet Our Panel of Experts",
+    "heroSubtitle": "Our panel comprises visionary leaders and experts dedicated to guiding our strategic direction and fostering innovation at Peptides Knowledge Park.",
+    "brochures": [
+      {
+        "title": "Panel Member Profiles",
+        "link": "/assets/brochure-member-profiles.pdf"
+      },
+      {
+        "title": "Strategic Initiatives",
+        "link": "/assets/brochure-strategic-initiatives.pdf"
+      }
+    ],
+    "helpSection": {
+      "image": "https://placehold.co/96x96/FF69B4/000000?text=Contact",
+      "title": "Connect With Us",
+      "description": "Have questions about our panel or seeking collaboration? Reach out today!",
+      "phone": "+91 7997940959"
+    },
+    "mainContent": [
+      {
+        "title": "Meet Our Subject Matter Experts",
+        "paragraphs": [
+          "The Panel of Experts at Peptides Knowledge Park is composed of highly respected individuals who bring a wealth of knowledge, experience, and diverse perspectives to our organization. Each member is a leader in their respective field, contributing significantly to our strategic planning and operational excellence.",
+          "Their collective expertise spans technology, business development, research, and global markets, enabling us to stay at the forefront of innovation and maintain our competitive edge."
+        ],
+        "advisoryMembers": [
+          {
+            "name": "Dr. Anya Sharma",
+            "role": "Chairperson, AI & Robotics",
+            "image": "https://placehold.co/150x150/8A2BE2/FFFFFF?text=AS",
+            "bio": "Dr. Sharma is a pioneer in AI ethics and robotics, with over 20 years of experience in leading technological advancements and responsible AI deployment."
+          },
+          {
+            "name": "Mr. David Chen",
+            "role": "Vice-Chair, Global Strategy",
+            "image": "https://placehold.co/150x150/FF69B4/FFFFFF?text=DC",
+            "bio": "Mr. Chen has a proven track record in global market expansion and strategic partnerships across multiple continents, driving significant revenue growth."
+          },
+          {
+            "name": "Prof. Emily White",
+            "role": "Lead, Biotechnology Research",
+            "image": "https://placehold.co/150x150/4682B4/FFFFFF?text=EW",
+            "bio": "Prof. White is a renowned biotechnologist, bringing cutting-edge research insights and academic rigor to the panel, with a focus on peptide therapeutics."
+          },
+          {
+            "name": "Ms. Sarah Lee",
+            "role": "Advisor, Digital Transformation",
+            "image": "https://placehold.co/150x150/32CD32/FFFFFF?text=SL",
+            "bio": "Ms. Lee specializes in digital transformation strategies, helping organizations leverage technology for sustainable growth and operational efficiency."
+          },
+          {
+            "name": "Mr. Robert Green",
+            "role": "Advisor, Financial Markets",
+            "image": "https://placehold.co/150x150/FFD700/000000?text=RG",
+            "bio": "Mr. Green provides invaluable insights into financial planning and investment strategies for technology ventures and startups."
+          },
+          {
+            "name": "Dr. Maria Garcia",
+            "role": "Advisor, Public Health",
+            "image": "https://placehold.co/150x150/FF6347/000000?text=MG",
+            "bio": "Dr. Garcia is a public health expert, guiding the panel on health-related innovations, regulatory compliance, and community impact initiatives."
+          }
+        ]
+      },
+      {
+        "title": "Impact and Contributions",
+        "paragraphs": [
+          "The Panel of Experts' contributions are instrumental in guiding our research and development efforts, ensuring that our projects are not only scientifically sound but also commercially viable and socially impactful.",
+          "Their diverse expertise helps us to identify emerging opportunities, mitigate risks, and maintain a competitive edge in a rapidly evolving global landscape. They actively participate in workshops and strategic sessions, offering hands-on guidance."
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "What is the difference between the Advisory Board and Panel of Experts?",
+        "answer": "The Advisory Board provides high-level strategic oversight, while the Panel of Experts offers detailed expert guidance on specific initiatives, projects, and technical aspects."
+      },
+      {
+        "question": "How can I become a Panel of Experts member?",
+        "answer": "Membership is by invitation only, based on extensive industry experience, demonstrated leadership, and a strong alignment with our organizational values and strategic goals."
+      },
+      {
+        "question": "Can I propose a topic for the Panel to discuss?",
+        "answer": "Yes, we welcome suggestions from our partners and stakeholders. Please submit your proposals through the 'Become a Member' page, and they will be reviewed by the panel secretariat."
+      },
+      {
+        "question": "What is the expected commitment for panel members?",
+        "answer": "Panel members are expected to attend regular meetings, participate in ad-hoc discussions, and contribute their expertise to specific projects as needed, with flexibility for their primary professional commitments."
+      }
+    ]
   }
-  
+}

@@ -6,7 +6,7 @@ const OurAdvisoryCouncil = () => {
   return (
     // This component simply renders the generic display component,
     // passing the specific pageType to fetch the correct data.
-    <AdvisoryContentDisplay pageType="our-advisory-council" />
+    <AdvisoryContentDisplay pageType="panel-of-experts" />
   );
 };
 
