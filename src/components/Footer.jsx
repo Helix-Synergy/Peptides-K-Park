@@ -148,54 +148,55 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Box 3: Services (Removed Gallery and Careers) */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-[#ffc107]">Our Services</h3>
-            <ul className="space-y-2">
-              {secondRowLinks
-                .filter(link => link.name !== 'Gallery' && link.name !== 'Careers')
-                .map((link) => (
-                <li key={link.name}>
-                  {link.dropdown?.length > 0 ? (
-                    <>
-                      <button
-                        onClick={() => handleDropdownToggle(link.name)}
-                        className="w-full flex justify-between items-center hover:text-[#ffc107] transition-colors"
-                      >
-                        {link.name}
-                        <ChevronDown
-                          className={`w-5 h-5 transition-transform duration-300 ${openDropdown === link.name ? 'rotate-180' : ''}`}
-                        />
-                      </button>
-                      <ul
-                        className={`pl-4 mt-2 space-y-2 border-l border-[#333] transition-all duration-300 ease-in-out overflow-hidden ${
-                          openDropdown === link.name ? 'max-h-96' : 'max-h-0'
-                        }`}
-                      >
-                        {link.dropdown.map((item) => (
-                          <li key={item.name}>
-                            <Link
-                              to={item.href}
-                              className="block text-sm hover:text-[#ffc107] transition-colors"
-                            >
-                              {item.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  ) : (
-                    <Link
-                      to={link.href}
-                      className="block hover:text-[#ffc107] transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  )}
+{/* Box 3: Services (Removed Gallery and Careers) */}
+<div className="space-y-4">
+  <h3 className="text-xl font-semibold text-[#ffc107]">Our Services</h3>
+  <ul className="space-y-2">
+    {secondRowLinks
+      .filter(link => link.name !== 'Gallery' && link.name !== 'Careers')
+      .map((link) => (
+      <li key={link.name}>
+        {link.dropdown?.length > 0 ? (
+          <>
+            <button
+              onClick={() => handleDropdownToggle(link.name)}
+              className="w-full flex items-center hover:text-[#ffc107] transition-colors"
+            >
+              {link.name}
+              <ChevronDown
+                className={`w-5 h-5 ml-4 transition-transform duration-300 ${openDropdown === link.name ? 'rotate-180' : ''}`}
+              />
+            </button>
+            <ul
+              className={`pl-4 mt-2 space-y-2 border-l border-[#333] transition-all duration-300 ease-in-out overflow-hidden ${
+                openDropdown === link.name ? 'max-h-96' : 'max-h-0'
+              }`}
+            >
+              {link.dropdown.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    to={item.href}
+                    className="block text-sm hover:text-[#ffc107] transition-colors"
+                  >
+                    {item.name}
+                  </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </>
+        ) : (
+          <Link
+            to={link.href}
+            className="block hover:text-[#ffc107] transition-colors"
+          >
+            {link.name}
+          </Link>
+        )}
+      </li>
+    ))}
+  </ul>
+</div>
+
 
           {/* Box 4: Get in Touch (Contact Info) */}
           <div className="space-y-4">
