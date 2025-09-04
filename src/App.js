@@ -93,8 +93,11 @@ import Hero from './sections/Hero';
 import ServiceSlider from './sections/ServiceSlider';
 import AboutSection from './sections/AboutSection';
 import WhyChooseUsSection from './sections/WhyChooseUsSection';
-import ContactSection from './sections/ContactSection';
+import ContactSection from './components/ContactSection/ContactSection';
 import ServicesWeServe from './sections/ServicesWeServe';
+import HomeContactSection from './sections/HomeContactSection'
+import ActivitiesBenefitsPage from "./components/AdvisoryCouncil/ActivitiesBenefitsPage";
+
 
 // Components for Panel of Experts (POE)
 import AdvisoryCouncilDropdown from './components/AdvisoryCouncil/AdvisoryCouncilDropdown';
@@ -139,17 +142,19 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           {/* Main Pages */}
-          <Route path="/" element={<><Hero /><AboutSection /><WhyChooseUsSection /><ServiceSlider /><ServicesWeServe /><ContactSection /></>} />
+          <Route path="/" element={<><Hero /><AboutSection /><WhyChooseUsSection /><ServiceSlider /><ServicesWeServe /><HomeContactSection /></>} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact" element={<ContactSection />} />
           <Route path="/gallery" element={<Gallery />} />
-          
+          <Route path="/contact/register-student" element={<ContactSection />} />
+          <Route path="/contact/register-faculty" element={<ContactSection />} />
+                    
           {/* Panel of Experts (POE) Routes - Mapped from old Advisory Council */}
           <Route path="/panel-of-experts" element={<AdvisoryCouncilDropdown />} />
           <Route path="/panel-of-experts/about-advisory-board" element={<AboutAdvisoryBoard />} />
           <Route path="/panel-of-experts/subject-matter-experts" element={<OurAdvisoryCouncil />} />
           <Route path="/panel-of-experts/become-a-member" element={<BecomeAMemberComp />} />
-          <Route path="/panel-of-experts/activities-benefits" element={<PagePlaceholder pageName="Activities/Benefits" />} />
+          <Route path="/panel-of-experts/activities-benefits" element={<ActivitiesBenefitsPage pageType="activities" />} />
 
           {/* Academic Assist Routes */}
           <Route path="/academic-assist" element={<AcademicAssistDropdown />} />

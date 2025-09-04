@@ -23,7 +23,6 @@ const ContactSection = () => {
   const initialTab = useMemo(() => {
     if (location.pathname.includes('register-student')) return 'student';
     if (location.pathname.includes('register-faculty')) return 'faculty';
-    if (location.pathname.includes('contact')) return 'contact';
     return 'contact';
   }, [location.pathname]);
 
@@ -33,8 +32,8 @@ const ContactSection = () => {
   const goTab = (next) => {
     setTab(next);
     if (next === 'contact') navigate('/contact', { replace: false });
-    if (next === 'student') navigate('/register-student', { replace: false });
-    if (next === 'faculty') navigate('/register-faculty', { replace: false });
+    if (next === 'student') navigate('/contact/register-student', { replace: false });
+    if (next === 'faculty') navigate('/contact/register-faculty', { replace: false });
   };
 
   return (
