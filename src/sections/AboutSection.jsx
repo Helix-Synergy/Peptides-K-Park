@@ -80,12 +80,12 @@
 
 
 import React from 'react';
-import { Users, LifeBuoy } from 'lucide-react';
+import {Link} from 'react-router-dom';
 import AboutSectionImg from '../assets/images/aboutSectionImg.png'
 
 const AboutSection = () => {
   return (
-    <section className="w-full overflow-hidden py-20 px-4 sm:px-8 lg:px-20 bg-white flex flex-col lg:flex-row items-center justify-center gap-12">
+    <section className="w-full overflow-hidden py-12 px-4 sm:px-8 lg:px-20 bg-white flex flex-col lg:flex-row items-center justify-center gap-12">
       {/* Left: Diamond Image Grid */}
       <div className="relative flex-shrink-0 flex items-center justify-center min-w-[280px] min-h-[280px] sm:min-w-[340px] sm:min-h-[340px]">
         {/* Diamond grid as background layer */}
@@ -104,86 +104,84 @@ const AboutSection = () => {
           <div className="absolute w-28 h-28 sm:w-40 sm:h-40 bg-gradient-to-br from-[#1f3b30] to-white rounded-2xl opacity-50 -right-12 -top-12 sm:-right-20 sm:-top-20 rotate-45" />
           <div className="absolute w-28 h-28 sm:w-40 sm:h-40 bg-gradient-to-br from-[#1f3b30] to-white rounded-2xl opacity-50 -left-12 -bottom-12 sm:-left-20 sm:-bottom-20 rotate-45" />
         </div>
-
-        {/* Experience Badge */}
-        <div className="absolute left-0 bottom-6 flex items-center z-10">
-          <div className="relative">
-            <div className="absolute -left-6 top-1/2 -translate-y-1/2 w-28 h-8 bg-[#0f2920] rounded-l-full z-0" />
-            <div className="relative z-10 px-6 py-1.5 bg-[#1f3b30] text-white font-bold text-sm sm:text-base rounded-full shadow-lg flex items-center">
-              <span className="text-lg sm:text-xl mr-2">1.5K</span>
-              <span className="text-[10px] sm:text-xs font-normal">
-                IT Business Experience
-              </span>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Right: Text and Feature Cards */}
       <div className="flex-1 flex flex-col items-start max-w-2xl z-10">
         <span className="text-[#ad9554] text-sm sm:text-base font-semibold tracking-widest mb-2 uppercase">
-          About Peptides Labs
+          About Peptides Knowledge Park
         </span>
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
           Explore Trusted Research <br /> Lab Products & Services
         </h2>
         <p className="text-gray-600 text-base sm:text-lg mb-6">
-          We are a Research-Focused Center Supporting Scientific Discovery,
-          Lab Experimentation, and Education. Our Team Delivers High-Quality
-          Solutions for Academia, Biotech, and Innovation Sectors. We Aim to
-          Bridge Knowledge and Practical Application Through Impactful Services
-          and Expert-Led Guidance.
+          Academic advising helps students navigate curriculum choices, align their studies with career goals, and explore interdisciplinary pathways. Skill-building workshops focus on time management, research methodology, exam strategies, and digital productivity tools. 
         </p>
 
         {/* Feature Cards */}
-        <div className="flex flex-col sm:flex-row gap-4 w-full mb-6">
-          <div className="flex-1 bg-white border border-gray-200 rounded-xl p-6 flex items-center gap-4 shadow-sm hover:shadow-md transition">
-            <Users className="w-10 h-10 text-[#0f2920]" />
-            <div>
-              <div className="font-bold text-lg text-gray-900 mb-1">
-                18<sup>+</sup> Years Experience
-              </div>
-              <div className="text-gray-500 text-sm">
-                Our Team Supports 1289+ Learners and Experts Worldwide.
-              </div>
-            </div>
-          </div>
-          <div className="flex-1 bg-white border border-gray-200 rounded-xl p-6 flex items-center gap-4 shadow-sm hover:shadow-md transition">
-            <LifeBuoy className="w-10 h-10 text-[#0f2920]" />
-            <div>
-              <div className="font-bold text-lg text-gray-900 mb-1">
-                Quick Support
-              </div>
-              <div className="text-gray-500 text-sm">
-                Get Real-Time Help and Updates From Our Research Team.
-              </div>
-            </div>
-          </div>
-        </div>
+<div className="flex flex-col sm:flex-row gap-4 w-full mb-6">
+
+  <div className="flex-1 bg-white border border-gray-200 rounded-xl p-6 flex items-center gap-4 shadow-sm hover:shadow-md transition">
+    {/* <Users className="w-10 h-10 text-[#0f2920]" /> */}
+    <div>
+      <div className="font-bold text-lg text-gray-900 mb-1">
+        +5168
+      </div>
+      <div className="text-gray-500 text-sm">
+        Students Supported
+      </div>
+    </div>
+  </div>
+
+  <div className="flex-1 bg-white border border-gray-200 rounded-xl p-6 flex items-center gap-4 shadow-sm hover:shadow-md transition">
+    {/* <LifeBuoy className="w-10 h-10 text-[#0f2920]" /> */}
+    <div>
+      <div className="font-bold text-lg text-gray-900 mb-1">
+        +2164
+      </div>
+      <div className="text-gray-500 text-sm">
+        Projects & Workshops
+      </div>
+    </div>
+  </div>
+
+  <div className="flex-1 bg-white border border-gray-200 rounded-xl p-6 flex items-center gap-4 shadow-sm hover:shadow-md transition">
+    {/* <Users className="w-10 h-10 text-[#0f2920]" /> */}
+    <div>
+      <div className="font-bold text-lg text-gray-900 mb-1">
+        +17
+      </div>
+      <div className="text-gray-500 text-sm">
+        Years of Experience
+      </div>
+    </div>
+  </div>
+
+</div>
+
 
         <p className="text-gray-600 mb-8 text-sm sm:text-base">
-          Our Services Empower Students, Researchers, and Institutions With
-          Accessible and Impactful Research Tools. With Expert Guidance and
-          Ethical Practices, We’re Driving Forward Sustainable Solutions That
-          Shape Knowledge, Industry, and the Future of Biotech and Science
-          Together.
+          Review programs prepare students for competitive exams and certifications through mock tests, analytics, and targeted content. Learning resource hubs provide curated digital materials, simulations, and access to open-source academic tools. Career counselling services bridge academic learning with professional readiness, offering Resume building, Interview preparation & portfolio development tailored to specific sectors.
         </p>
-        <button className="inline-flex items-center bg-[#0f2920] hover:bg-[#1f3b30] text-white font-bold py-3 px-8 rounded-xl text-base shadow transition-all duration-200">
-          READ MORE
-          <svg
-            className="ml-2 w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </button>
+<Link
+  to="/about-us"
+  className="inline-flex items-center bg-[#0f2920] hover:bg-[#1f3b30] text-white font-bold py-3 px-8 rounded-xl text-base shadow transition-all duration-200"
+>
+  READ MORE
+  <svg
+    className="ml-2 w-5 h-5"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M17 8l4 4m0 0l-4 4m4-4H3"
+    />
+  </svg>
+</Link>
       </div>
     </section>
   );

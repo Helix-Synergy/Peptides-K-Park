@@ -518,11 +518,10 @@
 
 
 
-
 import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
 import { motion, useInView } from "framer-motion";
-import { BookOpen, Users, Award, Target, CheckCircle, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import { BookOpen, Users, Award, Target, CheckCircle, ArrowRight, ChevronDown } from "lucide-react";
 
 /* ---------- Data (Realistic 50 titles for UG & PG) ---------- */
 
@@ -719,6 +718,72 @@ const PG_DATA = [
   },
 ];
 
+/* ---------- CSS Theme Classes ---------- */
+
+const cssTheme = `
+/* Dark Forest Theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  .text-primary-text {
+    /* For light theme, a dark text color is needed */
+    color: #0f2920;
+  }
+}
+
+@layer components {
+  /* Primary Button */
+  .btn-primary {
+    @apply bg-gradient-to-br from-[#0f2920] to-[#3a4a3f] hover:from-[#1f3b30] hover:to-[#4a5c4f] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#3a4a3f] focus:ring-offset-2;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply bg-[#1f3b30] hover:bg-[#3a4a3f] text-white font-semibold py-3 px-6 rounded-lg border-2 border-[#0f2920] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#3a4a3f] focus:ring-offset-2;
+  }
+
+  /* Outlined Button */
+  .btn-outline {
+    @apply bg-transparent hover:bg-gradient-to-br from-[#0f2920] to-[#3a4a3f] hover:text-white font-semibold py-3 px-6 rounded-lg border-[1px] border-[#0f2920] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#3a4a3f] focus:ring-offset-2;
+  }
+
+  /* Card Component */
+  .card {
+    /* Updated for light theme */
+    @apply rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-[#d7f2da] text-black;
+  }
+
+  /* Section Padding */
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-br from-[#0f2920] to-[#3a4a3f] bg-clip-text text-transparent;
+  }
+
+  /* Gradient Background */
+  .gradient-bg {
+    @apply bg-gradient-to-br from-[#0f2920] to-[#3a4a3f];
+  }
+}
+`;
+
 /* ---------- D3 Tree Visualization Component (for Tablets & Desktops) ---------- */
 
 const TreeVisualization = ({ data }) => {
@@ -727,7 +792,7 @@ const TreeVisualization = ({ data }) => {
   useEffect(() => {
     const margin = { top: 20, right: 90, bottom: 40, left: 90 };
     const width = 1200 - margin.left - margin.right;
-    const height = 800 - margin.top - margin.bottom;
+    const height = 1000 - margin.top - margin.bottom;
 
     const svg = d3.select(svgRef.current)
       .attr("width", "100%")
@@ -794,8 +859,8 @@ const TreeVisualization = ({ data }) => {
       nodeEnter.append("rect")
         .attr("rx", 5)
         .attr("ry", 5)
-        .style("fill", "#2c2c2c")
-        .style("stroke", "#c2c2c2")
+        .style("fill", "#d7f2da")
+        .style("stroke", "#0f2920")
         .style("stroke-width", "1.5px")
         .style("opacity", 1e-6);
       
@@ -803,7 +868,7 @@ const TreeVisualization = ({ data }) => {
         .attr("r", 3)
         .attr("cx", 10)
         .attr("cy", 0)
-        .style("fill", "#c2c2c2")
+        .style("fill", "#0f2920")
         .style("opacity", 1e-6);
 
       const textEnter = nodeEnter.append("text")
@@ -811,7 +876,7 @@ const TreeVisualization = ({ data }) => {
         .attr("x", 20)
         .attr("text-anchor", "start")
         .text((d) => d.data.name)
-        .style("fill", "#c2c2c2")
+        .style("fill", "#0f2920")
         .style("font-size", "14px")
         .style("font-weight", "500")
         .style("opacity", 1e-6);
@@ -848,7 +913,7 @@ const TreeVisualization = ({ data }) => {
       const linkEnter = link.enter().insert("path", "g")
         .attr("class", "link")
         .attr("fill", "none")
-        .attr("stroke", "#c2c2c2")
+        .attr("stroke", "#0f2920")
         .attr("stroke-opacity", 0.5)
         .attr("stroke-width", 1.5)
         .attr("d", d => {
@@ -876,7 +941,7 @@ const TreeVisualization = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="max-w-7xl mx-auto overflow-x-auto rounded-xl border border-[#c2c2c2] bg-[#2c2c2c] p-6 shadow-sm">
+    <div className="max-w-7xl mx-auto overflow-x-auto rounded-xl border border-[#0f2920] bg-white p-6 shadow-sm">
       <div className="flex flex-col items-center">
         <svg ref={svgRef}></svg>
       </div>
@@ -896,10 +961,10 @@ const MobileProjects = ({ data }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 lg:px-12">
       {data.map((category) => (
-        <div key={category.name} className="mb-4 bg-[#2c2c2c] rounded-lg overflow-hidden border border-[#c2c2c2]">
+        <div key={category.name} className="mb-4 rounded-lg overflow-hidden border border-[#0f2920] bg-white">
           <button
             onClick={() => toggleCategory(category.name)}
-            className="w-full flex justify-between items-center py-4 px-6 text-left font-bold text-white transition-colors duration-200 hover:bg-[#3d3d3d]"
+            className="w-full flex justify-between items-center py-4 px-6 text-left font-bold text-black transition-colors duration-200 hover:bg-[#d7f2da]"
           >
             <span className="flex items-center gap-2">
               <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${openCategory === category.name ? 'rotate-180' : ''}`} />
@@ -913,7 +978,7 @@ const MobileProjects = ({ data }) => {
           >
             <ul className="px-6 py-4 space-y-2">
               {category.children.map((project, index) => (
-                <li key={index} className="text-gray-300 flex items-center gap-2">
+                <li key={index} className="text-gray-600 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-gray-400 flex-shrink-0"></span>
                   {project.name}
                 </li>
@@ -936,22 +1001,22 @@ const AcademicProjects = () => {
 
   const features = [
     {
-      icon: <BookOpen className="w-8 h-8 text-white" />,
+      icon: <BookOpen className="w-8 h-8 text-[#0f2920]" />,
       title: "Project Planning & Design",
       description: "Comprehensive planning with research methodology, timelines, and resource allocation.",
     },
     {
-      icon: <Users className="w-8 h-8 text-white" />,
+      icon: <Users className="w-8 h-8 text-[#0f2920]" />,
       title: "Expert Guidance",
       description: "One-on-one mentorship from experienced researchers and industry professionals.",
     },
     {
-      icon: <Award className="w-8 h-8 text-white" />,
+      icon: <Award className="w-8 h-8 text-[#0f2920]" />,
       title: "Quality Assurance",
       description: "Peer reviews and validation processes to meet academic standards.",
     },
     {
-      icon: <Target className="w-8 h-8 text-white" />,
+      icon: <Target className="w-8 h-8 text-[#0f2920]" />,
       title: "Implementation Support",
       description: "Help with data collection, analysis, and execution using industry-standard tools.",
     },
@@ -978,26 +1043,19 @@ const AcademicProjects = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#1c1c1c] text-white">
+    <div className="min-h-screen bg-white text-black">
+      <style>{cssTheme}</style>
+      
       {/* Hero */}
-      <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden bg-[#1c1c1c]">
-        <motion.div
-          ref={sectionRef}
-          initial={{ y: -50, opacity: 0 }}
-          animate={isInView ? "visible" : "hidden"}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 text-center text-white"
-        >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
-            Academic Projects
-          </h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto px-4">
-            Realistic project ideas presented as a category tree with collapsible nodes
-          </p>
-          <p className="text-base mt-2 max-w-3xl mx-auto px-4">
-            Click on a category to expand or collapse its projects
-          </p>
-        </motion.div>
+<section 
+        className="relative h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden bg-white text-black"
+        style={{
+          backgroundImage: `url('https://media.licdn.com/dms/image/v2/D4E12AQHs_iqPwgEZ-w/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1681787211071?e=2147483647&v=beta&t=Y-n-JbHoCVb-KB7xoksJAfgN1O3wGgiSJWu9Sm6B16A')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0 bg-white/0 z-0"></div> 
       </section>
 
       {/* Features */}
@@ -1006,13 +1064,13 @@ const AcademicProjects = () => {
           {features.map((f, i) => (
             <div
               key={i}
-              className="bg-[#2c2c2c] border border-[#c2c2c2] rounded-xl p-6 text-center hover:shadow-xl transition-all duration-300"
+              className="card p-6 text-center"
             >
-              <div className="w-16 h-16 bg-[#1c1c1c] border border-[#c2c2c2] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-white border border-[#0f2920] rounded-full flex items-center justify-center mx-auto mb-4">
                 {f.icon}
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">{f.title}</h3>
-              <p className="text-gray-400">{f.description}</p>
+              <h3 className="text-xl font-bold mb-3">{f.title}</h3>
+              <p className="text-secondary-text">{f.description}</p>
             </div>
           ))}
         </div>
@@ -1023,8 +1081,8 @@ const AcademicProjects = () => {
             onClick={() => setSelectedLevel("UG")}
             className={`px-6 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 ${
               selectedLevel === "UG"
-                ? "bg-[#c2c2c2] text-[#1c1c1c]"
-                : "bg-[#1c1c1c] text-white border border-[#c2c2c2]"
+                ? "btn-primary"
+                : "btn-outline"
             }`}
           >
             UG Projects
@@ -1033,8 +1091,8 @@ const AcademicProjects = () => {
             onClick={() => setSelectedLevel("PG")}
             className={`px-6 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 ${
               selectedLevel === "PG"
-                ? "bg-[#c2c2c2] text-[#1c1c1c]"
-                : "bg-[#1c1c1c] text-white border border-[#c2c2c2]"
+                ? "btn-primary"
+                : "btn-outline"
             }`}
           >
             PG Projects
@@ -1050,19 +1108,19 @@ const AcademicProjects = () => {
       </section>
 
       {/* Benefits */}
-      <section className="w-full py-12 px-4 lg:px-12 bg-[#1c1c1c]">
+      <section className="w-full py-12 px-4 lg:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h3 className="text-2xl font-bold text-white text-center mb-8">
+          <h3 className="text-2xl font-bold text-center mb-8 gradient-text">
             Why Choose Our Academic Projects Service?
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((b, i) => (
               <div
                 key={i}
-                className="flex items-start gap-3 rounded-xl bg-[#2c2c2c] border border-[#c2c2c2] p-5 shadow-sm"
+                className="flex items-start gap-3 rounded-xl card p-5 shadow-sm"
               >
-                <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                <span className="text-gray-400">{b}</span>
+                <CheckCircle className="h-5 w-5 text-[#ffnf3f] flex-shrink-0" />
+                <span className="text-secondary-text">{b}</span>
               </div>
             ))}
           </div>
@@ -1070,15 +1128,15 @@ const AcademicProjects = () => {
       </section>
 
       {/* CTA */}
-      <section className="w-full py-16 px-4 lg:px-12 bg-[#333333] text-white text-center">
+      <section className="w-full py-16 px-4 lg:px-12 bg-[#d7f2da] text-black text-center">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-6 gradient-text">
             Ready to Start Your Academic Project?
           </h2>
-          <p className="text-lg mb-8 opacity-90">
+          <p className="text-lg mb-8 text-primary-text">
             Let’s discuss your requirements and craft a roadmap to success.
           </p>
-          <button className="bg-[#c2c2c2] text-[#1c1c1c] font-bold py-3 px-8 rounded-xl hover:bg-gray-100 transition-colors duration-200 inline-flex items-center border border-[#c2c2c2]">
+          <button className="btn-primary inline-flex items-center">
             Get Started <ArrowRight className="ml-2 w-5 h-5" />
           </button>
         </div>

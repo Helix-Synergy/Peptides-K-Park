@@ -95,7 +95,7 @@ const Hero = () => {
       <div className="flex-1 flex flex-col justify-center px-6 sm:px-12 py-12 lg:py-0 z-10 text-center lg:text-left">
         {/* Animated subtitle with per-letter pull-up */}
         <div className="lg:justify-start justify-center flex">
-           <LettersPullUp text="Empowering Innovation" />
+           <LettersPullUp text="Empowering Education" />
         </div>
 
         <motion.h1
@@ -114,18 +114,7 @@ const Hero = () => {
           variants={textVariants}
           custom={3}
         >
-          A leading hub for research, education, and innovation. We support academic projects, contract lab services, digital learning, and biotech solutions tailored for researchers, institutions, and industry partners.
-        </motion.p>
-        <motion.button
-          className="flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-xl text-lg shadow transition w-fit mx-auto lg:mx-0 min-w-[200px]"
-          whileHover={{ scale: 1.06, boxShadow: '0 8px 32px rgba(206, 196, 91, 0.18)' }}
-          whileTap={{ scale: 0.97 }}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.7, ease: 'easeOut' }}
-        >
-          EXPLORE SERVICES <ArrowRight className="ml-2 w-5 h-5" />
-        </motion.button>
+Peptides Knowledge Park’s Academic Support Services encompass a range of offerings designed to enhance student success and engagement. Our Services include Tutoring & Mentoring, Writing & Communication Labs, Academic Advising, Skill-Building Workshops, Review & Prep Programs, Learning Resource Hubs, Career Counselling, Academic Project Assistance, Conferences etc.,        </motion.p>
       </div>
       
       {/* Right: Diagonal Image Split */}

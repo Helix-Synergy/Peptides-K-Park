@@ -256,8 +256,7 @@ const AboutUs = () => {
               Our Core Values
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              These fundamental principles guide everything we do and shape our
-              culture of excellence
+              The fundamantals and principles we follow do shape our Culture of Excellence.
             </p>
           </motion.div>
 

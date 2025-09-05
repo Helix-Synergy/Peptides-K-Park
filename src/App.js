@@ -94,7 +94,7 @@ import ServiceSlider from './sections/ServiceSlider';
 import AboutSection from './sections/AboutSection';
 import WhyChooseUsSection from './sections/WhyChooseUsSection';
 import ContactSection from './components/ContactSection/ContactSection';
-import ServicesWeServe from './sections/ServicesWeServe';
+import CollaborationSection from './sections/CollaborationSection';
 import HomeContactSection from './sections/HomeContactSection'
 import ActivitiesBenefitsPage from "./components/AdvisoryCouncil/ActivitiesBenefitsPage";
 
@@ -142,7 +142,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           {/* Main Pages */}
-          <Route path="/" element={<><Hero /><AboutSection /><WhyChooseUsSection /><ServiceSlider /><ServicesWeServe /><HomeContactSection /></>} />
+          <Route path="/" element={<><Hero /><AboutSection /><WhyChooseUsSection /><CollaborationSection /><ServiceSlider /><HomeContactSection /></>} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact" element={<ContactSection />} />
           <Route path="/gallery" element={<Gallery />} />
