@@ -1,343 +1,26 @@
-// import React, { useEffect, useState } from "react";
-// import { motion } from "framer-motion";
-// import { Link } from "react-router-dom";
-// import { FileText } from "lucide-react";
 
-// const advisoryContentData = {
-//   "about-advisory-board": {
-//     "heroTitle": "About Our Panel of Experts",
-//     "heroSubtitle": "Our Panel of Experts provides strategic guidance and expertise to drive innovation and growth for Peptides Knowledge Park.",
-//     "brochures": [
-//       {
-//         "title": "Board Charter",
-//         "link": "/assets/brochure-board-charter.pdf"
-//       },
-//       {
-//         "title": "Annual Report 2023",
-//         "link": "/assets/brochure-annual-report.pdf"
-//       }
-//     ],
-//     "helpSection": {
-//       "image": "https://placehold.co/96x96/48D1CC/000000?text=JD",
-//       "title": "Need Assistance?",
-//       "description": "Our team is ready to help you with any queries regarding our advisory services.",
-//       "phone": "+91 7997940959"
-//     },
-//     "mainContent": [
-//       {
-//         "title": "Our Mission and Vision",
-//         "paragraphs": [
-//           "The Panel of Experts is committed to fostering a culture of excellence and strategic foresight within Peptides Knowledge Park. Our mission is to provide invaluable insights and direction, ensuring that our initiatives align with global best practices and emerging industry trends.",
-//           "We envision a future where our organization is a beacon of innovation, driven by the collective wisdom and diverse experiences of our distinguished board members. Their guidance is crucial in navigating complex challenges and capitalizing on new opportunities."
-//         ],
-//         "images": [
-//           {
-//             "src": "https://placehold.co/600x400/A0DDA0/000000?text=Board+Meeting",
-//             "alt": "Panel of Experts Meeting"
-//           },
-//           {
-//             "src": "https://placehold.co/600x400/DDA0DD/000000?text=Strategy+Session",
-//             "alt": "Strategy Session"
-//           }
-//         ],
-//         "benefits": [
-//           "Strategic Direction and Oversight",
-//           "Industry Expertise and Insights",
-//           "Enhanced Governance and Accountability",
-//           "Networking and Partnership Opportunities",
-//           "Risk Mitigation and Opportunity Identification",
-//           "Innovation and Research Guidance"
-//         ]
-//       },
-//       {
-//         "title": "Roles and Responsibilities",
-//         "paragraphs": [
-//           "The Panel of Experts plays a critical role in shaping the strategic direction of Peptides Knowledge Park. Their responsibilities include reviewing key strategies, providing expert opinions on complex issues, and offering guidance on market positioning and technological advancements.",
-//           "They also serve as ambassadors for the organization, leveraging their networks to foster collaborations and promote our mission globally. Their independent perspectives are vital for robust decision-making and ensuring long-term success."
-//         ]
-//       }
-//     ],
-//     "faq": [
-//       {
-//         "question": "What is the primary role of the Panel of Experts?",
-//         "answer": "The Panel of Experts primarily provides strategic advice and high-level guidance to the executive management, focusing on long-term vision and industry trends."
-//       },
-//       {
-//         "question": "How often does the Panel of Experts convene?",
-//         "answer": "The Panel of Experts typically meets quarterly, with additional special sessions convened as needed to address specific strategic initiatives or urgent matters."
-//       },
-//       {
-//         "question": "What kind of expertise do Panel of Experts members bring?",
-//         "answer": "Members are selected for their extensive experience and leadership in various fields, including technology, finance, research, and global markets, ensuring a diverse range of perspectives."
-//       },
-//       {
-//         "question": "Is the Panel of Experts involved in daily operations?",
-//         "answer": "No, the Panel of Experts focuses on strategic oversight and guidance, leaving the day-to-day operational decisions to the executive team."
-//       }
-//     ]
-//   },
-//   "panel-of-experts": {
-//     "heroTitle": "Meet Our Panel of Experts",
-//     "heroSubtitle": "Our panel comprises visionary leaders and experts dedicated to guiding our strategic direction and fostering innovation at Peptides Knowledge Park.",
-//     "brochures": [
-//       {
-//         "title": "Panel Member Profiles",
-//         "link": "/assets/brochure-member-profiles.pdf"
-//       },
-//       {
-//         "title": "Strategic Initiatives",
-//         "link": "/assets/brochure-strategic-initiatives.pdf"
-//       }
-//     ],
-//     "helpSection": {
-//       "image": "https://placehold.co/96x96/FF69B4/000000?text=Contact",
-//       "title": "Connect With Us",
-//       "description": "Have questions about our panel or seeking collaboration? Reach out today!",
-//       "phone": "+91 7997940959"
-//     },
-//     "mainContent": [
-//       {
-//         "title": "Meet Our Subject Matter Experts",
-//         "paragraphs": [
-//           "The Panel of Experts at Peptides Knowledge Park is composed of highly respected individuals who bring a wealth of knowledge, experience, and diverse perspectives to our organization. Each member is a leader in their respective field, contributing significantly to our strategic planning and operational excellence.",
-//           "Their collective expertise spans technology, business development, research, and global markets, enabling us to stay at the forefront of innovation and maintain our competitive edge."
-//         ],
-//         "advisoryMembers": [
-//           {
-//             "name": "Dr. Anya Sharma",
-//             "role": "Chairperson, AI & Robotics",
-//             "image": "https://placehold.co/150x150/8A2BE2/FFFFFF?text=AS",
-//             "bio": "Dr. Sharma is a pioneer in AI ethics and robotics, with over 20 years of experience in leading technological advancements and responsible AI deployment."
-//           },
-//           {
-//             "name": "Mr. David Chen",
-//             "role": "Vice-Chair, Global Strategy",
-//             "image": "https://placehold.co/150x150/FF69B4/FFFFFF?text=DC",
-//             "bio": "Mr. Chen has a proven track record in global market expansion and strategic partnerships across multiple continents, driving significant revenue growth."
-//           },
-//           {
-//             "name": "Prof. Emily White",
-//             "role": "Lead, Biotechnology Research",
-//             "image": "https://placehold.co/150x150/4682B4/FFFFFF?text=EW",
-//             "bio": "Prof. White is a renowned biotechnologist, bringing cutting-edge research insights and academic rigor to the panel, with a focus on peptide therapeutics."
-//           },
-//           {
-//             "name": "Ms. Sarah Lee",
-//             "role": "Advisor, Digital Transformation",
-//             "image": "https://placehold.co/150x150/32CD32/FFFFFF?text=SL",
-//             "bio": "Ms. Lee specializes in digital transformation strategies, helping organizations leverage technology for sustainable growth and operational efficiency."
-//           },
-//           {
-//             "name": "Mr. Robert Green",
-//             "role": "Advisor, Financial Markets",
-//             "image": "https://placehold.co/150x150/FFD700/000000?text=RG",
-//             "bio": "Mr. Green provides invaluable insights into financial planning and investment strategies for technology ventures and startups."
-//           },
-//           {
-//             "name": "Dr. Maria Garcia",
-//             "role": "Advisor, Public Health",
-//             "image": "https://placehold.co/150x150/FF6347/000000?text=MG",
-//             "bio": "Dr. Garcia is a public health expert, guiding the panel on health-related innovations, regulatory compliance, and community impact initiatives."
-//           }
-//         ]
-//       },
-//       {
-//         "title": "Impact and Contributions",
-//         "paragraphs": [
-//           "The Panel of Experts' contributions are instrumental in guiding our research and development efforts, ensuring that our projects are not only scientifically sound but also commercially viable and socially impactful.",
-//           "Their diverse expertise helps us to identify emerging opportunities, mitigate risks, and maintain a competitive edge in a rapidly evolving global landscape. They actively participate in workshops and strategic sessions, offering hands-on guidance."
-//         ]
-//       }
-//     ],
-//     "faq": [
-//       {
-//         "question": "What is the difference between the Panel of Experts and Panel of Experts?",
-//         "answer": "The Panel of Experts provides high-level strategic oversight, while the Panel of Experts offers detailed expert guidance on specific initiatives, projects, and technical aspects."
-//       },
-//       {
-//         "question": "How can I become a Panel of Experts member?",
-//         "answer": "Membership is by invitation only, based on extensive industry experience, demonstrated leadership, and a strong alignment with our organizational values and strategic goals."
-//       },
-//       {
-//         "question": "Can I propose a topic for the Panel to discuss?",
-//         "answer": "Yes, we welcome suggestions from our partners and stakeholders. Please submit your proposals through the 'Become a Member' page, and they will be reviewed by the panel secretariat."
-//       },
-//       {
-//         "question": "What is the expected commitment for panel members?",
-//         "answer": "Panel members are expected to attend regular meetings, participate in ad-hoc discussions, and contribute their expertise to specific projects as needed, with flexibility for their primary professional commitments."
-//       }
-//     ]
-//   }
-// };
-
-// const navigationLinks = [
-//   { name: 'About Panel of Experts', href: '/about-advisory-board' },
-//   { name: 'About Panel of Experts', href: '/panel-of-experts' },
-//   { name: 'Subject Matter Experts', href: '/panel-of-experts/subject-matter-experts' },
-//   { name: 'Become a Panel Member', href: '/panel-of-experts/become-a-member' },
-//   { name: 'Activities/Benefits', href: '/panel-of-experts/activities-benefits' },
-// ];
-
-// const AdvisoryContentDisplay = ({ pageType }) => {
-//   const [content, setContent] = useState(null);
-
-//   useEffect(() => {
-//     // Determine the correct key from the navigation links to match the pageType
-//     const contentKey = pageType === 'panel-of-experts' ? 'panel-of-experts' : 'about-advisory-board';
-//     setContent(advisoryContentData[contentKey] || null);
-//   }, [pageType]);
-
-//   if (!content) {
-//     return (
-//       <div className="flex justify-center items-center h-screen text-xl text-gray-500">
-//         No content available.
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <main className="bg-gradient-to-br from-[#0f2920] to-[#3a4a3f] min-h-screen text-gray-100 font-inter">
-//       {/* Hero Section */}
-//       <section className="h-[40vh] md:h-[50vh] flex items-center justify-center text-center relative overflow-hidden">
-//         <motion.div
-//           initial={{ opacity: 0, y: -30 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.8 }}
-//         >
-//           <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-amber-400">
-//             {content.heroTitle}
-//           </h1>
-//           <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-200">
-//             {content.heroSubtitle}
-//           </p>
-//         </motion.div>
-//       </section>
-
-//       {/* Content Section */}
-//       <section className="w-full py-12 px-4 lg:px-12">
-//         <div className="grid grid-cols-1 lg:grid-cols-[22rem_1fr] gap-8">
-//           {/* Sidebar */}
-//           <aside className="bg-white/10 backdrop-blur-md rounded-xl shadow-lg p-6">
-//             <h3 className="text-xl font-bold mb-4 text-amber-300">
-//               Quick Links
-//             </h3>
-//             <ul className="space-y-2">
-//               {navigationLinks.map((link, i) => (
-//                 <li key={i}>
-//                   <Link
-//                     to={link.href}
-//                     className="block py-2 px-3 rounded-lg hover:bg-amber-400/20 transition"
-//                   >
-//                     {link.name}
-//                   </Link>
-//                 </li>
-//               ))}
-//             </ul>
-
-//             {/* Brochures */}
-//             {content.brochures && content.brochures.length > 0 && (
-//               <div className="mt-8">
-//                 <h3 className="text-lg font-semibold mb-3 text-amber-300">
-//                   Brochures
-//                 </h3>
-//                 {content.brochures.map((b, i) => (
-//                   <a
-//                     key={i}
-//                     href={b.link}
-//                     target="_blank"
-//                     rel="noopener noreferrer"
-//                     className="flex items-center gap-2 py-2 px-3 rounded-lg hover:bg-amber-400/20 transition"
-//                   >
-//                     <FileText className="h-5 w-5" /> {b.title}
-//                   </a>
-//                 ))}
-//               </div>
-//             )}
-//           </aside>
-
-//           {/* Main Dynamic Content */}
-//           <div>
-//             {content.mainContent.map((section, idx) => (
-//               <motion.div
-//                 key={idx}
-//                 initial={{ opacity: 0, y: 40 }}
-//                 whileInView={{ opacity: 1, y: 0 }}
-//                 viewport={{ once: true }}
-//                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-//                 className="mb-12 bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg"
-//               >
-//                 <h2 className="text-2xl md:text-3xl font-bold mb-4 text-amber-400">
-//                   {section.title}
-//                 </h2>
-
-//                 {section.paragraphs?.map((p, i) => (
-//                   <p key={i} className="text-gray-200 mb-3 leading-relaxed">
-//                     {p}
-//                   </p>
-//                 ))}
-
-//                 {/* Advisory Members */}
-//                 {section.advisoryMembers && (
-//                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
-//                     {section.advisoryMembers.map((member, i) => (
-//                       <div key={i} className="bg-[#1f3b30] rounded-xl p-4 flex flex-col items-center text-center">
-//                         <img
-//                           src={member.image}
-//                           alt={member.name}
-//                           className="w-24 h-24 rounded-full object-cover mb-4 shadow-md"
-//                         />
-//                         <h4 className="text-lg font-bold text-amber-300 mb-1">{member.name}</h4>
-//                         <p className="text-sm font-semibold text-gray-300 mb-2">{member.role}</p>
-//                         <p className="text-xs text-gray-400 leading-snug">{member.bio}</p>
-//                       </div>
-//                     ))}
-//                   </div>
-//                 )}
-
-//                 {/* Images */}
-//                 {section.images && (
-//                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-//                     {section.images.map((img, i) => (
-//                       <img
-//                         key={i}
-//                         src={img.src}
-//                         alt={img.alt}
-//                         className="rounded-xl object-cover w-full h-60"
-//                         onError={(e) =>
-//                           (e.target.src =
-//                             "https://placehold.co/600x400/333333/FFFFFF?text=Image")
-//                         }
-//                       />
-//                     ))}
-//                   </div>
-//                 )}
-
-//                 {/* Benefits */}
-//                 {section.benefits && (
-//                   <ul className="mt-4 space-y-2">
-//                     {section.benefits.map((benefit, i) => (
-//                       <li key={i} className="flex items-start gap-2">
-//                         <span className="text-amber-400">✔</span>
-//                         <span>{benefit}</span>
-//                       </li>
-//                     ))}
-//                   </ul>
-//                 )}
-//               </motion.div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-//     </main>
-//   );
-// };
-
-// export default AdvisoryContentDisplay;
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Image from '../../assets/images/about-banner.jpg'
+
+import anuradha from '../../assets/images/advisory/anuradha.jpg';
+import kumar from '../../assets/images/advisory/kumar.jpeg';
+import pushpa from '../../assets/images/advisory/pushpa.jpg';
+import sarika from '../../assets/images/advisory/sarika.jpg';
+import sudhakar from '../../assets/images/advisory/sudhakar.jpeg';
+import valasia from '../../assets/images/advisory/valasia.jpg';
+import cristiano from '../../assets/images/advisory/cristiano.jpg';
+import ramakanth from '../../assets/images/advisory/ramakanth.jpeg';
+import saritha from '../../assets/images/advisory/saritha.jpeg';
+import sujani from '../../assets/images/advisory/sujani.jpeg';
+import vinyas from '../../assets/images/advisory/vinyas.jpg';
+import kalyani from '../../assets/images/advisory/kalyani.jpg';
+import murthy from '../../assets/images/advisory/murthy.jpg';
+import roseMary from '../../assets/images/advisory/rose-mary.jpg';
+import shivakrishna from '../../assets/images/advisory/shivakrishna.jpeg';
+import thomas from '../../assets/images/advisory/thomas.jpg';
 
 const advisoryContentData = {
   "about-advisory-board": {
@@ -449,6 +132,7 @@ const advisoryContentData = {
         advisoryMembers: [
           {
             name: "Dr. Valasia Iakovoglou",
+            image: valasia,
             role: "PhD in Ecophysiology/Sylviculture",
             subtitle: "Iowa State University, USA",
             country: "USA",
@@ -469,6 +153,7 @@ const advisoryContentData = {
           },
           {
             name: "Dr. Thomas J. Webster",
+            image: thomas,
             role: "Biomedical Engineer & Chief Nano Scientific Officer",
             subtitle: "",
             country: "USA",
@@ -488,6 +173,7 @@ const advisoryContentData = {
           },
           {
             name: "Cristiano José de Andrade",
+            image: cristiano,
             role: "Adjunct Professor",
             subtitle: "Federal University of Santa Catarina (UFSC)",
             country: "Brazil",
@@ -506,6 +192,7 @@ const advisoryContentData = {
           },
           {
             name: "Sarika Kuchipudi",
+            image: sarika,
             role: "Senior Scientist – Biotechnology & Pharmaceuticals",
             subtitle: "MBA Candidate, Melbourne Business School",
             country: "",
@@ -525,6 +212,7 @@ const advisoryContentData = {
           },
           {
             name: "Dr. Sri Samba Murthy",
+            image: murthy,
             role: "Educator & Researcher",
             subtitle: "",
             country: "India",
@@ -543,6 +231,7 @@ const advisoryContentData = {
           },
           {
             name: "Dr. Shivakrishna Pabba",
+            image: shivakrishna,
             role: "Managing Director & Lab Head",
             subtitle: "PSK Lavin Laboratories Pvt. Ltd.",
             country: "India",
@@ -562,6 +251,7 @@ const advisoryContentData = {
           },
           {
             name: "Dr. Vinyas Mayasa",
+            image: vinyas,
             role: "Assistant Professor, Pharmacology and Toxicology",
             subtitle: "GITAM School of Pharmacy, Telangana, India",
             country: "India",
@@ -581,6 +271,7 @@ const advisoryContentData = {
           },
           {
             name: "Dr. Mallappa Kumara Swamy",
+            image: kumar,
             role: "HOD Biotechnology",
             subtitle: "East West First Grade College, Bengaluru, India",
             country: "India",
@@ -600,6 +291,7 @@ const advisoryContentData = {
           },
           {
             name: "Dr. Ramakanth Sharma",
+            image: ramakanth,
             role: "R&D Specialist",
             subtitle: "Advance Aqua Biotechnologies",
             country: "India",
@@ -618,6 +310,7 @@ const advisoryContentData = {
           },
           {
             name: "Dr. SUJANI GUDIPATI",
+            image: sujani,
             role: "R&D",
             subtitle: "Advance Aqua Biotechnologies India Pvt Ltd.",
             country: "India",
@@ -636,6 +329,7 @@ const advisoryContentData = {
           },
           {
             name: "Peri Anuradha",
+            image: anuradha,
             role: "Founding Principal",
             subtitle:
               "Pragathi Women’s Junior, Degree, and PG College, Hyderabad",
@@ -656,6 +350,7 @@ const advisoryContentData = {
           },
           {
             name: "Pushpa Lalitha",
+            image: pushpa,
             role: "Senior Food Analyst",
             subtitle: "Hydrolabs",
             country: "India",
@@ -674,6 +369,7 @@ const advisoryContentData = {
           },
           {
             name: "Dr. Kalyani Paidikondala",
+            image: kalyani,
             role: "Women Scientist A (WOSA)-DST",
             subtitle: "",
             country: "India",
@@ -694,6 +390,7 @@ const advisoryContentData = {
           },
           {
             name: "Dr. Rose Mary Tadiparthi",
+            image: roseMary,
             role: "HOD, Botany Department",
             subtitle: "",
             country: "India",
@@ -712,6 +409,7 @@ const advisoryContentData = {
           },
           {
             name: "Dr. Y. Sudhakar",
+            image: sudhakar,
             role: "Assistant Professor & HOD, Department of Science & Humanities",
             subtitle: "",
             country: "India",
@@ -731,6 +429,7 @@ const advisoryContentData = {
           },
           {
             name: "Dr. Saritha Sivampeta",
+            image: saritha,
             role: "HOD, Department of Chemistry",
             subtitle: "",
             country: "India",
@@ -904,7 +603,7 @@ const AdvisoryContentDisplay = ({ pageType }) => {
                           key={i}
                           to={`/panel-of-experts/member/${memberSlug}`}
                           state={{ member }}
-                          className="bg-green-900/10 rounded-xl p-4 flex flex-col items-center text-center hover:scale-105 transition-transform"
+                          className="bg-amber-900/10 rounded-xl p-4 flex flex-col items-center text-center hover:scale-105 transition-transform"
                         >
                           <img
                             src={
@@ -912,9 +611,9 @@ const AdvisoryContentDisplay = ({ pageType }) => {
                               `https://placehold.co/100x100/444/FFF?text=${member.name}`
                             }
                             alt={member.name}
-                            className="w-32 h-32 rounded-full object-cover mb-4 shadow-md"
+                            className="w-36 h-36 p-4 rounded-full object-cover mb-4 shadow-lg"
                           />
-                          <h4 className="text-lg font-bold text-green-800 mb-1">
+                          <h4 className="text-lg font-bold text-peptides-color-brown mb-1">
                             {member.name}
                           </h4>
                           <p className="text-sm font-semibold text-gray-700 mb-2">
@@ -953,17 +652,20 @@ const AdvisoryContentDisplay = ({ pageType }) => {
                   </div>
                 )}
 
-                {/* Benefits */}
-                {section.benefits && (
-                  <ul className="mt-4 space-y-2">
-                    {section.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-peptides-color-brown">✔</span>
-                        <span className="text-black">{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+{/* Benefits */}
+{section.benefits && (
+  <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {section.benefits.map((benefit, i) => (
+      <li 
+        key={i} 
+        className="flex items-start gap-2 p-4 border border-gray-300 rounded-lg shadow-sm" // Added border, border-gray-300, padding, rounded corners, and shadow
+      >
+        <span className="text-peptides-color-brown">✔</span>
+        <span className="text-black">{benefit}</span>
+      </li>
+    ))}
+  </ul>
+)}
               </motion.div>
             ))}
           </div>
