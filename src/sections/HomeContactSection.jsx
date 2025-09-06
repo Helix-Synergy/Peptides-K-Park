@@ -15,16 +15,16 @@ const HomeContactSection = () => {
 
         {/* Gradient Heading */}
         <h2 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-br from-[#0f2920] to-[#3a4a3f] bg-clip-text text-transparent mb-6 leading-tight">
-          Let’s Connect & Start Your Journey
+          Let’s Connect & Start Our Journey
         </h2>
 
         <p className="text-lg text-gray-600 max-w-2xl mb-10">
-          Have questions, need guidance, or looking to register?
-          We’re here to help you every step of the way. Choose your path below.
+          Have questions? Need guidance? or Looking to register? <br/>
+          We’re here to help you every step of the way. 
         </p>
 
         {/* Buttons Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-4xl">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
           {/* Contact */}
           <button
             onClick={() => navigate("/contact")}

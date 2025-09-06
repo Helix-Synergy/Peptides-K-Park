@@ -516,12 +516,9 @@
 // export default AcademicProjects;
 
 
-
-
 import React, { useRef, useEffect, useState } from "react";
-import * as d3 from "d3";
 import { motion, useInView } from "framer-motion";
-import { BookOpen, Users, Award, Target, CheckCircle, ArrowRight, ChevronDown } from "lucide-react";
+import { BookOpen, Users, Award, Target, CheckCircle, ArrowRight, ChevronDown, Briefcase, ChevronRight, GraduationCap } from "lucide-react";
 
 /* ---------- Data (Realistic 50 titles for UG & PG) ---------- */
 
@@ -784,171 +781,6 @@ const cssTheme = `
 }
 `;
 
-/* ---------- D3 Tree Visualization Component (for Tablets & Desktops) ---------- */
-
-const TreeVisualization = ({ data }) => {
-  const svgRef = useRef(null);
-
-  useEffect(() => {
-    const margin = { top: 20, right: 90, bottom: 40, left: 90 };
-    const width = 1200 - margin.left - margin.right;
-    const height = 1000 - margin.top - margin.bottom;
-
-    const svg = d3.select(svgRef.current)
-      .attr("width", "100%")
-      .attr("height", "auto")
-      .attr("viewBox", [0, 0, width + margin.right + margin.left, height + margin.top + margin.bottom])
-      .attr("style", "max-width: 100%; height: auto; font: 14px sans-serif;");
-
-    const g = svg.html("")
-      .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
-
-    let i = 0;
-    const duration = 750;
-
-    const root = d3.hierarchy(data, (d) => d.children);
-    root.x0 = height / 2;
-    root.y0 = 0;
-
-    root.children.forEach(collapse);
-
-    function collapse(d) {
-      if (d.children) {
-        d._children = d.children;
-        d._children.forEach(collapse);
-        d.children = null;
-      }
-    }
-    
-    const linkGenerator = d3.linkHorizontal()
-      .x(d => d.y)
-      .y(d => d.x);
-
-    function update(source) {
-      const tree = d3.tree().nodeSize([30, 250]);
-      const rootNode = tree(root);
-      
-      let x0 = Infinity;
-      let x1 = -Infinity;
-      rootNode.each(d => {
-        if (d.x > x1) x1 = d.x;
-        if (d.x < x0) x0 = d.x;
-      });
-
-      const svgHeight = x1 - x0 + margin.top + margin.bottom;
-
-      const svgTransition = svg.transition()
-          .duration(duration)
-          .attr("viewBox", [0, x0 - margin.top, width + margin.right + margin.left, svgHeight])
-          .tween("resize", () => () => svg.dispatch("resize", {bubbles: true}));
-
-      const nodes = rootNode.descendants().reverse();
-      const links = rootNode.links();
-      
-      const node = g.selectAll("g.node").data(nodes, (d) => d.id || (d.id = ++i));
-
-      const nodeEnter = node.enter().append("g")
-        .attr("class", "node cursor-pointer")
-        .attr("transform", `translate(${source.y0},${source.x0})`)
-        .on("click", (event, d) => {
-          d.children = d.children ? null : d._children;
-          update(d);
-        });
-      
-      nodeEnter.append("rect")
-        .attr("rx", 5)
-        .attr("ry", 5)
-        .style("fill", "#d7f2da")
-        .style("stroke", "#0f2920")
-        .style("stroke-width", "1.5px")
-        .style("opacity", 1e-6);
-      
-      nodeEnter.append("circle")
-        .attr("r", 3)
-        .attr("cx", 10)
-        .attr("cy", 0)
-        .style("fill", "#0f2920")
-        .style("opacity", 1e-6);
-
-      const textEnter = nodeEnter.append("text")
-        .attr("dy", ".35em")
-        .attr("x", 20)
-        .attr("text-anchor", "start")
-        .text((d) => d.data.name)
-        .style("fill", "#0f2920")
-        .style("font-size", "14px")
-        .style("font-weight", "500")
-        .style("opacity", 1e-6);
-
-      const nodeUpdate = node.merge(nodeEnter).transition(svgTransition)
-        .attr("transform", (d) => `translate(${d.y},${d.x})`);
-
-      nodeUpdate.select("rect")
-        .attr("width", d => {
-          const textWidth = d.data.name.length * 8 + 30;
-          return textWidth;
-        })
-        .attr("height", 24)
-        .attr("x", -5)
-        .attr("y", -12)
-        .style("opacity", 1);
-      
-      nodeUpdate.select("circle")
-        .style("opacity", 1);
-
-      nodeUpdate.select("text")
-        .style("opacity", 1);
-
-      const nodeExit = node.exit().transition(svgTransition)
-        .attr("transform", `translate(${source.y},${source.x})`)
-        .remove();
-
-      nodeExit.select("rect").style("opacity", 1e-6);
-      nodeExit.select("circle").style("opacity", 1e-6);
-      nodeExit.select("text").style("opacity", 1e-6);
-
-      const link = g.selectAll("path.link").data(links, (d) => d.target.id);
-
-      const linkEnter = link.enter().insert("path", "g")
-        .attr("class", "link")
-        .attr("fill", "none")
-        .attr("stroke", "#0f2920")
-        .attr("stroke-opacity", 0.5)
-        .attr("stroke-width", 1.5)
-        .attr("d", d => {
-            const o = {x: source.x0, y: source.y0};
-            return linkGenerator({source: o, target: o});
-        });
-
-      link.merge(linkEnter).transition(svgTransition)
-        .attr("d", d => linkGenerator(d));
-
-      link.exit().transition(svgTransition)
-        .attr("d", d => {
-            const o = {x: source.x, y: source.y};
-            return linkGenerator({source: o, target: o});
-        })
-        .remove();
-      
-      rootNode.eachBefore((d) => {
-        d.x0 = d.x;
-        d.y0 = d.y;
-      });
-    }
-
-    update(root);
-  }, [data]);
-
-  return (
-    <div className="max-w-7xl mx-auto overflow-x-auto rounded-xl border border-[#0f2920] bg-white p-6 shadow-sm">
-      <div className="flex flex-col items-center">
-        <svg ref={svgRef}></svg>
-      </div>
-    </div>
-  );
-};
-
 /* ---------- Mobile Dropdown UI Component (for Mobile Devices) ---------- */
 
 const MobileProjects = ({ data }) => {
@@ -991,13 +823,30 @@ const MobileProjects = ({ data }) => {
   );
 };
 
-/* ---------- Main Page Component ---------- */
 
+/* ---------- Main Page Component ---------- */
 const AcademicProjects = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const [selectedLevel, setSelectedLevel] = useState("UG");
   const [isMobile, setIsMobile] = useState(false);
+
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(UG_DATA[0]?.name || null);
+  
+  const allData = {
+    UG: UG_DATA,
+    PG: PG_DATA
+  };
+  
+  const filteredProjects = selectedCategory 
+    ? [...UG_DATA, ...PG_DATA].find(cat => cat.name === selectedCategory)?.children || []
+    : [];
+  
+  useEffect(() => {
+    if (!selectedProject && filteredProjects.length > 0 && !isMobile) {
+      setSelectedProject({ ...filteredProjects[0], category: selectedCategory });
+    }
+  }, [filteredProjects, isMobile, selectedCategory, selectedProject]);
 
   const features = [
     {
@@ -1029,11 +878,9 @@ const AcademicProjects = () => {
     "Networking with industry professionals",
   ];
 
-  const data = selectedLevel === "UG" ? UG_DATA : PG_DATA;
-
   useEffect(() => {
     const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1024);
     };
 
     checkIsMobile();
@@ -1042,15 +889,107 @@ const AcademicProjects = () => {
     return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
 
+  const projectDetailsContent = (project) => {
+    if (!project) {
+      return (
+        <div className="flex flex-col items-center justify-center h-full text-center p-8">
+          <GraduationCap className="w-24 h-24 text-gray-400 mb-4" />
+          <h2 className="text-2xl font-bold text-gray-600">
+            Select a Project
+          </h2>
+          <p className="text-gray-500 mt-2">
+            Choose a project from the list on the left to view its details, objectives, and scope.
+          </p>
+        </div>
+      );
+    }
+    
+    const description = {
+      "Artificial Intelligence & Data": "This project focuses on applying machine learning techniques to solve real-world problems. The scope includes data preprocessing, model selection, training, and evaluation. The final deliverable is a functional application or a comprehensive research paper.",
+      "Web & Mobile Engineering": "Design and develop a modern, full-stack application with a user-friendly interface. The project emphasizes clean code architecture, API design, and deployment strategies. Key technologies include React, Node.js, and cloud platforms.",
+      "IoT & Embedded Systems": "Build a hardware-software integrated solution for a specific problem. The project involves sensor interfacing, data transmission via communication protocols, and cloud integration for data analytics. Focus is on system efficiency and reliability.",
+      "Cybersecurity": "This project explores defensive or offensive security measures. It involves designing a system to detect threats, implement encryption, or analyze network vulnerabilities. The outcome is a secure and robust application or a detailed security report.",
+      "Robotics & Electronics": "Construct and program an autonomous system to perform a specific task. The project covers mechanical design, circuit prototyping, and algorithm development for navigation and control. A key part is simulating and validating the system's behavior.",
+      "Healthcare & Bio": "Utilize computational methods to analyze biological data, from gene sequences to medical images. The project aims to develop tools for disease prediction, drug discovery, or biological data visualization. It requires a strong understanding of both computer science and biology.",
+      "Environment & ESG": "Leverage technology to address environmental challenges. The project involves collecting and analyzing environmental data, building predictive models for resource management, or creating tools for sustainability reporting. Emphasis is on creating a measurable positive impact.",
+      "AR/VR & Media": "Develop an immersive and interactive experience using augmented or virtual reality. The project covers 3D modeling, real-time rendering, and user interaction design. It can be a training simulator, a marketing tool, or an educational application.",
+      "Blockchain & FinTech": "Create a decentralized application or a financial technology solution. The project explores concepts like smart contracts, digital currencies, or secure transactions. It highlights the principles of immutability and distributed ledger technology.",
+      "Advanced AI / Machine Learning": "This project delves into advanced topics in AI/ML, focusing on state-of-the-art models and techniques. The work involves complex algorithm implementation, performance optimization, and rigorous academic evaluation. Suitable for research-oriented students.",
+      "Bioinformatics & Biotechnology": "This project uses computational techniques to solve complex problems in biology. It may involve working with large-scale genomic data, protein structures, or drug discovery pipelines. The goal is to produce novel insights or develop new tools for the field.",
+      "IoT, Edge & 5G": "This project explores the intersection of hardware, networking, and cloud computing. It focuses on low-latency data processing, secure device communication, and scalable system architecture. The outcome is a production-ready prototype or a detailed system design.",
+      "Cybersecurity & Privacy": "This project tackles modern security threats and privacy challenges. It involves research into advanced encryption, network security, and adversarial machine learning. The goal is to build secure and resilient systems for future applications.",
+      "Cloud & Data Engineering": "This project is centered on building scalable and robust data pipelines and cloud infrastructure. It involves working with big data technologies, MLOps, and serverless architectures. The focus is on efficiency, reliability, and cost optimization.",
+      "Robotics & Autonomy": "This project involves designing and implementing autonomous systems. It covers topics like Simultaneous Localization and Mapping (SLAM), multi-agent systems, and reinforcement learning for control. The goal is to build intelligent and self-sufficient robots.",
+      "AR/VR/HCI": "This project focuses on human-computer interaction and immersive technologies. It involves designing user interfaces for AR/VR, leveraging eye-tracking and hand gestures, and creating collaborative virtual environments. The outcome is a highly interactive and engaging user experience.",
+      "Blockchain / Web3": "This project explores decentralized technologies and their applications. It involves building secure and transparent systems using smart contracts, decentralized identity, and tokenization. The goal is to create innovative solutions for various industries."
+    };
+    
+    const genericDesc = description[project.category] || "This project is designed to provide hands-on experience in this domain. It covers fundamental concepts and practical implementation, resulting in a robust and showcase-ready solution.";
+    
+    return (
+      <div className="flex flex-col h-full bg-white text-black p-8">
+        <div className="flex flex-col">
+          <h1 className="text-3xl font-bold text-primary-text mb-1">{project.name}</h1>
+          <div className="flex items-center text-sm text-gray-600 space-x-2">
+            <span className="font-semibold text-[#0f2920]">{project.category}</span>
+            <span className="text-gray-400">•</span>
+            <span>On-site</span>
+          </div>
+        </div>
+
+        {/* About the Project Section */}
+        <div className="w-full h-full overflow-y-auto pr-4 mt-6">
+          <div className="bg-gray-50 rounded-lg p-6 mb-8 border border-gray-200">
+            <h2 className="text-xl font-bold text-primary-text mb-4">About the Project</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              {genericDesc}
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 pl-4">
+              <li>
+                 Problem Statement:  {project.name}
+              </li>
+              <li>
+                 Project Goals:  To provide a comprehensive solution and documentation for a real-world problem.
+              </li>
+              <li>
+                 Deliverables:  Source code, technical documentation, and a project report.
+              </li>
+              <li>
+                 Expected Outcome:  A demonstrable and well-documented academic project suitable for a portfolio.
+              </li>
+            </ul>
+          </div>
+          
+          {/* Why this is a great project section */}
+          <div className="bg-gray-50 rounded-lg p-6 mb-8 border border-gray-200">
+            <h2 className="text-xl font-bold text-primary-text mb-4">Why this is a great project for your resume</h2>
+            <div className="flex items-center space-x-2 mb-2 text-gray-700">
+                <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
+                <span className="text-sm">Builds a strong foundation in a specific tech domain.</span>
+            </div>
+            <div className="flex items-center space-x-2 mb-2 text-gray-700">
+                <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
+                <span className="text-sm">Prepares you for real-world industry challenges.</span>
+            </div>
+            <div className="flex items-center space-x-2 text-gray-700">
+                <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
+                <span className="text-sm">Creates a tangible portfolio item for job applications.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-gray-100 text-black">
       <style>{cssTheme}</style>
       
-      {/* Hero */}
-<section 
+      {/* Hero Section */}
+      <section 
         className="relative h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden bg-white text-black"
         style={{
-          backgroundImage: `url('https://media.licdn.com/dms/image/v2/D4E12AQHs_iqPwgEZ-w/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1681787211071?e=2147483647&v=beta&t=Y-n-JbHoCVb-KB7xoksJAfgN1O3wGgiSJWu9Sm6B16A')`,
+          backgroundImage: `url('https://thumbs.dreamstime.com/b/projects-concept-black-chalkboard-d-rendering-handwritten-top-view-office-desk-lot-business-office-supplies-79906734.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -1058,55 +997,76 @@ const AcademicProjects = () => {
         <div className="absolute inset-0 bg-white/0 z-0"></div> 
       </section>
 
-      {/* Features */}
-      <section className="w-full py-12 px-4 lg:px-12">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          {features.map((f, i) => (
-            <div
-              key={i}
-              className="card p-6 text-center"
-            >
-              <div className="w-16 h-16 bg-white border border-[#0f2920] rounded-full flex items-center justify-center mx-auto mb-4">
-                {f.icon}
+      {/* Features & Main UI Section */}
+      <section className="w-full py-12 px-4 lg:px-12 bg-gray-100">
+        <div className="max-w-7xl mx-auto">
+          {/* Features */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            {features.map((f, i) => (
+              <div
+                key={i}
+                className="card p-6 text-center"
+              >
+                <div className="w-16 h-16 bg-white border border-[#0f2920] rounded-full flex items-center justify-center mx-auto mb-4">
+                  {f.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-3">{f.title}</h3>
+                <p className="text-secondary-text">{f.description}</p>
               </div>
-              <h3 className="text-xl font-bold mb-3">{f.title}</h3>
-              <p className="text-secondary-text">{f.description}</p>
+            ))}
+          </div>
+
+          {/* Conditional Rendering of the Two-Pane UI or Mobile Dropdown */}
+          {isMobile ? (
+            <MobileProjects data={[...UG_DATA, ...PG_DATA]} />
+          ) : (
+            <div className="lg:grid lg:grid-cols-3 lg:gap-6 lg:h-[700px] overflow-hidden">
+              {/* Left Pane - Project List */}
+              <div className="col-span-1 bg-white border border-gray-200 rounded-lg shadow-sm overflow-y-auto">
+                <div className="flex items-center justify-between p-4 bg-gray-50 border-b border-gray-200 sticky top-0">
+                  <h2 className="text-xl font-bold text-primary-text">Project Catalog</h2>
+                </div>
+                {/* List of Categories with Sub-Projects */}
+                {[...UG_DATA, ...PG_DATA].map((category) => (
+                    <div key={category.name} className="py-2">
+                        <div 
+                          className={`font-bold px-4 py-2 border-b border-gray-200 cursor-pointer ${selectedCategory === category.name ? 'text-[#0f2920]' : 'text-gray-700'}`}
+                          onClick={() => {
+                            setSelectedCategory(category.name);
+                            setSelectedProject({ ...category.children[0], category: category.name });
+                          }}
+                        >
+                            {category.name}
+                        </div>
+                        {selectedCategory === category.name && (
+                            <div className="px-2 pb-2">
+                                {category.children.map((project, index) => (
+                                    <div 
+                                        key={index} 
+                                        className={`cursor-pointer rounded p-2 my-1 transition-all duration-200 hover:bg-gray-100 ${selectedProject?.name === project.name ? 'bg-gray-100 font-semibold' : 'text-gray-600'}`}
+                                        onClick={() => setSelectedProject({ ...project, category: category.name })}
+                                    >
+                                        <div className="flex items-center text-sm">
+                                          <ChevronRight className="w-4 h-4 text-gray-400 mr-2 flex-shrink-0" />
+                                          {project.name}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                ))}
+              </div>
+
+              {/* Right Pane - Project Details */}
+              <div className="col-span-2 bg-white border border-gray-200 rounded-lg shadow-sm">
+                {projectDetailsContent(selectedProject)}
+              </div>
             </div>
-          ))}
+          )}
         </div>
-
-        {/* UG/PG Toggle */}
-        <div className="flex justify-center gap-4 mb-8">
-          <button
-            onClick={() => setSelectedLevel("UG")}
-            className={`px-6 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 ${
-              selectedLevel === "UG"
-                ? "btn-primary"
-                : "btn-outline"
-            }`}
-          >
-            UG Projects
-          </button>
-          <button
-            onClick={() => setSelectedLevel("PG")}
-            className={`px-6 py-2 rounded-lg font-semibold transition-all duration-200 hover:scale-105 ${
-              selectedLevel === "PG"
-                ? "btn-primary"
-                : "btn-outline"
-            }`}
-          >
-            PG Projects
-          </button>
-        </div>
-
-        {/* Conditional Rendering of the Tree or Dropdown UI */}
-        {isMobile ? (
-          <MobileProjects data={data} />
-        ) : (
-          <TreeVisualization data={selectedLevel === "UG" ? { name: "UG Projects", children: UG_DATA } : { name: "PG Projects", children: PG_DATA }} />
-        )}
       </section>
-
+      
       {/* Benefits */}
       <section className="w-full py-12 px-4 lg:px-12 bg-white">
         <div className="max-w-7xl mx-auto">

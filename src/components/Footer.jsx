@@ -106,8 +106,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-sm text-gray-300 max-w-sm">
-              Peptides Knowledge Park is a leading research and innovation hub, dedicated to advancing knowledge and fostering collaboration across various sectors.
-            </p>
+Peptides Knowledge Park offers a range of Academic Support Services including Workshops to enhance student success and engagement.            </p>
 <div className="flex space-x-4">
               <a href="#" className="hover:text-[#ffc107] transition-colors">
                 <Linkedin className="w-6 h-6" />
@@ -133,7 +132,7 @@ const Footer = () => {
           {/* Box 2: Quick Links (Now with Gallery) */}
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-[#ffc107]">Quick Links</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-6">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "../assets/images/about-banner.jpg";
+import { Rocket, Star, Handshake, ShieldCheck } from "lucide-react";
+
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -87,31 +89,31 @@ const AboutUs = () => {
   return (
     <main className="bg-white min-h-screen font-inter">
       {/* Hero Section */}
-      <section
-        className="relative h-[50vh] md:h-[60vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center"
-        style={{ backgroundImage: `url(${Image})` }}
-      >
-        <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 text-center px-4"
-        >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
-            About Us
-          </h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto">
-            Peptides Knowledge Park’s Academic Support Services
-          </p>
-          <p className="text-base text-gray-200 mt-2 max-w-3xl mx-auto">
-            Enhancing student success and engagement through Tutoring,
-            Mentoring, Writing Labs, Academic Advising, Skill-Building
-            Workshops, Review Programs, Career Counselling, and more.
-          </p>
-        </motion.div>
+<section
+  className="relative h-[50vh] md:h-[50vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center"
+  style={{ backgroundImage: `url(${Image})` }}
+>
+  <motion.div
+    initial={{ y: -50, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    className="relative z-10 text-end w-full px-4"
+  >
+    <h1 className="text-4xl md:text-6xl font-extrabold mr-[10%] mb-4 drop-shadow-lg">
+      About Us
+    </h1>
+    {/* <p className="text-lg md:text-xl max-w-3xl mx-auto">
+      Peptides Knowledge Park’s Academic Support Services
+    </p>
+    <p className="text-base text-gray-200 mt-2 max-w-3xl mx-auto">
+      Enhancing student success and engagement through Tutoring,
+      Mentoring, Writing Labs, Academic Advising, Skill-Building
+      Workshops, Review Programs, Career Counselling, and more.
+    </p> */}
+  </motion.div>
 
-        <div className="absolute inset-0 bg-black/50"></div>
-      </section>
+  <div className="absolute inset-0 bg-black/50"></div>
+</section>
 
       {/* Mission & Vision Section */}
       <section className="py-16 px-4 lg:px-12">
@@ -123,7 +125,15 @@ const AboutUs = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-peptides-dark mb-6">
+            <p className="text-lg font-bold md:text-2xl max-w-3xl mx-auto">
+            Peptides Knowledge Park’s Academic Support Services
+          </p>
+            <p className="text-lg text-peptides-dark mt-2 max-w-3xl mx-auto">
+            Enhancing student success and engagement through Tutoring,
+            Mentoring, Writing Labs, Academic Advising, Skill-Building
+            Workshops, Review Programs, Career Counselling, and more.
+          </p>
+            <h2 className="text-3xl md:text-4xl font-bold pt-10 text-peptides-dark mb-6">
               Our Mission & Vision
             </h2>
           </motion.div>
@@ -193,7 +203,7 @@ const AboutUs = () => {
             >
               <div className="text-4xl md:text-5xl font-bold text-amber-light mb-2">
                 <span className="stat-value" data-target="768" data-plus="true">
-                  +768
+                  +5068
                 </span>
               </div>
               <div className="text-lg text-peptides-text-muted">
@@ -208,7 +218,7 @@ const AboutUs = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-amber-dark mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-amber-light mb-2">
                 <span
                   className="stat-value"
                   data-target="2164"
@@ -218,7 +228,7 @@ const AboutUs = () => {
                 </span>
               </div>
               <div className="text-lg text-peptides-text-muted">
-                Workshops & Programs
+                Projects & Workshops
               </div>
             </motion.div>
 
@@ -229,9 +239,9 @@ const AboutUs = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-amber-light mb-2">
                 <span className="stat-value" data-target="18" data-plus="false">
-                  18
+                  +17
                 </span>
               </div>
               <div className="text-lg text-peptides-text-muted">
@@ -260,49 +270,45 @@ const AboutUs = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: "Innovation",
-                description:
-                  "Pioneering modern educational methods and digital tools for learning success.",
-                icon: "🚀",
-              },
-              {
-                title: "Excellence",
-                description:
-                  "Delivering impactful academic support with the highest standards.",
-                icon: "⭐",
-              },
-              {
-                title: "Collaboration",
-                description:
-                  "Partnering with learners, educators, and institutions for shared growth.",
-                icon: "🤝",
-              },
-              {
-                title: "Integrity",
-                description:
-                  "Ensuring transparency, ethics, and accountability in all services.",
-                icon: "🔒",
-              },
-            ].map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-bold text-peptides-dark mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{value.description}</p>
-              </motion.div>
-            ))}
-          </div>
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  {[
+    {
+      title: "Innovation",
+      description: "Pioneering modern educational methods and digital tools for learning success.",
+      icon: <Rocket className="w-10 h-10 text-peptides-green" />,
+    },
+    {
+      title: "Excellence",
+      description: "Delivering impactful academic support with the highest standards.",
+      icon: <Star className="w-10 h-10 text-peptides-green" />,
+    },
+    {
+      title: "Collaboration",
+      description: "Partnering with learners, educators, and institutions for shared growth.",
+      icon: <Handshake className="w-10 h-10 text-peptides-green" />,
+    },
+    {
+      title: "Integrity",
+      description: "Ensuring transparency, ethics, and accountability in all services.",
+      icon: <ShieldCheck className="w-10 h-10 text-peptides-green" />,
+    },
+  ].map((value, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
+    >
+      <div className="text-4xl mb-4 flex justify-center">{value.icon}</div>
+      <h3 className="text-xl font-bold text-peptides-dark mb-3">
+        {value.title}
+      </h3>
+      <p className="text-gray-600 text-sm">{value.description}</p>
+    </motion.div>
+  ))}
+</div>
         </div>
       </section>
 
