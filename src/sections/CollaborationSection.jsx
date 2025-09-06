@@ -1,35 +1,44 @@
 import React from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import {Link} from 'react-router-dom'
+import ReddyCollegeLogo from '../assets/images/collaborations/reddyCollege.png'
 
 const colleges = [
   {
-    imageSrc: 'https://placehold.co/120x120/444/FFF?text=College+1',
-    name: 'College Name 1',
-    address: 'Address Line 1',
-    city: 'City, State 1',
-    description: 'A small description about the college or what it specializes in.',
+    imageSrc: 'http://www.avcollege.in/images/logo1.jpg',
+    name: 'A.V. College of Arts, Science & Commerce',
+    address: 'Domalguda',
+    city: 'Hyderabad',
+    description: 'An autonomous institution affiliated with Osmania University. It offers a wide range of undergraduate and postgraduate programs for students.',
   },
   {
-    imageSrc: 'https://placehold.co/120x120/444/FFF?text=College+2',
-    name: 'College Name 2',
-    address: 'Address Line 2',
-    city: 'City, State 2',
-    description: 'A brief description that highlights the unique aspects of this institution.',
+    imageSrc: 'https://www.rbvrrwomenscollege.ac.in/images/main/logo.png',
+    name: "R.B.V.R.R. Women's College",
+    address: 'Narayanaguda, YMCA Road',
+    city: 'Hyderabad',
+    description: "Founded in 1954, it is Hyderabad's second oldest women's college, dedicated to empowering young women through quality education and support.",
   },
   {
-    imageSrc: 'https://placehold.co/120x120/444/FFF?text=College+3',
-    name: 'College Name 3',
-    address: 'Address Line 3',
-    city: 'City, State 3',
-    description: 'Focuses on research and innovation in the fields of science and technology.',
+    imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSby96gl3eMKwQwNs3LPau2fWFgiPPjd3hsNg&s',
+    name: 'Pragathi Women\'s Degree College',
+    address: 'Vivekananda Nagar Colony',
+    city: 'Kukatpally, Hyderabad',
+    description: 'Part of the Pragathi Group of Institutions, it focuses on providing a comprehensive and holistic education with an emphasis on career and skill development.',
   },
   {
-    imageSrc: 'https://placehold.co/120x120/444/FFF?text=College+4',
-    name: 'College Name 4',
-    address: 'Address Line 4',
-    city: 'City, State 4',
-    description: 'Known for its excellent faculty and state-of-the-art laboratory facilities.',
+    imageSrc: 'https://bjrgdc.ac.in/assets/images/bjr_logo.png',
+    name: 'Babu Jagjivan Ram Government Degree College',
+    address: 'Vittalwadi, Narayanaguda',
+    city: 'Hyderabad',
+    description: 'A government institution established in 1974. It is dedicated to providing high-quality education to students from all economic backgrounds.',
+  },
+  {
+    imageSrc: 'https://www.kasturbagandhicollege.ac.in/assets/images/logos/clg-logo.jpg',
+    name: 'Kasturba Gandhi Degree & PG College for Women',
+    address: 'West Marredpally',
+    city: 'Secunderabad',
+    description: 'Established in 1973, this college is dedicated to providing value-based education, with a strong record in both academics and sports.',
   },
 ];
 
@@ -37,13 +46,13 @@ const CollaborationSection = () => {
   return (
     <section className="relative w-full py-12 bg-[#193127] flex flex-col items-center">
       <div className="text-center mb-12">
-        <span className="text-green-400 tracking-widest uppercase text-lg font-semibold">Technology Index</span>
+        <span className="text-amber-400 tracking-widest uppercase text-lg font-semibold">Technology Index</span>
         <h2 className="text-4xl md:text-5xl font-bold text-white mt-2">
           We Deliver Solution with the<br />Goal of Trusting Relationships
         </h2>
       </div>
 
-      <div className="w-full max-w-6xl">
+      <div className="w-full max-w-6xl px-4">
         <Splide
           options={{
             type: 'loop',
@@ -51,38 +60,48 @@ const CollaborationSection = () => {
             interval: 4000,
             speed: 800,
             pauseOnHover: true,
-            perPage: 4,      // How many cards visible at once
-            perMove: 1,      // Move 1 card per slide
-            gap: '1.5rem',   // Smaller gap to fit smaller cards
+            perPage: 4, // Default for large screens
+            perMove: 1,
+            gap: '1.5rem',
             arrows: true,
             pagination: false,
             breakpoints: {
-              1024: { perPage: 2 },
-              640: { perPage: 1 },
+              1024: { perPage: 3 }, // Show 3 cards on tablets
+              768: { perPage: 2 }, // Show 2 cards on larger phones and tablets
+              480: { perPage: 1 }, // Show 1 card on small phones
             },
           }}
         >
           {colleges.map((college, idx) => (
             <SplideSlide key={idx}>
               <div
-                className="bg-white border border-[#0F2920] rounded-xl p-4 flex flex-col items-center text-center shadow-md hover:shadow-lg transition transform hover:-translate-y-1"
-                style={{ maxWidth: '250px', minHeight: '350px', margin: '0 auto' }} // Reduce card width
+                className="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col items-center text-center shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 max-h-[450px]"
               >
-                {/* Hexagonal Image */}
-                <div className="w-32 h-32 mb-4 overflow-hidden rounded-full border-2 border-[#0F2920]">
-                  <img src={college.imageSrc} alt={college.name} className="w-full h-full object-cover" />
+                {/* Image Container */}
+                <div className="w-auto h-32 mb-4 overflow-hidden flex items-center justify-center">
+                  <img src={college.imageSrc} alt={college.name} className="w-auto h-32 object-contain" />
                 </div>
 
                 {/* College Info */}
-                <h3 className="text-xl font-bold text-[#0F2920] mb-1">{college.name}</h3>
-                <p className="text-[#0F2920]/80 text-sm">{college.address}</p>
-                <p className="text-[#0F2920]/80 text-sm mb-2">{college.city}</p>
-                <hr className="w-1/2 mx-auto my-4 border-[#0F2920]/30" />
-                <p className="text-[#0F2920]/80 text-sm">{college.description}</p>
+                <h3 className="text-xl font-bold text-gray-800 mb-1">{college.name}</h3>
+                <p className="text-gray-600 text-sm">{college.address}</p>
+                <p className="text-gray-600 text-sm mb-4">{college.city}</p>
+                <hr className="w-1/3 mx-auto my-2 border-gray-300" />
+                <p className="text-gray-700 text-sm mt-2">{college.description}</p>
               </div>
             </SplideSlide>
           ))}
         </Splide>
+      </div>
+
+{/* Button to navigate */}
+      <div className="mt-8 flex justify-center">
+        <Link 
+          to="/collaborations" // Use 'to' prop for Link component
+          className="px-8 py-3 bg-amber-500 text-white font-semibold rounded-full shadow-lg hover:bg-amber-600 transition-colors duration-300"
+        >
+          View All Collaborations
+        </Link>
       </div>
 
       {/* Custom arrow styling */}
