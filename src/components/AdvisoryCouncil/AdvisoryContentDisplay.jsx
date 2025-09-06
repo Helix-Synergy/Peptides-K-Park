@@ -337,6 +337,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import Image from '../../assets/images/about-banner.jpg'
 
 const advisoryContentData = {
   "about-advisory-board": {
@@ -362,7 +363,7 @@ const advisoryContentData = {
     },
     mainContent: [
       {
-        title: "Our Mission and Vision",
+        title: "Our Mission & Vision",
         paragraphs: [
           "The Panel of Experts is Committed to Fostering a Culture of Excellence and Strategic Foresight Within Peptides Knowledge Park. Our Mission is to Provide Invaluable Insights and Direction, Ensuring That Our Initiatives Align With Global Best Practices and Emerging Industry Trends.",
           "We Envision a Future Where Peptides Knowledge Park is a Beacon of Innovation, Driven by the Collective Wisdom and Diverse Experiences of Our Distinguished Board Members. Their Guidance is Crucial in Navigating Complex Challenges and Capitalizing on New Opportunities.",
@@ -789,7 +790,7 @@ const navigationLinks = [
     href: "/panel-of-experts/about-advisory-board",
   },
   {
-    name: "Subject Matter Experts",
+    name: "Our Subject Matter Experts",
     href: "/panel-of-experts/subject-matter-experts",
   },
   { name: "Become a Panel Member", href: "/panel-of-experts/become-a-member" },
@@ -821,27 +822,38 @@ const AdvisoryContentDisplay = ({ pageType }) => {
   return (
     <main className="bg-white min-h-screen text-gray-900 font-inter">
       {/* Hero Section */}
-      <section className="h-[40vh] md:h-[50vh] flex items-center justify-center text-center relative overflow-hidden bg-white">
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-amber-400">
-            {content.heroTitle}
-          </h1>
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-700">
-            {content.heroSubtitle}
-          </p>
-        </motion.div>
-      </section>
+<section
+  className="relative h-[50vh] md:h-[50vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center"
+  style={{ backgroundImage: `url(${Image})` }}
+>
+  <motion.div
+    initial={{ y: -50, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    className="relative z-10 text-end w-full px-4"
+  >
+    <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
+      {content.heroTitle}
+    </h1>
+    {/* <p className="text-lg md:text-xl max-w-3xl mx-auto">
+      Peptides Knowledge Park’s Academic Support Services
+    </p>
+    <p className="text-base text-gray-200 mt-2 max-w-3xl mx-auto">
+      Enhancing student success and engagement through Tutoring,
+      Mentoring, Writing Labs, Academic Advising, Skill-Building
+      Workshops, Review Programs, Career Counselling, and more.
+    </p> */}
+  </motion.div>
+
+  <div className="absolute inset-0 bg-black/50"></div>
+</section>
 
       {/* Content Section */}
       <section className="w-full py-12 px-4 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-[22rem_1fr] gap-8">
           {/* Sidebar */}
           <aside className="bg-green-900/10 backdrop-blur-md rounded-xl shadow-lg p-6 lg:sticky top-[146px] h-fit">
-            <h3 className="text-xl font-bold mb-4 text-green-800">
+            <h3 className="text-xl font-bold mb-4 text-peptides-color-brown">
               Quick Links
             </h3>
             <ul className="space-y-2">
@@ -849,7 +861,7 @@ const AdvisoryContentDisplay = ({ pageType }) => {
                 <li key={i}>
                   <Link
                     to={link.href}
-                    className="block py-2 px-3 rounded-lg hover:bg-green-800/20 transition text-green-900 font-medium"
+                    className="block py-2 px-3 rounded-lg hover:bg-green-800/20 transition text-black font-medium"
                   >
                     {link.name}
                   </Link>
@@ -869,12 +881,12 @@ const AdvisoryContentDisplay = ({ pageType }) => {
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className="mb-12 bg-white shadow-lg p-6 rounded-xl"
               >
-                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-amber-400">
+                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#0F2920]">
                   {section.title}
                 </h2>
 
                 {section.paragraphs?.map((p, i) => (
-                  <p key={i} className="text-gray-800 mb-3 leading-relaxed">
+                  <p key={i} className="text-black mb-3 leading-relaxed">
                     {p}
                   </p>
                 ))}
@@ -897,7 +909,7 @@ const AdvisoryContentDisplay = ({ pageType }) => {
                           <img
                             src={
                               member.image ||
-                              "https://placehold.co/100x100/444/FFF?text=Peptides+Image"
+                              `https://placehold.co/100x100/444/FFF?text=${member.name}`
                             }
                             alt={member.name}
                             className="w-32 h-32 rounded-full object-cover mb-4 shadow-md"
@@ -946,8 +958,8 @@ const AdvisoryContentDisplay = ({ pageType }) => {
                   <ul className="mt-4 space-y-2">
                     {section.benefits.map((benefit, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <span className="text-amber-400">✔</span>
-                        <span className="text-green-900">{benefit}</span>
+                        <span className="text-peptides-color-brown">✔</span>
+                        <span className="text-black">{benefit}</span>
                       </li>
                     ))}
                   </ul>

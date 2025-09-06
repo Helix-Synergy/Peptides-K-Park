@@ -61,7 +61,7 @@ const ServiceSlider = () => {
     <section className="w-full bg-white py-16 px-4 sm:px-8 lg:px-8 bg-blue-300/10">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <span className="text-[#714819] text-base font-semibold tracking-widest mb-2 uppercase block">Our Services</span>
+          <span className="text-peptides-color-brown text-base font-semibold tracking-widest mb-2 uppercase block">Our Services</span>
           <h2 className="text-3xl sm:text-5xl font-bold text-[#0F2920] mb-4">We Offer Wide Range of <br className="hidden sm:block" /> Academic Support Services</h2>
         </div>
         <div
@@ -133,7 +133,7 @@ const ServiceSlider = () => {
             </>
           )}
         </div>
-        
+
       </div>
     </section>
   );

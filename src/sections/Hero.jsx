@@ -108,7 +108,7 @@ const Hero = () => {
           Peptides Knowledge Park<br className="hidden sm:block" />
         </motion.h1>
         <motion.p
-          className="text-lg sm:text-xl text-black mb-8 max-w-xl text-center mx-auto lg:mx-0"
+          className="text-lg sm:text-xl text-black mb-8 max-w-xl text-justify mx-auto lg:mx-0"
           initial="hidden"
           animate="visible"
           variants={textVariants}

@@ -108,7 +108,7 @@ const AboutSection = () => {
 
       {/* Right: Text and Feature Cards */}
       <div className="flex-1 flex flex-col items-start max-w-2xl z-10">
-        <span className="text-[#714819] text-sm sm:text-base font-semibold tracking-widest mb-2 uppercase">
+        <span className="text-peptides-color-brown text-sm sm:text-base font-semibold tracking-widest mb-2 uppercase">
           About Peptides Knowledge Park
         </span>
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F2920] mb-6 leading-tight">

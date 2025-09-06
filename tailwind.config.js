@@ -16,6 +16,7 @@ module.exports = {
         // Text colors
         'peptides-text-light': '#ffffff',
         'peptides-text-muted': '#d9d9d9',
+        'peptides-color-brown' : '#714819',
         
 
         // Buttons

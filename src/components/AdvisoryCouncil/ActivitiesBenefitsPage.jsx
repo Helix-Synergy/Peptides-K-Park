@@ -194,10 +194,10 @@ style={{ backgroundImage: `url(${activityBanner})` }}
       <section className="bg-white py-12 mt-12 border-t-2 border-b-2 border-[#0f2920]">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center px-4">
           {[
-            { number: "100+", label: "Workshops Conducted" },
-            { number: "500+", label: "Students Trained" },
-            { number: "50+", label: "Research Projects" },
-            { number: "30+", label: "Collaborations" },
+            { number: "2685+", label: "Workshops Conducted" },
+            { number: "7687+", label: "Students Trained" },
+            { number: "1708+", label: "Research Projects" },
+            { number: "168+", label: "Collaborations" },
           ].map((stat, idx) => (
             <motion.div
               key={idx}

@@ -9,7 +9,7 @@ const HomeContactSection = () => {
     <section className="w-full py-12 px-6 bg-[#f2efe9]" id="contact">
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
         {/* Heading */}
-        <span className="text-[#714819] text-sm font-semibold tracking-widest uppercase mb-2">
+        <span className="text-peptides-color-brown text-sm font-semibold tracking-widest uppercase mb-2">
           Get In Touch
         </span>
 
