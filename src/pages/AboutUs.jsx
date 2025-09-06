@@ -125,10 +125,10 @@ const AboutUs = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <p className="text-lg font-bold md:text-2xl max-w-3xl mx-auto">
+            <p className="text-lg text-[#0F2920] font-bold md:text-2xl max-w-3xl mx-auto">
             Peptides Knowledge Park’s Academic Support Services
           </p>
-            <p className="text-lg text-peptides-dark mt-2 max-w-3xl mx-auto">
+            <p className="text-lg text-black mt-2 max-w-3xl mx-auto">
             Enhancing student success and engagement through Tutoring,
             Mentoring, Writing Labs, Academic Advising, Skill-Building
             Workshops, Review Programs, Career Counselling, and more.
@@ -265,7 +265,7 @@ const AboutUs = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-peptides-dark mb-6">
               Our Core Values
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-black max-w-3xl mx-auto leading-relaxed">
               The fundamantals and principles we follow do shape our Culture of Excellence.
             </p>
           </motion.div>
@@ -274,22 +274,22 @@ const AboutUs = () => {
   {[
     {
       title: "Innovation",
-      description: "Pioneering modern educational methods and digital tools for learning success.",
+      description: "Pioneering Modern Educational methods and Digital Tools for Learning Success.",
       icon: <Rocket className="w-10 h-10 text-peptides-green" />,
     },
     {
       title: "Excellence",
-      description: "Delivering impactful academic support with the highest standards.",
+      description: "Delivering impactful Academic Support with the highest standards.",
       icon: <Star className="w-10 h-10 text-peptides-green" />,
     },
     {
       title: "Collaboration",
-      description: "Partnering with learners, educators, and institutions for shared growth.",
+      description: "Partnering with Learners, Educators, and Institutions for Shared Growth.",
       icon: <Handshake className="w-10 h-10 text-peptides-green" />,
     },
     {
       title: "Integrity",
-      description: "Ensuring transparency, ethics, and accountability in all services.",
+      description: "Ensuring Transparency, Ethics, and Accountability in all Services.",
       icon: <ShieldCheck className="w-10 h-10 text-peptides-green" />,
     },
   ].map((value, index) => (
@@ -305,7 +305,7 @@ const AboutUs = () => {
       <h3 className="text-xl font-bold text-peptides-dark mb-3">
         {value.title}
       </h3>
-      <p className="text-gray-600 text-sm">{value.description}</p>
+      <p className="text-black text-sm">{value.description}</p>
     </motion.div>
   ))}
 </div>
@@ -325,8 +325,8 @@ const AboutUs = () => {
               Ready to Partner with Us?
             </h2>
             <p className="text-lg mb-8 opacity-90">
-              Join us in empowering students, educators, and institutions
-              through academic excellence.
+              Join us in Empowering Students, Educators, and Institutions
+              through Academic Excellence.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

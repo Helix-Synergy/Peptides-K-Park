@@ -180,7 +180,7 @@ const people = [
     img: "assets/img/advisory/thomas-j-webster.jpg",
   },
   {
-    name: "Dr. Mallappa Kumara Swamy",
+    name: "Dr. M Kumara Swamy",
     designation: "HOD Biotechnology",
     place: "INDIA",
     img: "assets/img/advisory/mallappa.jpeg",
