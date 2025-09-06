@@ -99,7 +99,7 @@ const Hero = () => {
         </div>
 
         <motion.h1
-          className="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6"
+          className="text-4xl sm:text-5xl lg:text-7xl font-bold text-[#0F2920] leading-tight mb-6"
           initial="hidden"
           animate="visible"
           variants={textVariants}
@@ -108,7 +108,7 @@ const Hero = () => {
           Peptides Knowledge Park<br className="hidden sm:block" />
         </motion.h1>
         <motion.p
-          className="text-lg sm:text-xl text-gray-500 mb-8 max-w-xl mx-auto lg:mx-0"
+          className="text-lg sm:text-xl text-black mb-8 max-w-xl text-center mx-auto lg:mx-0"
           initial="hidden"
           animate="visible"
           variants={textVariants}
@@ -122,7 +122,7 @@ Peptides Knowledge Park’s Academic Support Services encompass a range of offer
         <div className="absolute inset-0 w-full h-full">
           {/* Diagonal overlay */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <polygon points="0,0 800,0 800,800" fill="#b79332ff" fillOpacity="0.8" />
+            <polygon points="0,0 800,0 800,800" fill="#0F2920" />
           </svg>
           {/* Placeholder image with diagonal mask */}
           <motion.img

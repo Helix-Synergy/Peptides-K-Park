@@ -132,7 +132,7 @@ Peptides Knowledge Park offers a range of Academic Support Services including Wo
           {/* Box 2: Quick Links (Now with Gallery) */}
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-[#ffc107]">Quick Links</h3>
-            <ul className="space-y-6">
+            <ul className="space-y-[29px]">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -200,7 +200,7 @@ Peptides Knowledge Park offers a range of Academic Support Services including Wo
           {/* Box 4: Get in Touch (Contact Info) */}
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-[#ffc107]">Get in Touch</h3>
-            <address className="not-italic space-y-2 text-gray-300">
+            <address className="not-italic space-y-[19px] text-gray-300">
               <p className="flex items-start space-x-2">
                 <MapPin className="w-5 h-5 text-[#ffc107] mt-1 shrink-0" />
                 <span>

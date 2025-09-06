@@ -168,28 +168,28 @@ import { Link } from 'react-router-dom';
 // Dummy data with placeholders
 const people = [
   {
-    name: "Person One",
-    designation: "Expert",
-    place: "Location A",
-    img: "https://placehold.co/100x100/444/FFF?text=Peptides+Image",
+    name: "Dr. Valasia Iakovoglou",
+    designation: "Academic Researcher",
+    place: "UNITED STATES of AMERICA",
+    img: "assets/img/advisory/valasia-iakovoglou.jpg",
   },
   {
-    name: "Person Two",
-    designation: "Specialist",
-    place: "Location B",
-    img: "https://placehold.co/100x100/444/FFF?text=Peptides+Image",
+    name: "Dr. Thomas J. Webster",
+    designation: "Biomedical Engineer & Researcher",
+    place: "UNITED STATES of AMERICA",
+    img: "assets/img/advisory/thomas-j-webster.jpg",
   },
   {
-    name: "Person Three",
-    designation: "Consultant",
-    place: "Location C",
-    img: "https://placehold.co/100x100/444/FFF?text=Peptides+Image",
+    name: "Dr. Mallappa Kumara Swamy",
+    designation: "HOD Biotechnology",
+    place: "INDIA",
+    img: "assets/img/advisory/mallappa.jpeg",
   },
   {
-    name: "Person Four",
-    designation: "Researcher",
-    place: "Location D",
-    img: "https://placehold.co/100x100/444/FFF?text=Peptides+Image",
+    name: "Dr. Shiva Krishna",
+    designation: "Researcher Microbiology",
+    place: "INDIA",
+    img: "assets/img/advisory/siva-krishna.jpeg",
   },
 ];
 
@@ -215,18 +215,18 @@ const ExpertsSection = () => {
     <section
       ref={sectionRef}
       className="w-full py-12 px-4 sm:px-8 lg:px-12 relative overflow-hidden"
-      style={{ backgroundColor: "#AAB4B0" }}
+      style={{ backgroundColor: "#fff8ecff" }}
     >
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Title */}
         <div className="text-center mb-12">
           <motion.h2
-            className="text-4xl sm:text-5xl font-bold text-white"
+            className="text-4xl sm:text-5xl font-bold text-[#0f2920]"
             initial={{ opacity: 0, y: -20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            Meet Our Experts
+            Meet Our Panel of Experts
           </motion.h2>
         </div>
 

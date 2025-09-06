@@ -108,13 +108,13 @@ const AboutSection = () => {
 
       {/* Right: Text and Feature Cards */}
       <div className="flex-1 flex flex-col items-start max-w-2xl z-10">
-        <span className="text-[#ad9554] text-sm sm:text-base font-semibold tracking-widest mb-2 uppercase">
+        <span className="text-[#714819] text-sm sm:text-base font-semibold tracking-widest mb-2 uppercase">
           About Peptides Knowledge Park
         </span>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-          Explore Trusted Research <br /> Lab Products & Services
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F2920] mb-6 leading-tight">
+          Explore Trusted Academic <br /> Support Services
         </h2>
-        <p className="text-gray-600 text-base sm:text-lg mb-6">
+        <p className="text-black text-base sm:text-lg mb-6">
           Academic advising helps students navigate curriculum choices, align their studies with career goals, and explore interdisciplinary pathways. Skill-building workshops focus on time management, research methodology, exam strategies, and digital productivity tools. 
         </p>
 
@@ -127,7 +127,7 @@ const AboutSection = () => {
       <div className="font-bold text-lg text-gray-900 mb-1">
         +5168
       </div>
-      <div className="text-gray-500 text-sm">
+      <div className="text-[#0f2920] text-sm">
         Students Supported
       </div>
     </div>
@@ -139,7 +139,7 @@ const AboutSection = () => {
       <div className="font-bold text-lg text-gray-900 mb-1">
         +2164
       </div>
-      <div className="text-gray-500 text-sm">
+      <div className="text-[#0f2920] text-sm">
         Projects & Workshops
       </div>
     </div>
@@ -151,7 +151,7 @@ const AboutSection = () => {
       <div className="font-bold text-lg text-gray-900 mb-1">
         +17
       </div>
-      <div className="text-gray-500 text-sm">
+      <div className="text-[#0f2920] text-sm">
         Years of Experience
       </div>
     </div>
@@ -160,7 +160,7 @@ const AboutSection = () => {
 </div>
 
 
-        <p className="text-gray-600 mb-8 text-sm sm:text-base">
+        <p className="text-black text-base sm:text-lg mb-8">
           Review programs prepare students for competitive exams and certifications through mock tests, analytics, and targeted content. Learning resource hubs provide curated digital materials, simulations, and access to open-source academic tools. Career counselling services bridge academic learning with professional readiness, offering Resume building, Interview preparation & portfolio development tailored to specific sectors.
         </p>
 <Link

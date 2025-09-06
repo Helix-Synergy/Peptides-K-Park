@@ -2892,7 +2892,7 @@ const Navbar = () => {
       </div>
 
       {/* Bottom Row (Desktop) */}
-      <div className="bg-[#193127] pl-[120px] pr-4 h-[50px] hidden lg:flex items-center space-x-4">
+      <div className="bg-[#734C20] pl-[120px] pr-4 h-[50px] hidden lg:flex items-center space-x-4">
         {secondRowLinks.map((link) => {
           const isActive =
             location.pathname === link.href ||
@@ -2929,7 +2929,7 @@ const Navbar = () => {
       </div>
 
       {/* Bottom Row Mobile/Tablet */}
-      <div className="lg:hidden bg-[#193127] overflow-x-auto whitespace-nowrap scrollbar-hide py-2">
+      <div className="lg:hidden bg-[#734C20] overflow-x-auto whitespace-nowrap scrollbar-hide py-2">
         <div className="pl-[140px] inline-flex items-center space-x-2">
           {secondRowLinks.map((link) => {
             const isActive =

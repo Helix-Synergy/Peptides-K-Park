@@ -46,7 +46,7 @@ const CollaborationSection = () => {
   return (
     <section className="relative w-full py-12 bg-[#193127] flex flex-col items-center">
       <div className="text-center mb-12">
-        <span className="text-amber-400 tracking-widest uppercase text-lg font-semibold">Technology Index</span>
+        <span className="text-amber-400 tracking-widest uppercase text-lg font-semibold">Collaborations</span>
         <h2 className="text-4xl md:text-5xl font-bold text-white mt-2">
           We Deliver Solution with the<br />Goal of Trusting Relationships
         </h2>
@@ -98,7 +98,7 @@ const CollaborationSection = () => {
       <div className="mt-8 flex justify-center">
         <Link 
           to="/collaborations" // Use 'to' prop for Link component
-          className="px-8 py-3 bg-amber-500 text-white font-semibold rounded-full shadow-lg hover:bg-amber-600 transition-colors duration-300"
+          className="px-8 py-3 bg-[#A67A2F] text-white font-semibold rounded-lg shadow-lg hover:bg-amber-500 transition-colors duration-300"
         >
           View All Collaborations
         </Link>

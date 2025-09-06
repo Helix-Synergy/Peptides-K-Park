@@ -7,14 +7,14 @@ import academicAssistance from '../assets/services/academic_assistance.svg';
 
 const services = [
   {
-    title: 'Cyber Security',
+    title: 'Academic Assist',
     description: '',
     image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80',
     icon: <img src={labServices} alt="Lab Services" className="w-10 h-10 mb-2" />,
     bg: 'bg-gradient-to-t from-blue-900/80 to-blue-900/40',
   },
   {
-    title: 'Digital Services',
+    title: 'Corporate Astute',
     description: 'Expertise in a IT consultancy for the many companies, for their different working areas.',
     image: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80',
     icon: <img src={contractResearch} alt="Contract Research" className="w-10 h-10 mb-2" />,
@@ -22,23 +22,17 @@ const services = [
     card: true,
   },
   {
-    title: 'Product Design',
+    title: 'Career Saga',
     description: '',
     image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80',
     icon: <img src={academicAssistance} alt="Academic Assistance" className="w-10 h-10 mb-2" />,
     bg: 'bg-gradient-to-t from-blue-900/80 to-blue-900/40',
   },
   {
-    title: 'Cloud Solutions',
+    title: 'Collaborations',
     description: 'Cloud migration, management, and security for your business.',
     image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80',
     icon: <Cloud className="w-10 h-10 mb-2 text-white drop-shadow-md" />,
-  },
-  {
-    title: 'Network Management',
-    description: 'Reliable network setup and monitoring for all sizes of business.',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80',
-    icon: <Shield className="w-10 h-10 mb-2 text-white drop-shadow-md" />,
   },
 ];
 
@@ -67,8 +61,8 @@ const ServiceSlider = () => {
     <section className="w-full bg-white py-16 px-4 sm:px-8 lg:px-8 bg-blue-300/10">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <span className="text-indigo-400 text-base font-semibold tracking-widest mb-2 uppercase block">Our Service</span>
-          <h2 className="text-3xl sm:text-5xl font-bold text-gray-900 mb-4">We Offer a Wide<br className="hidden sm:block" /> Variety of IT Services</h2>
+          <span className="text-[#714819] text-base font-semibold tracking-widest mb-2 uppercase block">Our Services</span>
+          <h2 className="text-3xl sm:text-5xl font-bold text-[#0F2920] mb-4">We Offer Wide Range of <br className="hidden sm:block" /> Academic Support Services</h2>
         </div>
         <div
           className="relative flex items-center justify-center"
@@ -139,6 +133,7 @@ const ServiceSlider = () => {
             </>
           )}
         </div>
+        
       </div>
     </section>
   );
