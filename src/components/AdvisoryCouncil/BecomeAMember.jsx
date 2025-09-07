@@ -1,5 +1,7 @@
 // src/components/AdvisoryCouncil/BecomeAMember.jsx
 import React, { useRef, useState } from 'react';
+import { motion } from "framer-motion";
+import becomeMember from "../../assets/images/about-banner.jpg";
 
 const BecomeAMember = () => {
   const [profilePreview, setProfilePreview] = useState('');
@@ -53,17 +55,22 @@ const BecomeAMember = () => {
 
   return (
     <main className="min-h-screen" style={{ backgroundColor: '#f2efe9', color: '#714819' }}>
-      {/* Page Title */}
-      <section className="relative w-full h-56 md:h-72 overflow-hidden">
-        <img
-          src="https://img.freepik.com/premium-photo/exploring-genetic-structures-with-futuristic-technology-modern-laboratory-setting_993370-21783.jpg?w=1200"
-          alt="Become Member banner"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/35" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-white text-3xl md:text-5xl font-extrabold my-5">Become Member</h1>
-        </div>
+      {/* Hero Section */}
+      <section
+        className="relative h-[50vh] flex items-center justify-end text-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${becomeMember})` }}
+      >
+  <div className="absolute inset-0 bg-black/50"></div>
+        <motion.div
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 px-4"
+        >
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
+            Become A Member
+          </h1>
+        </motion.div>
       </section>
 
       <section className="max-w-5xl mx-auto px-6 py-10">

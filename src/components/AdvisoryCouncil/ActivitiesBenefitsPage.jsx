@@ -1,43 +1,57 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import activityBanner from '../../assets/images/about-banner.jpg'
+import activityBanner from "../../assets/images/about-banner.jpg";
+import {
+  FlaskConical,
+  Telescope,
+  GraduationCap,
+  Megaphone,
+  Briefcase,
+  Dna,
+  Zap,
+  Handshake,
+  Factory,
+  Award,
+  Globe,
+  Rocket,
+} from "lucide-react";
 
 const activitiesData = [
   {
     title: "Hands-On Laboratory Training",
     description:
       "Engage In Practical Experiments And Develop Advanced Laboratory Skills In Biotechnology And Life Sciences.",
-    icon: "🧪",
+    iconComponent: FlaskConical,
   },
   {
     title: "Collaborative Research Projects",
     description:
       "Work With Corporate And Academic Partners On Real-World Scientific Research Projects In Biotechnology.",
-    icon: "🔬",
+    iconComponent: Telescope,
   },
   {
     title: "Skill Enhancement Workshops",
     description:
       "Participate In Workshops Focused On Biotechnology, Advanced Laboratory Techniques, And Scientific Methods.",
-    icon: "🎓",
+    iconComponent: GraduationCap,
   },
   {
     title: "Seminars & Scientific Conferences",
     description:
       "Attend Expert-Led Seminars And National/International Conferences To Broaden Knowledge In Life Sciences Research.",
-    icon: "📢",
+    iconComponent: Megaphone,
   },
   {
     title: "Mentorship & Career Guidance",
     description:
       "Receive Personalized Mentorship From Industry And Academic Experts For Career Advancement In Biotechnology And Laboratory Sciences.",
-    icon: "💼",
+    iconComponent: Briefcase,
   },
   {
     title: "Innovative Project Development",
     description:
       "Engage In Designing And Executing Innovative Projects That Translate Scientific Research Into Practical Applications In Biotechnology.",
-    icon: "🧬",
+    iconComponent: Dna,
   },
 ];
 
@@ -46,46 +60,45 @@ const benefitsData = [
     title: "Practical Knowledge & Skills",
     description:
       "Gain Hands-On Experience And Apply Theoretical Knowledge In Real Laboratory Environments In Life Sciences And Biotechnology.",
-    icon: "⚡",
+    iconComponent: Zap,
   },
   {
     title: "Networking Opportunities",
     description:
       "Connect With Top Researchers, Industry Experts, And Fellow Students In Biotechnology And Scientific Research.",
-    icon: "🤝",
+    iconComponent: Handshake,
   },
   {
     title: "Access To Research Facilities",
     description:
       "Work In Cutting-Edge Laboratories Equipped With Advanced Instruments And Technology For Biotechnology And Life Sciences.",
-    icon: "🏭",
+    iconComponent: Factory,
   },
   {
     title: "Recognition & Certifications",
     description:
       "Receive Certificates And Awards Recognizing Your Accomplishments And Expertise In Scientific Research And Biotechnology.",
-    icon: "🏅",
+    iconComponent: Award,
   },
   {
     title: "Exposure To Real Projects",
     description:
       "Participate In Projects With Real-World Impact And Contribute To Meaningful Research In Biotechnology And Life Sciences.",
-    icon: "🌐",
+    iconComponent: Globe,
   },
   {
     title: "Career Advancement Opportunities",
     description:
       "Benefit From Strategic Guidance, Internship Programs, And Professional Development Opportunities In The Field Of Biotechnology.",
-    icon: "🚀",
+    iconComponent: Rocket,
   },
 ];
-
-
 
 const ActivitiesBenefitsPage = () => {
   const [activeTab, setActiveTab] = useState("Activities");
 
-  const dataToDisplay = activeTab === "Activities" ? activitiesData : benefitsData;
+  const dataToDisplay =
+    activeTab === "Activities" ? activitiesData : benefitsData;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -107,22 +120,19 @@ const ActivitiesBenefitsPage = () => {
     <main className="min-h-screen font-inter bg-white text-[#0f2920]">
       {/* Hero Section */}
       <section
-        className="relative h-[50vh] flex items-center justify-center text-center bg-cover bg-center"
-style={{ backgroundImage: `url(${activityBanner})` }}
-        >
-        <div className="absolute inset-0 bg-white/80"></div>
+        className="relative h-[50vh] flex items-center justify-end text-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${activityBanner})` }}
+      >
+  <div className="absolute inset-0 bg-black/50"></div>
         <motion.div
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="relative z-10 px-4"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-[#0f2920]">
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
             Activities & Benefits
           </h1>
-          <p className="max-w-3xl mx-auto text-lg md:text-xl text-[#0f2920]">
-            Transforming Research Into Practical Applications And Advancing Life Science Education And Biotechnology Innovation.
-          </p>
         </motion.div>
       </section>
 
@@ -173,19 +183,31 @@ style={{ backgroundImage: `url(${activityBanner})` }}
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
         >
           <AnimatePresence mode="wait">
-            {dataToDisplay.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                variants={itemVariants}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white border-2 border-[#0f2920] rounded-xl p-6 flex flex-col items-center text-center shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all"
-              >
-                <div className="text-5xl mb-4">{item.icon}</div>
-                <h3 className="text-xl font-bold mb-2 text-[#0f2920]">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
-              </motion.div>
-            ))}
+            {dataToDisplay.map((item, idx) => {
+              // Correct way to call the icon component
+              const IconComponent = item.iconComponent;
+
+              return (
+                <motion.div
+                  key={item.title}
+                  variants={itemVariants}
+                  exit={{ opacity: 0, y: -50 }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-white border-2 border-[#0f2920] rounded-xl p-6 flex flex-col items-center text-center shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all"
+                >
+                  {/* Call the icon component with JSX syntax */}
+                  {/* You can also add styling classes directly here */}
+                  <div className="text-5xl mb-4 text-peptides-color-brown">
+                    <IconComponent size={48} strokeWidth={2} />
+                  </div>
+
+                  <h3 className="text-xl font-bold mb-2 text-[#0f2920]">
+                    {item.title}
+                  </h3>
+                  <p className="text-black">{item.description}</p>
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </motion.div>
       </section>
@@ -231,7 +253,8 @@ style={{ backgroundImage: `url(${activityBanner})` }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-[#0f2920] mb-6"
         >
-          Explore activities and benefits, and take your career and research to the next level.
+          Explore activities and benefits, and take your career and research to
+          the next level.
         </motion.p>
         <motion.a
           initial={{ opacity: 0, y: 20 }}

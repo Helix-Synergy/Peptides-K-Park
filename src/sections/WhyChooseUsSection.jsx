@@ -164,6 +164,10 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from 'react-router-dom';
+import valasia from '../assets/images/advisory/valasia.jpg';
+import thomas from '../assets/images/advisory/thomas.jpg';
+import kumar from '../assets/images/advisory/kumar.jpeg';
+import shivakrishna from '../assets/images/advisory/shivakrishna.jpeg';
 
 // Dummy data with placeholders
 const people = [
@@ -171,25 +175,25 @@ const people = [
     name: "Dr. Valasia Iakovoglou",
     designation: "Academic Researcher",
     place: "UNITED STATES of AMERICA",
-    img: "assets/img/advisory/valasia-iakovoglou.jpg",
+    img: valasia,
   },
   {
     name: "Dr. Thomas J. Webster",
-    designation: "Biomedical Engineer & Researcher",
+    designation: "Biomedical Engineer",
     place: "UNITED STATES of AMERICA",
-    img: "assets/img/advisory/thomas-j-webster.jpg",
+    img: thomas,
   },
   {
     name: "Dr. M Kumara Swamy",
     designation: "HOD Biotechnology",
     place: "INDIA",
-    img: "assets/img/advisory/mallappa.jpeg",
+    img: kumar,
   },
   {
     name: "Dr. Shiva Krishna",
     designation: "Researcher Microbiology",
     place: "INDIA",
-    img: "assets/img/advisory/siva-krishna.jpeg",
+    img: shivakrishna,
   },
 ];
 

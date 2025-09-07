@@ -851,31 +851,31 @@ const AcademicProjects = () => {
   const features = [
     {
       icon: <BookOpen className="w-8 h-8 text-[#0f2920]" />,
-      title: "Project Planning & Design",
-      description: "Comprehensive planning with research methodology, timelines, and resource allocation.",
+      title: "Project Planning ",
+      description: "Comprehensive planning with Research Methodology, Timelines, and Resource Allocation.",
     },
     {
       icon: <Users className="w-8 h-8 text-[#0f2920]" />,
       title: "Expert Guidance",
-      description: "One-on-one mentorship from experienced researchers and industry professionals.",
+      description: "One-on-One Mentorship from Experienced Researchers and Industry Professionals.",
     },
     {
       icon: <Award className="w-8 h-8 text-[#0f2920]" />,
       title: "Quality Assurance",
-      description: "Peer reviews and validation processes to meet academic standards.",
+      description: "Peer Reviews and Validation processes to meet Academic Standards.",
     },
     {
       icon: <Target className="w-8 h-8 text-[#0f2920]" />,
       title: "Implementation Support",
-      description: "Help with data collection, analysis, and execution using industry-standard tools.",
+      description: "Help with Data Collection, Analysis, and Execution using Industry-Standard Tools.",
     },
   ];
 
   const benefits = [
-    "Enhanced research skills and methodology",
-    "Industry-relevant project experience",
-    "Opportunities for publications & patents",
-    "Networking with industry professionals",
+    "Enhanced Research Skills and Methodology",
+    "Industry-Relevant Project Experience",
+    "Opportunities for Publications & Patents",
+    "Networking with Industry Professionals",
   ];
 
   useEffect(() => {
