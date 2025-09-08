@@ -2,39 +2,43 @@ import React from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import {Link} from 'react-router-dom'
-import ReddyCollegeLogo from '../assets/images/collaborations/reddyCollege.png'
+import ReddyCollegeLogo from '../assets/images/collaborations/RBVRRCollegeLogo.png'
+import AVCollegeLogo from '../assets/images/collaborations/RBVRRCollegeLogo.png'
+import PragathiCollegeLogo from '../assets/images/collaborations/pragathiCollegeLogo.jpg'
+import BJRCollegeLogo from '../assets/images/collaborations/BJRCollegeLogo.png'
+import KasthuribaCollegeLogo from '../assets/images/collaborations/KasturibaCollegeLogo.jpg'
 
 const colleges = [
   {
-    imageSrc: 'http://www.avcollege.in/images/logo1.jpg',
+    imageSrc: AVCollegeLogo,
     name: 'A.V. College of Arts, Science & Commerce',
     address: 'Domalguda',
     city: 'Hyderabad',
     description: 'An autonomous institution affiliated with Osmania University. It offers a wide range of undergraduate and postgraduate programs for students.',
   },
   {
-    imageSrc: 'https://www.rbvrrwomenscollege.ac.in/images/main/logo.png',
+    imageSrc: ReddyCollegeLogo,
     name: "R.B.V.R.R. Women's College",
     address: 'Narayanaguda, YMCA Road',
     city: 'Hyderabad',
     description: "Founded in 1954, it is Hyderabad's second oldest women's college, dedicated to empowering young women through quality education and support.",
   },
   {
-    imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSby96gl3eMKwQwNs3LPau2fWFgiPPjd3hsNg&s',
+    imageSrc: PragathiCollegeLogo,
     name: 'Pragathi Women\'s Degree College',
     address: 'Vivekananda Nagar Colony',
     city: 'Kukatpally, Hyderabad',
     description: 'Part of the Pragathi Group of Institutions, it focuses on providing a comprehensive and holistic education with an emphasis on career and skill development.',
   },
   {
-    imageSrc: 'https://bjrgdc.ac.in/assets/images/bjr_logo.png',
+    imageSrc: BJRCollegeLogo,
     name: 'Babu Jagjivan Ram Government Degree College',
     address: 'Vittalwadi, Narayanaguda',
     city: 'Hyderabad',
     description: 'A government institution established in 1974. It is dedicated to providing high-quality education to students from all economic backgrounds.',
   },
   {
-    imageSrc: 'https://www.kasturbagandhicollege.ac.in/assets/images/logos/clg-logo.jpg',
+    imageSrc: KasthuribaCollegeLogo,
     name: 'Kasturba Gandhi Degree & PG College for Women',
     address: 'West Marredpally',
     city: 'Secunderabad',

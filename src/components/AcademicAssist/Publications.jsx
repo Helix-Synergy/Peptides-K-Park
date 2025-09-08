@@ -338,30 +338,30 @@ const PeerReviewProcess = () => {
         </div>
 
         {/* Who Can Benefit Section */}
-        <div className="mt-20 md:mt-32">
+        <div className="mt-8 md:mt-10">
           <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[#0f2920] to-[#714819] flex justify-center items-center">
             <Users size={32} className="inline-block mr-2" /> Who Can Benefit?
           </h2>
-          <div className="flex overflow-x-auto gap-4 p-4 scrollbar-hide">
+          <div className="flex overflow-x-auto gap-4 items-center justify-center scrollbar-hide">
             {whoCanBenefit.map((chip, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05, duration: 0.3 }}
-                className="flex items-center bg-[#e0ede6] border border-[#a2b5aa] rounded-full py-2 px-4 shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-[#a2b5aa] flex-shrink-0"
+                className="flex items-center justify-center bg-[#e0ede6] border border-[#a2b5aa] rounded-full py-2 px-4 shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-[#a2b5aa] flex-shrink-0"
               >
-                <chip.icon size={20} className="text-[#714819] mr-2" />
-                <span className="text-sm font-semibold text-[#0f2920]">{chip.label}</span>
+                <chip.icon size={30} className="text-[#714819] mr-2" />
+                <span className="text-base font-semibold text-[#0f2920]">{chip.label}</span>
               </motion.div>
             ))}
           </div>
         </div>
 
         {/* Closing CTA */}
-        <div className="mt-20 md:mt-32 text-center pb-16">
-          <p className="text-lg md:text-2xl font-semibold mb-8 text-[#1f3b30] max-w-2xl mx-auto">
-            Peer-reviewed science ensures <span className="text-[#714819]">trust</span>, <span className="text-[#714819]">impact</span>, and <span className="text-[#714819]">global recognition</span>.
+        <div className="mt-8 md:mt-10 text-center pb-16">
+          <p className="text-lg md:text-2xl font-semibold mb-8 text-[#1f3b30] max-w-4xl mx-auto">
+            Peer-reviewed science ensures <span className="text-[#714819]">Trust</span>, <span className="text-[#714819]">Impact</span>, and <span className="text-[#714819]">Global Recognition</span>.
           </p>
           <motion.button
             variants={glowAnimation}

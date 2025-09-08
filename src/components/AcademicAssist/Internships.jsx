@@ -1,99 +1,95 @@
 import React from "react";
 import {
-  Brain, Clock, Target, HeartPulse,
-  Workflow, Building2, TrendingUp, Rocket, FlaskConical,
-  Microscope, Briefcase, Sprout, Leaf, Droplet,
-  Calculator, Megaphone, ClipboardList, Cloud, UserCircle,
-  GraduationCap, FileText, Type, Image, ShieldCheck,
-  ShoppingBag, Users, MonitorSmartphone, Pill, LampDesk,
-  Film, BookMarked, Palette, Utensils, Globe2,
-  Stethoscope, Activity, Sparkles, UserCog, BookOpen,
-  PackageSearch
+  Brain,
+  HeartPulse,
+  Clock,
+  Target,
+  Activity,
+  Workflow,
+  Building2,
+  TrendingUp,
+  Rocket,
+  FlaskConical,
+  Microscope,
+  Briefcase,
+  Sprout,
+  Leaf,
+  Droplet,
+  Calculator,
+  Megaphone,
+  ClipboardList,
+  Cloud,
+  UserCircle,
+  GraduationCap,
+  FileText,
+  Type,
+  Image,
+  ShieldCheck,
+  ShoppingBag,
+  Users,
+  MonitorSmartphone,
+  Pill,
+  LampDesk,
+  Film,
+  BookMarked,
+  Palette,
+  Utensils,
+  Globe2,
+  Stethoscope,
+  Sparkles,
+  BookOpen
 } from "lucide-react";
 
+import { motion } from "framer-motion";
+import internshipBanner from "../../assets/images/about-banner.jpg";
+
 const tracksData = [
-  { id: 1, title: "Developing Soft Skills for Future Employability", icon: Brain },
-  { id: 2, title: "Life Skills for Holistic Development", icon: HeartPulse },
-  { id: 3, title: "Time Management Techniques for Students and Professionals", icon: Clock },
-  { id: 4, title: "Strategies for Competitive Exam Preparation", icon: Target },
-  { id: 5, title: "Stress Management for Academic Excellence", icon: Activity },
-  { id: 6, title: "The Role of Critical Thinking in Decision Making", icon: Workflow },
-  { id: 7, title: "Understanding Corporate Psychology in the Workplace", icon: Building2 },
-  { id: 8, title: "Digital Marketing Trends in the Modern Business World", icon: TrendingUp },
-  { id: 9, title: "Entrepreneurial Skills for Young Innovators", icon: Rocket },
-  { id: 10, title: "Advancements in Drug Designing and Discovery", icon: FlaskConical },
-  { id: 11, title: "Forensic Sciences: Tools for Criminal Investigation", icon: Microscope },
-  { id: 12, title: "Career Structuring and Professional Planning", icon: Briefcase },
-  { id: 13, title: "Organic Farming: A Sustainable Agricultural Practice", icon: Sprout },
-  { id: 14, title: "Bio-Dynamic Farming: Integrating Nature and Science", icon: Leaf },
-  { id: 15, title: "Hydroponics & Aeroponics: Future of Urban Agriculture", icon: Droplet },
-  { id: 16, title: "Logical Thinking and Analytical Problem Solving", icon: Calculator },
-  { id: 17, title: "Mass Communication and Its Role in Social Awareness", icon: Megaphone },
-  { id: 18, title: "Project Management Fundamentals for Students", icon: ClipboardList },
-  { id: 19, title: "SaaS (Software as a Service): A Business Transformation Tool", icon: Cloud },
-  { id: 20, title: "Personality Development for Career Growth", icon: UserCircle },
-  { id: 21, title: "Women Empowerment Through Education and Innovation", icon: GraduationCap },
-  { id: 22, title: "Publications and Patent Filing: A Researcher’s Guide", icon: FileText },
-  { id: 23, title: "Content Writing as a Digital Career Opportunity", icon: Type },
-  { id: 24, title: "Infographics: Visual Communication in the Digital Age", icon: Image },
-  { id: 25, title: "GMP & GLB Standards in Pharmaceutical Manufacturing", icon: ShieldCheck },
-  { id: 26, title: "Marketing Strategies for the Digital Generation", icon: ShoppingBag },
-  { id: 27, title: "Emerging HR Practices in the Global Market", icon: Users },
-  { id: 28, title: "Digital Transformation in Education and Business", icon: MonitorSmartphone },
-  { id: 29, title: "Pharmacovigilance: Ensuring Drug Safety and Efficacy", icon: Pill },
-  { id: 30, title: "Interior Designing: Blending Creativity with Functionality", icon: LampDesk },
-  { id: 31, title: "Cinematography: Art and Technology in Film Making", icon: Film },
-  { id: 32, title: "Research Methodology for Academic Success", icon: BookMarked },
-  { id: 33, title: "Fine Arts & Culinary Arts: Creativity as a Career", icon: Palette },
-  { id: 34, title: "Hotel Management and Hospitality in the 21st Century", icon: Utensils },
-  { id: 35, title: "Tourism as a Tool for Cultural and Economic Development", icon: Globe2 },
-  { id: 36, title: "Telemedicine: Revolutionizing Healthcare Delivery", icon: Stethoscope },
-  { id: 37, title: "Physiotherapy: Healing Through Movement and Exercise", icon: Activity },
-  { id: 38, title: "Cosmetics and Perfumery: The Science Behind Beauty Products", icon: Sparkles },
+  { id: 1, title: "Accounting", icon: Calculator },
+  { id: 2, title: "Applied Nutrition", icon: Droplet },
+  { id: 3, title: "B. Com (Computers)", icon: MonitorSmartphone },
+  { id: 4, title: "B. Com (General)", icon: Building2 },
+  { id: 5, title: "BBA (Bachelor of Business Administration)", icon: Briefcase },
+  { id: 6, title: "Banking", icon: Clock },
+  { id: 7, title: "Biochemistry", icon: FlaskConical },
+  { id: 8, title: "Biotechnology", icon: Microscope },
+  { id: 9, title: "Botany", icon: Sprout },
+  { id: 10, title: "Business Analytics", icon: TrendingUp },
+  { id: 11, title: "Chemistry", icon: ShieldCheck },
+  { id: 12, title: "Computer Science", icon: Cloud },
+  { id: 13, title: "Data Science", icon: Workflow },
+  { id: 14, title: "Economics", icon: ShoppingBag },
+  { id: 15, title: "E-commerce", icon: ShoppingBag },
+  { id: 16, title: "Electronics", icon: Film },
+  { id: 17, title: "English Literature", icon: Type },
+  { id: 18, title: "Entrepreneurship", icon: Rocket },
+  { id: 19, title: "Environmental Science", icon: Leaf },
+  { id: 20, title: "Finance", icon: Briefcase },
+  { id: 21, title: "Foreign Trade Practices", icon: Globe2 },
+  { id: 22, title: "Geography", icon: Globe2 },
+  { id: 23, title: "Genetics", icon: FlaskConical },
+  { id: 24, title: "Geology", icon: Droplet },
+  { id: 25, title: "History", icon: BookMarked },
+  { id: 26, title: "Information Technology (IT)", icon: MonitorSmartphone },
+  { id: 27, title: "Marketing Management", icon: TrendingUp },
+  { id: 28, title: "Mass Communication", icon: Megaphone },
+  { id: 29, title: "Mathematics", icon: Calculator },
+  { id: 30, title: "Microbiology", icon: Microscope },
+  { id: 31, title: "Nursing (B.Sc Nursing)", icon: HeartPulse },
+  { id: 32, title: "Nutrition", icon: Utensils },
+  { id: 33, title: "Paramedical Sciences", icon: Stethoscope },
+  { id: 34, title: "Pharmacy (B.Pharm)", icon: Pill },
+  { id: 35, title: "Philosophy", icon: Brain },
+  { id: 36, title: "Physics", icon: Target },
+  { id: 37, title: "Political Science", icon: GraduationCap },
+  { id: 38, title: "Psychology", icon: Users },
+  { id: 39, title: "Public Administration", icon: ClipboardList },
+  { id: 40, title: "Public Health", icon: Activity },
+  { id: 41, title: "Sales Management", icon: ShoppingBag },
+  { id: 42, title: "Sociology", icon: Users },
+  { id: 43, title: "Statistics", icon: ClipboardList },
+  { id: 44, title: "Zoology", icon: Sparkles },
 ];
 
-// Shorts Tracks Data
-
-// const tracksData = [
-//   { id: 1, title: "Soft Skills", icon: Brain },
-//   { id: 2, title: "Life Skills", icon: HeartPulse },
-//   { id: 3, title: "Time Mgmt", icon: Clock },
-//   { id: 4, title: "Exam Prep", icon: Target },
-//   { id: 5, title: "Stress Mgmt", icon: Activity },
-//   { id: 6, title: "Critical Thinking", icon: Workflow },
-//   { id: 7, title: "Corp Psych", icon: Building2 },
-//   { id: 8, title: "Digital Mktg", icon: TrendingUp },
-//   { id: 9, title: "Entrepreneurship", icon: Rocket },
-//   { id: 10, title: "Drug Discovery", icon: FlaskConical },
-//   { id: 11, title: "Forensics", icon: Microscope },
-//   { id: 12, title: "Career Plan", icon: Briefcase },
-//   { id: 13, title: "Organic Farming", icon: Sprout },
-//   { id: 14, title: "Bio-Dynamic Farm", icon: Leaf },
-//   { id: 15, title: "Hydro/Aero Farm", icon: Droplet },
-//   { id: 16, title: "Logical Thinking", icon: Calculator },
-//   { id: 17, title: "Mass Comm", icon: Megaphone },
-//   { id: 18, title: "Project Mgmt", icon: ClipboardList },
-//   { id: 19, title: "SaaS Tools", icon: Cloud },
-//   { id: 20, title: "Personality Dev", icon: UserCircle },
-//   { id: 21, title: "Women Empower", icon: GraduationCap },
-//   { id: 22, title: "Research & Patents", icon: FileText },
-//   { id: 23, title: "Content Writing", icon: Type },
-//   { id: 24, title: "Infographics", icon: Image },
-//   { id: 25, title: "GMP & GLB", icon: ShieldCheck },
-//   { id: 26, title: "Digital Strategy", icon: ShoppingBag },
-//   { id: 27, title: "HR Trends", icon: Users },
-//   { id: 28, title: "Digital Xform", icon: MonitorSmartphone },
-//   { id: 29, title: "Pharmacovigilance", icon: Pill },
-//   { id: 30, title: "Interior Design", icon: LampDesk },
-//   { id: 31, title: "Cinematography", icon: Film },
-//   { id: 32, title: "Research Methods", icon: BookMarked },
-//   { id: 33, title: "Fine & Culinary Arts", icon: Palette },
-//   { id: 34, title: "Hospitality", icon: Utensils },
-//   { id: 35, title: "Tourism", icon: Globe2 },
-//   { id: 36, title: "Telemedicine", icon: Stethoscope },
-//   { id: 37, title: "Physiotherapy", icon: Activity },
-//   { id: 38, title: "Cosmetics", icon: Sparkles },
-// ];
 
 const attendData = [
   { id: 1, title: "University Students & Scholars", icon: GraduationCap },
@@ -107,40 +103,113 @@ const attendData = [
 ];
 
 const highlightsData = [
-  { id: 1, title: "Expert-Led Keynotes", description: "Learn from thought leaders across academia, healthcare, and industry." },
-  { id: 2, title: "Hands-On Workshops", description: "Engage in interactive, skill-building sessions." },
-  { id: 3, title: "Panel Discussions", description: "Debates and dialogues on the latest trends and challenges." },
-  { id: 4, title: "Networking Sessions", description: "Opportunities to connect with peers, mentors, and collaborators." },
-  { id: 5, title: "Research Presentations", description: "Showcasing student and faculty innovations in diverse fields." },
-  { id: 6, title: "Industry Exhibitions", description: "Demonstrations of cutting-edge tools, technology, and services." },
-  { id: 7, title: "Collaboration Opportunities", description: "Initiate academic–industry partnerships and joint projects." },
-  { id: 8, title: "Certification & Recognition", description: "Gain professional certificates and recognition for participation." },
+  {
+    id: 1,
+    title: "Expert-Led Keynotes",
+    description:
+      "Learn from thought leaders across academia, healthcare, and industry.",
+  },
+  {
+    id: 2,
+    title: "Hands-On Workshops",
+    description: "Engage in interactive, skill-building sessions.",
+  },
+  {
+    id: 3,
+    title: "Panel Discussions",
+    description: "Debates and dialogues on the latest trends and challenges.",
+  },
+  {
+    id: 4,
+    title: "Networking Sessions",
+    description:
+      "Opportunities to connect with peers, mentors, and collaborators.",
+  },
+  {
+    id: 5,
+    title: "Research Presentations",
+    description:
+      "Showcasing student and faculty innovations in diverse fields.",
+  },
+  {
+    id: 6,
+    title: "Industry Exhibitions",
+    description:
+      "Demonstrations of cutting-edge tools, technology, and services.",
+  },
+  {
+    id: 7,
+    title: "Collaboration Opportunities",
+    description: "Initiate academic–industry partnerships and joint projects.",
+  },
+  {
+    id: 8,
+    title: "Certification & Recognition",
+    description:
+      "Gain professional certificates and recognition for participation.",
+  },
 ];
 
-
-const Seminars = () => {
+const Internships = () => {
   return (
-    <div className="flex flex-col items-center p-4">
+    <div className="bg-white text-[#0f2920] min-h-screen font-inter overflow-hidden relative">
+      {/* Hero Section */}
+      <section
+        className="relative h-[50vh] flex items-center justify-end text-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${internshipBanner})` }}
+      >
+        <div className="absolute inset-0 bg-black/50"></div>
+        <motion.div
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 px-4"
+        >
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
+            Internships
+          </h1>
+        </motion.div>
+      </section>
+      <section className="container-custom w-[90%]">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-2 md:mb-4 mt-8 px-4"
+        >
+          <h1 className="text-xl md:text-lg  text-black font-bold mb-4">
+            Our internship program is designed to be a transformative
+            experience, offering more than just a stepping stone in your career.
+            We are committed to providing students with substantive, hands-on
+            projects that allow them to apply their academic knowledge to
+            real-world business challenges. As a member of our team, you will
+            collaborate directly with seasoned professionals, receive dedicated
+            mentorship, and contribute to achieving our company's strategic
+            goals. This program is an opportunity to gain invaluable experience,
+            build a robust professional network, and develop the skills
+            essential for a successful career.{" "}
+          </h1>
+        </motion.div>
+      </section>
       {/* Tracks Section */}
       <section className="container-custom w-full">
-  <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-8">
-    Seminar Categories
-  </h2>
-  <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-4">
-    {tracksData.map((track) => (
-      <div
-        key={track.id}
-        className="flex items-center px-4 py-2 rounded-full bg-white border border-peptides-light-gray shadow-sm hover:shadow-md transition-all duration-300"
-      >
-        <track.icon className="h-5 w-5 text-peptides-dark mr-2" />
-        <span className="text-sm font-medium text-peptides-dark-green">
-          {track.title}
-        </span>
-      </div>
-    ))}
-  </div>
-</section>
-
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center py-4 mb-8">
+          Internship Subjects
+        </h2>
+        <div className="grid md:grid-cols-4 lg:grid-cols-4 gap-4">
+          {tracksData.map((track) => (
+            <div
+              key={track.id}
+              className="flex items-center px-4 py-2 rounded-full bg-[#ECECEC] border border-peptides-light-gray shadow-sm hover:shadow-md transition-all duration-300"
+            >
+              <track.icon className="h-8 w-8 text-peptides-dark mr-2" />
+              <span className="text-sm font-bold text-[#2a0c0c]">
+                {track.title}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <hr className="my-12 border-t border-peptides-light-gray w-full" />
 
@@ -155,7 +224,7 @@ const Seminars = () => {
               key={item.id}
               className="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-peptides-light-gray"
             >
-              <item.icon className="h-10 w-10 text-peptides-dark mb-4" />
+              <item.icon className="h-10 w-10 text-peptides-color-brown mb-4" />
               <h3 className="text-lg font-semibold">{item.title}</h3>
             </div>
           ))}
@@ -165,9 +234,9 @@ const Seminars = () => {
       <hr className="my-12 border-t border-peptides-light-gray w-full" />
 
       {/* Event Highlights Section */}
-      <section className="container-custom w-full">
+      <section className="container-custom w-full py-4">
         <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-8 gradient-text">
-          Event Highlights
+          Internships' Highlights
         </h2>
         <div className="grid md:grid-cols-2 gap-4 ">
           {highlightsData.map((item) => (
@@ -176,7 +245,7 @@ const Seminars = () => {
               className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-peptides-light-gray"
             >
               <h3 className="text-lg font-bold flex items-center mb-2">
-                <Sparkles className="h-5 w-5 text-peptides-dark mr-2" />
+                <Sparkles className="h-8 w-8 text-peptides-color-brown mr-2" />
                 {item.title}
               </h3>
               <p className="text-sm text-gray-600">{item.description}</p>
@@ -188,4 +257,4 @@ const Seminars = () => {
   );
 };
 
-export default Seminars;
+export default Internships;

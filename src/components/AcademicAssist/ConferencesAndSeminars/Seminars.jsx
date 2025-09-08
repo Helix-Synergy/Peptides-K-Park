@@ -11,6 +11,8 @@ import {
   Stethoscope, Activity, Sparkles, UserCog, BookOpen,
   PackageSearch
 } from "lucide-react";
+import { motion } from "framer-motion";
+
 
 const tracksData = [
   { id: 1, title: "Developing Soft Skills for Future Employability", icon: Brain },
@@ -122,18 +124,31 @@ const highlightsData = [
 const Seminars = () => {
   return (
     <div className="flex flex-col items-center p-4">
+
+            <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-2 md:mb-4"
+      >
+        <h1 className="text-xl md:text-lg text-peptides-color-brown font-bold mb-4">
+                    Our Seminars are meticulously designed to Empower you with the Skills and Knowledge you need to thrive in a rapidly evolving professional landscape. From cutting-edge technology and data science to leadership and management, we bring together industry pioneers and thought leaders to deliver actionable insights you can apply immediately.{" "}
+        </h1>
+
+      </motion.div>
+
       {/* Tracks Section */}
       <section className="container-custom w-full">
   <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-8">
-    Seminar Categories
+    Seminar Topics
   </h2>
   <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-4">
     {tracksData.map((track) => (
       <div
         key={track.id}
-        className="flex items-center px-4 py-2 rounded-full bg-white border border-peptides-light-gray shadow-sm hover:shadow-md transition-all duration-300"
+        className="flex items-center px-4 py-2 rounded-full bg-[#ECECEC] border border-peptides-light-gray shadow-sm hover:shadow-md transition-all duration-300"
       >
-        <track.icon className="h-5 w-5 text-peptides-dark mr-2" />
+        <track.icon className="h-8 w-8 text-peptides-color-brown mr-2" />
         <span className="text-sm font-medium text-peptides-dark-green">
           {track.title}
         </span>
@@ -156,7 +171,7 @@ const Seminars = () => {
               key={item.id}
               className="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-peptides-light-gray"
             >
-              <item.icon className="h-10 w-10 text-peptides-dark mb-4" />
+              <item.icon className="h-10 w-10 text-peptides-color-brown mb-4" />
               <h3 className="text-lg font-semibold">{item.title}</h3>
             </div>
           ))}
@@ -168,19 +183,19 @@ const Seminars = () => {
       {/* Event Highlights Section */}
       <section className="container-custom w-full">
         <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-8 gradient-text">
-          Event Highlights
+          Seminar Highlights
         </h2>
         <div className="grid md:grid-cols-2 gap-4 ">
           {highlightsData.map((item) => (
             <div
               key={item.id}
-              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-peptides-light-gray"
+              className="bg-[#ECECEC] p-6 rounded-xl text-peptides-color-brown shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-peptides-light-gray"
             >
               <h3 className="text-lg font-bold flex items-center mb-2">
-                <Sparkles className="h-5 w-5 text-peptides-dark mr-2" />
+                <Sparkles className="h-8 w-8 text-peptides-dark mr-2" />
                 {item.title}
               </h3>
-              <p className="text-sm text-gray-600">{item.description}</p>
+              <p className="text-sm text-black">{item.description}</p>
             </div>
           ))}
         </div>

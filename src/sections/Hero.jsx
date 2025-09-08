@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
+import HomeBanner from '../assets/images/homeBanner.jpg'
 
 // LettersPullUp component for per-letter animation
 function LettersPullUp({ text, className = '' }) {
@@ -127,7 +128,7 @@ Peptides Knowledge Park’s Academic Support Services encompass a range of offer
           {/* Placeholder image with diagonal mask */}
           <motion.img
             ref={imageRef}
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src={HomeBanner}
             alt="Team working"
             className="absolute top-0 right-0 w-full h-full object-cover object-center [clip-path:polygon(30%_0,100%_0,100%_100%,0_100%)]"
             style={{ clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 0 100%)' }}

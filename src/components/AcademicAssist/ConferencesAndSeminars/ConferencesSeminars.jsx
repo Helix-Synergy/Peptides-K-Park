@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import Conferences from "./Conferences";   // new extracted component
 import Seminars from "./Seminars";         // already ready
+import conferencesBanner from '../../../assets/images/about-banner.jpg'
 
 const Events = () => {
   const [activeTab, setActiveTab] = useState("Conferences");
@@ -10,20 +11,20 @@ const Events = () => {
 
   return (
     <main className="min-h-screen font-inter bg-white text-[#0f2920]">
-      {/* Hero */}
+      {/* Hero Section */}
       <section
-        className="relative h-[50vh] flex items-center justify-center bg-cover bg-center overflow-hidden"
-        style={{ backgroundImage: `url(${banner})` }}
+        className="relative h-[50vh] flex items-center justify-end text-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${conferencesBanner})` }}
       >
         <div className="absolute inset-0 bg-black/50"></div>
         <motion.div
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 px-4 text-center"
+          className="relative z-10 px-4"
         >
           <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
-            <span className="gradient-text">Conferences & Seminars</span>
+            Conferences & Seminars
           </h1>
         </motion.div>
       </section>

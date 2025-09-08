@@ -114,7 +114,7 @@ const AboutSection = () => {
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F2920] mb-6 leading-tight">
           Explore Trusted Academic <br /> Support Services
         </h2>
-        <p className="text-black text-base sm:text-lg mb-6">
+        <p className="text-black text-base text-justify sm:text-lg mb-6">
           Academic advising helps students navigate curriculum choices, align their studies with career goals, and explore interdisciplinary pathways. Skill-building workshops focus on time management, research methodology, exam strategies, and digital productivity tools. 
         </p>
 
@@ -160,7 +160,7 @@ const AboutSection = () => {
 </div>
 
 
-        <p className="text-black text-base sm:text-lg mb-8">
+        <p className="text-black text-base text-justify sm:text-lg mb-8">
           Review programs prepare students for competitive exams and certifications through mock tests, analytics, and targeted content. Learning resource hubs provide curated digital materials, simulations, and access to open-source academic tools. Career counselling services bridge academic learning with professional readiness, offering Resume building, Interview preparation & portfolio development tailored to specific sectors.
         </p>
 <Link

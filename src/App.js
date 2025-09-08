@@ -115,6 +115,7 @@ import ResearchAssistanceThesisSupport from './components/AcademicAssist/Researc
 import FacultyUpskillingService from './components/AcademicAssist/FacultyUpskillingService';
 import ELearnDigitalLearning from './components/AcademicAssist/ELearnDigitalLearning';
 import Publications from './components/AcademicAssist/Publications'
+import Internships from './components/AcademicAssist/Internships'
 
 // Components for Corporate Astute
 import CorporateAstuteDropdown from './components/CorporateAstute/CorporateAstuteDropdown';
@@ -162,7 +163,7 @@ function App() {
           <Route path="/academic-assist/projects" element={<AcademicProjects />} />
           <Route path="/academic-assist/conferences" element={<ConferencesSeminars />} />
           <Route path="/academic-assist/workshops" element={<Workshops />} />
-          <Route path="/academic-assist/internships" element={<PagePlaceholder pageName="Internships" />} />
+          <Route path="/academic-assist/internships" element={<Internships />} />
           <Route path="/academic-assist/publications" element={<Publications />} />
           <Route path="/academic-assist/skill-development" element={<PagePlaceholder pageName="Skill Development (SKID)" />} />
           <Route path="/academic-assist/industrial-tours" element={<PagePlaceholder pageName="Industrial Tours (INTO)" />} />
