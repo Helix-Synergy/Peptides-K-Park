@@ -108,7 +108,7 @@ import BecomeAMemberComp from './components/AdvisoryCouncil/BecomeAMember';
 // Components for Academic Assist
 import AcademicAssistDropdown from './components/AcademicAssist/AcademicAssistDropdown';
 import AcademicProjects from './components/AcademicAssist/AcademicProjects';
-import Seminars from './components/AcademicAssist/Seminars';
+import ConferencesSeminars from './components/AcademicAssist/ConferencesAndSeminars/ConferencesSeminars';
 import Workshops from './components/AcademicAssist/Workshops';
 import TechTalks from './components/AcademicAssist/TechTalks';
 import ResearchAssistanceThesisSupport from './components/AcademicAssist/ResearchAssistanceThesisSupport';
@@ -160,7 +160,7 @@ function App() {
           {/* Academic Assist Routes */}
           <Route path="/academic-assist" element={<AcademicAssistDropdown />} />
           <Route path="/academic-assist/projects" element={<AcademicProjects />} />
-          <Route path="/academic-assist/conferences" element={<Seminars />} />
+          <Route path="/academic-assist/conferences" element={<ConferencesSeminars />} />
           <Route path="/academic-assist/workshops" element={<Workshops />} />
           <Route path="/academic-assist/internships" element={<PagePlaceholder pageName="Internships" />} />
           <Route path="/academic-assist/publications" element={<Publications />} />

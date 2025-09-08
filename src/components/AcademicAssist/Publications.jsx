@@ -1,8 +1,74 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
-import { BookOpen, Users, Feather, Award, Globe, Handshake, ChevronDown, Rocket, Check, Lightbulb, TrendingUp, HeartHandshake, GraduationCap, Hospital, UserCog, Sparkles } from 'lucide-react';
+import {
+  BookOpen, Users, Feather, Award, Globe, Handshake, ChevronDown, Rocket, Check, Lightbulb, TrendingUp, HeartHandshake, GraduationCap, Hospital, UserCog, Sparkles,
+} from 'lucide-react';
+import workshopBanner from '../../assets/images/about-banner.jpg'
 
 // === DATA ===
+const journalTopics = [
+  {
+    image: "https://via.placeholder.com/200/4a90e2/ffffff?text=Bio",
+    title: "Biomedical Sciences",
+    description: "Our journals in Biomedical Sciences feature prestigious, Open Access publications with a focus on cutting-edge research."
+  },
+  {
+    image: "https://via.placeholder.com/200/50e3c2/ffffff?text=Clinical",
+    title: "Clinical & Medical",
+    description: "Discover our most prestigious Open Access journals in clinical and medical fields, including noteworthy publishing from top experts."
+  },
+  {
+    image: "https://via.placeholder.com/200/b8e986/000000?text=Medicine",
+    title: "Medicine & Public Health",
+    description: "Our journals cover a wide range of topics in medicine and public health, offering top Open Access content in the field."
+  },
+  {
+    image: "https://via.placeholder.com/200/f8e71c/000000?text=Life",
+    title: "Life Sciences",
+    description: "Explore our top Open Access journals in Life Sciences, covering diverse subjects like Agriculture, Agronomy, and Animal Science."
+  },
+  {
+    image: "https://via.placeholder.com/200/9b9b9b/ffffff?text=Dentistry",
+    title: "Dentistry",
+    description: "Our peer-reviewed Open Access dentistry journals cover the study, diagnosis, prevention, and treatment of a wide range of topics."
+  },
+  {
+    image: "https://via.placeholder.com/200/4a4a4a/ffffff?text=Health",
+    title: "Health Education",
+    description: "Find highly accessed journals in Health Education, providing valuable resources for professionals and students alike."
+  },
+  {
+    image: "https://via.placeholder.com/200/bd10e0/ffffff?text=Chemistry",
+    title: "Chemistry & Chemical Engineering",
+    description: "Our journals in this field cover topics such as organic, inorganic, and industrial chemistry, as well as chemical engineering."
+  },
+  {
+    image: "https://via.placeholder.com/200/f5a623/000000?text=CS",
+    title: "Computer Science & Bioinformatics",
+    description: "This subject covers a wide range of topics including sequence analysis, genome annotation, and computational biology."
+  },
+  {
+    image: "https://via.placeholder.com/200/7ed321/000000?text=Env",
+    title: "Environmental Science",
+    description: "Our top Open Access journals in Environmental Science cover pollution, biodiversity, climate change, and more."
+  },
+  {
+    image: "https://via.placeholder.com/200/50c25a/ffffff?text=Pharma",
+    title: "Pharmaceutical Sciences",
+    description: "Our journals cover a broad range of topics including clinical and industrial drug development, medicinal, and pharmaceutical sciences."
+  },
+  {
+    image: "https://via.placeholder.com/200/417505/ffffff?text=Neuro",
+    title: "Neuroscience & Psychology",
+    description: "Fortune Journals' Neuroscience & Psychology subject includes top Open Access journals with topics such as cognitive science and behavioral research."
+  },
+  {
+    image: "https://via.placeholder.com/200/8b572a/ffffff?text=Vet",
+    title: "Veterinary Sciences",
+    description: "Find our top peer-reviewed Open Access journals in the veterinary science field, covering a wide range of animal health topics."
+  },
+];
+
 const timelineStages = [
   {
     icon: BookOpen,
@@ -86,7 +152,7 @@ const PeerReviewProcess = () => {
   const [expandedCards, setExpandedCards] = useState(Array(timelineStages.length).fill(false));
   const timelineRef = useRef(null);
   const isInView = useInView(timelineRef, { once: true, amount: 0.1 });
-  
+
   const handleToggleExpand = (index) => {
     setExpandedCards(prev => {
       const newExpanded = [...prev];
@@ -101,15 +167,61 @@ const PeerReviewProcess = () => {
   return (
     <div className="bg-white text-[#0f2920] min-h-screen font-inter overflow-hidden relative">
       {/* Background Effect */}
-      <div className="absolute inset-0 z-0 opacity-30">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-[#1f3b30] rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
-        <div className="absolute top-0 left-0 w-80 h-80 bg-[#3a4a3f] rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#714819] rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
-      </div>
-      
+                {/* Hero Section */}
+      <section
+        className="relative h-[50vh] flex items-center justify-end text-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${workshopBanner})` }}
+      >
+        <div className="absolute inset-0 bg-black/50"></div>
+        <motion.div
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 px-4"
+        >
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
+            Publications
+          </h1>
+        </motion.div>
+      </section>
+
       {/* Main Content Container */}
       <div className="relative z-10 px-4 py-8 md:py-16 max-w-7xl mx-auto">
-        
+
+        {/* Journal Topics Section - MODIFIED */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20 md:mb-32">
+
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {journalTopics.map((topic, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                variants={glowAnimation}
+                whileHover="whileHover"
+                className="p-6 rounded-2xl bg-gray-50 border border-gray-200 flex flex-col items-center text-center shadow-lg transition-all duration-300 ease-in-out"
+              >
+                <div className="relative w-40 h-40 mb-4 rounded-full overflow-hidden shadow-xl">
+                  <img
+                    src={topic.image}
+                    alt={topic.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                    <h3 className="text-lg font-bold text-white text-center px-2">{topic.title}</h3>
+                  </div>
+                </div>
+                <p className="text-[#1f3b30] text-sm mt-2">{topic.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -129,7 +241,7 @@ const PeerReviewProcess = () => {
           <p className="text-lg md:text-xl text-[#1f3b30] max-w-2xl mx-auto">
             Explore the essential stages of the peer review process, a trusted system that ensures the quality and reliability of scientific research.
           </p>
-          <motion.a 
+          <motion.a
             href="#timeline"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -155,7 +267,7 @@ const PeerReviewProcess = () => {
                   animate={isInView ? { opacity: 1, y: 0, rotate: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
                   layout
-                  className="relative group w-full max-w-md md:max-w-lg mb-8"
+                  className="relative group w-full max-w-xl md:max-w-3xl mb-8"
                   style={{
                     zIndex,
                     transform: `translateY(${translateY}px) rotate(${rotation}deg)`,
