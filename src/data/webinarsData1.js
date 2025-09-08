@@ -412,6 +412,7 @@ import IDOM2025 from '../assets/images/Webinar/IDOM_2025.jpg';
 import GENT2025 from '../assets/images/Webinar/GENT_2025.jpeg';
 import Ican2025 from '../assets/images/Webinar/Ican_2025.jpg';
 import ARM2025 from '../assets/images/Webinar/ARM_2025.jpg';
+import women from '../assets/images/Webinar/women.jpg'
 
 const WebinarsData = [
   // 2025 webinars
@@ -456,7 +457,7 @@ const WebinarsData = [
     code: "WEST-2025",
     date: "Aug 22, 2025",
     type: "webinar",
-    image: "https://women.helixconferences.com/static/media/about_img.67ed4ac21add9f07bf21.jpg",
+    image: women,
     link: "https://women.helixconferences.com/",
     year: 2025
   },

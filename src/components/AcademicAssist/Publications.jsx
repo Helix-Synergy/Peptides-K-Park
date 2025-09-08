@@ -166,8 +166,7 @@ const PeerReviewProcess = () => {
 
   return (
     <div className="bg-white text-[#0f2920] min-h-screen font-inter overflow-hidden relative">
-      {/* Background Effect */}
-                {/* Hero Section */}
+      {/* Hero Section */}
       <section
         className="relative h-[50vh] flex items-center justify-end text-center bg-cover bg-center"
         style={{ backgroundImage: `url(${workshopBanner})` }}
@@ -227,7 +226,7 @@ const PeerReviewProcess = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20 md:mb-32">
+          className="text-center mb-2 md:mb-4">
           <motion.div
             variants={iconVariants}
             initial="initial"

@@ -1,114 +1,5 @@
-// // src/components/home/AutoScrollingCarousel.js
-// import React, { useRef, useEffect, useState } from 'react';
-// import { motion, useReducedMotion, useAnimation, useScroll, useTransform } from 'framer-motion';
-// import EventSection from './EventSection';
-// import hybridsData from '../../../data/hybridsData1';
-// import webinarsData from '../../../data/webinarsData1';
-
-// const AutoScrollingCarousel = ({ activeTab, speed = 60, direction = 'left' }) => {
-//   const carouselRef = useRef(null);
-//   const containerRef = useRef(null);
-//   const [containerWidth, setContainerWidth] = useState(0);
-//   const [carouselWidth, setCarouselWidth] = useState(0);
-//   const shouldReduceMotion = useReducedMotion();
-
-//   // Initialize Framer Motion controls for the main carousel scroll
-//   const controls = useAnimation();
-
-//   // Create data array based on activeTab
-//   const data = activeTab === 'conferences' ? hybridsData : activeTab === 'webinars' ? webinarsData : [];
-
-//   // Create a duplicate set of data to ensure seamless looping
-//   const duplicatedData = [...data, ...data, ...data]; // Triple for a longer perceived loop
-
-//   useEffect(() => {
-//     const handleResize = () => {
-//       if (containerRef.current && carouselRef.current) {
-//         setContainerWidth(containerRef.current.offsetWidth);
-//         const cards = Array.from(carouselRef.current.querySelectorAll('.group'));
-//         if (cards.length > 0) {
-//             const cardWidth = cards[0].offsetWidth;
-//             const gap = parseInt(window.getComputedStyle(carouselRef.current).gap || '0px', 10);
-//             setCarouselWidth((data.length * cardWidth) + (data.length > 0 ? (data.length - 1) * gap : 0));
-//         } else {
-//             setCarouselWidth(0);
-//         }
-//       }
-//     };
-
-//     handleResize();
-//     window.addEventListener('resize', handleResize);
-//     return () => window.removeEventListener('resize', handleResize);
-//   }, [data]);
-
-//   useEffect(() => {
-//     if (shouldReduceMotion) {
-//       controls.stop();
-//       return;
-//     }
-
-//     if (carouselWidth > 0 && containerWidth > 0 && carouselWidth > containerWidth) {
-//       const distanceToScroll = carouselWidth;
-
-//       const animateCarousel = async () => {
-//         if (direction === 'left') {
-//           await controls.start({ x: -distanceToScroll }, {
-//             ease: "linear",
-//             duration: distanceToScroll / speed,
-//           });
-//           controls.set({ x: 0 });
-//           animateCarousel();
-//         } else { // direction === 'right'
-//           controls.set({ x: -distanceToScroll });
-//           await controls.start({ x: 0 }, {
-//             ease: "linear",
-//             duration: distanceToScroll / speed,
-//           });
-//           animateCarousel();
-//         }
-//       };
-
-//       animateCarousel();
-
-//       return () => controls.stop();
-//     } else if (controls) {
-//         controls.stop();
-//         controls.set({ x: 0 });
-//     }
-//   }, [carouselWidth, containerWidth, speed, direction, controls, shouldReduceMotion]);
-
-//   return (
-//     <section className="relative w-full overflow-hidden py-8" ref={containerRef}>
-//       {activeTab === 'conferences' && (
-//         <>
-//           <h2 className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg leading-tight tracking-wide">
-//             Conferences
-//           </h2>
-//           <div className="flex flex-nowrap items-center w-full">
-//             <motion.div
-//               className="flex flex-nowrap gap-8 md:gap-10 pr-8 md:pr-10"
-//               ref={carouselRef}
-//               animate={controls}
-//             >
-//               {duplicatedData.map((item, index) => (
-//                 <EventSection key={`${item.code || item.id}-${index}`} event={item} />
-//               ))}
-//             </motion.div>
-//           </div>
-//         </>
-//       )}
-//       {/* Do not display anything for seminars tab */}
-//     </section>
-//   );
-// };
-
-// export default AutoScrollingCarousel;
-
-
-
 import React, { useState, useEffect, useRef } from 'react';
-// import hybridsData from '../../../data/hybridsData1';
-// import webinarsData from '../../../data/webinarsData1';
+
 
 const Card = ({ event }) => {
   const [transformStyle, setTransformStyle] = useState({});
@@ -143,7 +34,7 @@ const Card = ({ event }) => {
   return (
     <div
       ref={cardRef}
-      className="card w-[300px] flex-shrink-0 p-4  mx-2 group transform-gpu bg-[#1f3b30] text-white rounded-xl"
+      className="card w-[280px] h-auto flex-shrink-0 p-4  mx-2 group transform-gpu bg-[#1f3b30] text-white rounded-xl"
       style={transformStyle}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -233,15 +124,15 @@ const AutoScrollingCarousel = ({ data, title, direction = 'right', speed = 50 })
 
   return (
     <div
-      className="py-8 relative overflow-hidden text-white"
+      className="py-4 relative overflow-hidden text-white"
       style={{
-        background: "linear-gradient(to right, #dfdfdfff, #d8ffccff)",
+        background: "linear-gradient(to right, #ffffffff, #ffffffff)",
         borderRadius: "0px",
-        border: "1px solid rgba(255, 255, 255, 0.1)",
-        boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.5)",
+        // border: "1px solid rgba(255, 255, 255, 0.1)",
         backdropFilter: "blur(15px)",
         WebkitBackdropFilter: "blur(15px)",
         overflow: "hidden",
+        color:'black'
       }}
     >
       <h2 className="text-2xl font-bold mb-6 text-center">{title}</h2>
@@ -261,16 +152,3 @@ const AutoScrollingCarousel = ({ data, title, direction = 'right', speed = 50 })
 };
 export default AutoScrollingCarousel
 
-// export default function App() {
-//   return (
-//     <div className="App bg-white min-h-screen">
-//       <div className="container-custom">
-//         <h1 className="text-3xl md:text-5xl font-extrabold text-center py-10 gradient-text">
-//           Conferences & Webinars
-//         </h1>
-//         <AutoScrollingCarousel data={hybridsData} title="Hybrid Events (2025-2026)" direction="right" />
-//         <AutoScrollingCarousel data={webinarsData} title="Webinar Events (2025-2026)" direction="left" />
-//       </div>
-//     </div>
-//   );
-// }
