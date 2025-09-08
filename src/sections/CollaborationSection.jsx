@@ -3,7 +3,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import {Link} from 'react-router-dom'
 import ReddyCollegeLogo from '../assets/images/collaborations/RBVRRCollegeLogo.png'
-import AVCollegeLogo from '../assets/images/collaborations/RBVRRCollegeLogo.png'
+import AVCollegeLogo from '../assets/images/collaborations/AVCollageLogo.jpg'
 import PragathiCollegeLogo from '../assets/images/collaborations/pragathiCollegeLogo.jpg'
 import BJRCollegeLogo from '../assets/images/collaborations/BJRCollegeLogo.png'
 import KasthuribaCollegeLogo from '../assets/images/collaborations/KasturibaCollegeLogo.jpg'
