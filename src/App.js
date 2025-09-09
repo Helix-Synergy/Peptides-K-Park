@@ -116,6 +116,8 @@ import ELearnDigitalLearning from './components/AcademicAssist/ELearnDigitalLear
 import Publications from './components/AcademicAssist/Publications'
 import Internships from './components/AcademicAssist/Internships'
 import SkillDevelopment from './components/AcademicAssist/SkillDevelopment';
+import IndustrialTours from './components/AcademicAssist/IndustrialTours';
+import CERT from './components/AcademicAssist/cert'
 
 // Components for Corporate Astute
 import CorporateAstuteDropdown from './components/CorporateAstute/CorporateAstuteDropdown';
@@ -165,9 +167,9 @@ function App() {
           <Route path="/academic-assist/internships" element={<Internships />} />
           <Route path="/academic-assist/publications" element={<Publications />} />
           <Route path="/academic-assist/skill-development" element={<SkillDevelopment/>} />
-          <Route path="/academic-assist/industrial-tours" element={<PagePlaceholder pageName="Industrial Tours (INTO)" />} />
-          <Route path="/academic-assist/e-studies" element={<ELearnDigitalLearning />} />
-          <Route path="/academic-assist/cert" element={<PagePlaceholder pageName="Competitive Exams Related Training (CERT)" />} />
+          <Route path="/academic-assist/industrial-tours" element={<IndustrialTours />} />
+          <Route path="/academic-assist/e-learn" element={<ELearnDigitalLearning />} />
+          <Route path="/academic-assist/cert" element={<CERT />} />
 
           {/* Corporate Astute Routes */}
           <Route path="/corporate-astute" element={<CorporateAstuteDropdown />} />

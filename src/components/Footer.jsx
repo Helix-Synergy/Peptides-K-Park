@@ -63,7 +63,7 @@ const secondRowLinks = [
         name: "Industrial Tours (INTO)",
         href: "/academic-assist/industrial-tours",
       },
-      { name: "E-Studies", href: "/academic-assist/e-studies" },
+      { name: "e-Learn", href: "/academic-assist/e-learn" },
       {
         name: "Competitive Exams Related Training (CERT)",
         href: "/academic-assist/cert",
@@ -340,7 +340,7 @@ export default Footer;
 //       { name: 'Publications', href: '/academic-assist/publications' },
 //       { name: 'Skill Development (SKID)', href: '/academic-assist/skill-development' },
 //       { name: 'Industrial Tours (INTO)', href: '/academic-assist/industrial-tours' },
-//       { name: 'E-Studies', href: '/academic-assist/e-studies' },
+//       { name: 'e-Learn', href: '/academic-assist/e-learn' },
 //       { name: 'Competitive Exams Related Training (CERT)', href: '/academic-assist/cert' },
 //     ],
 //   },
