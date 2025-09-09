@@ -1,38 +1,35 @@
-import React, { useState } from 'react';
-import { ArrowRight, ArrowLeft, Cloud, Shield, MonitorSmartphone } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, ArrowLeft, GraduationCap, Briefcase, Users, Rocket } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import labServices from '../assets/services/lab_services.svg';
-import contractResearch from '../assets/services/contract_research.svg';
-import academicAssistance from '../assets/services/academic_assistance.svg';
+import AcademicAssist from '../assets/images/HomeServicesSlider/AcademicAssist.png';
+import CorporateAstute from '../assets/images/HomeServicesSlider/CorporateAstute.png';
+import CareerSaga from '../assets/images/HomeServicesSlider/CareerSaga.png';
+import Collaborations from '../assets/images/HomeServicesSlider/Collaborations.png';
 
 const services = [
   {
     title: 'Academic Assist',
-    description: '',
-    image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80',
-    icon: <img src={labServices} alt="Lab Services" className="w-10 h-10 mb-2" />,
-    bg: 'bg-gradient-to-t from-blue-900/80 to-blue-900/40',
+    description: 'Empowering students with comprehensive academic support for a brighter future.',
+    image: AcademicAssist,
+    icon: <GraduationCap className="w-10 h-10 mb-2 text-white drop-shadow-md" />,
   },
   {
     title: 'Corporate Astute',
-    description: 'Expertise in a IT consultancy for the many companies, for their different working areas.',
-    image: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80',
-    icon: <img src={contractResearch} alt="Contract Research" className="w-10 h-10 mb-2" />,
-    bg: 'bg-white',
-    card: true,
+    description: 'Providing expert IT consultancy to optimize and streamline corporate operations.',
+    image: CorporateAstute,
+    icon: <Briefcase className="w-10 h-10 mb-2 text-white drop-shadow-md" />,
   },
   {
     title: 'Career Saga',
-    description: '',
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80',
-    icon: <img src={academicAssistance} alt="Academic Assistance" className="w-10 h-10 mb-2" />,
-    bg: 'bg-gradient-to-t from-blue-900/80 to-blue-900/40',
+    description: 'Guiding professionals on their career journey with personalized, strategic advice.',
+    image: CareerSaga,
+    icon: <Rocket className="w-10 h-10 mb-2 text-white drop-shadow-md" />,
   },
   {
     title: 'Collaborations',
-    description: 'Cloud migration, management, and security for your business.',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80',
-    icon: <Cloud className="w-10 h-10 mb-2 text-white drop-shadow-md" />,
+    description: 'Fostering partnerships to drive innovation and achieve shared goals in research.',
+    image: Collaborations,
+    icon: <Users className="w-10 h-10 mb-2 text-white drop-shadow-md" />,
   },
 ];
 
@@ -48,6 +45,16 @@ const ServiceSlider = () => {
   const total = services.length;
   const visibleIndexes = getVisibleIndexes(startIdx, visibleCount, total);
 
+  // Automatic sliding
+  useEffect(() => {
+    if (!sliderHovered) {
+      const interval = setInterval(() => {
+        setStartIdx((prev) => (prev + 1) % total);
+      }, 5000); // Change slide every 5 seconds
+      return () => clearInterval(interval);
+    }
+  }, [sliderHovered, total]);
+
   const handlePrev = (e) => {
     e.stopPropagation();
     setStartIdx((prev) => (prev - 1 + total) % total);
@@ -62,7 +69,7 @@ const ServiceSlider = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <span className="text-peptides-color-brown text-base font-semibold tracking-widest mb-2 uppercase block">Our Services</span>
-          <h2 className="text-3xl sm:text-5xl font-bold text-[#0F2920] mb-4">We Offer Wide Range of <br className="hidden sm:block" /> Academic Support Services</h2>
+          <h2 className="text-3xl sm:text-5xl font-bold text-[#0F2920] mb-4">We Offer a Wide Range of <br className="hidden sm:block" /> Academic Support Services</h2>
         </div>
         <div
           className="relative flex items-center justify-center"
@@ -79,7 +86,7 @@ const ServiceSlider = () => {
                   className="relative group rounded-2xl overflow-hidden shadow-lg bg-white flex-shrink-0 transition-transform duration-500 h-96 
                     w-full max-w-full 
                     sm:w-[calc(50%-12px)] sm:max-w-[calc(50%-12px)]
-                    md:w-[calc(33.333%-16px)] md:max-w-[calc(33.333%-16px)] cursor-pointer"
+                    md:w-[calc(33.333%-16px)] md:max-w-[calc(33.333%-16px)]"
                   onMouseEnter={() => setHovered(idx)}
                   onMouseLeave={() => setHovered(null)}
                 >
@@ -101,7 +108,9 @@ const ServiceSlider = () => {
                         className="absolute inset-0 flex items-center justify-center"
                       >
                         <motion.div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center w-11/12 max-w-md mx-auto">
-                          <div className="mb-2 text-blue-600">{service.icon}</div>
+                          <div className="mb-2 text-blue-600">
+                            {React.cloneElement(service.icon, { className: 'w-10 h-10 mb-2 text-blue-600' })}
+                          </div>
                           <h3 className="text-2xl font-semibold text-gray-900 mb-2 text-center">{service.title}</h3>
                           <p className="text-gray-500 text-base text-center">{service.description}</p>
                         </motion.div>
@@ -133,7 +142,6 @@ const ServiceSlider = () => {
             </>
           )}
         </div>
-
       </div>
     </section>
   );
