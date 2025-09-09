@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import activityBanner from "../../assets/images/about-banner.jpg";
+import activityBanner from "../../assets/images/PageBanners/activities.jpg";
 import {
   FlaskConical,
   Telescope,

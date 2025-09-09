@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { CheckCircle, Calendar, Clock, ArrowRight } from "lucide-react";
-import workshopBanner from "../../assets/images/about-banner.jpg";
+import workshopBanner from "../../assets/images/PageBanners/workshops.jpg";
 
 const Workshops = () => {
   const sectionRef = useRef(null);

@@ -1,7 +1,7 @@
 // src/components/AdvisoryCouncil/BecomeAMember.jsx
 import React, { useRef, useState } from 'react';
 import { motion } from "framer-motion";
-import becomeMember from "../../assets/images/about-banner.jpg";
+import becomeMember from "../../assets/images/PageBanners/aboutPOE.jpg";
 
 const BecomeAMember = () => {
   const [profilePreview, setProfilePreview] = useState('');

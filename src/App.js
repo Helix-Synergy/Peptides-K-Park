@@ -100,7 +100,6 @@ import ActivitiesBenefitsPage from "./components/AdvisoryCouncil/ActivitiesBenef
 
 
 // Components for Panel of Experts (POE)
-import AdvisoryCouncilDropdown from './components/AdvisoryCouncil/AdvisoryCouncilDropdown';
 import AboutAdvisoryBoard from './components/AdvisoryCouncil/AboutAdvisoryBoard';
 import OurAdvisoryCouncil from './components/AdvisoryCouncil/OurAdvisoryCouncil';
 import BecomeAMemberComp from './components/AdvisoryCouncil/BecomeAMember';
@@ -116,6 +115,7 @@ import FacultyUpskillingService from './components/AcademicAssist/FacultyUpskill
 import ELearnDigitalLearning from './components/AcademicAssist/ELearnDigitalLearning';
 import Publications from './components/AcademicAssist/Publications'
 import Internships from './components/AcademicAssist/Internships'
+import SkillDevelopment from './components/AcademicAssist/SkillDevelopment';
 
 // Components for Corporate Astute
 import CorporateAstuteDropdown from './components/CorporateAstute/CorporateAstuteDropdown';
@@ -152,7 +152,6 @@ function App() {
           <Route path="/contact/register-faculty" element={<ContactSection />} />
                     
           {/* Panel of Experts (POE) Routes - Mapped from old Advisory Council */}
-          <Route path="/panel-of-experts" element={<AdvisoryCouncilDropdown />} />
           <Route path="/panel-of-experts/about-advisory-board" element={<AboutAdvisoryBoard />} />
           <Route path="/panel-of-experts/subject-matter-experts" element={<OurAdvisoryCouncil />} />
           <Route path="/panel-of-experts/become-a-member" element={<BecomeAMemberComp />} />
@@ -165,7 +164,7 @@ function App() {
           <Route path="/academic-assist/workshops" element={<Workshops />} />
           <Route path="/academic-assist/internships" element={<Internships />} />
           <Route path="/academic-assist/publications" element={<Publications />} />
-          <Route path="/academic-assist/skill-development" element={<PagePlaceholder pageName="Skill Development (SKID)" />} />
+          <Route path="/academic-assist/skill-development" element={<SkillDevelopment/>} />
           <Route path="/academic-assist/industrial-tours" element={<PagePlaceholder pageName="Industrial Tours (INTO)" />} />
           <Route path="/academic-assist/e-studies" element={<ELearnDigitalLearning />} />
           <Route path="/academic-assist/cert" element={<PagePlaceholder pageName="Competitive Exams Related Training (CERT)" />} />

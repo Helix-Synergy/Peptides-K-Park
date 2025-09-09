@@ -3,67 +3,79 @@ import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'fra
 import {
   BookOpen, Users, Feather, Award, Globe, Handshake, ChevronDown, Rocket, Check, Lightbulb, TrendingUp, HeartHandshake, GraduationCap, Hospital, UserCog, Sparkles,
 } from 'lucide-react';
-import workshopBanner from '../../assets/images/about-banner.jpg'
+import journalsBanner from '../../assets/images/PageBanners/JournalsBanner.png'
+import BiomedicalSciences from '../../assets/images/Publications/BiomedicalSciences.png'
+import ChemistryChemicalEngineering from '../../assets/images/Publications/ChemistryChemicalEngineering.png'
+import ClinicalMedical from '../../assets/images/Publications/ClinicalMedical.png'
+import ComputerScienceBioinformatics from '../../assets/images/Publications/ComputerScienceBioinformatics.png'
+import Dentistry from '../../assets/images/Publications/Dentistry.png'
+import EnvironmentalScience from '../../assets/images/Publications/EnvironmentalScience.png'
+import HealthEducation from '../../assets/images/Publications/HealthEducation.png'
+import LifeSciences from '../../assets/images/Publications/LifeSciences.png'
+import MedicinePublicHealth from '../../assets/images/Publications/MedicinePublicHealth.png'
+import NeurosciencePsychology from '../../assets/images/Publications/NeurosciencePsychology.png'
+import PharmaceuticalSciences from '../../assets/images/Publications/PharmaceuticalSciences.png'
+import VeterinarySciences from '../../assets/images/Publications/VeterinarySciences.png'
 
 // === DATA ===
 const journalTopics = [
   {
-    image: "https://via.placeholder.com/200/4a90e2/ffffff?text=Bio",
+    image: BiomedicalSciences,
     title: "Biomedical Sciences",
     description: "Our journals in Biomedical Sciences feature prestigious, Open Access publications with a focus on cutting-edge research."
   },
   {
-    image: "https://via.placeholder.com/200/50e3c2/ffffff?text=Clinical",
+    image: ClinicalMedical,
     title: "Clinical & Medical",
     description: "Discover our most prestigious Open Access journals in clinical and medical fields, including noteworthy publishing from top experts."
   },
   {
-    image: "https://via.placeholder.com/200/b8e986/000000?text=Medicine",
+    image: MedicinePublicHealth,
     title: "Medicine & Public Health",
     description: "Our journals cover a wide range of topics in medicine and public health, offering top Open Access content in the field."
   },
   {
-    image: "https://via.placeholder.com/200/f8e71c/000000?text=Life",
+    image: LifeSciences,
     title: "Life Sciences",
     description: "Explore our top Open Access journals in Life Sciences, covering diverse subjects like Agriculture, Agronomy, and Animal Science."
   },
   {
-    image: "https://via.placeholder.com/200/9b9b9b/ffffff?text=Dentistry",
+    image: Dentistry,
     title: "Dentistry",
     description: "Our peer-reviewed Open Access dentistry journals cover the study, diagnosis, prevention, and treatment of a wide range of topics."
   },
   {
-    image: "https://via.placeholder.com/200/4a4a4a/ffffff?text=Health",
+    image: HealthEducation,
     title: "Health Education",
     description: "Find highly accessed journals in Health Education, providing valuable resources for professionals and students alike."
   },
   {
-    image: "https://via.placeholder.com/200/bd10e0/ffffff?text=Chemistry",
+    image: ChemistryChemicalEngineering,
     title: "Chemistry & Chemical Engineering",
     description: "Our journals in this field cover topics such as organic, inorganic, and industrial chemistry, as well as chemical engineering."
   },
   {
-    image: "https://via.placeholder.com/200/f5a623/000000?text=CS",
+    image: ComputerScienceBioinformatics,
     title: "Computer Science & Bioinformatics",
     description: "This subject covers a wide range of topics including sequence analysis, genome annotation, and computational biology."
   },
   {
-    image: "https://via.placeholder.com/200/7ed321/000000?text=Env",
+    image: EnvironmentalScience,
     title: "Environmental Science",
     description: "Our top Open Access journals in Environmental Science cover pollution, biodiversity, climate change, and more."
   },
   {
-    image: "https://via.placeholder.com/200/50c25a/ffffff?text=Pharma",
+    image: PharmaceuticalSciences,
     title: "Pharmaceutical Sciences",
     description: "Our journals cover a broad range of topics including clinical and industrial drug development, medicinal, and pharmaceutical sciences."
   },
   {
-    image: "https://via.placeholder.com/200/417505/ffffff?text=Neuro",
+    image: NeurosciencePsychology,
     title: "Neuroscience & Psychology",
     description: "Fortune Journals' Neuroscience & Psychology subject includes top Open Access journals with topics such as cognitive science and behavioral research."
   },
   {
-    image: "https://via.placeholder.com/200/8b572a/ffffff?text=Vet",
+    image: VeterinarySciences,
     title: "Veterinary Sciences",
     description: "Find our top peer-reviewed Open Access journals in the veterinary science field, covering a wide range of animal health topics."
   },
@@ -169,7 +181,7 @@ const PeerReviewProcess = () => {
       {/* Hero Section */}
       <section
         className="relative h-[50vh] flex items-center justify-end text-center bg-cover bg-center"
-        style={{ backgroundImage: `url(${workshopBanner})` }}
+        style={{ backgroundImage: `url(${journalsBanner})` }}
       >
         <div className="absolute inset-0 bg-black/50"></div>
         <motion.div
@@ -211,7 +223,7 @@ const PeerReviewProcess = () => {
                     alt={topic.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                  <div className="absolute inset-0 flex items-center justify-center">
                     <h3 className="text-lg font-bold text-white text-center px-2">{topic.title}</h3>
                   </div>
                 </div>

@@ -32,7 +32,7 @@ const colleges = [
   },
   {
     imageSrc: BJRCollegeLogo,
-    name: 'Babu Jagjivan Ram Government Degree College',
+    name: 'BJR Government Degree College',
     address: 'Vittalwadi, Narayanaguda',
     city: 'Hyderabad',
     description: 'A government institution established in 1974. It is dedicated to providing high-quality education to students from all economic backgrounds.',

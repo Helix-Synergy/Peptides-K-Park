@@ -41,7 +41,7 @@ import {
 } from "lucide-react";
 
 import { motion } from "framer-motion";
-import internshipBanner from "../../assets/images/about-banner.jpg";
+import internshipBanner from "../../assets/images/PageBanners/internships.jpg";
 
 const tracksData = [
   { id: 1, title: "Accounting", icon: Calculator },
