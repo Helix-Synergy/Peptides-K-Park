@@ -245,6 +245,10 @@
 
 // export default Gallery;
 
+
+
+
+
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -394,53 +398,58 @@ const Gallery = () => {
 
       {/* Grid */}
       <AnimatePresence mode="wait">
+<motion.div
+  key={activeTab}
+  initial={{ opacity: 0, x: activeTab === "images" ? -50 : 50 }}
+  animate={{ opacity: 1, x: 0 }}
+  exit={{ opacity: 0, x: activeTab === "images" ? 50 : -50 }}
+  transition={{ duration: 0.4 }}
+  className={`grid gap-6 
+    ${activeTab === "images"
+      ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5"
+      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+    }`}
+>
+  {isLoading
+    ? Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)
+    : displayData.map((file, i) => (
         <motion.div
-          key={activeTab}
-          initial={{ opacity: 0, x: activeTab === "images" ? -50 : 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: activeTab === "images" ? 50 : -50 }}
-          transition={{ duration: 0.4 }}
-          className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]"
+          key={file.id}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: i * 0.05 }}
+          className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl cursor-pointer"
+          onClick={() => openPreview(i)}
         >
-          {isLoading
-            ? Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)
-            : displayData.map((file, i) => (
-                <motion.div
-                  key={file.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.05 }}
-                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl cursor-pointer"
-                  onClick={() => openPreview(i)}
-                >
-                  {activeTab === "images" ? (
-                    <img
-                      src={file.thumbnailLink}
-                      alt={file.name}
-                      className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="relative group w-full h-64">
-                      <iframe
-                        src={`https://drive.google.com/file/d/${file.id}/preview`}
-                        className="w-full h-full object-cover rounded-2xl"
-                        allow="autoplay"
-                        allowFullScreen
-                        title={file.name}
-                      ></iframe>
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition rounded-2xl">
-                        <Play size={48} />
-                      </div>
-                    </div>
-                  )}
-                  <div className="p-4">
-                    <h3 className="font-semibold text-gray-800 truncate">
-                      {file.name}
-                    </h3>
-                  </div>
-                </motion.div>
-              ))}
+          {activeTab === "images" ? (
+            <img
+              src={file.thumbnailLink}
+              alt={file.name}
+              className="w-full h-32 object-cover hover:scale-105 transition-transform duration-500"
+            />
+          ) : (
+            <div className="relative group w-full h-64">
+              <iframe
+                src={`https://drive.google.com/file/d/${file.id}/preview`}
+                className="w-full h-full object-cover rounded-2xl"
+                allow="autoplay"
+                allowFullScreen
+                title={file.name}
+              ></iframe>
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition rounded-2xl">
+                <Play size={48} />
+              </div>
+            </div>
+          )}
+          <div className="p-2">
+            <h3 className="font-semibold text-gray-800 text-center truncate">
+              {file.name}
+            </h3>
+          </div>
         </motion.div>
+      ))}
+</motion.div>
+
       </AnimatePresence>
 
       {/* Modal */}
