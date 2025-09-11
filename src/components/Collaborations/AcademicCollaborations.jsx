@@ -92,7 +92,7 @@ const AcademicCollaborations = () => {
             If you're an academic institution or a company that shares our vision, we would love to connect with you. Let's build a better future together.
           </p>
           <Link
-            to="/collaborations/contact-peptides"
+            to="/collaborations/collab-peptides"
             className="inline-flex items-center justify-center px-10 py-4 border-2 border-white text-lg font-bold rounded-full text-peptides-color-brown bg-transparent hover:bg-white hover:text-peptides-dark transition-all duration-300 transform hover:scale-105"
           >
             Connect with Peptides

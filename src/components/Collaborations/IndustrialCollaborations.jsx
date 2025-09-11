@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {motion } from 'framer-motion'
 import { industrialCollaborations } from '../../data/Collaborations';
 import Banner from '../../assets/images/PageBanners/industryCollaborationsBanner.png'
 
@@ -8,21 +7,21 @@ const IndustrialCollaborations = () => {
   return (
     <div className="bg-gray-50 min-h-screen font-sans">
       {/* Hero Section */}
-      <section
-        className="relative h-[50vh] flex items-center justify-end text-center bg-cover bg-center"
-        style={{ backgroundImage: `url(${Banner})` }}
-      >
-        <div className="absolute inset-0 bg-black/50"></div>
-        <motion.div
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 px-4"
-        >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
-            Industrial Collaborations
+      <section className="relative h-[500px] flex items-center justify-center text-white text-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-peptides-dark to-teal-800 opacity-90"></div>
+        <img
+          src={Banner}
+          alt="Industrial Collaboration Banner"
+          className="absolute inset-0 w-full h-full object-cover mix-blend-overlay"
+        />
+        <div className="relative z-10 px-6 max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
+            Our Industrial Collaborations
           </h1>
-        </motion.div>
+          <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto opacity-90">
+            Partnering with industry leaders to drive real-world innovation.
+          </p>
+        </div>
       </section>
 
       {/* Collaborating Companies Grid with Staggered Layout */}
@@ -69,7 +68,7 @@ const IndustrialCollaborations = () => {
                   </p>
                   <Link
                     to={`/industry/${industry.id}`}
-                    className="inline-flex items-center justify-center px-8 py-3 text-lg font-medium rounded-full text-white bg-green-600 hover:bg-green-700 transition-colors duration-300 transform hover:scale-105 shadow-lg"
+                    className="inline-flex items-center justify-center px-8 py-3 text-lg font-medium rounded-full text-white bg-peptides-dark hover:bg-peptides-dark-light transition-colors duration-300 transform hover:scale-105 shadow-lg"
                   >
                     View Details
                     <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -85,16 +84,15 @@ const IndustrialCollaborations = () => {
 
       {/* Call to Action Section */}
       <section className="relative bg-gray-900 text-white py-20 px-6 sm:px-10 lg:px-16 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-l from-green-700 to-gray-800 opacity-90"></div>
+        <div className="absolute inset-0 bg-gradient-to-l from-peptides-color-brown to-amber-500 opacity-90"></div>
         <div className="relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Want to Collaborate with Us?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-80">
-            If you're an academic institution or a company that shares our vision, we would love to connect with you. Let's build a better future together.
-          </p>
+If you're a Research Lab or a Company at the Forefront of your Industry and you share our Vision, we would love to Connect with you. Let's Pioneer a Better Future together.          </p>
           <Link
-            to="/collaborations/contact-peptides"
+            to="/collaborations/collab-peptides"
             className="inline-flex items-center justify-center px-10 py-4 border-2 border-white text-lg font-bold rounded-full text-white bg-transparent hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105"
           >
             Connect with Peptides

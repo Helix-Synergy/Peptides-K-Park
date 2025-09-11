@@ -70,7 +70,7 @@
 //     dropdown: [
 //       { name: 'Academic Collaborations', href: '/collaborations/academic' },
 //       { name: 'Industry Collaborations', href: '/collaborations/industry' },
-//       { name: 'Collaborate with Peptides', href: '/collaborations/peptides' },
+//       { name: 'Collaborate with Peptides', href: '/collaborations/collab-peptides' },
 //     ],
 //   },
 //   {
@@ -419,7 +419,7 @@ const secondRowLinks = [
     dropdown: [
       { name: 'Academic Collaborations', href: '/collaborations/academic' },
       { name: 'Industry Collaborations', href: '/collaborations/industry' },
-      { name: 'Collaborate with Peptides', href: '/collaborations/peptides' },
+      { name: 'Collaborate with Peptides', href: '/collaborations/collab-peptides' },
     ],
   },
   {

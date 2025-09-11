@@ -39,13 +39,13 @@ export const industrialCollaborations = [
 {
   id: "lavin-laboratories",
   name: "Lavin Laboratories",
-  logo: "LavinLogo", // Placeholder
+  logo: "https://media.licdn.com/dms/image/v2/C4E0BAQFyoj9FM_UIPw/company-logo_200_200/company-logo_200_200/0/1649150712894?e=2147483647&v=beta&t=rhzI--DGkal5go-QX7sobI4owqBAXHNzpMcYlVP5474", // Placeholder
 
   // Banner Section
   banner: {
     title: "Collaboration with Lavin Laboratories",
     subtitle: "Advanced testing, research, and quality solutions across industries.",
-    imageUrl: "/images/banner/lavin-laboratories-banner.jpg", // Placeholder
+    imageUrl: "https://content.jdmagicbox.com/v2/comp/hyderabad/x6/040pxx40.xx40.160809124442.w5x6/catalogue/lavin-laboratories-nallakunta-hyderabad-laboratory-testing-services-dkjw3ybg40.jpg", // Placeholder
   },
 
   // About the Industry Partner
@@ -103,7 +103,7 @@ This partnership enables students and researchers to gain practical exposure to 
 {
   id: "global-tech-research",
   name: "Global Tech Research Labs",
-  logo: "GlobalTechLogo", // Placeholder
+  logo: "https://www.shutterstock.com/image-vector/dna-logo-design-templateicon-science-600nw-1473227693.jpg", // Placeholder
 
   // Banner Section
   banner: {

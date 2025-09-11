@@ -194,7 +194,7 @@ function App() {
 
 <Route path="/collaborations/academic" element={<AcademicCollaborations />} />
 <Route path="/collaborations/industry" element={<IndustrialCollaborations />} />
-<Route path="/collaborations/contact-peptides" element={<CollaborationForm />} />
+<Route path="/collaborations/collab-peptides" element={<CollaborationForm />} />
 <Route path="/academic/:id" element={<AcademicDetail />} />
 <Route path="/industry/:id" element={<IndustrialDetail />} />
 
