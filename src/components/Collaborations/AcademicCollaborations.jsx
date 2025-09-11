@@ -18,7 +18,7 @@ const AcademicCollaborations = () => {
             Our Academic Collaborations
           </h1>
           <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto opacity-90">
-            Partnering with world-class institutions to forge a brighter future.
+            Partnering with World-class Institutions to forge a Brighter Future.
           </p>
         </div>
       </section>
@@ -53,7 +53,7 @@ const AcademicCollaborations = () => {
                   <img
                     src={college.logo}
                     alt={`${college.name} logo`}
-                    className="absolute bottom-4 left-4 w-24 h-24 object-contain bg-white rounded-full p-2 border-4 border-white shadow-xl"
+                    className="absolute top-4 right-4 w-24 h-24 object-contain bg-white rounded-full p-2 border-4 border-white shadow-xl"
                   />
                 </div>
 

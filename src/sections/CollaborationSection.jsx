@@ -101,7 +101,7 @@ const CollaborationSection = () => {
 {/* Button to navigate */}
       <div className="mt-8 flex justify-center">
         <Link 
-          to="/collaborations" // Use 'to' prop for Link component
+          to="/collaborations/academic" // Use 'to' prop for Link component
           className="px-8 py-3 bg-[#A67A2F] text-white font-semibold rounded-lg shadow-lg hover:bg-amber-500 transition-colors duration-300"
         >
           View All Collaborations
