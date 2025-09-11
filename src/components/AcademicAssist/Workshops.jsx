@@ -133,7 +133,7 @@ const Workshops = () => {
               Categories
             </h2>
             <div
-              className="flex overflow-x-auto gap-4 p-4 items-center justify-start md:justify-center"
+              className="flex overflow-x-auto gap-6 p-4 items-center justify-start md:justify-center"
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",

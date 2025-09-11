@@ -126,6 +126,13 @@ import CorporateSupportServices from './components/CorporateAstute/CorporateSupp
 import StackUp from './components/CorporateAstute/StackUp';
 import MemberDetailPage from './components/AdvisoryCouncil/MemberDetailPage';
 
+import AcademicCollaborations from './components/Collaborations/AcademicCollaborations';
+import IndustrialCollaborations from './components/Collaborations/IndustrialCollaborations';
+import CollaborationForm from './components/Collaborations/CollaborationForm';
+import AcademicDetail from "./components/Collaborations/AcademicCollaborationDetail";
+import IndustrialDetail from "./components/Collaborations/IndustrialCollaborationDetail";
+
+
 // Components for Career Saga
 import CareerSagaDropdown from './components/CareerSaga/CareerSagaDropdown';
 import CareerCoach from './components/CareerSaga/CareerCoach';
@@ -185,11 +192,12 @@ function App() {
           <Route path="/career-saga/air" element={<PagePlaceholder pageName="Advanced Industrial Reach (AIR)" />} />
           <Route path="/career-saga/pam" element={<PeptidesAssistanceMembership />} />
 
-          {/* Collaborations Routes */}
-          <Route path="/collaborations" element={<CorporateCollaborations />} />
-          <Route path="/collaborations/academic" element={<PagePlaceholder pageName="Academic Collaborations" />} />
-          <Route path="/collaborations/industry" element={<PagePlaceholder pageName="Industry Collaborations" />} />
-          <Route path="/collaborations/peptides" element={<PagePlaceholder pageName="Collaborate with Peptides" />} />
+<Route path="/collaborations/academic" element={<AcademicCollaborations />} />
+<Route path="/collaborations/industry" element={<IndustrialCollaborations />} />
+<Route path="/collaborations/contact-peptides" element={<CollaborationForm />} />
+<Route path="/academic/:id" element={<AcademicDetail />} />
+<Route path="/industry/:id" element={<IndustrialDetail />} />
+
 
           {/* Careers Routes */}
           <Route path="/careers" element={<PagePlaceholder pageName="Careers" />} />

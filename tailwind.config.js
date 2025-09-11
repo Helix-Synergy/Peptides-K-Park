@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         // Dark theme primary
         'peptides-dark': '#0f2920',
-        'peptides-dark-light': '#1f3b30',
+        'peptides-dark-light': '#254438ff',
         'peptides-dark-lighter': '#e6e6e6ff',
 
         // Text colors

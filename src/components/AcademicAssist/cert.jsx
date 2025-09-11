@@ -188,7 +188,7 @@ const CompetitiveExamsTraining = () => {
             <h2 className="text-3xl md:text-4xl font-extrabold text-neutral-800 mb-6">
               Your Path to Success
             </h2>
-            <p className="text-lg text-neutral-600 max-w-3xl mx-auto leading-relaxed mb-6">
+            <p className="text-lg text-neutral-600 max-w-5xl mx-auto leading-relaxed mb-6">
               We provide the expert guidance, comprehensive resources, and personalized strategy you need to ace your competitive exam. In the highly competitive world of government jobs and professional exams, preparation is key. We provide top-notch support as we are your dedicated partners in success. Our mission is to transform your aspirations into achievements through a proven methodology, a team of expert educators, and an unwavering commitment to your success.
             </p>
           </motion.div>
