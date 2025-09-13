@@ -111,7 +111,7 @@ import ConferencesSeminars from './components/AcademicAssist/ConferencesAndSemin
 import Workshops from './components/AcademicAssist/Workshops';
 import TechTalks from './components/AcademicAssist/TechTalks';
 import ResearchAssistanceThesisSupport from './components/AcademicAssist/ResearchAssistanceThesisSupport';
-import FacultyUpskillingService from './components/AcademicAssist/FacultyUpskillingService';
+import FacultyUpskillingService from './components/CorporateAstute/FacultyUpskillingService';
 import ELearnDigitalLearning from './components/AcademicAssist/ELearnDigitalLearning';
 import Publications from './components/AcademicAssist/Publications'
 import Internships from './components/AcademicAssist/Internships'
@@ -122,6 +122,7 @@ import CERT from './components/AcademicAssist/cert'
 // Components for Corporate Astute
 import CorporateAstuteDropdown from './components/CorporateAstute/CorporateAstuteDropdown';
 import CorporateCollaborations from './components/CorporateAstute/CorporateCollaborations';
+import ContractResearchServices from './components/CorporateAstute/ContractResearchServices'
 import CorporateSupportServices from './components/CorporateAstute/CorporateSupportServices';
 import StackUp from './components/CorporateAstute/StackUp';
 import MemberDetailPage from './components/AdvisoryCouncil/MemberDetailPage';
@@ -138,6 +139,7 @@ import CareerSagaDropdown from './components/CareerSaga/CareerSagaDropdown';
 import CareerCoach from './components/CareerSaga/CareerCoach';
 import JobMate from './components/CareerSaga/JobMate';
 import PeptidesAssistanceMembership from './components/CareerSaga/PeptidesAssistanceMembership';
+import AdvancedIndustrialReach from './components/CareerSaga/AdvancedIndustrialReach'
 
 // Placeholder for new or unassigned pages
 const PagePlaceholder = ({ pageName }) => (
@@ -180,8 +182,8 @@ function App() {
 
           {/* Corporate Astute Routes */}
           <Route path="/corporate-astute" element={<CorporateAstuteDropdown />} />
-          <Route path="/corporate-astute/css" element={<CorporateSupportServices />} />
-          <Route path="/corporate-astute/crs" element={<PagePlaceholder pageName="Contract Research Services (CRS)" />} />
+          <Route path="/corporate-astute/aas" element={<CorporateSupportServices />} />
+          <Route path="/corporate-astute/crs" element={<ContractResearchServices />} />
           <Route path="/corporate-astute/fuss" element={<FacultyUpskillingService />} />
           <Route path="/corporate-astute/raws" element={<ResearchAssistanceThesisSupport />} />
 
@@ -189,7 +191,7 @@ function App() {
           <Route path="/career-saga" element={<CareerSagaDropdown />} />
           <Route path="/career-saga/jot" element={<CareerCoach />} />
           <Route path="/career-saga/plast" element={<JobMate />} />
-          <Route path="/career-saga/air" element={<PagePlaceholder pageName="Advanced Industrial Reach (AIR)" />} />
+          <Route path="/career-saga/air" element={<AdvancedIndustrialReach />} />
           <Route path="/career-saga/pam" element={<PeptidesAssistanceMembership />} />
 
 <Route path="/collaborations/academic" element={<AcademicCollaborations />} />

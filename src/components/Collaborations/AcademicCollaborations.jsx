@@ -31,7 +31,7 @@ const AcademicCollaborations = () => {
               Explore Our Esteemed Partners
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              We're proud to work with these leading universities, creating innovative opportunities for our students and faculty.
+              We're proud to work with these leading academic Institutions, creating Innovative Opportunities for our students and faculty.
             </p>
           </div>
 

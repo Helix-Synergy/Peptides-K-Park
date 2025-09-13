@@ -1,28 +1,27 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  FileText, Database, Edit, ClipboardCheck, Users, TrendingUp, Award, ArrowRight, BookMarked, Brain, Lightbulb
+  BookOpen, Laptop, BarChart, Feather, Users, Award, Lightbulb, GraduationCap, ArrowRight, TrendingUp, Clock, Check
 } from "lucide-react";
-// Assuming you have a relevant banner image for RATS, e.g.,
-import Banner from '../../assets/images/PageBanners/3.jpg';
+import Banner from '../../assets/images/PageBanners/8.jpg'
 
 // === DATA FOR THIS PAGE ===
-const ratsData = {
-  title: 'RATS',
-  tagline: 'Your Partner for Research Assistance & Thesis Support',
-  intro: 'We provide structured thesis support to help students navigate every stage of their academic journey. Our expert guidance ensures your research is robust, your data is sound, and your thesis is written with clarity and academic rigor.',
+const fusData = {
+  title: 'Faculty Upskilling Services',
+  tagline: 'Your Partner in Academic Excellence',
+  intro: 'We offer a range of specialized workshops and courses to help faculty members enhance their professional skills and stay ahead of the curve. Each program is led by expert facilitators and focuses on practical, real-world application.',
   services: [
-    { icon: FileText, text: 'Literature Review & Research Methodology: We provide expert guidance on structuring your research and conducting comprehensive literature reviews. Our support helps you build a solid theoretical foundation and design a methodology that is both robust and ethically sound.' },
-    { icon: Database, text: 'Data Analysis & Interpretation: Our team assists with both statistical tools and advanced bioinformatics techniques. We help you transform raw data into meaningful insights and provide clear interpretations that strengthen your conclusions.' },
-    { icon: Edit, text: 'Thesis Writing & Editing: Our services go beyond simple proofreading. We focus on enhancing clarity, ensuring coherence, and elevating the academic rigor of your writing. We help you present your findings in a compelling and professional manner.' },
-    { icon: ClipboardCheck, text: 'Ethical Research Practices: Adhering to the highest research standards is non-negotiable. We guide you through the process of ethical approvals, data privacy, and proper citation to ensure your work is credible and stands up to scrutiny.' },
+    { icon: BookOpen, text: 'Instructional Design & Curriculum Development: Learn how to design engaging and effective courses, whether for in-person or online delivery. Master the principles of creating a curriculum that drives student success and meets modern educational standards.' },
+    { icon: Laptop, text: 'Integrating Technology in the Classroom: Explore the latest educational technologies and digital tools. We\'ll show you how to use them to create interactive lessons, manage student progress, and foster a dynamic learning environment.' },
+    { icon: BarChart, text: 'Assessment & Evaluation Strategies: Move beyond traditional testing. Discover new methods for assessing student learning, providing meaningful feedback, and using data to improve your teaching.' },
+    { icon: Feather, text: 'Research & Publishing Skills: Develop the skills needed to conduct impactful research, write compelling academic papers, and navigate the publishing process. Our program helps you elevate your scholarly profile.' },
   ],
   whyChoose: [
-    { icon: Brain, text: 'Subject Matter Experts: Our team consists of PhD-level researchers and seasoned academics who specialize in a wide range of fields, offering you personalized, in-depth expertise.' },
-    { icon: TrendingUp, text: 'Accelerated Progress: We help you overcome common roadblocks and streamline your workflow, allowing you to complete your research and thesis with greater efficiency without compromising on quality.' },
-    { icon: Lightbulb, text: 'Customized Support: Every research project is unique. Our services are tailored to your specific needs, providing you with targeted assistance exactly where you need it most.' },
+    { icon: GraduationCap, text: 'Expert-Led: Learn from a team of experienced educators and academic leaders who are at the forefront of educational innovation.' },
+    { icon: Clock, text: 'Flexible & Accessible: Our programs are designed to fit your busy schedule. Choose from a variety of formats, including online courses, in-person workshops, and hybrid models.' },
+    { icon: Check, text: 'Practical & Actionable: We focus on skills you can implement immediately in your classroom, ensuring a direct and positive impact on your students.' },
   ],
-  cta: 'Let us help you turn your research into a publication-ready thesis. Contact us today to start your project.'
+  cta: 'Let’s discuss your requirements and craft a roadmap to success.'
 };
 
 // === ANIMATION VARIANTS ===
@@ -60,13 +59,12 @@ const cardHover = {
 };
 
 // === COMPONENT ===
-const ResearchAssistanceServices = () => {
+const FacultyUpskillingServices = () => {
   return (
     <div className="bg-gray-50 text-[#1e1e1e] font-inter relative min-h-screen">
-      
       {/* Hero Section */}
-      <section className="relative w-full h-[60vh] flex items-center justify-end text-center bg-black overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
+      <section className="relative w-full h-[60vh] flex items-center justify-end text-end bg-black overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-40">
           <motion.div
             initial={{ scale: 1.2, rotate: 0 }}
             // animate={{ scale: 1, rotate: 360 }}
@@ -81,8 +79,8 @@ const ResearchAssistanceServices = () => {
           transition={{ duration: 0.8 }}
           className="relative z-10 px-4 max-w-4xl text-white"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4">RATS</h1>
-          <p className="text-lg md:text-xl text-gray-200 mx-auto">{ratsData.tagline}</p>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{fusData.title}</h1>
+          <p className="text-lg md:text-xl text-gray-200 mx-auto">{fusData.tagline}</p>
         </motion.div>
       </section>
 
@@ -94,7 +92,7 @@ const ResearchAssistanceServices = () => {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto"
         >
-          <p className="text-lg md:text-xl text-gray-700">{ratsData.intro}</p>
+          <p className="text-lg md:text-xl text-gray-700">{fusData.intro}</p>
         </motion.div>
       </section>
 
@@ -102,7 +100,7 @@ const ResearchAssistanceServices = () => {
       <section id="services" className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-[#0f2920] to-[#714819]">
-            Our Support Areas
+            Our Programs
           </h2>
           <motion.div
             variants={containerVariants}
@@ -110,7 +108,7 @@ const ResearchAssistanceServices = () => {
             animate="visible"
             className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8"
           >
-            {ratsData.services.map((item, i) => {
+            {fusData.services.map((item, i) => {
               const Icon = item.icon;
               return (
                 <motion.div
@@ -146,7 +144,7 @@ const ResearchAssistanceServices = () => {
       <section className="bg-white py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <h3 className="text-3xl md:text-4xl font-extrabold text-[#0f2920] mb-12">
-            Why Partner with Us?
+            Why Choose Our Program?
           </h3>
           <motion.div
             variants={containerVariants}
@@ -154,7 +152,7 @@ const ResearchAssistanceServices = () => {
             animate="visible"
             className="grid sm:grid-cols-1 md:grid-cols-3 gap-8"
           >
-            {ratsData.whyChoose.map((item, i) => {
+            {fusData.whyChoose.map((item, i) => {
               const Icon = item.icon;
               return (
                 <motion.div
@@ -186,7 +184,7 @@ const ResearchAssistanceServices = () => {
               WebkitTextFillColor: 'transparent',
             }}
           >
-            Ready to Elevate Your Research?
+            Ready to Transform Your Teaching & Research?
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -194,7 +192,7 @@ const ResearchAssistanceServices = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg mb-8 text-[#1e1e1e]"
           >
-            {ratsData.cta}
+            {fusData.cta}
           </motion.p>
           <motion.a
             href="/contact"
@@ -207,8 +205,9 @@ const ResearchAssistanceServices = () => {
           </motion.a>
         </div>
       </section>
+
     </div>
   );
 };
 
-export default ResearchAssistanceServices;
+export default FacultyUpskillingServices;

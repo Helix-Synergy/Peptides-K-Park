@@ -15,7 +15,7 @@ const CorporateAstuteDropdown = () => {
     },
     {
       icon: <Building className="w-8 h-8" />,
-      title: "Corporate Support Services",
+      title: "Analyte Assessment Services",
       description: "Comprehensive business solutions for biotechnology companies",
       features: ["Business consulting", "Regulatory compliance", "Quality management", "Operational efficiency"]
     },

@@ -1,276 +1,177 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Search, FileText, Users, TrendingUp, CheckCircle, ArrowRight, Clock, MapPin, Building } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  FileText, Users, Network, Briefcase, Award, Check, ArrowRight
+} from "lucide-react";
+// Assuming you have a relevant banner image for Placement Assistance
+// import Banner from '../../assets/images/PageBanners/placement-banner.jpg';
 
-const JobMate = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+// === DATA FOR THIS PAGE ===
+const placementData = {
+  title: 'Placement Assistance',
+  tagline: 'From Trainee to Professional. Your Career Starts Here.',
+  intro: 'Our placement assistance services are designed to help you bridge the gap between education and employment, providing the support you need to land a great job and launch your career.',
+  howWeHelp: [
+    { icon: FileText, title: 'Resume & Portfolio Building', description: 'We work with you one-on-one to create a professional resume and a compelling portfolio that highlights your skills and project work, making a strong first impression on potential employers.' },
+    { icon: Users, title: 'Interview Preparation', description: 'Our experts conduct mock interviews and provide personalized feedback to help you master interview techniques, build confidence, and prepare for tough questions.' },
+    { icon: Network, title: 'Networking Opportunities', description: 'We connect you with our extensive network of hiring partners and alumni in various industries. These connections provide exclusive access to job openings and professional insights.' },
+    { icon: Briefcase, title: 'Job Search Strategy', description: 'We guide you through the job search process, from identifying the right companies to crafting effective cover letters and negotiating your salary.' },
+  ],
+  results: {
+    heading: 'Our Results Speak for Themselves',
+    body: 'We take pride in the success of our graduates. Our strong relationships with top companies and our proven track record of successful placements are a testament to the effectiveness of our program. Join our community of successful professionals and take the next step toward achieving your career goals.'
+  },
+  ctaHeading: 'Start Your Career Today',
+  ctaBody: 'Ready to take the next step? Explore our programs and get the support you need to secure your dream job.'
+};
 
-  const jobFeatures = [
-    {
-      icon: <Search className="w-8 h-8" />,
-      title: "Smart Job Matching",
-      description: "AI-powered algorithms match you with the perfect opportunities based on your skills and preferences"
-    },
-    {
-      icon: <FileText className="w-8 h-8" />,
-      title: "Resume Optimization",
-      description: "Professional resume writing and optimization to increase your chances of getting noticed"
-    },
-    {
-      icon: <Users className="w-8 h-8" />,
-      title: "Interview Preparation",
-      description: "Comprehensive interview coaching and mock sessions to boost your confidence"
-    },
-    {
-      icon: <TrendingUp className="w-8 h-8" />,
-      title: "Career Tracking",
-      description: "Monitor your application progress and track your career growth over time"
+// === ANIMATION VARIANTS ===
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
     }
-  ];
+  }
+};
 
-  const jobCategories = [
-    {
-      title: "Research & Development",
-      count: "150+",
-      icon: <Building className="w-6 h-6" />
-    },
-    {
-      title: "Laboratory Management",
-      count: "80+",
-      icon: <Building className="w-6 h-6" />
-    },
-    {
-      title: "Quality Assurance",
-      count: "120+",
-      icon: <Building className="w-6 h-6" />
-    },
-    {
-      title: "Clinical Research",
-      count: "95+",
-      icon: <Building className="w-6 h-6" />
-    },
-    {
-      title: "Regulatory Affairs",
-      count: "60+",
-      icon: <Building className="w-6 h-6" />
-    },
-    {
-      title: "Data Analysis",
-      count: "110+",
-      icon: <Building className="w-6 h-6" />
-    }
-  ];
+const cardVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1
+  }
+};
 
-  const successMetrics = [
-    { number: "85%", label: "Interview Success Rate" },
-    { number: "3.2", label: "Average Months to Hire" },
-    { number: "2000+", label: "Successful Placements" },
-    { number: "95%", label: "Client Satisfaction" }
-  ];
+const ctaAnimation = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
 
+// === COMPONENT ===
+const PlacementAssistance = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="bg-gray-50 text-[#1e1e1e] font-inter relative min-h-screen">
+      
       {/* Hero Section */}
-      <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center text-white overflow-hidden bg-gradient-to-br from-orange-600 to-red-600">
+      <section className="relative w-full h-[60vh] flex items-center justify-center text-center bg-[#0f2920] overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-20">
+          <motion.div
+            initial={{ scale: 1.2, rotate: 0 }}
+            className="w-full h-full bg-no-repeat bg-cover"
+            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')` }}
+          ></motion.div>
+        </div>
         <motion.div
-          ref={sectionRef}
-          initial={{ y: -50, opacity: 0 }}
-          animate={isInView ? "visible" : "hidden"}
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 text-center"
+          className="relative z-10 px-4 max-w-4xl text-white"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">Job Mate</h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto px-4">
-            Your AI-Powered Job Search Companion
-          </p>
-          <p className="text-base text-gray-200 mt-2 max-w-3xl mx-auto px-4">
-            Streamline your job search with intelligent matching, resume optimization, and career guidance
-          </p>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{placementData.title}</h1>
+          <p className="text-lg md:text-xl text-gray-200 mx-auto">{placementData.tagline}</p>
         </motion.div>
       </section>
 
-      {/* Main Content */}
-      <section className="w-full py-12 px-4 lg:px-12">
-        <div className="max-w-7xl mx-auto">
-          {/* Introduction */}
+      {/* Intro Text Section */}
+      <section className="bg-white py-12 px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mx-auto"
+        >
+          <p className="text-lg md:text-xl text-gray-700">{placementData.intro}</p>
+        </motion.div>
+      </section>
+
+      {/* How We Help Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-[#0f2920] to-[#714819]">
+            How We Help You Succeed
+          </h2>
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
+            className="grid sm:grid-cols-2 md:grid-cols-4 gap-8"
+          >
+            {placementData.howWeHelp.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={i}
+                  variants={cardVariants}
+                  className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col items-center text-center"
+                >
+                  <Icon size={56} className="mb-4 text-[#714819]" />
+                  <h3 className="text-xl font-bold mb-2 text-[#0f2920]">{item.title}</h3>
+                  <p className="text-gray-700">{item.description}</p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Results Section */}
+      <section className="bg-white py-20 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-3xl md:text-4xl font-extrabold text-[#0f2920] mb-6"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Revolutionize Your Job Search with AI Technology
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Job Mate combines cutting-edge artificial intelligence with industry expertise to help 
-              biotechnology and life sciences professionals find their dream careers. Our platform 
-              streamlines every aspect of your job search journey.
-            </p>
-          </motion.div>
-
-          {/* Features Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            {placementData.results.heading}
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-16"
+            className="text-lg text-gray-700"
           >
-            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Platform Features</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {jobFeatures.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white/40 backdrop-blur-lg border border-white/30 rounded-xl p-6 text-center hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                    {feature.icon}
-                  </div>
-                  <h4 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h4>
-                  <p className="text-sm text-gray-600">{feature.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+            {placementData.results.body}
+          </motion.p>
+        </div>
+      </section>
 
-          {/* Job Categories */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mb-16"
+      {/* Final CTA */}
+      <section className="w-full py-16 px-4 lg:px-12 bg-[#d7f2da] text-black text-center">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2
+            {...ctaAnimation}
+            className="text-3xl lg:text-4xl font-bold mb-6"
+            style={{
+                            background: 'linear-gradient(90deg, #215e14ff, #11501cff, #4a7b3dff)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
           >
-            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Popular Job Categories</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {jobCategories.map((category, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white/40 backdrop-blur-lg border border-white/30 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 cursor-pointer"
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white mx-auto mb-3">
-                    {category.icon}
-                  </div>
-                  <div className="text-sm font-semibold text-gray-900 mb-1">{category.title}</div>
-                  <div className="text-xs text-gray-600">{category.count} jobs</div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Success Metrics */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mb-16"
+            {placementData.ctaHeading}
+          </motion.h2>
+          <motion.p
+            {...ctaAnimation}
+            transition={{ ...ctaAnimation.transition, delay: 0.2 }}
+            className="text-lg mb-8 text-[#1e1e1e]"
           >
-            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Our Success Metrics</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {successMetrics.map((metric, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-orange-600 mb-2">{metric.number}</div>
-                  <div className="text-sm text-gray-600">{metric.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* How It Works */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mb-16"
+            {placementData.ctaBody}
+          </motion.p>
+          <motion.a
+            href="/contact"
+            {...ctaAnimation}
+            transition={{ ...ctaAnimation.transition, delay: 0.4 }}
+            className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-full bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
           >
-            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">How Job Mate Works</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-center"
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white mx-auto mb-4 text-2xl font-bold">
-                  1
-                </div>
-                <h4 className="text-lg font-bold text-gray-900 mb-2">Create Your Profile</h4>
-                <p className="text-gray-600">Upload your resume and complete your professional profile</p>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-center"
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white mx-auto mb-4 text-2xl font-bold">
-                  2
-                </div>
-                <h4 className="text-lg font-bold text-gray-900 mb-2">AI Matching</h4>
-                <p className="text-gray-600">Our AI analyzes and matches you with relevant opportunities</p>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-center"
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white mx-auto mb-4 text-2xl font-bold">
-                  3
-                </div>
-                <h4 className="text-lg font-bold text-gray-900 mb-2">Get Hired</h4>
-                <p className="text-gray-600">Apply to matched jobs and land your dream position</p>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 1.0 }}
-            className="text-center"
-          >
-            <div className="bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-4">Ready to Find Your Dream Job?</h3>
-              <p className="text-lg mb-6 opacity-90">
-                Join thousands of professionals who have already discovered their perfect career match
-              </p>
-              <button className="bg-white text-orange-600 font-bold py-3 px-8 rounded-xl hover:bg-gray-100 transition-colors duration-200 flex items-center mx-auto">
-                Start Your Job Search <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
-            </div>
-          </motion.div>
+            Get Started <ArrowRight className="ml-2 w-5 h-5" />
+          </motion.a>
         </div>
       </section>
     </div>
   );
 };
 
-export default JobMate; 
+export default PlacementAssistance;

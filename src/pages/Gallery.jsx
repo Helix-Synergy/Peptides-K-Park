@@ -265,7 +265,7 @@ const VIDEO_FOLDER_ID = "13cn_ACNtZfMTy86oE_56IR6YTPrOgp9F";
 
 const SkeletonCard = () => (
   <div className="bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
-    <div className="w-full h-64 bg-gray-200" />
+    <div className="w-full h-32 bg-gray-200" />
     <div className="p-4">
       <div className="h-4 bg-gray-200 rounded w-3/4 mb-2" />
       <div className="h-4 bg-gray-200 rounded w-1/2" />

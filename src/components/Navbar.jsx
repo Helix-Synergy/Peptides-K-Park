@@ -397,7 +397,7 @@ const secondRowLinks = [
     name: 'Corporate Astute',
     href: '/corporate-astute',
     dropdown: [
-      { name: 'Corporate Support Service (CSS)', href: '/corporate-astute/css' },
+      { name: 'Analyte Assessment Services (AAS)', href: '/corporate-astute/aas' },
       { name: 'Contract Research Services (CRS)', href: '/corporate-astute/crs' },
       { name: 'Faculty Upskilling Services (FUSS)', href: '/corporate-astute/fuss' },
       { name: 'Research Assistance & Writing Services (RAWS)', href: '/corporate-astute/raws' },

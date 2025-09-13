@@ -327,6 +327,27 @@ const advisoryContentData = {
             ],
           },
           {
+    name: "Prof. E.M. Sunitha",
+    image: "sunitha.jpg",
+    role: "Associate Professor & Head of Botany",
+    subtitle: "Babu Jagjivan Ram Government Degree College",
+    country: "India",
+    bio: "Prof. E.M. Sunitha is an accomplished academician and researcher with over two decades of experience in the fields of teaching and research. Currently serving as an Associate Professor and Head of the Department of Botany at Babu Jagjivan Ram Government Degree College in Hyderabad, she has dedicated her career to fostering student growth and innovation. She holds a Doctorate Degree in Genetics from Osmania University, which laid the foundation for her interdisciplinary skills. Beyond her administrative and teaching duties, Prof. Sunitha is a dynamic leader known for implementing innovative practices such as the 'BJR Bionics YouTube Channel' and a Virtual/Digital Herbarium to enhance blended learning. Her commitment to environmental consciousness is evident through her supervision of projects like the establishment of a Miyawaki Garden and a solar-based moisture sensor, the latter of which received a national award.",
+    achievements: [
+        "Recipient of multiple awards for innovative projects, including the National Hackathon Third Prize.",
+        "Initiated the 'BJR Bionics YouTube Channel' and a Virtual/Digital Herbarium for student learning.",
+        "Supervised the establishment of a Miyawaki Garden and a Medicinal Plant garden.",
+        "Author of three books on subjects like Tissue Culture and Mushroom Cultivation.",
+        "Holds a Doctorate in Genetics and has qualified for GATE and SLET examinations.",
+        "Commissioned as a Lieutenant in the Army NCC.",
+    ],
+    contributions: [
+        "Curriculum development for B.Sc Botany.",
+        "Innovative practices in ICT teaching and blended learning.",
+        "Research in plant sciences and environmental consciousness.",
+    ],
+},
+          {
             name: "Peri Anuradha",
             image: anuradha,
             role: "Founding Principal",

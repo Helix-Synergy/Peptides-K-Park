@@ -1,238 +1,245 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { User, Target, TrendingUp, Award, CheckCircle, ArrowRight, Clock, Users, Star } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Code, HeartPulse, Briefcase, Palette, Award, Users, Check, ArrowRight
+} from "lucide-react";
 
-const CareerCoach = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-
-  const coachingPrograms = [
+// === DATA FOR THIS PAGE ===
+const jobTrainingData = {
+  title: 'Job Oriented Trainings',
+  tagline: 'Bridging the Gap Between Education and Employment',
+  intro: 'In a rapidly changing job market, a traditional degree isn\'t always enough. Our job-oriented training programs are designed to bridge that gap. We focus on real-world skills, industry-relevant projects, and a direct path to employment, helping you bypass the learning curve and jumpstart your career.',
+  industries: [
     {
-      title: "Career Assessment & Planning",
-      duration: "4 weeks",
-      features: ["Skills evaluation", "Career path analysis", "Goal setting", "Action plan creation"],
-      icon: <Target className="w-8 h-8" />
+      name: 'Technology & Data',
+      icon: Code,
+      programs: [
+        { title: 'Data Science & Analytics', description: 'Learn to transform complex data into actionable insights and drive business decisions.' },
+        { title: 'Cybersecurity', description: 'Master the strategies and tools to protect digital assets and secure networks.' },
+        { title: 'Full-Stack Development', description: 'Become a versatile developer by mastering both front-end and back-end technologies.' },
+        { title: 'Artificial Intelligence & Machine Learning', description: 'Dive into the future of technology by building intelligent systems and models.' },
+      ]
     },
     {
-      title: "Executive Coaching",
-      duration: "12 weeks",
-      features: ["Leadership development", "Strategic thinking", "Communication skills", "Team management"],
-      icon: <TrendingUp className="w-8 h-8" />
+      name: 'Life Sciences & Healthcare',
+      icon: HeartPulse,
+      programs: [
+        { title: 'Clinical Research', description: 'Learn the principles of clinical trial management, data collection, and regulatory compliance to support medical research.' },
+        { title: 'Medical Lab Technology', description: 'Gain practical skills in laboratory procedures, diagnostics, and quality control.' },
+        { title: 'Bioinformatics', description: 'Master the use of computational tools to analyze complex biological data and support drug discovery and genetic research.' },
+        { title: 'Public Health & Epidemiology', description: 'Study the patterns of disease and public health issues, and learn to develop strategies for prevention and community wellness.' },
+      ]
     },
     {
-      title: "Industry Transition",
-      duration: "8 weeks",
-      features: ["Industry research", "Skill mapping", "Network building", "Transition strategy"],
-      icon: <User className="w-8 h-8" />
+      name: 'Business & Management',
+      icon: Briefcase,
+      programs: [
+        { title: 'Digital Marketing', description: 'Master the art of online brand-building, from SEO and content strategy to social media advertising.' },
+        { title: 'Project Management', description: 'Learn to plan, execute, and deliver projects on time and on budget, mastering key methodologies like Agile and Scrum.' },
+        { title: 'Supply Chain Management', description: 'Gain expertise in logistics, procurement, and operations to optimize efficiency from start to finish.' },
+        { title: 'Human Resources Management', description: 'Develop the skills to manage talent, lead organizational change, and create a positive and productive work environment.' },
+      ]
+    },
+    {
+      name: 'Creative & Design',
+      icon: Palette,
+      programs: [
+        { title: 'UI/UX Design', description: 'Create intuitive and visually appealing digital experiences that users will love.' },
+        { title: 'Graphic Design', description: 'Develop a professional portfolio of branding, marketing, and visual communication materials.' },
+        { title: 'Video Production', description: 'Learn the full scope of video creation, from filming and editing to motion graphics and sound design.' },
+        { title: '3D Modeling & Animation', description: 'Bring your ideas to life by mastering 3D software for character design, architectural visualization, and motion graphics.' },
+      ]
+    },
+  ],
+  whyChoose: [
+    { icon: Check, text: 'Practical, Hands-On Projects: Build a portfolio of real-world projects that prove your skills to employers.' },
+    { icon: Award, text: 'Industry-Expert Instructors: Learn directly from professionals who are currently working in their fields.' },
+    { icon: Users, text: 'Dedicated Career Support: Get personalized help with resume writing, interview preparation, and job placement to ensure you succeed.' },
+  ],
+  ctaHeading: 'Start Your Journey Today',
+  ctaBody: 'Ready to invest in your future? Explore our training programs and take the first step toward a rewarding and successful career.'
+};
+
+// === ANIMATION VARIANTS ===
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
     }
-  ];
+  }
+};
 
-  const testimonials = [
-    {
-      name: "Dr. Sarah Chen",
-      role: "Senior Research Scientist",
-      company: "BioTech Innovations",
-      content: "The career coaching helped me identify my strengths and land my dream role in just 3 months.",
-      rating: 5
-    },
-    {
-      name: "Michael Rodriguez",
-      role: "Lab Manager",
-      company: "Molecular Dynamics",
-      content: "Professional guidance that transformed my career trajectory and boosted my confidence.",
-      rating: 5
-    },
-    {
-      name: "Dr. Emily Watson",
-      role: "Principal Investigator",
-      company: "Genetics Research Institute",
-      content: "Outstanding support in developing my leadership skills and advancing my research career.",
-      rating: 5
-    }
-  ];
+const cardVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1 }
+};
 
-  const benefits = [
-    "Personalized 1-on-1 coaching sessions",
-    "Industry-specific career guidance",
-    "Resume and interview preparation",
-    "Networking and relationship building",
-    "Salary negotiation strategies",
-    "Ongoing support and accountability"
-  ];
+const ctaAnimation = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
+// === COMPONENT ===
+const JobOrientedTrainings = () => {
+  const [activeTab, setActiveTab] = useState(jobTrainingData.industries[0].name);
+  const activePrograms = jobTrainingData.industries.find(
+    (industry) => industry.name === activeTab
+  )?.programs;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="bg-gray-50 text-[#1e1e1e] font-inter relative min-h-screen">
+      
       {/* Hero Section */}
-      <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center text-white overflow-hidden bg-gradient-to-br from-green-700 to-teal-600">
+      <section className="relative w-full h-[60vh] flex items-center justify-center text-center bg-[#0f2920] overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-20">
+          <motion.div
+            initial={{ scale: 1.2, rotate: 0 }}
+            animate={{ scale: 1, rotate: 360 }}
+            transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+            className="w-full h-full bg-no-repeat bg-cover"
+            style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/pinstripe-dark.png')` }}
+          ></motion.div>
+        </div>
         <motion.div
-          ref={sectionRef}
-          initial={{ y: -50, opacity: 0 }}
-          animate={isInView ? "visible" : "hidden"}
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 text-center"
+          className="relative z-10 px-4 max-w-4xl text-white"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">Career Coach</h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto px-4">
-            Personalized Professional Development
-          </p>
-          <p className="text-base text-gray-200 mt-2 max-w-3xl mx-auto px-4">
-            Expert guidance to accelerate your career growth and achieve your professional goals
-          </p>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{jobTrainingData.title}</h1>
+          <p className="text-lg md:text-xl text-gray-200 mx-auto">{jobTrainingData.tagline}</p>
         </motion.div>
       </section>
 
-      {/* Main Content */}
-      <section className="w-full py-12 px-4 lg:px-12">
+      {/* Intro Text Section */}
+      <section className="bg-white py-12 px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mx-auto"
+        >
+          <p className="text-lg md:text-xl text-gray-700">{jobTrainingData.intro}</p>
+        </motion.div>
+      </section>
+
+      {/* Tabbed Training Programs Section */}
+      <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Introduction */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Unlock Your Career Potential with Expert Coaching
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Our certified career coaches specialize in the biotechnology and life sciences sectors, 
-              providing personalized guidance to help you navigate career challenges, develop essential 
-              skills, and achieve your professional aspirations.
-            </p>
-          </motion.div>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-[#0f2920] to-[#714819]">
+            Training Across Key Industries
+          </h2>
+          <div className="flex flex-wrap justify-center mb-12 space-x-2 md:space-x-4">
+            {jobTrainingData.industries.map((industry) => {
+              const Icon = industry.icon;
+              return (
+                <button
+                  key={industry.name}
+                  onClick={() => setActiveTab(industry.name)}
+                  className={`flex items-center space-x-2 px-4 py-2 md:px-6 md:py-3 rounded-full font-medium transition-colors duration-300 ${
+                    activeTab === industry.name
+                      ? 'bg-[#714819] text-white shadow-md'
+                      : 'bg-gray-100 text-[#1e1e1e] hover:bg-gray-200'
+                  }`}
+                >
+                  <Icon size={20} />
+                  <span>{industry.name}</span>
+                </button>
+              );
+            })}
+          </div>
 
-          {/* Coaching Programs */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-16"
+            key={activeTab} // Key changes to re-mount and animate on tab change
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
           >
-            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Coaching Programs</h3>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {coachingPrograms.map((program, index) => (
+            <AnimatePresence mode="wait">
+              {activePrograms && activePrograms.map((program, i) => (
                 <motion.div
-                  key={index}
+                  key={program.title}
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white/40 backdrop-blur-lg border border-white/30 rounded-xl p-8 hover:shadow-xl transition-all duration-300"
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3, delay: i * 0.1 }}
+                  className="bg-white p-6 rounded-2xl shadow-lg border border-gray-200"
                 >
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white mx-auto mb-6">
-                    {program.icon}
-                  </div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-4 text-center">{program.title}</h4>
-                  
-                  <div className="flex items-center justify-center gap-4 mb-6">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-gray-500" />
-                      <span className="text-sm text-gray-600">{program.duration}</span>
-                    </div>
-                  </div>
-                  
-                  <ul className="space-y-2 mb-6">
-                    {program.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                        <span className="text-sm text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <button className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors">
-                    Get Started
-                  </button>
+                  <h4 className="text-xl font-bold mb-2 text-[#714819]">{program.title}</h4>
+                  <p className="text-gray-700">{program.description}</p>
                 </motion.div>
               ))}
-            </div>
+            </AnimatePresence>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Benefits Section */}
+      {/* Why Our Programs Get Results Section */}
+      <section className="bg-white py-20 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <h3 className="text-3xl md:text-4xl font-extrabold text-[#0f2920] mb-12">
+            Why Our Programs Get Results
+          </h3>
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mb-16"
+            className="grid sm:grid-cols-1 md:grid-cols-3 gap-8"
           >
-            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Why Choose Our Coaching?</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {benefits.map((benefit, index) => (
+            {jobTrainingData.whyChoose.map((item, i) => {
+              const Icon = item.icon;
+              return (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex items-center gap-3"
+                  key={i}
+                  variants={cardVariants}
+                  className="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col items-center text-center"
                 >
-                  <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                  <span className="text-gray-700">{benefit}</span>
+                  <Icon size={56} className="mb-4 text-[#714819]" />
+                  <p className="text-lg text-gray-700">{item.text}</p>
                 </motion.div>
-              ))}
-            </div>
+              );
+            })}
           </motion.div>
+        </div>
+      </section>
 
-          {/* Testimonials */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mb-16"
+      {/* Final CTA */}
+      <section className="w-full py-16 px-4 lg:px-12 bg-[#d7f2da] text-black text-center">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2
+            {...ctaAnimation}
+            className="text-3xl lg:text-4xl font-bold mb-6"
+            style={{
+              background: 'linear-gradient(90deg, #215e14ff, #11501cff, #4a7b3dff)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
           >
-            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Success Stories</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white/40 backdrop-blur-lg border border-white/30 rounded-xl p-6"
-                >
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-700 mb-4 italic">"{testimonial.content}"</p>
-                  <div>
-                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-600">{testimonial.role}</div>
-                    <div className="text-sm text-gray-500">{testimonial.company}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="text-center"
+            {jobTrainingData.ctaHeading}
+          </motion.h2>
+          <motion.p
+            {...ctaAnimation}
+            transition={{ ...ctaAnimation.transition, delay: 0.2 }}
+            className="text-lg mb-8 text-[#1e1e1e]"
           >
-            <div className="bg-gradient-to-r from-green-600 to-teal-600 rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-4">Ready to Accelerate Your Career?</h3>
-              <p className="text-lg mb-6 opacity-90">
-                Book your free consultation and discover how our coaching can transform your professional journey
-              </p>
-              <button className="bg-white text-green-600 font-bold py-3 px-8 rounded-xl hover:bg-gray-100 transition-colors duration-200 flex items-center mx-auto">
-                Book Free Consultation <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
-            </div>
-          </motion.div>
+            {jobTrainingData.ctaBody}
+          </motion.p>
+          <motion.a
+            href="/contact"
+            {...ctaAnimation}
+            transition={{ ...ctaAnimation.transition, delay: 0.4 }}
+            className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-full bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
+          >
+            Get Started <ArrowRight className="ml-2 w-5 h-5" />
+          </motion.a>
         </div>
       </section>
     </div>
   );
 };
 
-export default CareerCoach; 
+export default JobOrientedTrainings;

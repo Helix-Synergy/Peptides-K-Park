@@ -75,8 +75,8 @@ const secondRowLinks = [
     href: "/corporate-astute",
     dropdown: [
       {
-        name: "Corporate Support Service (CSS)",
-        href: "/corporate-astute/css",
+        name: "Analyte Assessment Services (AAS)",
+        href: "/corporate-astute/aas",
       },
       {
         name: "Contract Research Services (CRS)",

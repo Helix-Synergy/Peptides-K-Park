@@ -8514,7 +8514,7 @@ const AcademicProjects = () => {
                     ) : (
                         <div className="lg:grid lg:grid-cols-3 lg:gap-6 lg:h-[700px] overflow-hidden mt-8">
                             {/* Left Pane - Subject List */}
-                            <div className="col-span-1 bg-white border border-gray-200 rounded-lg shadow-sm overflow-y-auto">
+                            <div className="col-span-1 bg-white text-[#400000] border border-gray-200 rounded-lg shadow-sm overflow-y-auto">
                                 <div className="flex items-center justify-between p-4 bg-gray-50 border-b border-gray-200 sticky top-0">
                                     <h2 className="text-xl font-bold text-primary-text">Subject Catalog</h2>
                                 </div>
@@ -8522,7 +8522,7 @@ const AcademicProjects = () => {
                                 {dataToShow.map((category) => (
                                     <div key={category.name} className="py-2">
                                         <div
-                                            className={`font-bold px-4 py-2 border-b border-gray-200 cursor-pointer ${selectedCategory === category.name ? 'text-[#0f2920]' : 'text-gray-700'}`}
+                                            className={`font-bold px-4 py-2 border-b border-gray-200 text-[#400000] cursor-pointer ${selectedCategory === category.name ? 'text-[#0f2920]' : 'text-gray-700'}`}
                                             onClick={() => setSelectedCategory(category.name)}
                                         >
                                             {category.name}
