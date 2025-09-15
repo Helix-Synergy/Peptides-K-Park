@@ -155,7 +155,7 @@ const Internships = () => {
     <div className="bg-white text-[#0f2920] min-h-screen font-inter overflow-hidden relative">
       {/* Hero Section */}
       <section
-        className="relative h-[50vh] flex items-center justify-end text-center bg-cover bg-center"
+        className="relative h-[60vh] flex items-center justify-end text-center bg-cover bg-center"
         style={{ backgroundImage: `url(${internshipBanner})` }}
       >
         <div className="absolute inset-0 bg-black/50"></div>

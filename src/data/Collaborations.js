@@ -12,28 +12,28 @@ import BJRCollegeBanner from '../assets/images/collaborations/BJRCollegeBanner.j
 import KasthurbhaCollegeBanner from '../assets/images/collaborations/KasthurbhaCollegeBanner.jpg'
 
 
-export const academicCollaborations = [
-  {
-    id: "college-1",
-    name: "Greenwood University",
-    logo: "/images/colleges/greenwood.png",
-    description: "Partnered for joint research programs and student exchange.",
-    details: {
-      workshops: ["AI in Healthcare", "Green Tech Bootcamp"],
-      images: ["/images/colleges/greenwood1.jpg", "/images/colleges/greenwood2.jpg"],
-    },
-  },
-  {
-    id: "college-2",
-    name: "Starlight College of Science",
-    logo: "/images/colleges/starlight.png",
-    description: "Workshops, guest lectures, and curriculum support.",
-    details: {
-      workshops: ["Quantum Computing 101", "Advanced Biotech Seminar"],
-      images: ["/images/colleges/starlight1.jpg", "/images/colleges/starlight2.jpg"],
-    },
-  },
-];
+// export const academicCollaborations = [
+//   {
+//     id: "college-1",
+//     name: "Greenwood University",
+//     logo: "/images/colleges/greenwood.png",
+//     description: "Partnered for joint research programs and student exchange.",
+//     details: {
+//       workshops: ["AI in Healthcare", "Green Tech Bootcamp"],
+//       images: ["/images/colleges/greenwood1.jpg", "/images/colleges/greenwood2.jpg"],
+//     },
+//   },
+//   {
+//     id: "college-2",
+//     name: "Starlight College of Science",
+//     logo: "/images/colleges/starlight.png",
+//     description: "Workshops, guest lectures, and curriculum support.",
+//     details: {
+//       workshops: ["Quantum Computing 101", "Advanced Biotech Seminar"],
+//       images: ["/images/colleges/starlight1.jpg", "/images/colleges/starlight2.jpg"],
+//     },
+//   },
+// ];
 
 export const industrialCollaborations = [
 {
@@ -203,11 +203,22 @@ Together, we aim to foster an environment where true excellence is defined not o
     sectionTitle: "Programs & Initiatives",
     description: "Our collaboration reinforces the diverse academic and developmental opportunities A.V. College provides.",
     list: [
-      "Undergraduate and Postgraduate Programs across Arts, Science, and Commerce",
-      "K.V. Ranga Reddy Law College – a pioneering legal education initiative",
-      "Holistic Development Programs including NCC and NSS",
-      "Student Leadership through Academic Forums and Cultural Activities",
-    ],
+  "Academic Projects (UG & PG)",
+  "Seminars",
+  "Workshops",
+  "Internships",
+  "Conferences",
+  "Certification Courses",
+  "Advanced Technology Training & Orientation (ATTO)",
+  "Industrial Trainings & Visits",
+  "Faculty Upskilling Programs (FUPs)",
+  "Career Guidance Programs (CGPs)",
+  "Job Oriented Trainings (JOT)",
+  "Contract Research (CR)",
+  "Digital Transformation as a Service (DTaaS)",
+  "Knowledge Transfer Programs (KTPs) (National & International)",
+  "Social Activities & Awareness Programs (SAAP)"
+],
   },
 
   // Image Gallery Section
@@ -255,12 +266,22 @@ Together, we encourage research, entrepreneurship, and global collaboration, hel
     sectionTitle: "Programs & Opportunities",
     description: "Our partnership highlights the college’s strong academic and developmental ecosystem for women.",
     list: [
-      "Undergraduate, Postgraduate, and MBA Programs across diverse disciplines",
-      "Placements and Career Development Cell with strong industry collaborations",
-      "Research and Innovation opportunities including conferences and exchange programs",
-      "Digital Transformation and Entrepreneurship-focused initiatives",
-      "Cultural, Sports, and Leadership activities promoting holistic growth",
-    ],
+  "Academic Projects (UG & PG)",
+  "Seminars",
+  "Workshops",
+  "Internships",
+  "Conferences",
+  "Certification Courses",
+  "Advanced Technology Training & Orientation (ATTO)",
+  "Industrial Trainings & Visits",
+  "Faculty Upskilling Programs (FUPs)",
+  "Career Guidance Programs (CGPs)",
+  "Job Oriented Trainings (JOT)",
+  "Contract Research (CR)",
+  "Digital Transformation as a Service (DTaaS)",
+  "Knowledge Transfer Programs (KTPs) (National & International)",
+  "Social Activities & Awareness Programs (SAAP)"
+],
   },
 
   // Image Gallery Section
@@ -320,12 +341,22 @@ Together, we are creating opportunities that bridge classroom learning with real
     sectionTitle: "Programs & Opportunities",
     description: "Through this collaboration, Pragathi College students gain access to programs and initiatives that enhance both academic and personal growth.",
     list: [
-      "Undergraduate and Postgraduate Programs across multiple disciplines",
-      "Campus Placements and Career Development Programs",
-      "Industrial Visits and Industry-Oriented Training",
-      "Community Engagement through Cultural and Social Events",
-      "Skill Development Workshops and Student Leadership Forums",
-    ],
+  "Academic Projects (UG & PG)",
+  "Seminars",
+  "Workshops",
+  "Internships",
+  "Conferences",
+  "Certification Courses",
+  "Advanced Technology Training & Orientation (ATTO)",
+  "Industrial Trainings & Visits",
+  "Faculty Upskilling Programs (FUPs)",
+  "Career Guidance Programs (CGPs)",
+  "Job Oriented Trainings (JOT)",
+  "Contract Research (CR)",
+  "Digital Transformation as a Service (DTaaS)",
+  "Knowledge Transfer Programs (KTPs) (National & International)",
+  "Social Activities & Awareness Programs (SAAP)"
+],
   },
 
   // Image Gallery Section
@@ -388,12 +419,22 @@ Together, we are fostering a new generation of students who are not only academi
     sectionTitle: "Programs & Initiatives",
     description: "As part of our collaboration, students of BJR College benefit from joint programs that enhance their academic learning and prepare them for real-world challenges.",
     list: [
-      "Skill Development and Employability Training Programs",
-      "Industry-Oriented Workshops and Career Guidance",
-      "Community Engagement and Social Responsibility Activities",
-      "Support for NCC, NSS, and Student Leadership Initiatives",
-      "Collaborative Events, Seminars, and Knowledge Sharing Sessions",
-    ],
+  "Academic Projects (UG & PG)",
+  "Seminars",
+  "Workshops",
+  "Internships",
+  "Conferences",
+  "Certification Courses",
+  "Advanced Technology Training & Orientation (ATTO)",
+  "Industrial Trainings & Visits",
+  "Faculty Upskilling Programs (FUPs)",
+  "Career Guidance Programs (CGPs)",
+  "Job Oriented Trainings (JOT)",
+  "Contract Research (CR)",
+  "Digital Transformation as a Service (DTaaS)",
+  "Knowledge Transfer Programs (KTPs) (National & International)",
+  "Social Activities & Awareness Programs (SAAP)"
+],
   },
 
   // Image Gallery Section
@@ -452,12 +493,22 @@ Together, we aim to create an ecosystem where women students are encouraged to e
     sectionTitle: "Programs & Initiatives",
     description: "As part of our collaboration, students benefit from exposure to innovative programs that complement their formal education.",
     list: [
-      "Skill Development and Employability Training for Women",
-      "Workshops on Artificial Intelligence, Machine Learning, and Emerging Tech",
-      "Entrepreneurship and Leadership Development Programs",
-      "Career Guidance and Placement Support",
-      "Celebrating Women Empowerment through Seminars & Cultural Events",
-    ],
+  "Academic Projects (UG & PG)",
+  "Seminars",
+  "Workshops",
+  "Internships",
+  "Conferences",
+  "Certification Courses",
+  "Advanced Technology Training & Orientation (ATTO)",
+  "Industrial Trainings & Visits",
+  "Faculty Upskilling Programs (FUPs)",
+  "Career Guidance Programs (CGPs)",
+  "Job Oriented Trainings (JOT)",
+  "Contract Research (CR)",
+  "Digital Transformation as a Service (DTaaS)",
+  "Knowledge Transfer Programs (KTPs) (National & International)",
+  "Social Activities & Awareness Programs (SAAP)"
+],
   },
 
   // Image Gallery Section

@@ -81,7 +81,7 @@ const TechTalks = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Hero Section */}
-      <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center text-white overflow-hidden bg-gradient-to-br from-purple-700 to-pink-600">
+      <section className="relative h-[60vh] md:h-[60vh] flex items-center justify-center text-white overflow-hidden bg-gradient-to-br from-purple-700 to-pink-600">
         <motion.div
           ref={sectionRef}
           initial={{ y: -50, opacity: 0 }}

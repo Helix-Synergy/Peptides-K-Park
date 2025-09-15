@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
 import { Building, Handshake, TrendingUp, Award, CheckCircle, ArrowRight, Users, Globe, Target } from 'lucide-react';
 
 const CorporateAstuteDropdown = () => {
@@ -156,9 +158,18 @@ const CorporateAstuteDropdown = () => {
               <p className="text-lg mb-6 opacity-90">
                 Partner with us to unlock new opportunities and drive sustainable growth
               </p>
-              <button className="bg-white text-indigo-600 font-bold py-3 px-8 rounded-xl hover:bg-gray-100 transition-colors duration-200 flex items-center mx-auto">
-                Get Started Today <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.4 }}
+>
+  <Link
+    to="/contact"
+    className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-xl bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
+  >
+    Get Started <ArrowRight className="ml-2 w-5 h-5" />
+  </Link>
+</motion.div>
             </div>
           </motion.div>
         </div>

@@ -90,7 +90,7 @@ const AboutUs = () => {
     <main className="bg-white min-h-screen font-inter">
       {/* Hero Section */}
 <section
-  className="relative h-[50vh] md:h-[50vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center"
+  className="relative h-[60vh] md:h-[60vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center"
   style={{ backgroundImage: `url(${Image})` }}
 >
   <motion.div

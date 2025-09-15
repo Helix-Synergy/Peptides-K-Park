@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
+
 import {
   Factory, HeartPulse, Briefcase, Code, Check, Award, ArrowRight,
   BookOpen, Building2, FlaskConical, Atom, PencilRuler, Headphones
 } from 'lucide-react';
+import Banner from '../../assets/images/PageBanners/industryCollaborationsBanner.png'
 
 // === DATA FOR THIS PAGE ===
 const reachData = {
@@ -221,24 +225,20 @@ const AdvancedIndustrialReach = () => {
     <div className="bg-gray-50 text-[#1e1e1e] font-inter relative min-h-screen">
       
       {/* Hero Section */}
-      <section className="relative w-full h-[60vh] flex items-center justify-center text-center bg-[#0f2920] overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <motion.div
-            initial={{ scale: 1.2, rotate: 0 }}
-            // animate={{ scale: 1, rotate: 360 }}
-            // transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-            className="w-full h-full bg-no-repeat bg-cover"
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')` }}
-          ></motion.div>
-        </div>
+      <section
+        className="relative h-[60vh] flex items-center justify-end text-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${Banner})` }}
+      >
+        <div className="absolute inset-0 bg-black/50"></div>
         <motion.div
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 px-4 max-w-4xl text-white"
+          className="relative z-10 px-4"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{reachData.title}</h1>
-          <p className="text-lg md:text-xl text-gray-200 mx-auto">{reachData.tagline}</p>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
+            Advanced Industrial Reach 
+          </h1>
         </motion.div>
       </section>
 
@@ -392,14 +392,19 @@ const AdvancedIndustrialReach = () => {
           >
             {reachData.cta.body}
           </motion.p>
-          <motion.a
-            href="/contact"
-            {...ctaAnimation}
-            transition={{ ...ctaAnimation.transition, delay: 0.4 }}
-            className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-full bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
-          >
-            Get Started <ArrowRight className="ml-2 w-5 h-5" />
-          </motion.a>
+
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.4 }}
+>
+  <Link
+    to="/contact"
+    className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-xl bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
+  >
+    Get Started <ArrowRight className="ml-2 w-5 h-5" />
+  </Link>
+</motion.div>
         </div>
       </section>
     </div>

@@ -1,5 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from 'react-router-dom';
+
 import {
   BookOpen, Laptop, BarChart, Feather, Users, Award, Lightbulb, GraduationCap, ArrowRight, TrendingUp, Clock, Check
 } from "lucide-react";
@@ -80,7 +82,6 @@ const FacultyUpskillingServices = () => {
           className="relative z-10 px-4 max-w-4xl text-white"
         >
           <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{fusData.title}</h1>
-          <p className="text-lg md:text-xl text-gray-200 mx-auto">{fusData.tagline}</p>
         </motion.div>
       </section>
 
@@ -194,15 +195,18 @@ const FacultyUpskillingServices = () => {
           >
             {fusData.cta}
           </motion.p>
-          <motion.a
-            href="/contact"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-full bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
-          >
-            Get Started <ArrowRight className="ml-2 w-5 h-5" />
-          </motion.a>
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.4 }}
+>
+  <Link
+    to="/contact"
+    className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-xl bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
+  >
+    Get Started <ArrowRight className="ml-2 w-5 h-5" />
+  </Link>
+</motion.div>
         </div>
       </section>
 

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { ArrowRight } from "lucide-react";
+// import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import HomeBanner from "../assets/images/homeBanner.jpg";
@@ -155,18 +155,6 @@ const Hero = () => {
             transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
           />
         </div>
-      </div>
-
-      {/* Mobile Image (no diagonal, displayed on smaller screens) */}
-      <div className="lg:hidden w-full h-64 relative">
-        <motion.img
-          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
-          alt="Team working"
-          className="w-full h-full object-cover object-center rounded-t-2xl"
-          initial={{ opacity: 0, scale: 1.08 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
-        />
       </div>
     </section>
   );

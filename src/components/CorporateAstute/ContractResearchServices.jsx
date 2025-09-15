@@ -1,5 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from 'react-router-dom';
+
 import {
   Users, TrendingUp, Award, ArrowRight, Pill, Leaf, UtensilsCrossed, Wrench, Lightbulb, FlaskConical, Check, Microscope, Locate, Sprout, Cloud, Recycle, Trash2, Clock
 } from "lucide-react";
@@ -64,7 +66,7 @@ const ContractResearchServices = () => {
   return (
     <div className="bg-gray-50 text-[#1e1e1e] font-inter relative min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full h-[60vh] flex items-center justify-end text-end bg-[#0f2920] overflow-hidden">
+      {/* <section className="relative w-full h-[60vh] flex items-center justify-end text-end bg-[#0f2920] overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
           <motion.div
             initial={{ scale: 1.2, rotate: 0 }}
@@ -82,6 +84,24 @@ const ContractResearchServices = () => {
         >
           <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{crsData.title}</h1>
           <p className="text-lg md:text-xl text-gray-200 mx-auto">{crsData.tagline}</p>
+        </motion.div>
+      </section> */}
+
+            {/* Hero Section */}
+      <section
+        className="relative h-[60vh] flex items-center justify-end text-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${Banner})` }}
+      >
+        <div className="absolute inset-0 bg-black/70"></div>
+        <motion.div
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 px-4"
+        >
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
+           {crsData.title}
+          </h1>
         </motion.div>
       </section>
 
@@ -168,9 +188,18 @@ const ContractResearchServices = () => {
                     <p className="text-lg mb-8 text-primary-text">
                         Let’s discuss your requirements and craft a roadmap to success.
                     </p>
-                    <button className="btn-primary inline-flex items-center">
-                        Get Started <ArrowRight className="ml-2 w-5 h-5" />
-                    </button>
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.4 }}
+>
+  <Link
+    to="/contact"
+    className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-xl bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
+  >
+    Get Started <ArrowRight className="ml-2 w-5 h-5" />
+  </Link>
+</motion.div>
                 </div>
             </section>
     </div>

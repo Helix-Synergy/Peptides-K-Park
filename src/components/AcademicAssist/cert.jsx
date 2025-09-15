@@ -154,10 +154,10 @@ const CompetitiveExamsTraining = () => {
     <div className="bg-white text-gray-900 min-h-screen font-inter overflow-hidden relative">
       {/* Hero Section */}
       <section
-        className="relative h-[40vh] md:h-[50vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center"
+        className="relative h-[60vh] md:h-[60vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url(${BannerImage})` }}
       >
-        {/* <div className="absolute inset-0 bg-neutral-800/80"></div> */}
+        <div className="absolute inset-0 bg-black/50"></div>
         <motion.div
           ref={sectionRef}
           initial={{ y: -50, opacity: 0 }}

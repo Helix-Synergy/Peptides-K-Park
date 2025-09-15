@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from 'react-router-dom';
 import activityBanner from "../../assets/images/PageBanners/activities.jpg";
 import {
   FlaskConical,
@@ -14,6 +15,7 @@ import {
   Award,
   Globe,
   Rocket,
+  ArrowRight
 } from "lucide-react";
 
 const activitiesData = [
@@ -120,7 +122,7 @@ const ActivitiesBenefitsPage = () => {
     <main className="min-h-screen font-inter bg-white text-[#0f2920]">
       {/* Hero Section */}
       <section
-        className="relative h-[50vh] flex items-center justify-end text-center bg-cover bg-center"
+        className="relative h-[60vh] flex items-center justify-end text-center bg-cover bg-center"
         style={{ backgroundImage: `url(${activityBanner})` }}
       >
   <div className="absolute inset-0 bg-black/50"></div>
@@ -256,16 +258,18 @@ const ActivitiesBenefitsPage = () => {
           Explore activities and benefits, and take your career and research to
           the next level.
         </motion.p>
-        <motion.a
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          href="/contact"
-          className="inline-block px-8 py-3 bg-[#0f2920] text-white font-semibold rounded-full hover:bg-[#1a3b2b] transition"
-        >
-          Get Started
-        </motion.a>
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.4 }}
+>
+  <Link
+    to="/contact"
+    className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-xl bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
+  >
+    Get Started <ArrowRight className="ml-2 w-5 h-5" />
+  </Link>
+</motion.div>
       </section>
     </main>
   );

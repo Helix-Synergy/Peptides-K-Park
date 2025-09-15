@@ -1,5 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from 'react-router-dom';
+
 import {
   FileText, Database, Edit, ClipboardCheck, Users, TrendingUp, Award, ArrowRight, BookMarked, Brain, Lightbulb
 } from "lucide-react";
@@ -8,8 +10,8 @@ import Banner from '../../assets/images/PageBanners/3.jpg';
 
 // === DATA FOR THIS PAGE ===
 const ratsData = {
-  title: 'RATS',
-  tagline: 'Your Partner for Research Assistance & Thesis Support',
+  title: 'Research Assistance & Writing Services',
+  tagline: 'Your Partner for Research Assistance & Writing Services',
   intro: 'We provide structured thesis support to help students navigate every stage of their academic journey. Our expert guidance ensures your research is robust, your data is sound, and your thesis is written with clarity and academic rigor.',
   services: [
     { icon: FileText, text: 'Literature Review & Research Methodology: We provide expert guidance on structuring your research and conducting comprehensive literature reviews. Our support helps you build a solid theoretical foundation and design a methodology that is both robust and ethically sound.' },
@@ -64,25 +66,21 @@ const ResearchAssistanceServices = () => {
   return (
     <div className="bg-gray-50 text-[#1e1e1e] font-inter relative min-h-screen">
       
-      {/* Hero Section */}
-      <section className="relative w-full h-[60vh] flex items-center justify-end text-center bg-black overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <motion.div
-            initial={{ scale: 1.2, rotate: 0 }}
-            // animate={{ scale: 1, rotate: 360 }}
-            // transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-            className="w-full h-full bg-no-repeat bg-cover"
-            style={{ backgroundImage: `url(${Banner})` }}
-          ></motion.div>
-        </div>
+            {/* Hero Section */}
+      <section
+        className="relative h-[60vh] flex items-center justify-end text-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${Banner})` }}
+      >
+        <div className="absolute inset-0 bg-black/70"></div>
         <motion.div
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 px-4 max-w-4xl text-white"
+          className="relative z-10 px-4"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4">RATS</h1>
-          <p className="text-lg md:text-xl text-gray-200 mx-auto">{ratsData.tagline}</p>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-white">
+           {ratsData.title}
+          </h1>
         </motion.div>
       </section>
 
@@ -92,7 +90,7 @@ const ResearchAssistanceServices = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto"
+          className="max-w-4xl mx-auto"
         >
           <p className="text-lg md:text-xl text-gray-700">{ratsData.intro}</p>
         </motion.div>
@@ -196,15 +194,18 @@ const ResearchAssistanceServices = () => {
           >
             {ratsData.cta}
           </motion.p>
-          <motion.a
-            href="/contact"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-full bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
-          >
-            Get Started <ArrowRight className="ml-2 w-5 h-5" />
-          </motion.a>
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.4 }}
+>
+  <Link
+    to="/contact"
+    className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-xl bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
+  >
+    Get Started <ArrowRight className="ml-2 w-5 h-5" />
+  </Link>
+</motion.div>
         </div>
       </section>
     </div>

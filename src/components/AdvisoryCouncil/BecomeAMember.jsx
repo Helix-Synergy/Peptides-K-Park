@@ -57,7 +57,7 @@ const BecomeAMember = () => {
     <main className="min-h-screen" style={{ backgroundColor: '#f2efe9', color: '#714819' }}>
       {/* Hero Section */}
       <section
-        className="relative h-[50vh] flex items-center justify-end text-center bg-cover bg-center"
+        className="relative h-[60vh] flex items-center justify-end text-center bg-cover bg-center"
         style={{ backgroundImage: `url(${becomeMember})` }}
       >
   <div className="absolute inset-0 bg-black/50"></div>
