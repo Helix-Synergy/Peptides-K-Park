@@ -1,10 +1,13 @@
-// src/components/AdvisoryCouncil/BecomeAMember.jsx
 import React, { useRef, useState } from 'react';
 import { motion } from "framer-motion";
 import becomeMember from "../../assets/images/PageBanners/aboutPOE.jpg";
 
+const API_URL = "http://localhost:5000"; // Replace with your live API URL
+
 const BecomeAMember = () => {
   const [profilePreview, setProfilePreview] = useState('');
+  const [status, setStatus] = useState({ success: null, message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef(null);
 
   const resetPreview = () => setProfilePreview('');
@@ -34,23 +37,47 @@ const BecomeAMember = () => {
     reader.readAsDataURL(file);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const form = formRef.current;
     if (form && !form.checkValidity()) {
       form.reportValidity();
       return;
     }
-    // No backend specified; keep client-side UX
-    alert('Submitted successfully. We will reach out soon.');
-    form?.reset();
-    resetPreview();
+
+    setIsSubmitting(true);
+    setStatus({ success: null, message: '' });
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(`${API_URL}/api/become-member`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({ success: true, message: data.message });
+        form.reset();
+        resetPreview();
+      } else {
+        setStatus({ success: false, message: data.message || 'Submission failed. Please try again.' });
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setStatus({ success: false, message: 'An error occurred. Please check your network and try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const onCancel = () => {
     const form = formRef.current;
     form?.reset();
     resetPreview();
+    setStatus({ success: null, message: '' });
   };
 
   return (
@@ -60,7 +87,7 @@ const BecomeAMember = () => {
         className="relative h-[60vh] flex items-center justify-end text-center bg-cover bg-center"
         style={{ backgroundImage: `url(${becomeMember})` }}
       >
-  <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
         <motion.div
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -134,8 +161,8 @@ const BecomeAMember = () => {
             <div className="md:col-span-2">
               <label className="text-sm font-semibold">Expertise</label>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                <input name="expertise[]" placeholder="Expertise 1" required className="px-3 py-2 rounded border border-gray-200" />
-                <input name="expertise[]" placeholder="Expertise 2" required className="px-3 py-2 rounded border border-gray-200" />
+                <input name="expertise1" placeholder="Expertise 1" required className="px-3 py-2 rounded border border-gray-200" />
+                <input name="expertise2" placeholder="Expertise 2" required className="px-3 py-2 rounded border border-gray-200" />
               </div>
             </div>
 
@@ -144,11 +171,33 @@ const BecomeAMember = () => {
               <textarea id="biography" name="biography" required className="mt-1 px-3 py-2 rounded border border-gray-200" rows={5} />
             </div>
 
-            <input type="hidden" name="form_type" value="join_our_team" />
+            <div className="md:col-span-2">
+              {isSubmitting && <p className="text-center text-[#b89c6b] font-semibold">Submitting...</p>}
+              {status.message && (
+                <p className={`text-center font-bold ${status.success ? 'text-green-600' : 'text-red-600'}`}>
+                  {status.message}
+                </p>
+              )}
+            </div>
 
             <div className="md:col-span-2 flex justify-end gap-3 pt-2">
-              <button type="button" onClick={onCancel} className="px-6 py-3 rounded-lg font-bold" style={{ backgroundColor: '#e6ebf3', color: '#714819' }}>CANCEL</button>
-              <button type="submit" className="px-6 py-3 rounded-lg font-bold" style={{ backgroundColor: '#b89c6b', color: '#714819' }}>SUBMIT</button>
+              <button
+                type="button"
+                onClick={onCancel}
+                className="px-6 py-3 rounded-lg font-bold"
+                style={{ backgroundColor: '#e6ebf3', color: '#714819' }}
+                disabled={isSubmitting}
+              >
+                CANCEL
+              </button>
+              <button
+                type="submit"
+                className="px-6 py-3 rounded-lg font-bold"
+                style={{ backgroundColor: '#b89c6b', color: '#714819' }}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
+              </button>
             </div>
           </div>
         </form>
