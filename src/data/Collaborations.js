@@ -471,7 +471,7 @@ Together, we are fostering a new generation of students who are not only academi
   gallery: {
     sectionTitle: "Highlights from Our Collaboration",
     images: [
-      bjrimage1,bjrimage2,bjrimage3,bjrimage4,bjrimage5
+      bjrimage1,bjrimage2,bjrimage3,bjrimage4
     ],
   },
 
