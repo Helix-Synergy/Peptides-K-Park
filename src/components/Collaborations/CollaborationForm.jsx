@@ -1,29 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Banner from '../../assets/images/PageBanners/collaborations.jpg'
 
-const API_URL = "http://localhost:5000"; // Replace with your live API URL
+// const API_URL = "http://localhost:5000"; // Replace with your live API URL
+const API_URL = "https://peptidesbackend.onrender.com"; // Replace with your live API URL
 
 const CollaborationForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     type: "Academic",
     email: "",
-    address: "", // New address field
+    address: "",
     message: "",
   });
-  const [status, setStatus] = useState({ success: null, message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-
-  useEffect(() => {
-    if (status.message) {
-      setShowToast(true);
-      const timer = setTimeout(() => {
-        setShowToast(false);
-        setStatus({ success: null, message: "" });
-      }, 5000); // 5 seconds
-      return () => clearTimeout(timer);
-    }
-  }, [status]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,7 +24,6 @@ const CollaborationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setStatus({ success: null, message: "" });
 
     try {
       const response = await fetch(`${API_URL}/api/collaborate`, {
@@ -46,7 +37,7 @@ const CollaborationForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setStatus({ success: true, message: data.message });
+        toast.success(data.message, { autoClose: 10000 });
         setFormData({
           name: "",
           type: "Academic",
@@ -55,53 +46,47 @@ const CollaborationForm = () => {
           message: "",
         });
       } else {
-        setStatus({
-          success: false,
-          message: data.message || "Submission failed. Please try again.",
-        });
+        toast.error(data.message || "Submission failed. Please try again.", { autoClose: 10000 });
       }
     } catch (error) {
       console.error("Submission error:", error);
-      setStatus({
-        success: false,
-        message:
-          "An error occurred. Please check your network and try again.",
-      });
+      toast.error("An error occurred. Please check your network and try again.", { autoClose: 10000 });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Toast Notification */}
-      {showToast && (
-        <div
-          className={`fixed top-12 right-4 z-50 py-3 px-6 rounded-lg shadow-xl text-white transition-opacity duration-300 ${
-            status.success ? "bg-green-500" : "bg-red-500"
-          }`}
-          style={{ opacity: showToast ? 1 : 0 }}
-        >
-          {status.message}
-        </div>
-      )}
+    <div className="min-h-screen" style={{ backgroundColor: "#f2efe9", color: "#714819" }}>
+      <ToastContainer
+        position="top-right"
+        autoClose={10000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
 
       {/* Hero Section */}
-      <section className="relative h-[500px] flex items-center justify-center text-white text-center overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-80"></div>
-        <img
-          src="https://www.admissionfever.com/Media/clgimg/gallery/660_img7880807966798673.jpg"
-          alt="Collaboration Banner"
-          className="absolute inset-0 w-full h-full object-cover mix-blend-overlay"
-        />
-        <div className="relative z-10 px-6 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
-            Our Academic Collaborations
+      <section
+        className="relative h-[60vh] flex items-center justify-end text-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${Banner})` }}
+      >
+        <div className="absolute inset-0 bg-black/50"></div>
+        <motion.div
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 px-4"
+        >
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
+            Come Collaborate
           </h1>
-          <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto opacity-90">
-            Partnering with World-class Institutions to forge a Brighter Future.
-          </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Collaboration Form Section */}
