@@ -8328,10 +8328,10 @@ const MobileProjects = ({ data }) => {
                     </button>
                     <div
                         className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                            openCategory === category.name ? 'max-h-96' : 'max-h-0'
+                            openCategory === category.name ? 'max-h-[60vh] overflow-y-auto' : 'max-h-0'
                         }`}
                     >
-                        <ul className="px-6 py-4 space-y-2">
+                        <ul className="px-6 py-4 space-y-2 scrollbar-thin scrollbar-thumb-[#0f2920] scrollbar-track-[#d7f2da]">
                             {category.children.map((project, index) => (
                                 <li key={index} className="text-gray-600 flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-gray-400 flex-shrink-0"></span>
@@ -8345,6 +8345,7 @@ const MobileProjects = ({ data }) => {
         </div>
     );
 };
+
 
 
 /* ---------- Main Page Component ---------- */
@@ -8478,7 +8479,7 @@ const AcademicProjects = () => {
                     </div>
 
                     {/* Toggle */}
-                    <section className="flex justify-center mt-8 px-4">
+                    <section className="flex justify-center mb-8 px-4">
                         <div className="flex border-2 border-[#0f2920] rounded-full w-full max-w-sm overflow-hidden">
                             <motion.button
                                 layout
@@ -8520,7 +8521,7 @@ const AcademicProjects = () => {
                     {isMobile ? (
                         <MobileProjects data={dataToShow} />
                     ) : (
-                        <div className="lg:grid lg:grid-cols-3 lg:gap-6 lg:h-[700px] overflow-hidden mt-8">
+                        <div className="lg:grid lg:grid-cols-3 lg:gap-6 lg:h-[700px] overflow-hidden mb-8">
                             {/* Left Pane - Subject List */}
                             <div className="col-span-1 bg-white text-[#400000] border border-gray-200 rounded-lg shadow-sm overflow-y-auto">
                                 <div className="flex items-center justify-between p-4 bg-gray-50 border-b border-gray-200 sticky top-0">
