@@ -46,6 +46,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import workshopBanner from "../../assets/images/PageBanners/workshops.jpg";
 
@@ -55,23 +56,26 @@ const Workshops = () => {
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const upcomingWorkshops = [
-    {
-      title: "SwaPrayojana",
-      date: "Sept 11-12, 2025",
-      time: "10:00 AM - 4:00 PM",
+        {
+      title: "ChemKraftz",
+      date: "Sept 19-20, 2025",
+      time: "10:00 AM - 3:00 PM",
       location: "Hyderabad",
+      link: "https://heyzine.com/flip-book/7c8bcf309e.html",
     },
     {
-      title: "ChemKraftz",
-      date: "Sept 13-14, 2025",
-      time: "9:00 AM - 3:00 PM",
+      title: "SwaPrayojana",
+      date: "Oct 15-16, 2025",
+      time: "10:00 AM - 4:00 PM",
       location: "Hyderabad",
+      link: "https://heyzine.com/flip-book/7c8bcf309e.html",
     },
     {
       title: "LabMate",
-      date: "Sept 15-16, 2025",
+      date: "Oct 24-25, 2025",
       time: "11:00 AM - 5:00 PM",
       location: "Hyderabad",
+      link: "https://heyzine.com/flip-book/7c8bcf309e.html",
     },
   ];
 
@@ -288,12 +292,22 @@ const Workshops = () => {
                   </div>
                   <div className="text-gray-600">{workshop.location}</div>
                 </div>
-                <button
-                  onClick={() => navigate("/contact")}
-                  className="w-full btn-primary text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  Register Interest
-                </button>
+<div className="flex flex-col sm:flex-row gap-4">
+    <Link
+      to="/contact"
+      className="flex-1 btn-primary text-white py-2 rounded-lg hover:bg-blue-700 transition-colors text-center"
+    >
+      Register
+    </Link>
+    <a
+      href={workshop.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex-1 btn-primary text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-center"
+    >
+      Brochure
+    </a>
+  </div>
               </motion.div>
             ))}
           </div>
