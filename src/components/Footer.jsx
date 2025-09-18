@@ -159,7 +159,7 @@ const Footer = () => {
               engagement.{" "}
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="hover:text-[#ffc107] transition-colors">
+              <a href="https://www.linkedin.com/company/peptides-knowledge-park/" className="hover:text-[#ffc107] transition-colors">
                 <Linkedin className="w-6 h-6" />
               </a>
               <a href="#" className="hover:text-[#ffc107] transition-colors">
@@ -174,7 +174,7 @@ const Footer = () => {
               <a href="#" className="hover:text-[#ffc107] transition-colors">
                 <Youtube className="w-6 h-6" />
               </a>
-              <a href="#" className="hover:text-[#ffc107] transition-colors">
+              <a href="https://wa.me/917997040959" className="hover:text-[#ffc107] transition-colors">
                 <FaWhatsapp className="w-6 h-6" />
               </a>
             </div>

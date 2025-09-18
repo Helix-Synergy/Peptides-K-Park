@@ -478,9 +478,12 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, QrCode } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { motion } from 'framer-motion';
+import Banner from '../../assets/images/PageBanners/9.jpg';
+import QRCode from '../../assets/images/payments/QRCODE.png';
 
 // const API_URL = "http://localhost:5000"; // Replace with your live API URL
 const API_URL = "https://peptidesbackend.onrender.com"; // Replace with your live API URL
@@ -569,7 +572,7 @@ const ContactSection = () => {
 
 
   return (
-    <section className="w-full" style={{ backgroundColor: '#f2efe9', color: '#714819' }}>
+    <section className="w-full " style={{ backgroundColor: '#f2efe9', color: '#714819' }}>
       <ToastContainer
         position="top-right"
         hideProgressBar={false}
@@ -581,25 +584,26 @@ const ContactSection = () => {
         pauseOnHover
         theme="light"
       />
-      {/* Page Title banner (simple) */}
-      <div className="w-full h-56 md:h-72 relative overflow-hidden">
-        <img
-          src="https://img.freepik.com/free-photo/people-working-call-center_23-2149288188.jpg?w=1200"
-          alt="Contact banner"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-          <h1 className="text-white text-3xl md:text-5xl font-extrabold mb-3">Contact Us</h1>
-          <div className="flex flex-col sm:flex-row items-center gap-6 text-white/90 text-sm md:text-base">
-            <div className="flex items-center gap-2"><Phone className="w-5 h-5" /> <span>+91 79970 40959</span> <span className="hidden sm:inline">• Mon to Fri: 9.30am to 6.30pm</span></div>
-            <div className="flex items-center gap-2"><Mail className="w-5 h-5" /> <span>hello@peptides.co.in</span> <span className="hidden sm:inline">• Mail Us For More Information</span></div>
-          </div>
-        </div>
-      </div>
+      {/* Hero Section */}
+      <section
+        className="relative h-[60vh] flex items-center justify-end text-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${Banner})` }}
+      >
+  <div className="absolute inset-0 bg-black/50"></div>
+        <motion.div
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 px-4"
+        >
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
+            Need Help? Get in Touch!
+          </h1>
+        </motion.div>
+      </section>
 
       {/* Header + Buttons */}
-      <div className="max-w-7xl mx-auto px-6 pt-10 pb-6 text-center">
+      <div className="max-w-5xl mx-auto px-6 pt-10 pb-6 text-center">
         <h2 className="text-3xl md:text-4xl font-extrabold mb-3">Have a question to ask us?</h2>
         <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8">
           We value your inquiries and feedback. Fill out the form or choose a registration option.
@@ -612,10 +616,10 @@ const ContactSection = () => {
       </div>
 
       {/* Forms Area */}
-      <div className="max-w-7xl mx-auto px-6 pb-16">
+      <div className="max-w-5xl mx-auto px-6 pb-16">
         {tab === 'contact' && (
           <div id="contact-form" className="bg-white rounded-2xl shadow p-6">
-            <h3 className="text-2xl font-bold mb-4">Let's Get Started!</h3>
+            <h3 className="text-2xl font-bold mb-4 text-center">Let's Get Started!</h3>
             <form onSubmit={(e) => handleFormSubmit(e, 'contact')} className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 {/* Changed name from "name" to "firstName" for consistency with backend */}
@@ -662,12 +666,12 @@ const ContactSection = () => {
 
         {/* Student Registration Form (No change needed here) */}
         {tab === 'student' && (
-          <div className="bg-white rounded-2xl shadow p-6">
-            <h3 className="text-2xl font-bold mb-6">To become a Member at Peptides Knowledge Park</h3>
+          <div className="bg-white rounded-2xl shadow p-6 ">
+            <h3 className="text-2xl font-bold mb-6 text-center">To become a Member at Peptides Knowledge Park</h3>
             <div className="text-center mb-8 p-6 bg-gray-50 rounded-lg shadow-inner border border-gray-200">
               <h4 className="text-lg font-extrabold pt-2">Scan & Pay</h4>
               <img
-                src="https://placehold.co/400x400/E5E7EB/4B5563?text=QR+Code"
+                src={QRCode}
                 alt="Payment QR Code"
                 className="mx-auto w-64 md:w-80 rounded-lg shadow"
               />
@@ -817,11 +821,11 @@ const ContactSection = () => {
         {/* Faculty Registration Form (No change needed here) */}
         {tab === 'faculty' && (
           <div className="bg-white rounded-2xl shadow p-6">
-            <h3 className="text-2xl font-bold mb-6">Registration for Faculty Members at Peptides Knowledge Park</h3>
+            <h3 className="text-2xl font-bold mb-6 text-center">Registration for Faculty Members at Peptides Knowledge Park</h3>
             <div className="text-center mb-8 p-6 bg-gray-50 rounded-lg shadow-inner border border-gray-200">
               <h4 className="text-lg font-extrabold pt-2">Scan & Pay</h4>
               <img
-                src="https://placehold.co/400x400/E5E7EB/4B5563?text=QR+Code"
+                src={QRCode}
                 alt="Payment QR Code"
                 className="mx-auto w-64 md:w-80 rounded-lg shadow"
               />

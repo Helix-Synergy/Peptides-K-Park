@@ -12,6 +12,48 @@ import BJRCollegeBanner from '../assets/images/collaborations/BJRCollegeBanner.j
 import KasthurbhaCollegeBanner from '../assets/images/collaborations/KasthurbhaCollegeBanner.jpg'
 
 
+// BJR College Images
+import bjrimage1 from '../assets/images/collaborations/BJR/1.jpeg'
+import bjrimage2 from '../assets/images/collaborations/BJR/2.jpeg'
+import bjrimage3 from '../assets/images/collaborations/BJR/3.jpeg'
+import bjrimage4 from '../assets/images/collaborations/BJR/4.jpeg'
+import bjrimage5 from '../assets/images/collaborations/BJR/5.jpeg'
+
+//  AV College Images
+import avImage1 from '../assets/images/collaborations/AV/1.jpeg'
+import avImage2 from '../assets/images/collaborations/AV/2.jpeg'
+import avImage3 from '../assets/images/collaborations/AV/3.jpeg'
+import avImage4 from '../assets/images/collaborations/AV/4.jpeg'
+
+//  kasturba Images
+import kasturba1 from '../assets/images/collaborations/Kasthurba/1.jpeg'
+import kasturba2 from '../assets/images/collaborations/Kasthurba/2.jpeg'
+import kasturba3 from '../assets/images/collaborations/Kasthurba/3.jpeg'
+import kasturba4 from '../assets/images/collaborations/Kasthurba/4.jpeg'
+
+// RBVRR College Images
+import rbvrr1 from '../assets/images/collaborations/RBVRR/1.jpg'
+import rbvrr2 from '../assets/images/collaborations/RBVRR/2.jpg'
+import rbvrr3 from '../assets/images/collaborations/RBVRR/3.jpg'
+import rbvrr4 from '../assets/images/collaborations/RBVRR/4.jpg'
+
+// Pragathi College Images
+import pragathi1 from '../assets/images/collaborations/Pragathi/1.jpeg'
+import pragathi2 from '../assets/images/collaborations/Pragathi/2.jpeg'
+import pragathi3 from '../assets/images/collaborations/Pragathi/3.jpeg'
+import pragathi4 from '../assets/images/collaborations/Pragathi/4.jpeg'
+
+
+
+// Lavin Labs
+import LavinImg1 from '../assets/images/collaborations/LavinLabs/1.jpeg'
+import LavinImg2 from '../assets/images/collaborations/LavinLabs/2.jpeg'
+import LavinImg3 from '../assets/images/collaborations/LavinLabs/3.jpeg'
+import LavinImg4 from '../assets/images/collaborations/LavinLabs/4.jpeg'
+
+
+
+
 // export const academicCollaborations = [
 //   {
 //     id: "college-1",
@@ -82,10 +124,7 @@ This partnership enables students and researchers to gain practical exposure to 
   gallery: {
     sectionTitle: "Inside Lavin Laboratories",
     images: [
-      "/images/gallery/lavin-1.jpg", // Placeholder
-      "/images/gallery/lavin-2.jpg", // Placeholder
-      "/images/gallery/lavin-3.jpg", // Placeholder
-      "/images/gallery/lavin-4.jpg", // Placeholder
+      LavinImg1,LavinImg2,LavinImg3,LavinImg4
     ],
   },
 
@@ -102,20 +141,20 @@ This partnership enables students and researchers to gain practical exposure to 
 },
 {
   id: "global-tech-research",
-  name: "Global Tech Research Labs",
-  logo: "https://www.shutterstock.com/image-vector/dna-logo-design-templateicon-science-600nw-1473227693.jpg", // Placeholder
+  name: "IndoGlobal Tech Research Labs",
+  logo: "https://media.licdn.com/dms/image/v2/C560BAQGN_HY48DdJqQ/company-logo_200_200/company-logo_200_200/0/1635346833421?e=2147483647&v=beta&t=EB1JC1cYnGpx9PadHDtZ9RHTYXvln1h6XQ7NQDIhz8w", // Placeholder
 
   // Banner Section
   banner: {
-    title: "Collaboration with Global Tech Research Labs",
+    title: "Collaboration with IndoGlobal Tech Research Labs",
     subtitle: "Driving innovation through research, testing, and technology solutions.",
-    imageUrl: "/images/banner/global-tech-banner.jpg", // Placeholder
+    imageUrl: "https://content3.jdmagicbox.com/v2/comp/hyderabad/m1/040pxx40.xx40.221122212429.s6m1/catalogue/indiglobal-labs-hcl-hyderabad-research-institutes-66xzj3em3x.jpg", // Placeholder
   },
 
   // About the Industry Partner
   about: {
-    title: "About Global Tech Research Labs",
-    content: `Global Tech Research Labs is a multidisciplinary R&D and testing company committed to advancing innovation across healthcare, environmental sciences, and emerging technologies.  
+    title: "About IndoGlobal Tech Research Labs",
+    content: `IndoGlobal Tech Research Labs is a multidisciplinary R&D and testing company committed to advancing innovation across healthcare, environmental sciences, and emerging technologies.  
 
 With state-of-the-art facilities, international certifications, and a strong team of researchers, the organization delivers reliable testing, product validation, and contract research solutions for clients worldwide.`,
   },
@@ -123,7 +162,7 @@ With state-of-the-art facilities, international certifications, and a strong tea
   // Collaboration Details Section
   collaborationDetails: {
     sectionTitle: "Our Partnership",
-    collaborationText: `Through our partnership with Global Tech Research Labs, we aim to create opportunities for industry-academia integration.  
+    collaborationText: `Through our partnership with IndoGlobal Tech Research Labs, we aim to create opportunities for industry-academia integration.  
 
 This collaboration enables students, researchers, and startups to access cutting-edge laboratory infrastructure, contribute to joint projects, and gain insights into real-world industrial problem solving. Together, we are building a bridge between scientific innovation and market-ready solutions.`,
   },
@@ -144,12 +183,12 @@ This collaboration enables students, researchers, and startups to access cutting
 
   // Image Gallery Section
   gallery: {
-    sectionTitle: "Inside Global Tech Research Labs",
+    sectionTitle: "",
     images: [
-      "/images/gallery/global-tech-1.jpg", // Placeholder
-      "/images/gallery/global-tech-2.jpg", // Placeholder
-      "/images/gallery/global-tech-3.jpg", // Placeholder
-      "/images/gallery/global-tech-4.jpg", // Placeholder
+      // "/images/gallery/global-tech-1.jpg", // Placeholder
+      // "/images/gallery/global-tech-2.jpg", // Placeholder
+      // "/images/gallery/global-tech-3.jpg", // Placeholder
+      // "/images/gallery/global-tech-4.jpg", // Placeholder
     ],
   },
 
@@ -225,10 +264,7 @@ Together, we aim to foster an environment where true excellence is defined not o
   gallery: {
     sectionTitle: "A Glimpse into A.V. College",
     images: [
-      "/images/gallery/av-1.jpg",
-      "/images/gallery/av-2.jpg",
-      "/images/gallery/av-3.jpg",
-      "/images/gallery/av-4.jpg",
+      avImage1,avImage2,avImage3,avImage4
     ],
   },
 },
@@ -288,10 +324,7 @@ Together, we encourage research, entrepreneurship, and global collaboration, hel
   gallery: {
     sectionTitle: "Campus Life at R.B.V.R.R.",
     images: [
-      "/images/gallery/rbvrr-1.jpg",
-      "/images/gallery/rbvrr-2.jpg",
-      "/images/gallery/rbvrr-3.jpg",
-      "/images/gallery/rbvrr-4.jpg",
+      rbvrr1,rbvrr2,rbvrr3,rbvrr4
     ],
   },
 
@@ -363,10 +396,7 @@ Together, we are creating opportunities that bridge classroom learning with real
   gallery: {
     sectionTitle: "Life at Pragathi College",
     images: [
-      "/images/gallery/pragathi-1.jpg",
-      "/images/gallery/pragathi-2.jpg",
-      "/images/gallery/pragathi-3.jpg",
-      "/images/gallery/pragathi-4.jpg",
+      pragathi1,pragathi2,pragathi3,pragathi4     
     ],
   },
 
@@ -441,10 +471,7 @@ Together, we are fostering a new generation of students who are not only academi
   gallery: {
     sectionTitle: "Highlights from Our Collaboration",
     images: [
-      "/images/gallery/bjr-1.jpg",
-      "/images/gallery/bjr-2.jpg",
-      "/images/gallery/bjr-3.jpg",
-      "/images/gallery/bjr-4.jpg",
+      bjrimage1,bjrimage2,bjrimage3,bjrimage4,bjrimage5
     ],
   },
 
@@ -515,10 +542,7 @@ Together, we aim to create an ecosystem where women students are encouraged to e
   gallery: {
     sectionTitle: "Highlights from Our Collaboration",
     images: [
-      "/images/gallery/kasturba-1.jpg",
-      "/images/gallery/kasturba-2.jpg",
-      "/images/gallery/kasturba-3.jpg",
-      "/images/gallery/kasturba-4.jpg",
+      kasturba1,kasturba2,kasturba3,kasturba4
     ],
   },
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { collaboratingColleges } from '../../data/Collaborations';
+import Banner from '../../assets/images/PageBanners/collaborationsBanner.jpg'
 
 const AcademicCollaborations = () => {
   return (
@@ -9,7 +10,7 @@ const AcademicCollaborations = () => {
       <section className="relative h-[500px] flex items-center justify-center text-white text-center overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-80"></div>
         <img
-          src="https://www.admissionfever.com/Media/clgimg/gallery/660_img7880807966798673.jpg"
+          src={Banner}
           alt="Collaboration Banner"
           className="absolute inset-0 w-full h-full object-cover mix-blend-overlay"
         />

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'; // Import useEffect
 import { Outlet, useLocation } from 'react-router-dom'; // Import useLocation
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import ScrollToTopButton from '../components/ScrollToTopButton';
+// import ScrollToTopButton from '../components/ScrollToTopButton';
 import Chatbot from '../components/ui/Chatbot';
 
 const Layout = () => {
@@ -19,9 +19,9 @@ const Layout = () => {
       <div>
         <Outlet />
       </div>
-      <ScrollToTopButton />
+      {/* <ScrollToTopButton /> */}
       <Footer />
-      <Chatbot position="left" />
+      {/* <Chatbot position="left" /> */}
     </div>
   );
 };

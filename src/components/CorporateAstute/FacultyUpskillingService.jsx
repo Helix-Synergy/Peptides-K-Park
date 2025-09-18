@@ -13,10 +13,10 @@ const fusData = {
   tagline: 'Your Partner in Academic Excellence',
   intro: 'We offer a range of specialized workshops and courses to help faculty members enhance their professional skills and stay ahead of the curve. Each program is led by expert facilitators and focuses on practical, real-world application.',
   services: [
-    { icon: BookOpen, text: 'Instructional Design & Curriculum Development: Learn how to design engaging and effective courses, whether for in-person or online delivery. Master the principles of creating a curriculum that drives student success and meets modern educational standards.' },
-    { icon: Laptop, text: 'Integrating Technology in the Classroom: Explore the latest educational technologies and digital tools. We\'ll show you how to use them to create interactive lessons, manage student progress, and foster a dynamic learning environment.' },
-    { icon: BarChart, text: 'Assessment & Evaluation Strategies: Move beyond traditional testing. Discover new methods for assessing student learning, providing meaningful feedback, and using data to improve your teaching.' },
-    { icon: Feather, text: 'Research & Publishing Skills: Develop the skills needed to conduct impactful research, write compelling academic papers, and navigate the publishing process. Our program helps you elevate your scholarly profile.' },
+    { icon: BookOpen, title: 'Instructional Design & Curriculum Development', description: 'Learn how to design engaging and effective courses, whether for in-person or online delivery. Master the principles of creating a curriculum that drives student success and meets modern educational standards.' },
+    { icon: Laptop, title: 'Integrating Technology in the Classroom', description: 'Explore the latest educational technologies and digital tools. We\'ll show you how to use them to create interactive lessons, manage student progress, and foster a dynamic learning environment.' },
+    { icon: BarChart, title: 'Assessment & Evaluation Strategies', description: 'Move beyond traditional testing. Discover new methods for assessing student learning, providing meaningful feedback, and using data to improve your teaching.' },
+    { icon: Feather, title: 'Research & Publishing Skills', description: 'Develop the skills needed to conduct impactful research, write compelling academic papers, and navigate the publishing process. Our program helps you elevate your scholarly profile.' },
   ],
   whyChoose: [
     { icon: GraduationCap, text: 'Expert-Led: Learn from a team of experienced educators and academic leaders who are at the forefront of educational innovation.' },
@@ -119,10 +119,13 @@ const FacultyUpskillingServices = () => {
                   className="group relative overflow-hidden bg-white p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col items-start"
                 >
                   <div className="relative z-10">
-                    <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gray-100 transition-colors duration-300 group-hover:bg-[#714819]">
-                      <Icon size={32} className="text-[#714819] transition-colors duration-300 group-hover:text-white" />
+                    <div className="flex items-center mb-4">
+                      <div className="flex items-center justify-center w-16 h-16 mr-4 rounded-full bg-gray-100 transition-colors duration-300 group-hover:bg-[#714819]">
+                        <Icon size={32} className="text-[#714819] transition-colors duration-300 group-hover:text-white" />
+                      </div>
+                      <h4 className="text-xl font-bold text-[#0f2920]">{item.title}</h4>
                     </div>
-                    <p className="font-medium text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300">{item.text}</p>
+                    <p className="font-medium text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300">{item.description}</p>
                   </div>
                   <motion.div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -191,22 +194,22 @@ const FacultyUpskillingServices = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg mb-8 text-[#1e1e1e]"
+            className="text-lg mb-8 text-center text-[#1e1e1e]"
           >
             {fusData.cta}
           </motion.p>
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6, delay: 0.4 }}
->
-  <Link
-    to="/contact"
-    className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-xl bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
-  >
-    Get Started <ArrowRight className="ml-2 w-5 h-5" />
-  </Link>
-</motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Link
+              to="/contact"
+              className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-xl bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
+            >
+              Get Started <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 

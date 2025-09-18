@@ -261,7 +261,7 @@ const AAS = () => {
 
               {/* Why Choose Us Horizontal Scroll - FIXED */}
               <div className="mb-12 ">
-                <h3 className="text-3xl font-bold text-[#0f2920] mb-6">Why Choose Us?</h3>
+                <h3 className="text-3xl font-bold text-[#0f2920] text-center mb-6">Why Choose Us?</h3>
                 <div className="flex overflow-x-auto gap-6 py-8  scrollbar-hide md:justify-center">
                   {selectedService.content.whyChoose.map((item, i) => (
                     <motion.div
@@ -297,7 +297,7 @@ const AAS = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg mb-8 text-[#1e1e1e]"
+            className="text-lg mb-8 text-center text-[#1e1e1e]"
           >
             {selectedService.content.cta}
           </motion.p>

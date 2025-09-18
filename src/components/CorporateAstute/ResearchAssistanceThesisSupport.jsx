@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 import {
   FileText, Database, Edit, ClipboardCheck, Users, TrendingUp, Award, ArrowRight, BookMarked, Brain, Lightbulb
 } from "lucide-react";
-// Assuming you have a relevant banner image for RATS, e.g.,
-import Banner from '../../assets/images/PageBanners/3.jpg';
+import Banner from '../../assets/images/PageBanners/8.jpg';
 
 // === DATA FOR THIS PAGE ===
 const ratsData = {
@@ -14,10 +13,10 @@ const ratsData = {
   tagline: 'Your Partner for Research Assistance & Writing Services',
   intro: 'We provide structured thesis support to help students navigate every stage of their academic journey. Our expert guidance ensures your research is robust, your data is sound, and your thesis is written with clarity and academic rigor.',
   services: [
-    { icon: FileText, text: 'Literature Review & Research Methodology: We provide expert guidance on structuring your research and conducting comprehensive literature reviews. Our support helps you build a solid theoretical foundation and design a methodology that is both robust and ethically sound.' },
-    { icon: Database, text: 'Data Analysis & Interpretation: Our team assists with both statistical tools and advanced bioinformatics techniques. We help you transform raw data into meaningful insights and provide clear interpretations that strengthen your conclusions.' },
-    { icon: Edit, text: 'Thesis Writing & Editing: Our services go beyond simple proofreading. We focus on enhancing clarity, ensuring coherence, and elevating the academic rigor of your writing. We help you present your findings in a compelling and professional manner.' },
-    { icon: ClipboardCheck, text: 'Ethical Research Practices: Adhering to the highest research standards is non-negotiable. We guide you through the process of ethical approvals, data privacy, and proper citation to ensure your work is credible and stands up to scrutiny.' },
+    { icon: FileText, title: 'Literature Review & Research Methodology', description: 'We provide expert guidance on structuring your research and conducting comprehensive literature reviews. Our support helps you build a solid theoretical foundation and design a methodology that is both robust and ethically sound.' },
+    { icon: Database, title: 'Data Analysis & Interpretation', description: 'Our team assists with both statistical tools and advanced bioinformatics techniques. We help you transform raw data into meaningful insights and provide clear interpretations that strengthen your conclusions.' },
+    { icon: Edit, title: 'Thesis Writing & Editing', description: 'Our services go beyond simple proofreading. We focus on enhancing clarity, ensuring coherence, and elevating the academic rigor of your writing. We help you present your findings in a compelling and professional manner.' },
+    { icon: ClipboardCheck, title: 'Ethical Research Practices', description: 'Adhering to the highest research standards is non-negotiable. We guide you through the process of ethical approvals, data privacy, and proper citation to ensure your work is credible and stands up to scrutiny.' },
   ],
   whyChoose: [
     { icon: Brain, text: 'Subject Matter Experts: Our team consists of PhD-level researchers and seasoned academics who specialize in a wide range of fields, offering you personalized, in-depth expertise.' },
@@ -65,7 +64,7 @@ const cardHover = {
 const ResearchAssistanceServices = () => {
   return (
     <div className="bg-gray-50 text-[#1e1e1e] font-inter relative min-h-screen">
-      
+
             {/* Hero Section */}
       <section
         className="relative h-[60vh] flex items-center justify-end text-center bg-cover bg-center"
@@ -118,10 +117,13 @@ const ResearchAssistanceServices = () => {
                   className="group relative overflow-hidden bg-white p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col items-start"
                 >
                   <div className="relative z-10">
-                    <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gray-100 transition-colors duration-300 group-hover:bg-[#714819]">
-                      <Icon size={32} className="text-[#714819] transition-colors duration-300 group-hover:text-white" />
+                    <div className="flex items-center mb-4">
+                      <div className="flex items-center justify-center w-16 h-16 mr-4 rounded-full bg-gray-100 transition-colors duration-300 group-hover:bg-[#714819]">
+                        <Icon size={32} className="text-[#714819] transition-colors duration-300 group-hover:text-white" />
+                      </div>
+                      <h4 className="text-xl font-bold text-[#0f2920]">{item.title}</h4>
                     </div>
-                    <p className="font-medium text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300">{item.text}</p>
+                    <p className="font-medium text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300">{item.description}</p>
                   </div>
                   <motion.div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -190,22 +192,22 @@ const ResearchAssistanceServices = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg mb-8 text-[#1e1e1e]"
+            className="text-lg mb-8 text-center text-[#1e1e1e]"
           >
             {ratsData.cta}
           </motion.p>
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6, delay: 0.4 }}
->
-  <Link
-    to="/contact"
-    className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-xl bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
-  >
-    Get Started <ArrowRight className="ml-2 w-5 h-5" />
-  </Link>
-</motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Link
+              to="/contact"
+              className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-xl bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
+            >
+              Get Started <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>

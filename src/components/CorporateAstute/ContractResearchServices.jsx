@@ -13,11 +13,11 @@ const crsData = {
   tagline: 'Powering Innovation Across All Disciplines',
   intro: 'We offer Contract Research Services (CRS) specializing in a wide range of scientific and technical fields. Partner with us to accelerate your R&D, gain expert insights, and bring your ideas to life.',
   services: [
-    { icon: Pill, text: 'Pharmaceutical & Biotechnology: From drug discovery and preclinical studies to clinical trial management and bioanalysis, we support every phase of pharmaceutical and biotech R&D. We help validate drug targets, assess safety, and manage complex clinical data to accelerate your product’s journey to market.' },
-    { icon: Leaf, text: 'Environmental Sciences: We provide comprehensive environmental research, including soil and water quality analysis, ecological studies, and environmental impact assessments. Our work helps industries and governments monitor ecosystems, ensure regulatory compliance, and develop sustainable solutions.' },
-    { icon: UtensilsCrossed, text: 'Food & Agriculture: Our services cover everything from nutritional analysis and food safety testing to crop science research and agricultural product development. We help optimize food quality, ensure product authenticity, and innovate for a more sustainable food supply.' },
-    { icon: Wrench, text: 'Materials Science: We conduct research on new materials and analyze existing ones. Our services include material characterization, failure analysis, and the development of new composites and polymers for industries such as aerospace, automotive, and consumer goods.' },
-    { icon: Lightbulb, text: 'Chemical Sciences: We offer a full range of chemical research services, including custom synthesis, chemical analysis, and process optimization. Our expertise helps clients in the chemical, energy, and specialty materials sectors solve complex problems and create new products.' },
+    { icon: Pill, title: 'Pharmaceutical & Biotechnology', description: 'From drug discovery and preclinical studies to clinical trial management and bioanalysis, we support every phase of pharmaceutical and biotech R&D. We help validate drug targets, assess safety, and manage complex clinical data to accelerate your product’s journey to market.' },
+    { icon: Leaf, title: 'Environmental Sciences', description: 'We provide comprehensive environmental research, including soil and water quality analysis, ecological studies, and environmental impact assessments. Our work helps industries and governments monitor ecosystems, ensure regulatory compliance, and develop sustainable solutions.' },
+    { icon: UtensilsCrossed, title: 'Food & Agriculture', description: 'Our services cover everything from nutritional analysis and food safety testing to crop science research and agricultural product development. We help optimize food quality, ensure product authenticity, and innovate for a more sustainable food supply.' },
+    { icon: Wrench, title: 'Materials Science', description: 'We conduct research on new materials and analyze existing ones. Our services include material characterization, failure analysis, and the development of new composites and polymers for industries such as aerospace, automotive, and consumer goods.' },
+    { icon: FlaskConical, title: 'Chemical Sciences', description: 'We offer a full range of chemical research services, including custom synthesis, chemical analysis, and process optimization. Our expertise helps clients in the chemical, energy, and specialty materials sectors solve complex problems and create new products.' },
   ],
   whyChoose: [
     { icon: Users, text: 'Our scientists and researchers come from diverse backgrounds, allowing us to tackle complex projects that span multiple fields.' },
@@ -66,28 +66,6 @@ const ContractResearchServices = () => {
   return (
     <div className="bg-gray-50 text-[#1e1e1e] font-inter relative min-h-screen">
       {/* Hero Section */}
-      {/* <section className="relative w-full h-[60vh] flex items-center justify-end text-end bg-[#0f2920] overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <motion.div
-            initial={{ scale: 1.2, rotate: 0 }}
-            // animate={{ scale: 1, rotate: 360 }}
-            // transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-            className="w-full h-full bg-no-repeat bg-cover"
-            style={{ backgroundImage: `url(${Banner})` }}
-          ></motion.div>
-        </div>
-        <motion.div
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 px-4 max-w-4xl text-white"
-        >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{crsData.title}</h1>
-          <p className="text-lg md:text-xl text-gray-200 mx-auto">{crsData.tagline}</p>
-        </motion.div>
-      </section> */}
-
-            {/* Hero Section */}
       <section
         className="relative h-[60vh] flex items-center justify-end text-center bg-cover bg-center"
         style={{ backgroundImage: `url(${Banner})` }}
@@ -100,7 +78,7 @@ const ContractResearchServices = () => {
           className="relative z-10 px-4"
         >
           <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
-           {crsData.title}
+            {crsData.title}
           </h1>
         </motion.div>
       </section>
@@ -127,10 +105,13 @@ const ContractResearchServices = () => {
                   className="group relative overflow-hidden bg-white p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col items-start"
                 >
                   <div className="relative z-10">
-                    <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gray-100 transition-colors duration-300 group-hover:bg-[#714819]">
-                      <Icon size={32} className="text-[#714819] transition-colors duration-300 group-hover:text-white" />
+                    <div className="flex items-center mb-4">
+                      <div className="flex items-center justify-center w-16 h-16 mr-4 rounded-full bg-gray-100 transition-colors duration-300 group-hover:bg-[#714819]">
+                        <Icon size={32} className="text-[#714819] transition-colors duration-300 group-hover:text-white" />
+                      </div>
+                      <h4 className="text-xl font-bold text-[#0f2920]">{item.title}</h4>
                     </div>
-                    <p className="font-medium text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300">{item.text}</p>
+                    <p className="font-medium text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300">{item.description}</p>
                   </div>
                   <motion.div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -179,29 +160,29 @@ const ContractResearchServices = () => {
         </div>
       </section>
 
-            {/* CTA */}
-            <section className="w-full py-16 px-4 lg:px-12 bg-[#d7f2da] text-black text-center">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl lg:text-4xl font-bold mb-6 gradient-text">
-                        Ready to Start Your Academic Project?
-                    </h2>
-                    <p className="text-lg mb-8 text-primary-text">
-                        Let’s discuss your requirements and craft a roadmap to success.
-                    </p>
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6, delay: 0.4 }}
->
-  <Link
-    to="/contact"
-    className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-xl bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
-  >
-    Get Started <ArrowRight className="ml-2 w-5 h-5" />
-  </Link>
-</motion.div>
-                </div>
-            </section>
+      {/* CTA */}
+      <section className="w-full py-16 px-4 lg:px-12 bg-[#d7f2da] text-black text-center">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-6 gradient-text">
+            Ready to Start Your Academic Project?
+          </h2>
+          <p className="text-lg mb-8 text-center text-primary-text">
+            Let’s discuss your requirements and craft a roadmap to success.
+          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Link
+              to="/contact"
+              className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-xl bg-[#1e1e1e] shadow-lg transition-all duration-300 hover:bg-[#333333] hover:scale-105"
+            >
+              Get Started <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 };

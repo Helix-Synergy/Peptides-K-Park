@@ -269,33 +269,34 @@ import PeptidesAssistanceMembership from "./components/CareerSaga/PeptidesAssist
 import AdvancedIndustrialReach from "./components/CareerSaga/AdvancedIndustrialReach";
 import ComingSoon from "./components/ComingSoon";
 import NotFoundLab from "./components/NotFoundLab";
+import QuickLinks from "./components/Quicklinks";
 
 
 function App() {
   // Use a useEffect hook to send a ping to the backend service every 3 minutes.
   // This keeps the service awake on platforms like Render's free tier.
-  useEffect(() => {
-    const backendUrl = "https://peptidesbackend.onrender.com";
+useEffect(() => {
+  const backendUrl = "https://peptidesbackend.onrender.com";
 
-    // Define the ping function
-    const pingBackend = async () => {
-      try {
-        await fetch(backendUrl);
+  const pingBackend = async () => {
+    try {
+      const res = await fetch(backendUrl);
+      if (res.ok) {
         console.log("✅ Backend ping successful!");
-      } catch (error) {
-        console.error("❌ Backend ping failed:", error);
+      } else {
+        console.warn(`⚠️ Backend ping returned status: ${res.status}`);
       }
-    };
+    } catch (error) {
+      console.error("❌ Backend ping failed:", error);
+    }
+  };
 
-    // Ping immediately on mount
-    pingBackend();
+  pingBackend(); // ping immediately
+  const intervalId = setInterval(pingBackend, 180000); // every 3 minutes
 
-    // Set up the interval to ping every 3 minutes (180,000 milliseconds)
-    const intervalId = setInterval(pingBackend, 180000);
+  return () => clearInterval(intervalId);
+}, []);
 
-    // Clean up the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []); // Empty dependency array ensures this runs only once on mount
 
 
   return (
@@ -442,6 +443,7 @@ function App() {
           <Route path="*" element={<NotFoundLab />} />
         </Route>
       </Routes>
+      <QuickLinks />
     </Router>
   );
 }

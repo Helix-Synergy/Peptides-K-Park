@@ -27,7 +27,7 @@ const AcademicDetail = () => {
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
             {college.banner.title}
           </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-center max-w-2xl mx-auto">
             {college.banner.subtitle}
           </p>
         </div>

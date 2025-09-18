@@ -27,7 +27,7 @@ const IndustrialDetail = () => {
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
             {industry.banner?.title}
           </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto font-light">
+          <p className="text-lg md:text-xl text-center max-w-2xl mx-auto font-light">
             {industry.banner?.subtitle}
           </p>
         </div>

@@ -20,6 +20,7 @@ import murthy from "../../assets/images/advisory/murthy.jpg";
 import roseMary from "../../assets/images/advisory/rose-mary.jpg";
 import shivakrishna from "../../assets/images/advisory/shivakrishna.jpeg";
 import thomas from "../../assets/images/advisory/thomas.jpg";
+import Sunitha from "../../assets/images/advisory/sunithaGaru.jpeg";
 
 const advisoryContentData = {
   "about-advisory-board": {
@@ -326,25 +327,28 @@ const advisoryContentData = {
               "Event management and academic leadership",
             ],
           },
-          {
+{
     name: "Prof. E.M. Sunitha",
-    image: "sunitha.jpg",
-    role: "Associate Professor & Head of Botany",
-    subtitle: "Babu Jagjivan Ram Government Degree College",
+    image: Sunitha,
+    role: "Professor & Head of Botany",
+    subtitle: "Babu Jagjivan Ram Government Degree College (A) Autonomous",
     country: "India",
-    bio: "Prof. E.M. Sunitha is an accomplished academician and researcher with over two decades of experience in the fields of teaching and research. Currently serving as an Associate Professor and Head of the Department of Botany at Babu Jagjivan Ram Government Degree College in Hyderabad, she has dedicated her career to fostering student growth and innovation. She holds a Doctorate Degree in Genetics from Osmania University, which laid the foundation for her interdisciplinary skills. Beyond her administrative and teaching duties, Prof. Sunitha is a dynamic leader known for implementing innovative practices such as the 'BJR Bionics YouTube Channel' and a Virtual/Digital Herbarium to enhance blended learning. Her commitment to environmental consciousness is evident through her supervision of projects like the establishment of a Miyawaki Garden and a solar-based moisture sensor, the latter of which received a national award.",
+    bio: "Prof. E.M. Sunitha is an accomplished Academician and Researcher with over two decades of experience in the fields of Teaching and Research. Currently serving as a Professor and Head of the Department of Botany at Babu Jagjivan Ram Government Degree College (A) Autonomous in Hyderabad, she has dedicated her career to fostering Student Growth and Innovation. She holds a Doctorate Degree in Genetics from Osmania University, which laid the foundation for her Interdisciplinary Skills. Beyond her Administrative and Teaching duties, Prof. Sunitha is a dynamic Leader known for implementing innovative practices such as the 'BJR Bionics YouTube Channel' and a Virtual/Digital Herbarium to enhance Blended Learning. Her commitment to Environmental Consciousness is evident through her supervision of projects like the establishment of a Miyawaki Garden and a Solar-Based Moisture Sensor, the latter of which received a National Award.",
     achievements: [
-        "Recipient of multiple awards for innovative projects, including the National Hackathon Third Prize.",
-        "Initiated the 'BJR Bionics YouTube Channel' and a Virtual/Digital Herbarium for student learning.",
-        "Supervised the establishment of a Miyawaki Garden and a Medicinal Plant garden.",
-        "Author of three books on subjects like Tissue Culture and Mushroom Cultivation.",
-        "Holds a Doctorate in Genetics and has qualified for GATE and SLET examinations.",
+      "Recipient of the State Best Teacher Award – 2025.",
+        "Recipient of multiple Awards for Innovative Projects, including the National Hackathon Third Prize.",
+        "Initiated the 'BJR Bionics YouTube Channel' and a Virtual/Digital Herbarium for Student Learning.",
+        "Supervised the establishment of a Miyawaki Garden and a Medicinal Plant Garden.",
+        "Author of three Books on subjects like Tissue Culture and Mushroom Cultivation.",
+        "Holds a Doctorate in Genetics and has qualified for GATE and SLET Examinations.",
         "Commissioned as a Lieutenant in the Army NCC.",
+        "Holder of a Patent in her field of Research.",
+        
     ],
     contributions: [
-        "Curriculum development for B.Sc Botany.",
-        "Innovative practices in ICT teaching and blended learning.",
-        "Research in plant sciences and environmental consciousness.",
+        "Curriculum Development for B.Sc Botany.",
+        "Innovative Practices in ICT Teaching and Blended Learning.",
+        "Research in Plant Sciences and Environmental Consciousness."
     ],
 },
           {
@@ -636,7 +640,7 @@ const AdvisoryContentDisplay = ({ pageType }) => {
                           <h4 className="text-lg font-bold text-peptides-color-brown mb-1">
                             {member.name}
                           </h4>
-                          <p className="text-sm font-semibold text-gray-700 mb-2">
+                          <p className="text-sm font-semibold text-center text-gray-700 mb-2">
                             {member.role}
                           </p>
                           <p className="text-xs text-gray-600 leading-snug line-clamp-3">
